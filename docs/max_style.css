@@ -1,11 +1,11 @@
 
 :root{
-  --bg:#f4ead7; /* 沉穩漢方綠 */
-  --panel:#fff7e7; /* 漢方木色 */
-  --text:#3a2b22; /* 文字深色 */
-  --accent:#7c3f22; /* 草本淺綠 */
-  --gold:#b48a63; /* 人參淺金 */
-  --muted:#6e5b4b;
+  --bg: #F7F3EB; /* 沉穩漢方綠 */
+  --panel: #FFF9F3; /* 漢方木色 */
+  --text: #6A4A35; /* 文字深色 */
+  --accent: #D4A657; /* 草本淺綠 */
+  --gold: #EBD9B4; /* 人參淺金 */
+  --muted: #A78A6A;
   --radius: 12px;
 }
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;margin:0;}
@@ -20,3 +20,13 @@ body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC', 'Helveti
 .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--accent);color:var(--text);font-weight:700;}
 @media(min-width:900px){.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}}
 img{max-width:100%;height:auto;display:block;}
+
+
+/* Ultra Soft Herbal Paper Texture */
+
+body {
+    background: #f4ead7 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat;
+}
+
+/* jade-texture */
+body { background: #F7F4EC url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat; }
