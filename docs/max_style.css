@@ -1,5 +1,11 @@
 /* MAX UI base - generated */
-:root{--bg:#000;--gold:#d8b979;--muted:#bfb6a0}
+:root{
+  --bg: #0E1A14;
+  --gold: #DCC7A1;
+  --muted: #F5F2EA;
+  --accent: #BFAE91;
+}
+
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--muted);font-family:'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;}
 .wrap{max-width:1100px;margin:0 auto;padding:24px;}
@@ -10,7 +16,7 @@ body{margin:0;background:var(--bg);color:var(--muted);font-family:'Noto Sans TC'
 .site-nav a:hover{color:var(--gold)}
 .hero{padding:80px 0;text-align:center;background:linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.6))}
 .hero h1{color:var(--gold);font-size:40px;margin:0 0 12px}
-.hero p{color:#efe7cf}
+.hero p{color:var(--muted)}
 .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.16));border:1px solid rgba(212,176,104,0.06);padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.6);margin-bottom:18px}
 .grid{display:grid;grid-template-columns:1fr;gap:20px}
 @media(min-width:900px){.grid{grid-template-columns:repeat(2,1fr)}}
