@@ -1,0 +1,42 @@
+
+:root{
+  --bg: #F7F3EB;
+  --panel: #FFF9F3;
+  --text: #6A4A35;
+  --accent: #D4A657;
+  --muted: #A78A6A;
+  --gold: #EBD9B4;
+  --radius: 12px;
+  --max-width: 1100px;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:'Noto Serif TC', 'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.8;}
+.container{max-width:var(--max-width);margin:0 auto;padding:28px;}
+.header{background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);padding:18px 0;position:sticky;top:0;z-index:100;border-bottom:1px solid rgba(0,0,0,0.04)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px;max-width:var(--max-width);margin:0 auto;padding:0 20px;}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:46px;width:auto;display:block}
+.brand .title{font-weight:700;color:var(--accent);letter-spacing:2px}
+.nav{display:flex;gap:18px;align-items:center}
+.nav a{color:var(--text);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+.nav a:hover{background:rgba(139,75,43,0.06);color:var(--accent)}
+.hero{padding:60px 20px;background:linear-gradient(180deg,rgba(255,255,255,0.6),transparent);margin-bottom:20px}
+.hero h1{font-size:34px;color:var(--accent);margin:0 0 8px}
+.card{background:var(--panel);padding:18px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(0,0,0,0.06);margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media(min-width:800px){.grid{grid-template-columns:repeat(2,1fr)}}
+.product-card{display:flex;flex-direction:column;gap:12px;background:var(--panel);padding:14px;border-radius:10px;border:1px solid rgba(0,0,0,0.03)}
+.product-card img{width:100%;height:auto;border-radius:8px;box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+.footer{padding:28px 0;border-top:1px solid rgba(0,0,0,0.04);text-align:center;color:var(--muted);margin-top:24px}
+@media(max-width:799px){.nav{display:none}.hamburger{display:block}}
+.hamburger{display:none;border:0;background:transparent;color:var(--text);font-size:20px;padding:8px}
+
+
+/* Ultra Soft Herbal Paper Texture */
+
+body {
+    background: #f4ead7 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat;
+}
+
+/* jade-texture */
+body { background: #F7F4EC url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat; }
