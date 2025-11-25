@@ -1,0 +1,10 @@
+:root{
+  --bg: #FAF8F3;
+  --panel: #FFFFFF;
+  --text: #3A2B1A;
+  --accent: #C7A46A;
+  --muted: #EDE6D8;
+}
+
+body{background:var(--bg);color:var(--text);font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;}
+.header, .site-header{background:linear-gradient(180deg, rgba(0,0,0,0.02), transparent);} .site-nav a{color:var(--text);text-decoration:none;padding:6px 8px;} .site-nav a:hover{color:var(--accent);} .card{background:var(--panel);border-radius:10px;padding:16px;margin:12px 0;} .btn{background:var(--accent);color:#fff;padding:10px 14px;border-radius:6px;border:none}
