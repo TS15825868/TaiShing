@@ -1,8 +1,8 @@
 /* Black Gold Pro Advanced */
 :root{
---bg:#f5f0e6;
---gold:#8b4b2b;
---muted:#7a6a58;
+--bg:#f4ead7;
+--gold:#b48a63;
+--muted:#6e5b4b;
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:'Noto Sans TC', 'Microsoft JhengHei', Arial;background:var(--bg);color:#efe8db}

@@ -1,11 +1,11 @@
 
 :root{
-  --bg: #395B41; /* 沉穩漢方綠 */
-  --panel: #E7D9C1; /* 漢方木色 */
-  --text: #1A1A1A; /* 文字深色 */
-  --accent: #A7C9A1; /* 草本淺綠 */
-  --gold: #D9C9A1; /* 人參淺金 */
-  --muted: #6B6B6B;
+  --bg:#f4ead7; /* 沉穩漢方綠 */
+  --panel:#fff7e7; /* 漢方木色 */
+  --text:#3a2b22; /* 文字深色 */
+  --accent:#7c3f22; /* 草本淺綠 */
+  --gold:#b48a63; /* 人參淺金 */
+  --muted:#6e5b4b;
   --radius: 12px;
 }
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;margin:0;}
