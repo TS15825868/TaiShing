@@ -1,11 +1,11 @@
 
 :root{
-  --bg:#f4ead7;
-  --panel:#fff7e7;
-  --text:#3a2b22;
-  --accent:#7c3f22;
-  --muted:#6e5b4b;
-  --gold:#b48a63;
+  --bg: #F7F4EC;
+  --panel: #EDF0EB;
+  --text: #0F2F2F;
+  --accent: #2F5F4F;
+  --muted: #6B7A74;
+  --gold: #D6C5A0;
   --radius: 12px;
   --max-width: 1100px;
 }
@@ -37,3 +37,6 @@ body{margin:0;font-family:'Noto Serif TC', 'Noto Sans TC', 'Helvetica Neue', Ari
 body {
     background: #f4ead7 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat;
 }
+
+/* jade-texture */
+body { background: #F7F4EC url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat; }

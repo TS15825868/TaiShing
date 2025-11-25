@@ -1,11 +1,11 @@
 
 :root{
-  --bg:#f4ead7; /* 沉穩漢方綠 */
-  --panel:#fff7e7; /* 漢方木色 */
-  --text:#3a2b22; /* 文字深色 */
-  --accent:#7c3f22; /* 草本淺綠 */
-  --gold:#b48a63; /* 人參淺金 */
-  --muted:#6e5b4b;
+  --bg: #F7F4EC; /* 沉穩漢方綠 */
+  --panel: #EDF0EB; /* 漢方木色 */
+  --text: #0F2F2F; /* 文字深色 */
+  --accent: #2F5F4F; /* 草本淺綠 */
+  --gold: #D6C5A0; /* 人參淺金 */
+  --muted: #6B7A74;
   --radius: 12px;
 }
 body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;margin:0;}
@@ -27,3 +27,6 @@ img{max-width:100%;height:auto;display:block;}
 body {
     background: #f4ead7 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat;
 }
+
+/* jade-texture */
+body { background: #F7F4EC url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat; }
