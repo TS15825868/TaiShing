@@ -19,3 +19,10 @@ h1{color:var(--gold)}
 .footer{padding:30px;text-align:center;color:var(--muted);border-top:1px solid rgba(212,176,104,0.04);margin-top:24px}
 
 .product-item img{max-width:100%;height:auto;}
+
+
+/* Ultra Soft Herbal Paper Texture */
+
+body {
+    background: #f4ead7 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat;
+}

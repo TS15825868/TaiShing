@@ -30,3 +30,10 @@ body{margin:0;font-family:'Noto Serif TC', 'Noto Sans TC', 'Helvetica Neue', Ari
 .footer{padding:28px 0;border-top:1px solid rgba(0,0,0,0.04);text-align:center;color:var(--muted);margin-top:24px}
 @media(max-width:799px){.nav{display:none}.hamburger{display:block}}
 .hamburger{display:none;border:0;background:transparent;color:var(--text);font-size:20px;padding:8px}
+
+
+/* Ultra Soft Herbal Paper Texture */
+
+body {
+    background: #f4ead7 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat;
+}
