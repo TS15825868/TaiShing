@@ -1,11 +1,11 @@
 
 :root{
-  --bg: #F7F3EB;
-  --panel: #FFF9F3;
-  --text: #6A4A35;
-  --accent: #D4A657;
-  --muted: #A78A6A;
-  --gold: #EBD9B4;
+  --bg:#f4ead7;
+  --panel:#fff7e7;
+  --text:#3a2b22;
+  --accent:#7c3f22;
+  --muted:#6e5b4b;
+  --gold:#b48a63;
   --radius: 12px;
   --max-width: 1100px;
 }
@@ -30,13 +30,3 @@ body{margin:0;font-family:'Noto Serif TC', 'Noto Sans TC', 'Helvetica Neue', Ari
 .footer{padding:28px 0;border-top:1px solid rgba(0,0,0,0.04);text-align:center;color:var(--muted);margin-top:24px}
 @media(max-width:799px){.nav{display:none}.hamburger{display:block}}
 .hamburger{display:none;border:0;background:transparent;color:var(--text);font-size:20px;padding:8px}
-
-
-/* Ultra Soft Herbal Paper Texture */
-
-body {
-    background: #f4ead7 url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat;
-}
-
-/* jade-texture */
-body { background: #F7F4EC url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat; }
