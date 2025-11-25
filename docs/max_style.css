@@ -1,10 +1,11 @@
 /* MAX UI base - generated */
 :root{
-  --bg: #0E1A14;
-  --gold: #DCC7A1;
-  --muted: #F5F2EA;
-  --accent: #BFAE91;
+  --bg: #23352E;
+  --gold: #D8C8A5;
+  --muted: #F3EFE6;
+  --accent: #C9B89C;
 }
+
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--muted);font-family:'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;}
