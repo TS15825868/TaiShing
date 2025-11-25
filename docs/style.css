@@ -1,8 +1,18 @@
+
+:root{
+  --bg: #F7F3EB;
+  --panel: #FFF9F3;
+  --text: #6A4A35;
+  --accent: #D4A657;
+  --muted: #A78A6A;
+  --gold: #EBD9B4;
+}
+
 /* Black Gold Pro Advanced */
 :root{
---bg: #F7F4EC;
---gold: #D6C5A0;
---muted: #6B7A74;
+--bg: #F7F3EB;
+--gold: #EBD9B4;
+--muted: #A78A6A;
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:'Noto Sans TC', 'Microsoft JhengHei', Arial;background:var(--bg);color:#efe8db}
