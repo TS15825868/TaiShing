@@ -1,9 +1,9 @@
 /* MAX UI base - generated */
 :root{
-  --bg: #F7F6F2;
-  --gold: #D8C8A5;
-  --muted: #2A2A2A;
-  --accent: #C5B9A3;
+  --bg: #0F1A28;
+  --gold: #D4C29E;
+  --muted: #EDEAE4;
+  --accent: #B8A889;
 }
 
 *{box-sizing:border-box}
