@@ -1,11 +1,5 @@
 /* Black Gold Pro Advanced */
-:root{
---bg: #F7F4EC;
---gold: #D6C5A0;
---muted: #6B7A74;
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:'Noto Sans TC', 'Microsoft JhengHei', Arial;background:var(--bg);color:#efe8db}
+:root{--bg: #F7F4EC;--gold: #D6C5A0;--muted: #6B7A74;font-family:'Noto Sans TC', 'Microsoft JhengHei', Arial;background:var(--bg);color:#efe8db}
 nav{padding:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));display:flex;gap:12px;align-items:center}
 a{color:var(--muted);text-decoration:none}
 a:hover{color:var(--gold)}
@@ -17,8 +11,6 @@ h1{color:var(--gold)}
 .product-img{width:100%;height:260px;object-fit:cover;border-radius:10px;border:1px solid rgba(255,255,255,0.03)}
 .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(212,176,104,0.08);color:var(--gold);font-weight:700}
 .footer{padding:30px;text-align:center;color:var(--muted);border-top:1px solid rgba(212,176,104,0.04);margin-top:24px}
-
-.product-item img{max-width:100%;height:auto;}
 
 
 /* Ultra Soft Herbal Paper Texture */

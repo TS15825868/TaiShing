@@ -1,25 +1,10 @@
 
-:root{
-  --bg: #F7F4EC; /* 沉穩漢方綠 */
-  --panel: #EDF0EB; /* 漢方木色 */
-  --text: #0F2F2F; /* 文字深色 */
-  --accent: #2F5F4F; /* 草本淺綠 */
-  --gold: #D6C5A0; /* 人參淺金 */
-  --muted: #6B7A74;
-  --radius: 12px;
-}
-body{background:var(--bg);color:var(--text);font-family:'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;margin:0;}
-.wrap{max-width:1100px;margin:0 auto;padding:24px;}
-.site-header{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.03));padding:18px 0;border-bottom:1px solid rgba(0,0,0,0.08);}
-.brand{color:var(--gold);font-weight:700}
-.site-nav a{color:var(--text);margin-left:18px;text-decoration:none}
-.hero{padding:60px 0;text-align:left;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));}
-.hero h1{color:var(--gold);font-size:36px;margin:0 0 12px;}
-.card{background:var(--panel);padding:18px;border-radius:var(--radius);margin-bottom:18px;color:var(--text);box-shadow:0 6px 18px rgba(0,0,0,0.15);}
-.product-img{width:100%;height:auto;object-fit:cover;border-radius:10px;border:1px solid rgba(0,0,0,0.06);}
-.badge{display:inline-block;padding:6px 10px;border-radius:999px;background:var(--accent);color:var(--text);font-weight:700;}
-@media(min-width:900px){.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}}
-img{max-width:100%;height:auto;display:block;}
+body{background:#000;color:#d8b979;font-family:sans-serif;margin:0;padding:0;}
+header,footer{background:#111;padding:20px;text-align:center;border-bottom:1px solid #333;}
+a{color:#d8b979;text-decoration:none;}
+.section{padding:60px 20px;max-width:900px;margin:auto;}
+h1,h2,h3{color:#d8b979;}
+.card{background:rgba(255,255,255,0.05);padding:20px;margin:20px 0;border:1px solid #333;border-radius:8px;}
 
 
 /* Ultra Soft Herbal Paper Texture */
