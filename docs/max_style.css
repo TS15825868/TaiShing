@@ -6,7 +6,6 @@
   --accent: #C9B89C;
 }
 
-
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--muted);font-family:'Noto Sans TC', 'Helvetica Neue', Arial, sans-serif;}
 .wrap{max-width:1100px;margin:0 auto;padding:24px;}
