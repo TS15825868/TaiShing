@@ -41,3 +41,5 @@ body {
 body { background: #F7F4EC url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIW2NkYGD4DwABAgEAff7kVwAAAABJRU5ErkJggg==') repeat; }
 .navbar{background-color:#fdf7ef !important; color:#3a2a1a !important;}
 .navbar a{color:#3a2a1a !important;}
+
+.ingredients { margin-top:8px; font-size:15px; color:#2b2b2b; line-height:1.6; }
