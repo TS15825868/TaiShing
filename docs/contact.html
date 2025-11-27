@@ -1,59 +1,68 @@
-
-<header class="site-header" role="banner" style="background:transparent;">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;padding:12px 20px;">
-    <div class="brand" style="display:flex;align-items:center;gap:12px;">
-      <img src="images/logo-pro.png" alt="logo" style="height:44px;">
-    </div>
-    <nav class="site-nav" role="navigation" style="font-weight:600;color:#2b251f;">
-      <a href="index.html">首頁</a> |
-      <a href="story.html">品牌故事</a> |
-      <a href="brand_origin.html">品牌與商標</a> |
-      <a href="products.html">產品介紹</a> |
-      <a href="contact.html">聯絡我們</a>
-    </nav>
-  </div>
-</header>
-
-
 <!doctype html>
 <html lang="zh-Hant">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale="><title>聯絡我們</title>
-<link rel="stylesheet" href="./max_style.css">
-<style>
-.contact-wrap{max-width:900px;margin:30px auto;padding:20px;color:#efe8db}
-.info{background:linear-gradient(80deg, rgba(255,255,255,0.02), rgba(0,0,0,0.2));padding:8px;border-radius:2px;border:px solid rgba(22,82,90,0.06)}
-.socials{display:flex;gap:2px;margin-top:2px}
-.btn{padding:0px 4px;border-radius:8px;text-decoration:none;font-weight:700}
-.fb{background:#2d6fb7;color:#fff}
-.line{background:#00c300;color:#}
-.map{background:transparent;border:px solid rgba(255,25,0,0.2);color:#d4b068}
-</style>
-  <link rel="stylesheet" href="e_pro_style.css">
-<link rel="stylesheet" href="assets/css/theme_blackgold.css"></head>
-n
-
-
-
-<div class="contact-wrap">
-  <h>聯絡我們</h>
-  <div class="info">
-    <p>公司電話：02-2382990<br>公司地址：台北市萬華區西昌街52號</p>
-    <div class="socials">
-      <a class="btn fb" href="https://www.facebook.com/share/HJ6APfTar/?mibextid=wwXIfr" target="_blank">Facebook 官方粉專</a>
-      <a class="btn line" href="https://lin.ee/sHZW7NkR" target="_blank">LINE 官方帳號</a>
-      <a class="btn map" href="https://www.google.com/maps/search/?api=&query=台北市萬華區西昌街52號" target="_blank">開啟地圖</a>
+<head>
+  <meta charset="utf-8">
+  <title>聯絡我們｜台興山產・仙加味</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner container">
+      <div class="brand">
+        <img class="logo" src="images/logo-pro.png" alt="台興山產 仙加味 商標">
+        <div class="brand-text">
+          <div class="brand-name">台興山產・仙加味</div>
+          <div class="brand-tagline">漢方．高級養身品牌</div>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">首頁</a></li>
+        <li><a href="story.html" class="nav-link">品牌故事</a></li>
+        <li><a href="brand_origin.html" class="nav-link">品牌與商標</a></li>
+        <li><a href="products.html" class="nav-link">產品介紹</a></li>
+        <li><a href="contact.html" class="nav-link active">聯絡我們</a></li>
+      </ul>
     </div>
-  </div>
-  <h2 style="margin-top:8px">聯絡表單</h2>
-  <form action="#" method="post" class="info" style="margin-top:0px">
-    <label>姓名</label><br><input type="text" name="name" style="width:00%;padding:0px;margin:6px 0"><br>
-    <label>電話 / Email</label><br><input type="text" name="contact" style="width:00%;padding:0px;margin:6px 0"><br>
-    <label>訊息</label><br><textarea name="message" style="width:00%;padding:0px;margin:6px 0;height:20px"></textarea><br>
-    <button type="submit" style="padding:0px 6px;border-radius:8px;background:#d4b068;border:none;font-weight:700">送出</button>
-  </form>
-</div>
-<footer></footer>
+  </nav>
 
-<footer></footer>
+  <main class="container">
+    <section class="section card contact-card">
+      <h1>聯絡我們</h1>
+      <p class="contact-text">
+        若您對產品有任何疑問、批發需求，或想了解更多關於台興山產・仙加味的資訊，歡迎透過以下方式與我們聯繫。
+      </p>
 
+      <div class="contact-info">
+        <p><strong>公司名稱：</strong>台興山產有限公司</p>
+        <p><strong>品牌名稱：</strong>仙加味</p>
+        <p><strong>公司地址：</strong>台北市萬華區西昌街 52 號</p>
+        <p><strong>聯絡電話：</strong>02-23812990</p>
+      </div>
+
+      <div class="contact-actions">
+        <a href="https://www.facebook.com/share/1HJ6APfTar/?mibextid=wwXIfr"
+           class="btn btn-primary" target="_blank" rel="noopener">
+          前往 Facebook 粉專
+        </a>
+        <a href="https://lin.ee/sHZW7NkR"
+           class="btn btn-outline" target="_blank" rel="noopener">
+          加入官方 LINE
+        </a>
+        <a href="https://maps.google.com/?q=台北市萬華區西昌街52號"
+           class="btn btn-outline" target="_blank" rel="noopener">
+          在地圖 App 中開啟地址
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div>台興山產有限公司・仙加味</div>
+      <div>公司地址：台北市萬華區西昌街 52 號｜電話：02-23812990</div>
+      <div class="footer-copy">© 台興山產 版權所有</div>
+    </div>
+  </footer>
+</body>
 </html>
