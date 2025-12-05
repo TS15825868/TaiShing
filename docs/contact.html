@@ -7,18 +7,7 @@
   <link rel="stylesheet" href="theme_herbalrosegold.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<script>
-  function adjustMainPadding() {
-    const header = document.querySelector(".site-header");
-    const main = document.querySelector(".site-main");
-    if (header && main) {
-      main.style.paddingTop = header.offsetHeight + "px";
-    }
-  }
 
-  window.addEventListener("load", adjustMainPadding);
-  window.addEventListener("resize", adjustMainPadding);
-</script>
 <body>
   <div class="site-wrapper">
     <!-- Header -->
@@ -62,24 +51,21 @@
 
         <!-- 按鈕群組 -->
         <div class="contact-buttons">
-          <!-- 電話按鈕 -->
+
           <a href="tel:+886223812990" class="btn-soft phone-btn">
             📞 撥打電話：02-23812990
           </a>
 
-          <!-- Google Map -->
           <a href="https://maps.app.goo.gl/6HDmqZvrUgWxgaSS8?g_st=ipc"
              target="_blank" rel="noopener noreferrer" class="btn-soft">
             📍 查看 Google 地圖
           </a>
 
-          <!-- Facebook 粉專 -->
           <a href="https://www.facebook.com/share/17oq9vmHz4/?mibextid=wwXIfr"
              target="_blank" rel="noopener noreferrer" class="btn-soft">
             👍 前往 Facebook 粉專
           </a>
 
-          <!-- LINE 官方帳號 -->
           <a href="https://lin.ee/sHZW7NkR"
              target="_blank" rel="noopener noreferrer" class="btn-soft line-btn">
             💬 加入 LINE 官方帳號
@@ -110,5 +96,20 @@
       </p>
     </footer>
   </div>
+
+  <!-- 正確擺放位置：header 高度自動計算 Script -->
+  <script>
+    function adjustMainPadding() {
+      const header = document.querySelector(".site-header");
+      const main = document.querySelector(".site-main");
+      if (header && main) {
+        main.style.paddingTop = header.offsetHeight + "px";
+      }
+    }
+
+    window.addEventListener("load", adjustMainPadding);
+    window.addEventListener("resize", adjustMainPadding);
+  </script>
+
 </body>
 </html>
