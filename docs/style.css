@@ -454,3 +454,73 @@ h4 {
   color: var(--color-primary-deep);
   font-weight: 600;
 }
+
+/* -------------------------------------------------
+   聯絡我們按鈕群組（Google Map / FB / LINE / 電話）
+-------------------------------------------------- */
+
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 4px;
+}
+
+/* 通用柔和按鈕 */
+.btn-soft {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.92rem;
+  background: #e9d7c2;
+  color: #4a2f1e;
+  text-decoration: none;
+  border: 1px solid rgba(204, 164, 130, 0.7);
+  box-shadow: 0 8px 22px rgba(135, 95, 70, 0.18);
+  transition: all 0.2s ease-out;
+}
+
+.btn-soft:hover {
+  background: #ddc5ac;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(110, 75, 55, 0.24);
+  text-decoration: none;
+}
+
+/* 電話專用按鈕 */
+.phone-btn {
+  background: #d8b786;
+  color: #3a2b26;
+}
+
+.phone-btn:hover {
+  background: #c7a578;
+  color: #ffffff;
+}
+
+/* LINE 專用按鈕（維持品牌綠） */
+.line-btn {
+  background: #06c755;
+  color: #ffffff;
+  border-color: #06b14c;
+}
+
+.line-btn:hover {
+  background: #04a846;
+  color: #ffffff;
+}
+
+/* 小螢幕排版微調 */
+@media (max-width: 768px) {
+  .contact-buttons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-soft {
+    width: 100%;
+    justify-content: center;
+  }
+}
