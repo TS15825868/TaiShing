@@ -4,23 +4,14 @@
   <meta charset="UTF-8">
   <title>品牌故事｜台興山產・仙加味</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <link rel="stylesheet" href="theme_herbalrosegold.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<script>
-  function adjustMainPadding() {
-    const header = document.querySelector(".site-header");
-    const main = document.querySelector(".site-main");
-    if (header && main) {
-      main.style.paddingTop = header.offsetHeight + "px";
-    }
-  }
 
-  window.addEventListener("load", adjustMainPadding);
-  window.addEventListener("resize", adjustMainPadding);
-</script>
 <body>
   <div class="site-wrapper">
+    
     <!-- Header -->
     <header class="site-header">
       <div class="site-brand">
@@ -41,8 +32,10 @@
       </nav>
     </header>
 
+    <!-- Main -->
     <main class="site-main">
       <section class="section">
+        
         <header class="page-header">
           <div class="section-kicker">BRAND STORY</div>
           <h1 class="page-title">萬華 × 四代匠心</h1>
@@ -101,7 +94,7 @@
           </p>
           <p>
             台興山產始終堅持：既然要補身，就必須讓顧客吃得安心、放心，
-            也願意真正持續補下去。  
+            也願意真正持續補下去。
             因此，我們在原料來源、製程、風味上做出一條清楚的標準線，
             把自己當成第一個顧客，做出願意給家人日常食用的產品。
           </p>
@@ -124,6 +117,7 @@
             我們都希望那不只是一件商品，而是一口讓人安心、願意長久信賴的補養力量。
           </p>
         </article>
+
       </section>
     </main>
 
@@ -136,6 +130,22 @@
         © 台興山產 版權所有
       </p>
     </footer>
+
   </div>
+
+  <!-- 正確位置：自動 header 高度 Script -->
+  <script>
+    function adjustMainPadding() {
+      const header = document.querySelector(".site-header");
+      const main = document.querySelector(".site-main");
+      if (header && main) {
+        main.style.paddingTop = header.offsetHeight + "px";
+      }
+    }
+
+    window.addEventListener("load", adjustMainPadding);
+    window.addEventListener("resize", adjustMainPadding);
+  </script>
+
 </body>
 </html>
