@@ -628,9 +628,9 @@ p,
     font-size: 1.4rem;
   }
 }
-/* 修正 iPhone 內文被 Navbar 蓋住的問題 */
+/* 修正 iPhone 內文被固定 Navbar 壓住的問題（精準版） */
 @media (max-width: 768px) {
   .site-main {
-    padding-top: 210px !important;
+    padding-top: 260px !important; /* 依你截圖實際 header 高度調整 */
   }
 }
