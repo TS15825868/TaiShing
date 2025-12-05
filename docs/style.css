@@ -628,3 +628,9 @@ p,
     font-size: 1.4rem;
   }
 }
+/* 修正 iPhone 內文被 Navbar 蓋住的問題 */
+@media (max-width: 768px) {
+  .site-main {
+    padding-top: 210px !important;
+  }
+}
