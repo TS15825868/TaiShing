@@ -1,0 +1,374 @@
+/* =========================================
+   Base Reset & Global
+   ========================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
+    "PingFang TC", "Microsoft JhengHei", serif;
+  background: var(--color-bg);
+  color: var(--color-text-main);
+  line-height: 1.8;
+}
+
+/* Global links */
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: 0.25s ease;
+}
+
+a:hover {
+  color: var(--color-primary-deep);
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Lists */
+ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+li {
+  margin-bottom: 0.3rem;
+}
+
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s ease;
+}
+
+.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================
+   Layout Wrapper
+   ========================================= */
+
+.site-wrapper {
+  min-height: 100vh;
+  background: var(--color-bg-soft);
+  padding-bottom: 40px;
+}
+
+/* =========================================
+   Header (Fixed)
+   ========================================= */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: rgba(251, 245, 242, 0.92);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border-soft);
+  transition: 0.35s ease;
+}
+
+.site-header--scrolled {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background: rgba(251, 245, 242, 0.85);
+  backdrop-filter: blur(18px);
+  border-bottom-color: var(--color-accent-gold);
+}
+
+/* Header inner layout */
+.site-header .site-brand,
+.site-header .site-nav {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 12px 20px;
+  transition: 0.3s ease;
+}
+
+/* Brand */
+.site-brand {
+  text-align: center;
+}
+
+.site-logo {
+  width: 120px;
+  margin: 0 auto 6px;
+  border-radius: 18px;
+  box-shadow: var(--shadow-soft);
+}
+
+.site-tagline {
+  margin: 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  color: var(--color-text-label);
+}
+
+.site-tagline span {
+  padding: 3px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-soft);
+}
+
+.site-subtitle {
+  margin: 4px 0 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-primary-deep);
+  letter-spacing: 0.12em;
+}
+
+/* =========================================
+   Navbar
+   ========================================= */
+
+.site-nav ul {
+  list-style: none;
+  margin: 6px 0 4px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px 20px;
+}
+
+.site-nav a {
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  padding-bottom: 4px;
+  border-bottom: 2px solid transparent;
+  color: var(--color-text-muted);
+}
+
+.site-nav a:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-accent-gold);
+}
+
+.nav-link--active {
+  color: var(--color-primary-deep) !important;
+  border-bottom-color: var(--color-accent-gold-deep) !important;
+  font-weight: 700;
+}
+
+/* =========================================
+   Main Content
+   ========================================= */
+
+.site-main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px 60px;
+}
+
+/* =========================================
+   Section
+   ========================================= */
+
+.section {
+  background: #fffcf9;
+  border-radius: 24px;
+  padding: 32px 24px;
+  margin-bottom: 38px;
+  box-shadow: var(--shadow-soft);
+  border: 1px solid rgba(200, 170, 150, 0.25);
+}
+
+.section-title,
+.page-title {
+  margin: 0 0 12px;
+  font-size: 1.45rem;
+  letter-spacing: 0.06em;
+  color: var(--color-primary-deep);
+}
+
+.section-subtitle,
+.page-subtitle {
+  margin: 0 0 14px;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+/* =========================================
+   Premium Buttons（全站通用精品版按鈕）
+   ========================================= */
+
+.btn-premium {
+  display: block;
+  width: 100%;
+  padding: 14px 18px;
+  text-align: center;
+  border-radius: 14px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+
+  background: linear-gradient(135deg, #fff3ea 0%, #f9e0d0 100%);
+  border: 1.4px solid var(--color-accent-gold);
+  color: var(--color-primary-deep);
+  box-shadow: 0 4px 12px rgba(140, 60, 72, 0.12);
+
+  transition:
+    background 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn-premium:hover {
+  background: linear-gradient(135deg, #ffe7d2 0%, #f8d6c1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(140, 60, 72, 0.22);
+}
+
+.btn-premium:active {
+  transform: scale(0.97);
+}
+
+/* LINE 綠按鈕 */
+.btn-premium--line {
+  background: #06c755;
+  color: #fff;
+  border-color: #06c755;
+  box-shadow: 0 4px 14px rgba(6, 199, 85, 0.35);
+}
+
+.btn-premium--line:hover {
+  background: #05b84c;
+}
+
+/* Premium list spacing */
+.premium-list li {
+  margin-bottom: 6px;
+}
+
+/* Button group */
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+/* =========================================
+   Layout: Product Grid / Two Column
+   ========================================= */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.product-card {
+  padding: 20px;
+  background: #fffcf9;
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(190, 160, 150, 0.22);
+  transition: 0.35s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 30px rgba(100, 60, 60, 0.18);
+}
+
+.product-image-wrap {
+  border-radius: 18px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+/* Brand / Story Two Column */
+.brand-layout-two-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 24px;
+}
+
+/* Brand image */
+.brand-origin-photo,
+.store-img {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+/* =========================================
+   Footer
+   ========================================= */
+
+.site-footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  border-top: 1px solid var(--color-border-soft);
+  text-align: center;
+}
+
+.footer-brand {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* =========================================
+   RWD
+   ========================================= */
+
+@media (max-width: 960px) {
+  .brand-layout-two-column {
+    grid-template-columns: 1fr;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header .site-brand,
+  .site-header .site-nav {
+    padding: 8px 14px;
+  }
+
+  .section {
+    padding: 26px 18px;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-logo {
+    width: 100px;
+  }
+
+  .hero-title {
+    font-size: 1.4rem;
+  }
+}
