@@ -1,113 +1,434 @@
 @import url("theme_herbalrosegold.css");
-/* 客製化精品排版都寫在這裡覆蓋主題設定 */
+/* 所有客製精品風格，寫在這裡覆蓋主題設定 */
 
-/* === 全站字體與排版微調（精品感） === */
+/* ========= 全站基礎排版設定 ========= */
 
-body {
-  font-size: 16px;
+:root {
+  /* 可以微調這幾個數值來改整體調性 */
+  --ts-bg: #FBF5F1;
+  --ts-surface: #FFFFFF;
+  --ts-surface-soft: #F7EFE8;
+  --ts-accent: #C89163;       /* 溫柔金 */
+  --ts-accent-deep: #A56B3D;  /* 深金棕 */
+  --ts-text-main: #3D3028;    /* 深茶黑 */
+  --ts-text-sub: #6C594E;
+  --ts-border-soft: #E4D3C5;
+  --ts-shadow-soft: 0 18px 45px rgba(31, 20, 12, 0.08);
+  --ts-radius-soft: 14px;
+  --ts-radius-pill: 999px;
 }
 
-/* 區塊標題更有存在感 */
-.section h1 {
-  font-size: 30px;
+/* 全站背景 */
+body {
+  margin: 0;
+  font-family: "Noto Sans TC", "PingFang TC", -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  background: radial-gradient(circle at top left, #fdf2e9 0, #fbf5f1 38%, #f9f1ea 70%, #f3ece6 100%);
+  color: var(--ts-text-main);
+}
+
+/* 共用容器寬度 */
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ========= Navbar 升級 ========= */
+
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(14px);
+  background: linear-gradient(
+    to bottom,
+    rgba(248, 240, 233, 0.94),
+    rgba(248, 240, 233, 0.88)
+  );
+  border-bottom: 1px solid rgba(200, 162, 130, 0.25);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 64px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9),
+    0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-name {
+  font-size: 16px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
+  color: var(--ts-text-main);
+}
+
+.brand-tagline {
+  font-size: 12px;
+  color: var(--ts-text-sub);
+  letter-spacing: 0.18em;
+}
+
+/* 導覽列按鈕 */
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 14px;
+  border-radius: var(--ts-radius-pill);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--ts-text-sub);
+  transition: all 0.18s ease-out;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  inset: auto 12px -3px 12px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, var(--ts-accent), transparent);
+  opacity: 0;
+  transform: scaleX(0.5);
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--ts-accent-deep);
+}
+
+.nav-link.active {
+  background: linear-gradient(120deg, #f6e3cf, #f0d2b8);
+  color: #412b1e;
+  box-shadow: 0 10px 24px rgba(103, 61, 32, 0.18);
+}
+
+.nav-link.active::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+/* 手機版導覽列 */
+@media (max-width: 768px) {
+  .nav-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    gap: 8px;
+  }
+
+  .nav-links {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .nav-link {
+    padding: 5px 10px;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+  }
+
+  .brand-name {
+    font-size: 14px;
+  }
+
+  .brand-tagline {
+    font-size: 11px;
+  }
+}
+
+/* ========= 卡片 & 區塊 ========= */
+
+.section {
+  margin: 28px 0;
+}
+
+.card {
+  background: radial-gradient(circle at top, #fffdf9 0, #fffaf4 40%, #fff7f0 100%);
+  border-radius: var(--ts-radius-soft);
+  padding: 26px 22px;
+  border: 1px solid rgba(228, 211, 197, 0.85);
+  box-shadow: var(--ts-shadow-soft);
+}
+
+/* 標題字體改為有一點精品 Serif 感 */
+.section h1,
+.section h2 {
+  font-family: "Noto Serif TC", "Times New Roman", serif;
+  color: var(--ts-text-main);
+}
+
+.section h1 {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin: 0 0 16px;
 }
 
 .section h2 {
   font-size: 20px;
   font-weight: 650;
+  margin: 18px 0 10px;
 }
 
-/* 卡片內容區塊微放鬆 */
-.card {
-  padding: 28px 22px;
+/* 內文基礎 */
+.section p {
+  margin: 0 0 14px;
+  color: var(--ts-text-main);
+  letter-spacing: 0.18px;
 }
 
-/* 品牌故事排版優化 */
-.brand-story p {
+/* Hero / 品牌敘事 */
+.hero-lead {
   font-size: 16px;
   line-height: 1.9;
-  margin: 0 0 16px;
-  letter-spacing: 0.2px;
+  color: var(--ts-text-main);
+}
+
+.section-intro {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--ts-text-sub);
+}
+
+/* 品牌故事專區 */
+.brand-story p {
+  font-size: 16px;
+  line-height: 1.95;
+  color: var(--ts-text-main);
 }
 
 .brand-story .brand-quote {
   font-weight: 650;
+  margin-top: 6px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8e9da, #f6e2d0);
+  color: #3a2518;
+  border: 1px solid rgba(204, 156, 110, 0.5);
 }
 
-/* Hero / 引言文字 */
-.hero-lead {
-  font-size: 16px;
-  line-height: 1.9;
-}
-
-/* 區塊導入文字 */
-.section-intro {
-  font-size: 16px;
-  line-height: 1.8;
-}
-
-/* 產品說明 */
-.product-card p {
-  line-height: 1.8;
-}
-
-.product-ingredients {
-  font-size: 14px;
-}
-
-/* 聯絡我們 */
-.contact-card .contact-text,
-.contact-info p {
-  font-size: 15px;
-  line-height: 1.8;
-}
-
-/* === 店門口照片區塊（首頁用） === */
+/* ========= 店門口照片區 ========= */
 
 .storefront-section {
-  padding: 40px 20px;
+  padding: 40px 0;
   text-align: center;
-  background: #F9F2ED; /* 柔和漢方背景 */
+  background: radial-gradient(circle at center, #f9f0e7 0, #fbf5f1 55%, #f6eee7 100%);
 }
 
 .storefront-container {
-  max-width: 900px;
+  max-width: 960px;
   margin: 0 auto;
+  padding: 0 20px;
+}
+
+.storefront-section .section-title {
+  font-family: "Noto Serif TC", "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ts-text-main);
+}
+
+.storefront-section .section-subtitle {
+  font-size: 16px;
+  color: var(--ts-text-sub);
+  margin-top: 4px;
 }
 
 .storefront-image {
   width: 100%;
-  max-width: 780px;
-  border-radius: 10px;
+  max-width: 820px;
+  border-radius: 16px;
   margin-top: 20px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 20px 48px rgba(49, 34, 23, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.9);
 }
 
-.storefront-section .section-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #4B3A32;
+/* ========= 品牌與商標版面 ========= */
+
+.brand-origin .origin-layout {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-.storefront-section .section-subtitle {
+.origin-text {
+  flex: 2 1 320px;
+}
+
+.origin-logo-block {
+  flex: 1 1 240px;
+  text-align: center;
+}
+
+.origin-logo-img {
+  max-width: 220px;
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  background: #fffaf4;
+}
+
+.origin-logo-caption {
+  font-size: 13px;
+  color: var(--ts-text-sub);
+  margin-top: 10px;
+}
+
+/* ========= 產品卡片 ========= */
+
+.product-card {
+  background: radial-gradient(circle at top left, #fffdf9 0, #fff7ef 45%, #f6e9db 100%);
+  border-radius: 16px;
+  padding: 20px 18px;
+  border: 1px solid rgba(228, 211, 197, 0.9);
+  box-shadow: 0 18px 40px rgba(75, 47, 26, 0.16);
+}
+
+.product-card h3 {
+  font-family: "Noto Serif TC", "Times New Roman", serif;
   font-size: 18px;
-  margin-top: 5px;
-  color: #6A564B;
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 
-/* RWD 微調 */
+.product-card p {
+  margin-bottom: 10px;
+}
+
+.product-ingredients {
+  font-size: 14px;
+  color: var(--ts-text-sub);
+}
+
+/* 圖片等比例縮小（產品圖用 class="product-image" 時適用） */
+.product-image {
+  width: 100%;
+  max-width: 280px;
+  height: auto;
+  display: block;
+  border-radius: 14px;
+  margin: 0 auto 14px;
+  object-fit: cover;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.18);
+}
+
+/* ========= 按鈕樣式 ========= */
+
+.button,
+.button:visited {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 9px 22px;
+  border-radius: var(--ts-radius-pill);
+  border: none;
+  background: linear-gradient(135deg, #d9a672, #c08950);
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 14px 32px rgba(128, 75, 38, 0.38);
+  cursor: pointer;
+  transition: all 0.16s ease-out;
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #e0b482, #c58b4f);
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(104, 62, 31, 0.4);
+}
+
+/* ========= 聯絡我們 ========= */
+
+.contact-card {
+  background: radial-gradient(circle at top, #fffdf9 0, #fff7ef 45%, #f7ece1 100%);
+}
+
+.contact-card .contact-text,
+.contact-info p {
+  font-size: 15px;
+}
+
+/* ========= Footer ========= */
+
+.site-footer {
+  margin-top: 36px;
+  padding: 18px 0 22px;
+  background: linear-gradient(180deg, #f0e0d2, #e7d2c0);
+  color: #3a2619;
+  border-top: 1px solid rgba(193, 150, 112, 0.6);
+}
+
+.footer-inner {
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.footer-copy {
+  opacity: 0.82;
+}
+
+/* ========= RWD 整體微調 ========= */
+
 @media (max-width: 768px) {
   .card {
     padding: 22px 18px;
   }
-
-  .section h1 {
-    font-size: 26px;
+  .section {
+    margin: 22px 0;
   }
-
+  .section h1 {
+    font-size: 24px;
+    letter-spacing: 0.16em;
+  }
   .section h2 {
     font-size: 18px;
+  }
+  .origin-layout {
+    flex-direction: column;
   }
 }
