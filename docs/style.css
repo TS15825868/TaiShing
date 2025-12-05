@@ -524,3 +524,25 @@ h4 {
     justify-content: center;
   }
 }
+
+/* === Layout B：版面稍微放寬、維持集中感 === */
+main,
+.page-main,
+.page-section-wrapper {
+  display: block;
+}
+
+.page-section,
+.section-block,
+.content-card {
+  max-width: 880px;         /* 原本若是 760～800，可以換成這個 */
+  margin: 0 auto 40px;      /* 上下留空，下方拉開一點 */
+  padding: 28px 20px;
+}
+
+/* 首頁第一塊、品牌故事第一塊，再拉寬一點點，看起來比較大器 */
+.hero-section,
+.brand-story-section,
+.brand-origin-section {
+  max-width: 920px;
+}
