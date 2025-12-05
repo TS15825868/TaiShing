@@ -68,6 +68,12 @@ li {
   background: rgba(251, 245, 242, 0.96);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--color-border-soft, #e7d2c5);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease;
+}
+
+/* header 捲動後加陰影 */
+.site-header--scrolled {
+  box-shadow: var(--shadow-soft);
 }
 
 /* Header inner blocks */
@@ -95,6 +101,17 @@ li {
   font-size: 0.9rem;
 }
 
+.footer-brand {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.footer-meta {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
 /* =========================================
    Header / Brand
    ========================================= */
@@ -107,7 +124,7 @@ li {
   width: 120px;
   margin: 0 auto 6px;
   border-radius: 16px;
-  box-shadow: var(--shadow-soft, 0 14px 40px rgba(85, 50, 40, 0.1));
+  box-shadow: var(--shadow-soft);
 }
 
 .site-tagline {
@@ -147,27 +164,35 @@ li {
 }
 
 .site-nav a {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  padding-bottom: 4px;
+  padding: 6px 6px;
   border-bottom: 2px solid transparent;
+  border-radius: 6px;
   color: var(--color-text-muted, #8b6d6b);
+  border: 2px solid transparent;
+  transition: all 0.25s ease;
 }
 
 .site-nav a:hover {
   color: var(--color-primary, #b6656f);
   border-bottom-color: var(--color-accent-gold, #d9b48c);
+  border-color: var(--color-accent-gold);
+  background: #f8efea;
+  transform: translateY(-2px);
 }
 
 .site-nav .nav-link--active {
   color: var(--color-primary-deep, #8c3c48);
   border-bottom-color: var(--color-accent-gold-deep, #c09362);
-  font-weight: 700;
+  border-color: var(--color-primary-deep);
+  background: #f3e5df;
+  font-weight: 800;
 }
 
 /* =========================================
-   Section block
+   Section block & Typography
    ========================================= */
 
 .section {
@@ -175,7 +200,7 @@ li {
   border-radius: 24px;
   padding: 28px 22px;
   margin-bottom: 32px;
-  box-shadow: var(--shadow-soft, 0 14px 40px rgba(85, 50, 40, 0.1));
+  box-shadow: var(--shadow-soft);
 }
 
 .section-title {
@@ -215,69 +240,15 @@ p,
 }
 
 /* =========================================
-   Hero section
+   Story & Brand pages
    ========================================= */
 
-.section--hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-  gap: 28px;
-  align-items: center;
-}
-
-.hero-title {
-  margin: 4px 0 12px;
-  font-size: 1.7rem;
-  line-height: 1.35;
-  color: var(--color-primary-deep, #8c3c48);
-}
-
-.hero-image-wrap {
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: var(--shadow-card, 0 18px 45px rgba(70, 35, 35, 0.12));
-}
-
-/* =========================================
-   Product cards
-   ========================================= */
-
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-
-.product-card {
-  background: #fffcf9;
-  border-radius: 18px;
-  padding: 18px 16px 20px;
-  box-shadow: var(--shadow-card, 0 18px 45px rgba(70, 35, 35, 0.12));
-}
-
-.product-page-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-
-/* =========================================
-   Brand pages
-   ========================================= */
-
-.brand-layout-two-column {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 24px;
-}
-
-/* Story section block */
 .story-section {
   background: #fffcf9;
   border-radius: 20px;
   padding: 22px 18px;
   margin-bottom: 26px;
-  box-shadow: var(--shadow-soft, 0 14px 40px rgba(85, 50, 40, 0.1));
+  box-shadow: var(--shadow-soft);
 }
 
 .story-section-title {
@@ -287,17 +258,34 @@ p,
   color: var(--color-primary-deep, #8c3c48);
 }
 
+.brand-origin-block {
+  background: #fffcf9;
+  border-radius: 20px;
+  padding: 22px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-soft);
+}
+
+.brand-origin-title {
+  margin: 0 0 10px;
+  font-size: 1.3rem;
+  color: var(--color-primary-deep);
+}
+
 /* =========================================
    Contact
    ========================================= */
 
-.contact-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-  gap: 24px;
+.contact-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
 }
 
-/* 高級設計 Contact Buttons */
+.contact-list li {
+  margin-bottom: 6px;
+}
+
 .contact-buttons {
   display: flex;
   flex-direction: column;
@@ -305,46 +293,502 @@ p,
   margin: 20px 0;
 }
 
-.btn-soft {
-  display: flex;
+/* 按鈕基底 */
+.btn-soft,
+.text-link-button,
+.line-btn,
+.phone-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   padding: 12px 18px;
   border-radius: 999px;
-  border: 1px solid var(--color-border-soft, #e7d2c5);
-  background: #f7ede5;
-  color: var(--color-primary-deep, #8c3c48);
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+  border-width: 2px;
+  border-style: solid;
+  border-color: var(--color-border-strong, #C79A83);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  box-shadow: 0 4px 12px rgba(90, 45, 40, 0.12);
   transition: all 0.25s ease;
 }
 
+.btn-soft {
+  background: var(--btn-bg-soft, #F7EDE5);
+  color: var(--color-primary-deep);
+}
+
 .btn-soft:hover {
-  background: #eedfd3;
-  border-color: var(--color-accent-gold, #d9b48c);
-  transform: translateY(-1px);
+  background: var(--btn-bg-soft-hover, #EEDFD3);
+  border-color: var(--color-accent-gold, #D9B48C);
+  box-shadow: 0 8px 20px rgba(90, 45, 40, 0.2);
+  transform: translateY(-3px);
 }
 
 .phone-btn {
-  background: #f3e5df;
-  font-weight: 700;
+  background: var(--btn-bg-strong, #F3E5DF);
 }
 
 .phone-btn:hover {
   background: #e8d7cd;
 }
 
+/* LINE 按鈕 */
 .line-btn {
-  background: #06c755;
+  background: var(--btn-line, #06C755);
   color: #fff;
-  border: none;
-  font-weight: 700;
+  border-color: #059C42;
 }
 
 .line-btn:hover {
-  background: #05b84c;
-  transform: translateY(-1px);
+  background: var(--btn-line-hover, #05B84C);
+  border-color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* 門市照片 */
+.store-photo {
+  margin-top: 26px;
+}
+
+.store-photo .section-title {
+  margin-bottom: 4px;
+}
+
+.store-img {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+/* =========================================
+   文字型按鈕
+   ========================================= */
+
+.text-link-button {
+  margin-top: 16px;
+  padding: 9px 20px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  color: var(--color-primary-deep);
+  background: #fbf3ea;
+}
+
+.text-link-button:hover {
+  background: #f0e0d1;
+  box-shadow: 0 10px 30px rgba(120, 70, 60, 0.18);
+}
+
+/* =========================================
+   精品首頁 Hero / Trust / Story / CTA
+   ========================================= */
+
+/* Hero Premium */
+.hero-premium {
+  position: relative;
+  padding: 90px 20px 110px;
+  margin-bottom: 40px;
+  border-radius: 26px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #fff7f3 0%, #fbeee8 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.hero-premium-bg {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(
+    circle at center,
+    rgba(214, 171, 143, 0.3),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.45;
+  filter: blur(60px);
+}
+
+.hero-premium-content {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hero-kicker {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-text-label);
+  margin-bottom: 12px;
+}
+
+.hero-premium-title {
+  font-size: 2rem;
+  line-height: 1.4;
+  color: var(--color-primary-deep);
+  letter-spacing: 0.04em;
+  margin: 0 0 12px;
+}
+
+.hero-premium-sub {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  max-width: 560px;
+  margin: 0 auto 20px;
+}
+
+/* Trust section (首頁 & 產品共用) */
+.trust-section {
+  text-align: center;
+  margin-bottom: 40px;
+  padding: 40px 20px;
+  border-radius: 24px;
+  background: #fff7f3;
+  box-shadow: var(--shadow-soft);
+}
+
+.trust-title {
+  font-size: 1.6rem;
+  color: var(--color-primary-deep);
+  margin-bottom: 24px;
+}
+
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.trust-item {
+  background: #ffffff;
+  padding: 20px 18px;
+  border-radius: 18px;
+  box-shadow: var(--shadow-card);
+  text-align: left;
+}
+
+.trust-item h3 {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  color: var(--color-primary);
+}
+
+/* Story Premium block */
+.story-premium {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 26px;
+  margin-bottom: 40px;
+  align-items: center;
+}
+
+.story-premium-img {
+  border-radius: 22px;
+  min-height: 220px;
+  background-image: url("images/store-front.jpeg");
+  background-size: cover;
+  background-position: center;
+  box-shadow: var(--shadow-card);
+}
+
+.story-premium-content {
+  background: #fffcf9;
+  border-radius: 22px;
+  padding: 22px 20px;
+  box-shadow: var(--shadow-soft);
+}
+
+.story-premium-content h2 {
+  margin: 0 0 10px;
+  font-size: 1.5rem;
+  color: var(--color-primary-deep);
+}
+
+/* CTA Premium (首頁 & 共用) */
+.cta-premium {
+  margin-top: 20px;
+  padding: 50px 20px;
+  text-align: center;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fff4ec, #fceee7);
+  box-shadow: var(--shadow-soft);
+}
+
+.cta-premium h2 {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+  color: var(--color-primary-deep);
+}
+
+.cta-premium p {
+  color: var(--color-text-muted);
+  margin-bottom: 20px;
+}
+
+/* Premium Buttons (共用) */
+.btn-premium {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #b6656f 0%, #8c3c48 100%);
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-premium:hover {
+  background: linear-gradient(135deg, #c77883, #9a4753);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(90, 45, 40, 0.22);
+}
+
+.btn-premium-light {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-soft);
+  color: var(--color-primary-deep);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: #fffcf9;
+  transition: all 0.25s ease;
+}
+
+.btn-premium-light:hover {
+  background: #f8efe7;
+  border-color: var(--color-accent-gold);
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   精品產品頁 — Premium Product Page
+   ========================================= */
+
+/* 頁面頭版 */
+.product-hero-premium {
+  position: relative;
+  padding: 80px 20px 100px;
+  text-align: center;
+  border-radius: 26px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #fff7f3 0%, #fbeee8 100%);
+  box-shadow: var(--shadow-soft);
+}
+
+.product-hero-bg {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(
+    circle at center,
+    rgba(214, 171, 143, 0.28),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.45;
+  filter: blur(60px);
+}
+
+.product-hero-content {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.product-hero-title {
+  font-size: 2rem;
+  color: var(--color-primary-deep);
+  letter-spacing: 0.04em;
+}
+
+.product-hero-sub {
+  max-width: 680px;
+  margin: 12px auto 0;
+  font-size: 1rem;
+  color: var(--color-text-muted);
+}
+
+/* 精品產品卡片 */
+.product-premium-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.product-premium-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: 32px;
+  padding: 26px;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow: 0 18px 45px rgba(80, 45, 35, 0.12);
+  align-items: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.product-premium-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 55px rgba(70, 30, 25, 0.18);
+}
+
+/* 反向排版 */
+.product-premium-card.reverse {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+}
+
+.product-premium-img {
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.product-premium-img img {
+  width: 100%;
+  display: block;
+}
+
+.product-premium-body {
+  /* 保持預設，由排版控制 */
+}
+
+.product-premium-name {
+  font-size: 1.6rem;
+  margin: 0 0 8px;
+  color: var(--color-primary-deep);
+  letter-spacing: 0.04em;
+}
+
+.product-premium-tagline {
+  font-size: 1rem;
+  color: var(--color-primary);
+  margin-bottom: 16px;
+}
+
+.product-premium-features {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 14px;
+}
+
+.product-premium-features li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.product-premium-features li::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-accent-gold-deep);
+}
+
+.product-premium-detail {
+  font-size: 0.95rem;
+  color: var(--color-text-main);
+  margin-bottom: 18px;
+}
+
+/* =========================================
+   Scroll Reveal / Interactions
+   ========================================= */
+
+/* Scroll Reveal 初始狀態 */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.reveal--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium card 泛用 */
+.premium-card,
+.section,
+.product-card,
+.story-section,
+.brand-origin-block,
+.product-page-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s ease;
+}
+
+.premium-card:hover,
+.section:hover,
+.product-card:hover,
+.story-section:hover,
+.brand-origin-block:hover,
+.product-page-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 45px rgba(70, 35, 35, 0.18);
+}
+
+/* 光暈 */
+.premium-card::after,
+.section::after,
+.product-card::after,
+.story-section::after,
+.brand-origin-block::after,
+.product-page-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(200, 150, 120, 0.25),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.premium-card:hover::after,
+.section:hover::after,
+.product-card:hover::after,
+.story-section:hover::after,
+.brand-origin-block:hover::after,
+.product-page-card:hover::after {
+  opacity: 1;
+}
+
+/* 按鈕按下壓感 */
+.btn-soft,
+.text-link-button,
+.line-btn,
+.phone-btn,
+.btn-premium,
+.btn-premium-light {
+  transform: translateY(0);
+}
+
+.btn-soft:active,
+.text-link-button:active,
+.line-btn:active,
+.phone-btn:active,
+.btn-premium:active,
+.btn-premium-light:active {
+  transform: scale(0.96);
+  box-shadow: 0 3px 6px rgba(90, 50, 40, 0.18) inset;
+}
+
+/* 視差元素 */
+[data-parallax] {
+  transition: transform 0.1s linear;
+  will-change: transform;
 }
 
 /* =========================================
@@ -352,20 +796,16 @@ p,
    ========================================= */
 
 @media (max-width: 960px) {
-  .section--hero {
+  .story-premium {
     grid-template-columns: 1fr;
   }
 
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .trust-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .product-page-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .brand-layout-two-column,
-  .contact-layout {
+  .product-premium-card,
+  .product-premium-card.reverse {
     grid-template-columns: 1fr;
   }
 }
@@ -381,17 +821,39 @@ p,
     border-radius: 20px;
   }
 
-  .product-grid {
+  .hero-premium {
+    padding: 70px 16px 80px;
+  }
+
+  .product-hero-premium {
+    padding: 60px 16px 70px;
+  }
+
+  .trust-grid {
     grid-template-columns: 1fr;
+  }
+
+  .product-premium-card {
+    padding: 22px 18px;
+  }
+
+  .hero-premium-title,
+  .product-hero-title {
+    font-size: 1.6rem;
+  }
+
+  .site-logo {
+    width: 100px;
   }
 }
 
 @media (max-width: 480px) {
-  .site-logo {
-    width: 100px;
+  .hero-premium-title,
+  .product-hero-title {
+    font-size: 1.4rem;
   }
 
-  .hero-title {
-    font-size: 1.4rem;
+  .cta-premium {
+    padding: 40px 16px;
   }
 }
