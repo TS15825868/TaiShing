@@ -21,7 +21,7 @@ body {
   line-height: 1.8;
 }
 
-/* 連結樣式 */
+/* Link style */
 a {
   color: inherit;
   text-decoration: none;
@@ -31,14 +31,14 @@ a:hover {
   color: var(--color-primary-deep, #8C3C48);
 }
 
-/* 圖片 RWD */
+/* Image RWD */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* 列表統一 */
+/* Lists */
 ul {
   margin: 0;
   padding-left: 1.2rem;
@@ -49,7 +49,7 @@ li {
 }
 
 /* =========================================
-   Layout 基礎排版
+   Layout
    ========================================= */
 
 .site-wrapper {
@@ -57,7 +57,7 @@ li {
   background: var(--color-bg-soft, #FFF9F6);
 }
 
-/* 固定在最上方的 Navbar + Header */
+/* Fixed Header */
 .site-header {
   position: fixed;
   top: 0;
@@ -69,7 +69,7 @@ li {
   border-bottom: 1px solid var(--color-border-soft, #E7D2C5);
 }
 
-/* header 內部區塊以直向排列（品牌區 + 導覽列） */
+/* Header inner blocks */
 .site-header .site-brand,
 .site-header .site-nav {
   max-width: 1080px;
@@ -77,11 +77,11 @@ li {
   padding: 10px 20px;
 }
 
-/* 主要內容區：加上 padding-top 避免被固定 header 蓋住 */
+/* Main content — padding-top 交給 JS 自動處理 */
 .site-main {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 150px 20px 60px;
+  padding: 0 20px 60px;  /* <-- 移除 padding-top */
 }
 
 /* Footer */
@@ -95,7 +95,7 @@ li {
 }
 
 /* =========================================
-   Header / Brand 區塊
+   Header / Brand
    ========================================= */
 
 .site-brand {
@@ -166,7 +166,7 @@ li {
 }
 
 /* =========================================
-   Section 通用樣式
+   Section block
    ========================================= */
 
 .section {
@@ -177,54 +177,22 @@ li {
   box-shadow: var(--shadow-soft, 0 14px 40px rgba(85, 50, 40, 0.10));
 }
 
-/* 英文小標 / Kicker */
-.section-kicker {
-  font-size: 0.8rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--color-text-label, #A48A81);
-  margin-bottom: 8px;
-}
-
-/* 一般標題 */
-.section-title,
-.page-title,
-h2.section-title {
+.section-title {
   margin: 0 0 14px;
   font-size: 1.35rem;
   letter-spacing: 0.08em;
   color: var(--color-primary-deep, #8C3C48);
 }
 
-/* 小標題 */
-.section-subtitle,
-h3,
-h4 {
-  margin: 16px 0 8px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #5e463d;
-}
-
-/* 內文 */
 p,
-.section-text,
 .section-body {
   margin: 0 0 12px;
   font-size: 0.98rem;
   color: var(--color-text-main, #3F2A2A);
 }
 
-/* 強調句 / tagline */
-.section-tagline,
-.section-highlight {
-  font-size: 0.95rem;
-  color: var(--color-primary, #B6656F);
-  font-weight: 600;
-}
-
 /* =========================================
-   Hero 區（首頁）
+   Hero section
    ========================================= */
 
 .section--hero {
@@ -232,10 +200,6 @@ p,
   grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
   gap: 28px;
   align-items: center;
-}
-
-.hero-text {
-  /* 左側文字區 */
 }
 
 .hero-title {
@@ -251,310 +215,59 @@ p,
   box-shadow: var(--shadow-card, 0 18px 45px rgba(70, 35, 35, 0.12));
 }
 
-.hero-image {
-  width: 100%;
-  display: block;
-}
-
 /* =========================================
-   首頁：產品精選區 & 卡片
+   Product cards
    ========================================= */
 
-.section-grid,
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 20px;
 }
 
-.product-highlight,
-.product-card,
-.product-item,
-.product-panel,
-.product-page-card {
+.product-card {
   background: #FFFCF9;
   border-radius: 18px;
   padding: 18px 16px 20px;
   box-shadow: var(--shadow-card, 0 18px 45px rgba(70, 35, 35, 0.12));
 }
 
-.product-image-wrap {
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.product-image {
-  width: 100%;
-  display: block;
-}
-
-.product-name,
-.product-page-name,
-.product-card-title,
-.product-item-title {
-  margin: 0 0 6px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: #5b4034;
-}
-
-.product-tagline,
-.product-meta,
-.product-page-body {
-  font-size: 0.93rem;
-  color: var(--color-text-muted, #8B6D6B);
-}
-
-/* 產品頁 grid */
-.product-page-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-}
-
 /* =========================================
-   品牌故事 & 品牌來源頁
+   Brand pages
    ========================================= */
 
-.brand-story-section,
-.brand-origin-section,
-.brand-origin-block {
-  background: #FFFCF9;
-  border-radius: 24px;
-  padding: 26px 22px;
-  box-shadow: var(--shadow-soft, 0 14px 40px rgba(85, 50, 40, 0.10));
-  margin-bottom: 26px;
-}
-
-/* 兩欄排版（桌機） */
-.brand-story-layout,
-.brand-origin-layout,
 .brand-layout-two-column {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
   gap: 24px;
-  align-items: flex-start;
-}
-
-.brand-story-photo,
-.brand-origin-photo,
-.store-photo {
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--shadow-card, 0 18px 45px rgba(70, 35, 35, 0.12));
-}
-
-/* 品牌來源標題 */
-.brand-origin-title {
-  margin: 0 0 12px;
-  font-size: 1.3rem;
-  color: var(--color-primary-deep, #8C3C48);
 }
 
 /* =========================================
-   聯絡我們 contact.html
+   Contact
    ========================================= */
-
-.contact-section {
-  background: #FFFCF9;
-  border-radius: 24px;
-  padding: 26px 22px;
-  box-shadow: var(--shadow-soft, 0 14px 40px rgba(85, 50, 40, 0.10));
-  margin-bottom: 26px;
-}
 
 .contact-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   gap: 24px;
-  align-items: flex-start;
-}
-
-.contact-info {
-  font-size: 0.96rem;
-}
-
-.contact-list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 14px;
-}
-
-.contact-list li {
-  margin-bottom: 6px;
-}
-
-/* 門市照片 */
-.store-img {
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: var(--shadow-card, 0 18px 45px rgba(70, 35, 35, 0.12));
-}
-
-/* 按鈕群組 */
-.contact-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-/* 一般柔和按鈕 */
-.btn-soft,
-.contact-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: 1px solid var(--color-border-soft, #E7D2C5);
-  background: #F7EDE5;
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  color: var(--color-primary-deep, #8C3C48);
-  transition: all 0.2s ease;
-}
-
-.btn-soft:hover,
-.contact-button:hover {
-  background: #EEDFD3;
-  border-color: var(--color-accent-gold, #D9B48C);
-}
-
-/* 電話按鈕額外強調 */
-.phone-btn {
-  font-weight: 600;
-}
-
-/* LINE 官方綠按鈕 */
-.btn-line,
-.line-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 10px 16px;
-  border-radius: 999px;
-  border: none;
-  background: #06C755;
-  color: #fff;
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.btn-line:hover,
-.line-btn:hover {
-  background: #05B84C;
-}
-
-/* 簡單表單 RWD */
-.contact-form form {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
-  padding: 8px 10px;
-  border-radius: 8px;
-  border: 1px solid var(--color-border-soft, #E7D2C5);
-  font-family: inherit;
-  font-size: 0.95rem;
 }
 
 /* =========================================
-   文內小元件
-   ========================================= */
-
-.text-link-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 16px;
-  padding: 9px 18px;
-  border-radius: 999px;
-  border: 1px solid var(--color-border-soft, #E7D2C5);
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--color-primary-deep, #8C3C48);
-  background: #FBF3EA;
-}
-
-.text-link-button:hover {
-  background: #F0E0D1;
-}
-
-/* 列表重點（如「原料特色」） */
-.key-points,
-.feature-list {
-  list-style: none;
-  padding: 0;
-  margin: 8px 0 0;
-}
-
-.key-points li,
-.feature-list li {
-  position: relative;
-  padding-left: 1.1rem;
-  margin-bottom: 4px;
-  font-size: 0.95rem;
-}
-
-.key-points li::before,
-.feature-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--color-primary, #B6656F);
-}
-
-/* Footer 文字 */
-.footer-brand {
-  font-weight: 600;
-  margin-bottom: 4px;
-}
-
-.footer-meta,
-.footer-note,
-.footer-links {
-  margin: 0 0 4px;
-}
-
-/* =========================================
-   RWD：平板 & 手機（重點在 iPhone）
+   RWD
    ========================================= */
 
 @media (max-width: 960px) {
-  .site-main {
-    padding-top: 140px;
-  }
-
   .section--hero {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
   }
 
-  .section-grid,
   .product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  .product-page-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .brand-story-layout,
-  .brand-origin-layout,
   .brand-layout-two-column,
   .contact-layout {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
   }
 }
 
@@ -564,73 +277,22 @@ p,
     padding: 8px 14px;
   }
 
-  .site-main {
-    padding: 130px 16px 40px;
-  }
-
   .section {
     padding: 22px 16px;
     border-radius: 20px;
   }
 
-  .hero-title {
-    font-size: 1.5rem;
-  }
-
-  .section-title,
-  .page-title,
-  h2.section-title {
-    font-size: 1.2rem;
-  }
-
-  p,
-  .section-text,
-  .section-body {
-    font-size: 0.95rem;
-  }
-
-  .section-grid,
   .product-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .site-nav ul {
-    gap: 8px 14px;
-  }
-
-  .site-nav a {
-    font-size: 0.85rem;
-    letter-spacing: 0.16em;
-  }
-
-  .contact-buttons {
-    align-items: stretch;
-  }
-
-  .btn-soft,
-  .contact-button,
-  .btn-line,
-  .line-btn {
-    width: 100%;
+    grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 480px) {
-  .site-main {
-    padding-top: 125px;
-  }
-
   .site-logo {
     width: 100px;
   }
 
   .hero-title {
     font-size: 1.4rem;
-  }
-}
-/* 修正 iPhone 內文被固定 Navbar 壓住的問題（精準版） */
-@media (max-width: 768px) {
-  .site-main {
-    padding-top: 260px !important; /* 依你截圖實際 header 高度調整 */
   }
 }
