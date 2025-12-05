@@ -1,14 +1,13 @@
 @import url("theme_herbalrosegold.css");
-/* 之後如果有額外客製，可以寫在這裡 */
+/* 客製化精品排版都寫在這裡覆蓋主題設定 */
 
-/* === 精品版：全站排版＆字體優化 === */
+/* === 全站字體與排版微調（精品感） === */
 
-/* 基本字體大小稍微加大，閱讀更舒服 */
 body {
   font-size: 16px;
 }
 
-/* 區塊標題：更有精品感 */
+/* 區塊標題更有存在感 */
 .section h1 {
   font-size: 30px;
   font-weight: 700;
@@ -17,57 +16,88 @@ body {
 
 .section h2 {
   font-size: 20px;
-  font-weight: 650; /* 介於 600 ~ 700 之間的感覺 */
+  font-weight: 650;
 }
 
-/* 卡片內距稍微放大，整體看起來更高級 */
+/* 卡片內容區塊微放鬆 */
 .card {
   padding: 28px 22px;
 }
 
-/* 品牌故事：字體、行距、段落間距加寬 */
+/* 品牌故事排版優化 */
 .brand-story p {
   font-size: 16px;
   line-height: 1.9;
   margin: 0 0 16px;
-  letter-spacing: 0.25px;
+  letter-spacing: 0.2px;
 }
 
-/* 品牌故事引用文字（最後那句）再多一點存在感 */
 .brand-story .brand-quote {
   font-weight: 650;
 }
 
-/* 段落導入文字（像產品頁上面那一段說明） */
-.section-intro {
-  font-size: 16px;
-  line-height: 1.8;
-}
-
-/* Hero 主視覺說明文字更好讀 */
+/* Hero / 引言文字 */
 .hero-lead {
   font-size: 16px;
   line-height: 1.9;
 }
 
-/* 產品區文字行距微調，資訊多也不會擠在一起 */
+/* 區塊導入文字 */
+.section-intro {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* 產品說明 */
 .product-card p {
   line-height: 1.8;
 }
 
-/* 產品成份字體再清楚一點 */
 .product-ingredients {
   font-size: 14px;
 }
 
-/* 聯絡我們區塊：說明文字也一起升級 */
+/* 聯絡我們 */
 .contact-card .contact-text,
 .contact-info p {
   font-size: 15px;
   line-height: 1.8;
 }
 
-/* 手機版保持排版穩定（繼承原本 RWD 設定即可） */
+/* === 店門口照片區塊（首頁用） === */
+
+.storefront-section {
+  padding: 40px 20px;
+  text-align: center;
+  background: #F9F2ED; /* 柔和漢方背景 */
+}
+
+.storefront-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.storefront-image {
+  width: 100%;
+  max-width: 780px;
+  border-radius: 10px;
+  margin-top: 20px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+}
+
+.storefront-section .section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #4B3A32;
+}
+
+.storefront-section .section-subtitle {
+  font-size: 18px;
+  margin-top: 5px;
+  color: #6A564B;
+}
+
+/* RWD 微調 */
 @media (max-width: 768px) {
   .card {
     padding: 22px 18px;
