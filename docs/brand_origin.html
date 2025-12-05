@@ -7,7 +7,19 @@
   <link rel="stylesheet" href="theme_herbalrosegold.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<script>
+  function adjustMainPadding() {
+    const header = document.querySelector(".site-header");
+    const main = document.querySelector(".site-main");
+    if (header && main) {
+      main.style.paddingTop = header.offsetHeight + "px";
+    }
+  }
+
+  window.addEventListener("load", adjustMainPadding);
+  window.addEventListener("resize", adjustMainPadding);
+</script>
+  <body>
   <div class="site-wrapper">
     <!-- Header -->
     <header class="site-header">
