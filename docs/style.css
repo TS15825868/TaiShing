@@ -13,6 +13,18 @@ body {
   margin: 0;
   padding: 0;
 }
+<script>
+  function adjustMainPadding() {
+    const header = document.querySelector(".site-header");
+    const main = document.querySelector(".site-main");
+    if (header && main) {
+      main.style.paddingTop = header.offsetHeight + "px";
+    }
+  }
+
+  window.addEventListener("load", adjustMainPadding);
+  window.addEventListener("resize", adjustMainPadding);
+</script>
 
 body {
   font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", serif;
