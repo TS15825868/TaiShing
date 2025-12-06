@@ -4,79 +4,51 @@
    ========================================================== */
 
 :root {
-  /* =========================================
-     Base Background Colors
-     ========================================= */
-  --color-bg: #FBF5F2;           /* 柔膚漢方底色 */
-  --color-bg-soft: #FFF9F6;      /* 更柔和的次底色 */
-  --color-bg-card: #FFFCF9;      /* 卡片柔白 */
+  /* Base Background Colors */
+  --color-bg: #FBF5F2;
+  --color-bg-soft: #FFF9F6;
+  --color-bg-card: #FFFCF9;
 
-  /* =========================================
-     Brand Colors — 玫瑰漢方主色
-     ========================================= */
-  --color-primary: #B6656F;       /* 輕雅玫瑰漢方 */
-  --color-primary-light: #C9858C; /* 亮玫瑰 */
-  --color-primary-deep: #8C3C48;  /* 深玫瑰漢方（重點用色） */
+  /* Brand Colors */
+  --color-primary: #B6656F;
+  --color-primary-light: #C9858C;
+  --color-primary-deep: #8C3C48;
 
-  /* =========================================
-     Accent Gold — 精品金色系統
-     ========================================= */
-  --color-accent-gold: #D9B48C;        /* 柔亮金 */
-  --color-accent-gold-mid: #CDA078;    /* 中度精品金 */
-  --color-accent-gold-deep: #C09362;   /* 深精品金（hover/active） */
-  --color-accent-gold-bright: #E7C9A5; /* 用於高亮按鈕邊框 */
+  /* Accent Gold */
+  --color-accent-gold: #D9B48C;
+  --color-accent-gold-mid: #CDA078;
+  --color-accent-gold-deep: #C09362;
+  --color-accent-gold-bright: #E7C9A5;
 
-  /* =========================================
-     Text Colors
-     ========================================= */
-  --color-text-main: #3F2A2A;    /* 主文字（深可可） */
-  --color-text-muted: #8B6D6B;   /* 次文字（淡棕） */
-  --color-text-label: #A48A81;   /* 標籤文字 */
+  /* Text Colors */
+  --color-text-main: #3F2A2A;
+  --color-text-muted: #8B6D6B;
+  --color-text-label: #A48A81;
 
-  /* =========================================
-     Border Colors
-     ========================================= */
-  --color-border-soft: #E7D2C5;        /* 柔和的漢方米色邊框 */
-  --color-border-strong: #C79A83;      /* 強烈邊框（少量使用） */
-  --color-border-gold: #D9B48C;        /* 精品金框（按鈕用） */
+  /* Border */
+  --color-border-soft: #E7D2C5;
+  --color-border-strong: #C79A83;
+  --color-border-gold: #D9B48C;
 
-  /* =========================================
-     Shadows — 精品立體陰影層級
-     ========================================= */
-
-  /* 柔軟背景陰影 */
+  /* Shadows */
   --shadow-soft: 0 14px 40px rgba(85, 50, 40, 0.10);
-
-  /* 卡片陰影（一般） */
   --shadow-card: 0 18px 45px rgba(70, 35, 35, 0.12);
-
-  /* 精品卡片陰影（更立體） */
   --shadow-premium-card: 0 22px 48px rgba(70, 35, 35, 0.16);
-
-  /* 浮動按鈕陰影 */
   --shadow-button: 0 4px 12px rgba(140, 60, 72, 0.16);
-
-  /* 按下時 */
   --shadow-button-pressed: 0 2px 8px rgba(140, 60, 72, 0.22);
 
-  /* =========================================
-     Gradients（漸層系統）
-     ========================================= */
+  /* Gradients */
   --grad-rose-soft: linear-gradient(135deg, #FFF3EA 0%, #F9E0D0 100%);
   --grad-rose-hover: linear-gradient(135deg, #FFE7D2 0%, #F8D6C1 100%);
 
   --grad-gold-soft: linear-gradient(135deg, #FDF5E6 0%, #F4E2C8 100%);
   --grad-gold-strong: linear-gradient(135deg, #F7E7C8 0%, #E7C9A5 100%);
 
-  /* =========================================
-     Radius System（圓角系統）
-     ========================================= */
+  /* Radius */
   --radius-card: 22px;
   --radius-button: 14px;
   --radius-image: 20px;
 
-  /* =========================================
-     Animation Timings
-     ========================================= */
+  /* Timing */
   --ease-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
