@@ -1,54 +1,20 @@
-/* ==========================================================
-   Herbal Rose Gold Premium Theme
-   台興山產・仙加味 精品玫瑰漢方金 主題色系
-   ========================================================== */
-
+/* theme_herbalrosegold.css — Herbal Rose Gold 主題變數 */
 :root {
-  /* Base Background Colors */
   --color-bg: #FBF5F2;
   --color-bg-soft: #FFF9F6;
-  --color-bg-card: #FFFCF9;
 
-  /* Brand Colors */
-  --color-primary: #B6656F;
-  --color-primary-light: #C9858C;
+  --color-primary: #B6656F;         /* 玫瑰漢方色 */
   --color-primary-deep: #8C3C48;
-
-  /* Accent Gold */
-  --color-accent-gold: #D9B48C;
-  --color-accent-gold-mid: #CDA078;
+  --color-accent-gold: #D9B48C;     /* 溫柔金 */
   --color-accent-gold-deep: #C09362;
-  --color-accent-gold-bright: #E7C9A5;
 
-  /* Text Colors */
   --color-text-main: #3F2A2A;
   --color-text-muted: #8B6D6B;
   --color-text-label: #A48A81;
 
-  /* Border */
   --color-border-soft: #E7D2C5;
   --color-border-strong: #C79A83;
-  --color-border-gold: #D9B48C;
 
-  /* Shadows */
   --shadow-soft: 0 14px 40px rgba(85, 50, 40, 0.10);
   --shadow-card: 0 18px 45px rgba(70, 35, 35, 0.12);
-  --shadow-premium-card: 0 22px 48px rgba(70, 35, 35, 0.16);
-  --shadow-button: 0 4px 12px rgba(140, 60, 72, 0.16);
-  --shadow-button-pressed: 0 2px 8px rgba(140, 60, 72, 0.22);
-
-  /* Gradients */
-  --grad-rose-soft: linear-gradient(135deg, #FFF3EA 0%, #F9E0D0 100%);
-  --grad-rose-hover: linear-gradient(135deg, #FFE7D2 0%, #F8D6C1 100%);
-
-  --grad-gold-soft: linear-gradient(135deg, #FDF5E6 0%, #F4E2C8 100%);
-  --grad-gold-strong: linear-gradient(135deg, #F7E7C8 0%, #E7C9A5 100%);
-
-  /* Radius */
-  --radius-card: 22px;
-  --radius-button: 14px;
-  --radius-image: 20px;
-
-  /* Timing */
-  --ease-smooth: cubic-bezier(0.22, 0.61, 0.36, 1);
 }

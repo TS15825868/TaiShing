@@ -1,3 +1,4 @@
+\
 /* =========================================
    GLOBAL RESET
    ========================================= */
@@ -198,9 +199,20 @@ li { margin-bottom: 0.25rem; }
   font-size: 1rem;
 }
 
+.section-intro {
+  margin-bottom: 18px;
+  color: var(--color-text-main);
+}
+
+/* 通用段落 */
+p {
+  margin: 0 0 12px;
+  font-size: 1rem;
+}
+
 
 /* =========================================
-   HERO（僅首頁）
+   HERO（首頁）
    ========================================= */
 
 .section--hero {
@@ -222,9 +234,126 @@ li { margin-bottom: 0.25rem; }
   box-shadow: var(--shadow-card);
 }
 
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 /* =========================================
-   PRODUCT：精品產品卡片
+   BUTTONS（精品版）
+   ========================================= */
+
+.btn-primary,
+.btn-primary-light,
+.btn-soft {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+}
+
+/* 主按鈕（實心） */
+.btn-primary {
+  background: linear-gradient(135deg, #B6656F, #8C3C48);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(140, 60, 72, 0.35);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 32px rgba(120, 45, 60, 0.4);
+}
+
+/* 淺色主按鈕 */
+.btn-primary-light {
+  border-color: var(--color-accent-gold-deep);
+  background: #FFF7EF;
+  color: var(--color-primary-deep);
+}
+
+.btn-primary-light:hover {
+  background: #F5E4D2;
+  transform: translateY(-2px);
+}
+
+/* 柔和次按鈕 */
+.btn-soft {
+  border-color: var(--color-border-soft);
+  background: #FFFDFB;
+  color: var(--color-primary-deep);
+}
+
+.btn-soft:hover {
+  background: #F7EDE4;
+  transform: translateY(-2px);
+}
+
+/* 按下時縮放效果 */
+.btn-pressed {
+  transform: scale(0.96) !important;
+  box-shadow: none !important;
+}
+
+
+/* =========================================
+   INDEX：產品卡片（首頁）
+   ========================================= */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.product-card {
+  background: #FFFCF9;
+  padding: 18px 18px 20px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-card);
+  border: 1px solid rgba(205, 170, 150, 0.28);
+  transition: 0.35s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 55px rgba(40, 20, 20, 0.15);
+}
+
+.product-image-wrap {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.product-name {
+  font-size: 1.1rem;
+  color: var(--color-primary-deep);
+  margin-bottom: 6px;
+}
+
+.product-desc {
+  font-size: 0.96rem;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.center-more {
+  margin-top: 18px;
+  text-align: center;
+}
+
+
+/* =========================================
+   PRODUCTS 頁面：精品產品卡片
    ========================================= */
 
 .product-page-grid {
@@ -256,21 +385,26 @@ li { margin-bottom: 0.25rem; }
   margin-bottom: 14px;
 }
 
-.product-name {
-  font-size: 1.2rem;
-  color: var(--color-primary-deep);
-  margin-bottom: 10px;
-}
-
 .product-content p {
   margin-bottom: 12px;
 }
 
 
 /* =========================================
-   CONTACT（精品版按鈕）
+   CONTACT（精品版按鈕 + 門市照）
    ========================================= */
 
+.contact-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 14px;
+}
+
+.contact-list li {
+  margin-bottom: 6px;
+}
+
+/* 按鈕群組 */
 .pro-buttons {
   display: flex;
   flex-direction: column;
@@ -315,13 +449,16 @@ li { margin-bottom: 0.25rem; }
   transform: translateY(-3px);
 }
 
-
 /* 店面照片相紙框 */
 .store-image-frame {
   background: white;
   padding: 14px;
   border-radius: 20px;
   box-shadow: var(--shadow-card);
+}
+
+.store-img {
+  border-radius: 16px;
 }
 
 
@@ -369,6 +506,16 @@ li { margin-bottom: 0.25rem; }
   transform: translateY(0);
 }
 
+/* 視覺敏感使用者：減少動畫 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 
 /* =========================================
    RWD
@@ -380,6 +527,9 @@ li { margin-bottom: 0.25rem; }
   }
   .section--hero {
     grid-template-columns: 1fr;
+  }
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -394,7 +544,8 @@ li { margin-bottom: 0.25rem; }
     padding: 26px 18px;
   }
 
-  .product-page-grid {
+  .product-page-grid,
+  .product-grid {
     grid-template-columns: 1fr;
   }
 }
