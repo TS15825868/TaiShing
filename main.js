@@ -1,94 +1,74 @@
-/* ==========================================================
-   main.js — 台興山產・仙加味 精品互動效果整合版
-   ========================================================== */
+/* =========================================
+   main.js — C 文青精品風格互動核心
+   ========================================= */
 
-/* Header padding: avoid content hidden behind fixed header */
+/* -----------------------------------------
+   1. 動態調整 Main Padding（避免 header 遮住內容）
+   ----------------------------------------- */
 function adjustMainPadding() {
   const header = document.querySelector(".site-header");
   const main = document.querySelector(".site-main");
-
   if (!header || !main) return;
 
   const headerHeight = header.offsetHeight;
   main.style.paddingTop = headerHeight + "px";
 }
 
+// 初始與 resize 時更新
 window.addEventListener("load", adjustMainPadding);
 window.addEventListener("resize", adjustMainPadding);
 
-/* Header scroll state */
-function handleHeaderScrollClass() {
-  const header = document.querySelector(".site-header");
-  if (!header) return;
 
-  if (window.scrollY > 10) {
-    header.classList.add("site-header--scrolled");
-  } else {
-    header.classList.remove("site-header--scrolled");
-  }
-}
+/* -----------------------------------------
+   2. Scroll Reveal（精品淡入上滑效果）
+   ----------------------------------------- */
 
-window.addEventListener("scroll", handleHeaderScrollClass);
-window.addEventListener("load", handleHeaderScrollClass);
+function revealOnScroll() {
+  const reveals = document.querySelectorAll(".reveal, .reveal-up");
 
-/* Scroll Reveal */
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("reveal--visible");
-      }
-    });
-  },
-  {
-    threshold: 0.15,
-    rootMargin: "0px 0px -20px 0px",
-  }
-);
+  const triggerBottom = window.innerHeight * 0.88; 
+  // 讓畫面更精品：稍微提前出現，不突兀
 
-document.querySelectorAll(".reveal").forEach((element) => {
-  revealObserver.observe(element);
-});
+  reveals.forEach((el) => {
+    const rect = el.getBoundingClientRect();
 
-/* Premium button press feedback */
-function enhancePremiumButtons() {
-  const buttons = document.querySelectorAll(".btn-premium");
-
-  buttons.forEach((btn) => {
-    btn.addEventListener("mouseover", () => {
-      btn.style.transform = "translateY(-2px)";
-    });
-    btn.addEventListener("mouseout", () => {
-      btn.style.transform = "translateY(0)";
-      btn.style.boxShadow = "";
-    });
-    btn.addEventListener("mousedown", () => {
-      btn.style.transform = "scale(0.96)";
-      btn.style.boxShadow = "var(--shadow-button-pressed)";
-    });
-    btn.addEventListener("mouseup", () => {
-      btn.style.transform = "translateY(-2px)";
-      btn.style.boxShadow = "var(--shadow-button)";
-    });
+    if (rect.top < triggerBottom) {
+      el.classList.add("active");
+    }
   });
 }
 
-window.addEventListener("load", enhancePremiumButtons);
+// 使用 scroll + load 監聽
+window.addEventListener("scroll", () => {
+  window.requestAnimationFrame(revealOnScroll);
+});
+window.addEventListener("load", revealOnScroll);
 
-/* Smooth scroll if supported */
-if ("scrollBehavior" in document.documentElement.style) {
-  document.documentElement.style.scrollBehavior = "smooth";
-}
 
-/* iOS 100vh fix */
-function fixIOSHeight() {
-  const appHeight = () => {
-    const doc = document.documentElement;
-    doc.style.setProperty("--vh", window.innerHeight * 0.01 + "px");
-  };
+/* -----------------------------------------
+   3. 平滑捲動（增強精品感）
+   ----------------------------------------- */
 
-  window.addEventListener("resize", appHeight);
-  appHeight();
-}
+document.documentElement.style.scrollBehavior = "smooth";
 
-fixIOSHeight();
+
+/* -----------------------------------------
+   4. 按鈕點擊微互動（縮放效果）
+   ----------------------------------------- */
+
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest("a, button, .btn-outline-gold, .btn-line-strong");
+
+  if (!btn) return;
+
+  btn.classList.add("btn-pressed");
+
+  setTimeout(() => {
+    btn.classList.remove("btn-pressed");
+  }, 180);
+});
+
+
+/* =========================================
+   完成 — 全站互動核心已啟動
+   ========================================= */
