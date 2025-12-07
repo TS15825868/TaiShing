@@ -390,6 +390,49 @@ p {
 }
 
 
+
+/* Featured product card （龜鹿膏） */
+.pro-card--featured {
+  position: relative;
+  border-color: var(--color-accent-gold-deep);
+  box-shadow: 0 24px 60px rgba(50, 25, 20, 0.18);
+}
+
+.product-badge {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent-gold);
+  background: rgba(255, 249, 244, 0.96);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  color: var(--color-primary-deep);
+}
+
+/* 產品亮點列表 */
+.product-highlight-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 10px;
+  font-size: 0.94rem;
+  color: var(--color-text-main);
+}
+
+.product-highlight-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.product-highlight-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-primary);
+}
 /* =========================================
    CONTACT（精品版按鈕 + 門市照）
    ========================================= */
@@ -563,5 +606,96 @@ p {
 
   .hero-title {
     font-size: 1.45rem;
+  }
+}
+
+
+/* =============================
+   龜鹿膏單頁與 LINE 導流頁
+   ============================= */
+
+.guilu-hero-image {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(60, 30, 20, 0.22);
+  margin-bottom: 24px;
+}
+
+.guilu-hero-content {
+  text-align: center;
+}
+
+.guilu-hero-subtitle {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.guilu-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.guilu-panel {
+  background: #FFFCF9;
+  border-radius: 18px;
+  padding: 18px 16px 20px;
+  box-shadow: var(--shadow-card, 0 18px 45px rgba(70, 35, 35, 0.08));
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: none;
+  background: var(--color-primary-deep);
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(80, 25, 25, 0.35);
+  transform: translateY(0);
+  transition: all 0.18s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 18px 40px rgba(80, 25, 25, 0.4);
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+}
+
+/* LINE 導流頁 */
+.guilu-line-section {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.guilu-line-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 18px 0 16px;
+}
+
+.guilu-line-note {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+/* RWD 調整 */
+@media (max-width: 960px) {
+  .guilu-layout {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
