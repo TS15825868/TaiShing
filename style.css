@@ -699,3 +699,10 @@ p {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* 產品卡片 - 詳細介紹按鈕 */
+.btn-detail {
+  display: inline-block;
+  margin-top: 12px;
+  text-align: center;
+}
