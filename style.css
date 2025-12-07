@@ -390,49 +390,6 @@ p {
 }
 
 
-
-/* Featured product card （龜鹿膏） */
-.pro-card--featured {
-  position: relative;
-  border-color: var(--color-accent-gold-deep);
-  box-shadow: 0 24px 60px rgba(50, 25, 20, 0.18);
-}
-
-.product-badge {
-  position: absolute;
-  top: 14px;
-  left: 16px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--color-accent-gold);
-  background: rgba(255, 249, 244, 0.96);
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  color: var(--color-primary-deep);
-}
-
-/* 產品亮點列表 */
-.product-highlight-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 8px 0 10px;
-  font-size: 0.94rem;
-  color: var(--color-text-main);
-}
-
-.product-highlight-list li {
-  position: relative;
-  padding-left: 1.1rem;
-  margin-bottom: 4px;
-}
-
-.product-highlight-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--color-primary);
-}
 /* =========================================
    CONTACT（精品版按鈕 + 門市照）
    ========================================= */
