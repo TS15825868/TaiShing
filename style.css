@@ -333,3 +333,21 @@ li { margin-bottom: 0.25rem; }
 .nav-link {
   border-bottom: none;
 }
+/* =========================================
+   Nav Active 狀態「微金色光暈」
+   ========================================= */
+
+.nav-link--active::after {
+  box-shadow:
+    0 0 0 rgba(0,0,0,0), /* 保底 */
+    0 2px 6px rgba(192, 147, 98, 0.28),
+    0 6px 14px rgba(192, 147, 98, 0.18);
+}
+
+/* 手機再收斂一點（避免太亮） */
+@media (max-width: 768px) {
+  .nav-link--active::after {
+    box-shadow:
+      0 2px 8px rgba(192, 147, 98, 0.22);
+  }
+}
