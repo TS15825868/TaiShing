@@ -32,12 +32,9 @@ img {
   display: block;
 }
 
-ul {
-  padding-left: 1.2rem;
-}
-li {
-  margin-bottom: 0.25rem;
-}
+ul { padding-left: 1.2rem; }
+li { margin-bottom: 0.25rem; }
+
 
 /* =========================================
    WRAPPER
@@ -48,8 +45,9 @@ li {
   background: var(--color-bg-soft);
 }
 
+
 /* =========================================
-   HEADER（Fixed・壓縮精品版）
+   HEADER（精品壓縮版）
    ========================================= */
 
 .site-header {
@@ -78,33 +76,29 @@ li {
 }
 
 .site-logo {
-  width: 58px;
-  height: 58px;
+  width: 60px;
+  height: 60px;
   border-radius: 14px;
   box-shadow: var(--shadow-soft);
 }
 
 .brand-since {
-  font-size: .65rem;
-  letter-spacing: .22em;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
   color: var(--color-text-label);
-  margin: 0;
 }
 
 .brand-title {
-  font-size: .95rem;
-  letter-spacing: .12em;
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
   font-weight: 600;
   color: var(--color-primary-deep);
 }
 
-/* =========================================
-   NAV（不換行、不亂跳）
-   ========================================= */
 
-.site-nav {
-  width: 100%;
-}
+/* =========================================
+   NAV（不換行）
+   ========================================= */
 
 .site-nav ul {
   display: flex;
@@ -116,13 +110,11 @@ li {
 
 .nav-link {
   position: relative;
-  font-size: .88rem;
-  letter-spacing: .14em;
+  font-size: 0.88rem;
+  letter-spacing: 0.14em;
   white-space: nowrap;
-  padding-bottom: 4px;
 }
 
-/* 金色底線 */
 .nav-link::after {
   content: "";
   position: absolute;
@@ -132,7 +124,7 @@ li {
   height: 2px;
   background: var(--color-accent-gold-deep);
   transform: translateX(-50%);
-  transition: .28s ease;
+  transition: .3s ease;
 }
 
 .nav-link:hover::after,
@@ -140,73 +132,86 @@ li {
   width: 100%;
 }
 
+
 /* =========================================
-   MAIN（補 header 高度）
+   MAIN（為 fixed header 留空間）
    ========================================= */
 
 .site-main {
   max-width: 1080px;
   margin: 0 auto;
-  padding: calc(96px + 20px) 20px 64px;
+  padding: 130px 20px 60px;
 }
 
 .simple-page .site-main {
   max-width: 720px;
 }
 
+
 /* =========================================
-   SECTION（統一間距）
+   SECTION
    ========================================= */
 
 .section {
   background: #FFFCF9;
-  padding: 32px 24px;
-  margin-bottom: 36px;
+  padding: 34px 26px;
+  margin-bottom: 38px;
   border-radius: 24px;
   box-shadow: var(--shadow-soft);
 }
 
 .section-kicker {
-  font-size: .78rem;
-  letter-spacing: .28em;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
   color: var(--color-text-label);
 }
 
 .page-title,
 .section-title {
-  font-size: 1.5rem;
-  margin-bottom: 14px;
+  font-size: 1.55rem;
   color: var(--color-primary-deep);
 }
 
-p {
-  margin-bottom: 12px;
+.page-subtitle {
+  color: var(--color-text-muted);
 }
 
+
 /* =========================================
-   BUTTON（全站統一）
+   BUTTONS（✅完整修正區）
    ========================================= */
 
 .btn-primary,
-.btn-soft {
+.btn-soft,
+.btn-primary-light {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
   padding: 12px 22px;
   border-radius: 999px;
-  font-size: .95rem;
-  letter-spacing: .12em;
 
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
   white-space: nowrap;
   word-break: keep-all;
 }
 
+/* 主按鈕 */
 .btn-primary {
   background: linear-gradient(135deg,#B6656F,#8C3C48);
   color: #fff;
+  box-shadow: 0 10px 24px rgba(140,60,72,0.35);
 }
 
+/* 淡色描邊按鈕（✅「前往完整產品介紹」用這個） */
+.btn-primary-light {
+  border: 1px solid var(--color-accent-gold-deep);
+  background: #FFF7EF;
+  color: var(--color-primary-deep);
+}
+
+/* 軟按鈕 */
 .btn-soft {
   border: 1px solid var(--color-border-soft);
   background: #FFFDFB;
@@ -217,8 +222,9 @@ p {
   width: 100%;
 }
 
+
 /* =========================================
-   GUILU
+   PRODUCTS / GUILU
    ========================================= */
 
 .guilu-hero {
@@ -231,7 +237,7 @@ p {
 .guilu-hero-image {
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(60,30,20,.22);
+  box-shadow: 0 24px 60px rgba(60,30,20,0.22);
 }
 
 .guilu-layout {
@@ -240,16 +246,6 @@ p {
   gap: 24px;
 }
 
-.feature-list {
-  list-style: none;
-  padding-left: 0;
-}
-
-.feature-list li::before {
-  content: "•";
-  color: var(--color-primary);
-  margin-right: 6px;
-}
 
 /* =========================================
    FOOTER
@@ -260,12 +256,13 @@ p {
   margin: 0 auto;
   padding: 40px 20px;
   border-top: 1px solid var(--color-border-soft);
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: var(--color-text-muted);
 }
 
+
 /* =========================================
-   MOBILE（關鍵穩定版）
+   MOBILE
    ========================================= */
 
 @media (max-width: 768px) {
@@ -277,46 +274,23 @@ p {
   }
 
   .site-nav {
+    width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   .site-nav ul {
     flex-wrap: nowrap;
-    gap: 16px;
   }
 
-  .section {
-    padding: 28px 20px;
+  .site-main {
+    padding-top: 140px;
   }
 
-  /* Guilu Hero */
-  .guilu-hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .guilu-hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .guilu-hero-content .btn-primary {
-    min-width: 220px;
-    margin-top: 18px;
-  }
-
-  /* 所有按鈕與圖片安全距 */
+  /* ✅ 手機按鈕間距修正（你剛剛卡住的地方） */
   .btn-primary,
-  .btn-soft {
+  .btn-soft,
+  .btn-primary-light {
     margin-top: 16px;
     margin-bottom: 12px;
-  }
-
-  .product-image-wrap,
-  .product-image-frame,
-  .guilu-hero-image {
-    margin-top: 14px;
   }
 }
