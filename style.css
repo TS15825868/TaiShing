@@ -142,3 +142,43 @@ img {
   }
 
 }
+/* =========================================
+   ✅ Layout 最終穩定補丁（止跑版）
+   ========================================= */
+
+/* MAIN 絕對不能被 header 蓋住 */
+.site-main {
+  position: relative;
+  padding-top: 110px; /* 由 JS 再微調 */
+}
+
+/* Header 固定但不壓內容 */
+.site-header {
+  width: 100%;
+}
+
+/* Nav 一定是橫向 */
+.site-nav ul {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Hero 在手機一定要直排 */
+@media (max-width: 768px) {
+
+  .section--hero,
+  .guilu-hero {
+    display: flex !important;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .section--hero img,
+  .guilu-hero img {
+    width: 100%;
+    height: auto;
+  }
+
+}
