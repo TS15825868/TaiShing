@@ -1,26 +1,53 @@
-/* =========================================
+/* =====================================================
    GLOBAL RESET
-   ========================================= */
+   ===================================================== */
+
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after {
+  box-sizing: border-box;
+}
 
-html, body { margin: 0; padding: 0; }
+html, body {
+  margin: 0;
+  padding: 0;
+}
 
 body {
-  font-family: "Noto Serif TC","PingFang TC","Microsoft JhengHei",serif;
+  font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
+               "PingFang TC", "Microsoft JhengHei", serif;
   background: var(--color-bg);
   color: var(--color-text-main);
   line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
 }
 
-a { text-decoration: none; color: inherit; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-img { max-width: 100%; display: block; }
+img {
+  max-width: 100%;
+  display: block;
+}
 
-/* =========================================
-   HEADER（最終精品版）
-   ========================================= */
+ul { padding-left: 1.2rem; }
+li { margin-bottom: .25rem; }
+
+/* =====================================================
+   WRAPPER
+   ===================================================== */
+
+.site-wrapper {
+  min-height: 100vh;
+  background: var(--color-bg-soft);
+}
+
+/* =====================================================
+   HEADER（Fixed + Apple-style 壓縮）
+   ===================================================== */
+
 .site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -37,10 +64,12 @@ img { max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: .25s ease;
+  transition: padding .25s ease;
 }
 
-.header--compact .header-inner { padding: 4px 20px; }
+.header--compact .header-inner {
+  padding: 4px 20px;
+}
 
 /* Brand */
 .brand-block {
@@ -48,6 +77,7 @@ img { max-width: 100%; display: block; }
   align-items: center;
   gap: 12px;
 }
+
 .site-logo {
   width: 60px;
   height: 60px;
@@ -55,14 +85,11 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow-soft);
   transition: .25s ease;
 }
-.header--compact .site-logo { width: 52px; height: 52px; }
 
-.brand-title {
-  font-size: .95rem;
-  letter-spacing: .12em;
-  color: var(--color-primary-deep);
+.header--compact .site-logo {
+  width: 52px;
+  height: 52px;
 }
-.header--compact .brand-title { font-size: .88rem; }
 
 .brand-since {
   font-size: .65rem;
@@ -70,22 +97,39 @@ img { max-width: 100%; display: block; }
   color: var(--color-text-label);
 }
 
-/* =========================================
+.brand-title {
+  font-size: .95rem;
+  letter-spacing: .12em;
+  color: var(--color-primary-deep);
+}
+
+.header--compact .brand-title {
+  font-size: .88rem;
+}
+
+/* =====================================================
    NAV
-   ========================================= */
+   ===================================================== */
+
+.site-nav {
+  width: 100%;
+}
+
 .site-nav ul {
-  list-style: none;
   display: flex;
   gap: 18px;
+  list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .nav-link {
   position: relative;
   font-size: .88rem;
   letter-spacing: .14em;
   white-space: nowrap;
 }
+
 .nav-link::after {
   content: "";
   position: absolute;
@@ -97,23 +141,36 @@ img { max-width: 100%; display: block; }
   transform: translateX(-50%);
   transition: .28s ease;
 }
-.nav-link:hover::after,
-.nav-link--active::after { width: 100%; }
 
-/* =========================================
-   MAIN
-   ========================================= */
+.nav-link:hover::after,
+.nav-link--active::after {
+  width: 100%;
+}
+
+.nav-link--active::after {
+  box-shadow:
+    0 2px 6px rgba(192,147,98,.25),
+    0 6px 14px rgba(192,147,98,.15);
+}
+
+/* =====================================================
+   MAIN（補 header 高度）
+   ===================================================== */
+
 .site-main {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 120px 20px 60px; /* ✅ fixed header 補 padding */
+  padding: 96px 20px 60px;
 }
 
-.simple-page .site-main { max-width: 720px; }
+.simple-page .site-main {
+  max-width: 720px;
+}
 
-/* =========================================
+/* =====================================================
    SECTION
-   ========================================= */
+   ===================================================== */
+
 .section {
   background: #FFFCF9;
   padding: 34px 26px;
@@ -122,68 +179,108 @@ img { max-width: 100%; display: block; }
   box-shadow: var(--shadow-soft);
 }
 
-/* =========================================
-   BUTTONS（全站統一）
-   ========================================= */
-.btn-primary,
-.btn-soft,
-.btn-outline-gold {
+.section-kicker {
+  font-size: .78rem;
+  letter-spacing: .28em;
+  color: var(--color-text-label);
+  margin-bottom: 6px;
+}
+
+.section-title,
+.page-title {
+  font-size: 1.55rem;
+  color: var(--color-primary-deep);
+  margin-bottom: 14px;
+}
+
+/* =====================================================
+   CTA BUTTON SYSTEM（最重要）
+   ===================================================== */
+
+/* 主 CTA（首頁 / LINE） */
+.btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 22px;
-  border-radius: 999px;
+  padding: 12px 26px;
+  margin-top: 16px;
+
   font-size: .95rem;
   letter-spacing: .12em;
-}
+  white-space: nowrap;
 
-.btn-primary {
-  background: linear-gradient(135deg,#B6656F,#8C3C48);
   color: #fff;
-  box-shadow: 0 10px 24px rgba(120,45,60,.35);
+  border-radius: 999px;
+  background: linear-gradient(135deg,#B6656F,#8C3C48);
+  box-shadow: 0 10px 26px rgba(140,60,72,.35);
+  transition: .25s ease;
 }
 
-.btn-soft {
-  border: 1px solid var(--color-border-soft);
-  background: #FFFDFB;
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(140,60,72,.4);
+}
+
+/* ✅ 次 CTA（了解更多 / 前往完整產品介紹 / LINE 加入） */
+.cta-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 22px;
+  margin-top: 14px;
+
+  font-size: .95rem;
+  letter-spacing: .08em;
+  white-space: nowrap;
+
   color: var(--color-primary-deep);
+  border: 1.5px solid var(--color-accent-gold-deep);
+  border-radius: 999px;
+  background: rgba(255,253,251,.95);
+
+  transition: .25s ease;
 }
 
-.btn-outline-gold {
-  border: 1.6px solid var(--color-accent-gold-deep);
-  background: #FFFDFB;
+.cta-outline:hover {
+  background: #F6E9DC;
+  box-shadow: 0 4px 12px rgba(140,60,72,.12);
+  transform: translateY(-1px);
 }
 
-.btn-full { width: 100%; }
+/* =====================================================
+   PRODUCT / IMAGE SPACING（解決你所有貼圖問題）
+   ===================================================== */
 
-/* ✅ 按鈕與圖片距離 */
-.product-card a,
-.pro-card a,
-.hero-text a { margin-top: 14px; }
-
-/* =========================================
-   PRODUCTS / GUILU
-   ========================================= */
-.product-grid,
-.product-page-grid {
-  display: grid;
-  gap: 24px;
+.product-image-wrap,
+.product-image-frame,
+.section img {
+  margin-top: 14px;
+  margin-bottom: 14px;
 }
 
-.product-grid { grid-template-columns: repeat(3,1fr); }
-.product-page-grid { grid-template-columns: repeat(3,1fr); }
+.section a {
+  margin-bottom: 8px;
+}
 
-.guilu-hero,
+/* =====================================================
+   GUILU 專頁排版
+   ===================================================== */
+
 .guilu-layout {
   display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
-.guilu-hero { grid-template-columns: 1fr 1fr; }
-.guilu-layout { grid-template-columns: 1fr 1fr; }
 
-/* =========================================
+.guilu-panel {
+  text-align: justify;
+}
+
+/* =====================================================
    FOOTER
-   ========================================= */
+   ===================================================== */
+
 .site-footer {
   max-width: 1080px;
   margin: 0 auto;
@@ -193,9 +290,10 @@ img { max-width: 100%; display: block; }
   color: var(--color-text-muted);
 }
 
-/* =========================================
+/* =====================================================
    MOBILE
-   ========================================= */
+   ===================================================== */
+
 @media (max-width: 768px) {
 
   .header-inner {
@@ -205,17 +303,21 @@ img { max-width: 100%; display: block; }
   }
 
   .site-nav {
-    width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .site-nav ul {
     flex-wrap: nowrap;
+    gap: 16px;
   }
 
-  .product-grid,
-  .product-page-grid,
-  .guilu-hero,
+  .btn-primary,
+  .cta-outline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   .guilu-layout {
     grid-template-columns: 1fr;
   }
