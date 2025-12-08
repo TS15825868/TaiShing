@@ -1,6 +1,6 @@
-/* =========================================
+/* =========================================================
    GLOBAL RESET
-   ========================================= */
+   ========================================================= */
 
 *,
 *::before,
@@ -37,9 +37,9 @@ ul { padding-left: 1.2rem; }
 li { margin-bottom: 0.25rem; }
 
 
-/* =========================================
+/* =========================================================
    WRAPPER
-   ========================================= */
+   ========================================================= */
 
 .site-wrapper {
   min-height: 100vh;
@@ -47,9 +47,9 @@ li { margin-bottom: 0.25rem; }
 }
 
 
-/* =========================================
-   HEADER（精品壓縮版・固定在上方）
-   ========================================= */
+/* =========================================================
+   HEADER（Fixed × Apple 感微縮）
+   ========================================================= */
 
 .site-header {
   position: fixed;
@@ -67,6 +67,12 @@ li { margin-bottom: 0.25rem; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: padding .25s ease;
+}
+
+/* 滑動後更緊（Apple Feel） */
+.header--compact .header-inner {
+  padding: 4px 20px;
 }
 
 /* Brand */
@@ -82,10 +88,16 @@ li { margin-bottom: 0.25rem; }
   height: 60px;
   border-radius: 14px;
   box-shadow: var(--shadow-soft);
+  transition: .25s ease;
+}
+
+.header--compact .site-logo {
+  width: 50px;
+  height: 50px;
 }
 
 .brand-since {
-  font-size: 0.65rem;
+  font-size: 0.63rem;
   letter-spacing: 0.22em;
   color: var(--color-text-label);
 }
@@ -95,12 +107,17 @@ li { margin-bottom: 0.25rem; }
   letter-spacing: 0.12em;
   font-weight: 600;
   color: var(--color-primary-deep);
+  transition: .25s ease;
+}
+
+.header--compact .brand-title {
+  font-size: 0.86rem;
 }
 
 
-/* =========================================
-   NAV（不換行 + 底線動畫）
-   ========================================= */
+/* =========================================================
+   NAV（不換行 × 金色細線）
+   ========================================================= */
 
 .site-nav ul {
   display: flex;
@@ -126,18 +143,19 @@ li { margin-bottom: 0.25rem; }
   height: 2px;
   background: var(--color-accent-gold-deep);
   transform: translateX(-50%);
-  transition: .3s ease;
+  transition: .28s ease;
 }
 
 .nav-link:hover::after,
 .nav-link--active::after {
   width: 100%;
+  box-shadow: 0 2px 8px rgba(192,147,98,.26);
 }
 
 
-/* =========================================
-   MAIN（為 fixed header 預留空間）
-   ========================================= */
+/* =========================================================
+   MAIN（預留 fixed header）
+   ========================================================= */
 
 .site-main {
   max-width: 1080px;
@@ -150,9 +168,9 @@ li { margin-bottom: 0.25rem; }
 }
 
 
-/* =========================================
+/* =========================================================
    SECTION
-   ========================================= */
+   ========================================================= */
 
 .section {
   background: #FFFCF9;
@@ -181,9 +199,9 @@ li { margin-bottom: 0.25rem; }
 }
 
 
-/* =========================================
-   BUTTONS（全站共用）
-   ========================================= */
+/* =========================================================
+   ✅ BUTTON SYSTEM（統一）
+   ========================================================= */
 
 .btn-primary,
 .btn-soft,
@@ -191,32 +209,46 @@ li { margin-bottom: 0.25rem; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 22px;
+  padding: 12px 24px;
   border-radius: 999px;
   font-size: 0.95rem;
   letter-spacing: 0.12em;
   white-space: nowrap;
-  word-break: keep-all;
+  transition: .25s ease;
 }
 
-/* 主色實心 */
+/* ✅ 首頁 CTA（權重提升） */
 .btn-primary {
   background: linear-gradient(135deg,#B6656F,#8C3C48);
   color: #fff;
-  box-shadow: 0 10px 24px rgba(140,60,72,0.35);
+  box-shadow:
+    0 8px 20px rgba(140,60,72,.28),
+    0 2px 6px rgba(140,60,72,.18);
 }
 
-/* 淺色描邊（首頁「前往完整產品介紹」用這個） */
-.btn-primary-light {
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 36px rgba(140,60,72,.35),
+    0 6px 14px rgba(140,60,72,.25);
+}
+
+/* ✅ 產品卡「了解更多」統一用這個 */
+.btn-soft {
   border: 1px solid var(--color-accent-gold-deep);
   background: #FFF7EF;
   color: var(--color-primary-deep);
 }
 
-/* 細框柔和 */
-.btn-soft {
-  border: 1px solid var(--color-border-soft);
-  background: #FFFDFB;
+.btn-soft:hover {
+  background: #F4E3D3;
+  transform: translateY(-1px);
+}
+
+/* 淺主按鈕（備用） */
+.btn-primary-light {
+  border: 1px solid var(--color-accent-gold-deep);
+  background: #FFF7EF;
   color: var(--color-primary-deep);
 }
 
@@ -225,11 +257,9 @@ li { margin-bottom: 0.25rem; }
 }
 
 
-/* =========================================
-   GUILU（龜鹿膏單頁）
-   ========================================= */
-
-/* Hero 區 */
+/* =========================================================
+   PRODUCT / GUILU LAYOUT
+   ========================================================= */
 
 .guilu-hero {
   display: grid;
@@ -244,13 +274,10 @@ li { margin-bottom: 0.25rem; }
   box-shadow: 0 24px 60px rgba(60,30,20,0.22);
 }
 
-/* 特色區：左右平均寬 */
-
 .guilu-layout {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));  /* ✅ 左右平均 */
+  grid-template-columns: repeat(2, minmax(0,1fr));
   gap: 24px;
-  align-items: flex-start;
 }
 
 .feature-list {
@@ -265,9 +292,9 @@ li { margin-bottom: 0.25rem; }
 }
 
 
-/* =========================================
+/* =========================================================
    FOOTER
-   ========================================= */
+   ========================================================= */
 
 .site-footer {
   max-width: 1080px;
@@ -279,14 +306,13 @@ li { margin-bottom: 0.25rem; }
 }
 
 
-/* =========================================
+/* =========================================================
    RWD
-   ========================================= */
+   ========================================================= */
 
-/* 先讓龜鹿膏特色區在 960px 以下變成上下排，避免擠在一起 */
 @media (max-width: 960px) {
   .guilu-layout {
-    grid-template-columns: 1fr;      /* ✅ 手機與小平板改為單欄 */
+    grid-template-columns: 1fr;
   }
 }
 
@@ -312,11 +338,9 @@ li { margin-bottom: 0.25rem; }
     padding-top: 140px;
   }
 
-  /* 手機上按鈕多一點上下空氣 */
   .btn-primary,
   .btn-soft,
   .btn-primary-light {
-    margin-top: 16px;
-    margin-bottom: 12px;
+    margin: 14px 0;
   }
 }
