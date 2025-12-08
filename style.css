@@ -30,27 +30,14 @@ a {
   transition: 0.25s ease;
 }
 
-a:hover {
-  color: var(--color-primary-deep);
-}
-
 /* Images */
 img {
   max-width: 100%;
   display: block;
 }
 
-/* Lists */
-ul {
-  padding-left: 1.2rem;
-}
-li {
-  margin-bottom: 0.25rem;
-}
-
-
 /* =========================================
-   LAYOUT：WRAPPER
+   LAYOUT
    ========================================= */
 
 .site-wrapper {
@@ -58,9 +45,8 @@ li {
   background: var(--color-bg-soft);
 }
 
-
 /* =========================================
-   HEADER（精品版）
+   HEADER
    ========================================= */
 
 .site-header {
@@ -80,49 +66,51 @@ li {
   padding: 12px 20px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 16px;
 }
 
-/* Brand 左側 Logo 區 */
+/* Brand */
 .brand-block {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex-shrink: 0;
 }
 
 .site-logo {
-  width: 64px;
-  height: 64px;
-  object-fit: cover;
+  width: 60px;
+  height: 60px;
   border-radius: 14px;
   box-shadow: var(--shadow-soft);
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
 .brand-since {
-  font-size: 0.68rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
   color: var(--color-text-label);
-  letter-spacing: 0.22em;
   margin: 0;
 }
 
 .brand-title {
-  font-size: 1rem;
-  margin: 2px 0 0;
-  letter-spacing: 0.12em;
+  font-size: 0.95rem;
   font-weight: 600;
+  letter-spacing: 0.1em;
   color: var(--color-primary-deep);
 }
 
-
 /* =========================================
-   NAVBAR（精品細線版）
+   NAV（手機橫滑、永不換行）
    ========================================= */
+
+.site-nav {
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.site-nav::-webkit-scrollbar {
+  display: none;
+}
 
 .site-nav ul {
   list-style: none;
@@ -130,30 +118,26 @@ li {
   gap: 20px;
   padding: 0;
   margin: 0;
+  flex-wrap: nowrap;
 }
 
 .nav-link {
-  font-size: 0.9rem;
+  white-space: nowrap;
+  font-size: 0.85rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  padding-bottom: 4px;
+  padding: 6px 2px;
   border-bottom: 2px solid transparent;
-}
-
-.nav-link:hover {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-accent-gold);
 }
 
 .nav-link--active {
   border-bottom-color: var(--color-accent-gold-deep);
-  color: var(--color-primary-deep);
   font-weight: 600;
+  color: var(--color-primary-deep);
 }
 
-
 /* =========================================
-   MAIN：header 高度由 JS 自動補間距
+   MAIN
    ========================================= */
 
 .site-main {
@@ -162,472 +146,85 @@ li {
   padding: 0 20px 60px;
 }
 
-/* guilu-line 簡單版頁面寬度較窄 */
 .simple-page .site-main {
   max-width: 720px;
 }
 
-
 /* =========================================
-   SECTION（精品紙面卡片）
+   SECTIONS
    ========================================= */
 
 .section {
   background: #FFFCF9;
-  padding: 34px 26px;
-  margin-bottom: 38px;
-  border-radius: 24px;
+  padding: 32px 24px;
+  margin-bottom: 36px;
+  border-radius: 22px;
   box-shadow: var(--shadow-soft);
-  transition: 0.3s ease;
 }
 
-.section:hover {
-  transform: translateY(-3px);
-}
-
-/* 一般內容型 section（品牌故事、品牌卡等） */
-.story-section,
-.brand-card,
-.contact-card,
-.store-photo-section {
-  /* 目前沿用 .section 外觀即可，額外需求再加 */
-}
-
-/* Page header 區塊 */
-.page-header-block {
-  /* 可視需要微調 header 版面 */
-}
-
-/* Page Titles */
 .section-kicker {
-  font-size: 0.78rem;
-  letter-spacing: 0.28em;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
   color: var(--color-text-label);
-  margin-bottom: 6px;
 }
 
 .page-title,
 .section-title {
-  margin: 0 0 14px;
   font-size: 1.55rem;
-  letter-spacing: 0.05em;
+  margin: 8px 0 14px;
   color: var(--color-primary-deep);
 }
 
-.page-subtitle,
-.section-subtitle {
+.page-subtitle {
   color: var(--color-text-muted);
-  margin-bottom: 14px;
-  font-size: 1rem;
 }
-
-.section-intro {
-  margin-bottom: 18px;
-  color: var(--color-text-main);
-}
-
-/* 通用段落 */
-p {
-  margin: 0 0 12px;
-  font-size: 1rem;
-}
-
-/* 柔性導流文字 */
-.section-highlight {
-  font-size: 0.98rem;
-  color: var(--color-text-main);
-  background: #FFF6EC;
-  border-left: 3px solid var(--color-accent-gold-deep);
-  padding: 10px 12px;
-  border-radius: 10px;
-  margin-bottom: 12px;
-}
-
 
 /* =========================================
-   HERO（首頁）
-   ========================================= */
-
-.section--hero {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 28px;
-  align-items: center;
-}
-
-.hero-title {
-  font-size: 1.85rem;
-  line-height: 1.35;
-  color: var(--color-primary-deep);
-}
-
-.hero-image-wrap {
-  overflow: hidden;
-  border-radius: 22px;
-  box-shadow: var(--shadow-card);
-}
-
-.hero-image {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-
-/* =========================================
-   BUTTONS（精品版）
+   BUTTONS
    ========================================= */
 
 .btn-primary,
-.btn-primary-light,
 .btn-soft {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
   padding: 10px 20px;
   border-radius: 999px;
-  border: 1px solid transparent;
   font-size: 0.95rem;
   letter-spacing: 0.12em;
-  text-transform: uppercase;
-  cursor: pointer;
-  background: none;
 }
 
-/* 主按鈕（實心） */
 .btn-primary {
   background: linear-gradient(135deg, #B6656F, #8C3C48);
   color: #fff;
-  box-shadow: 0 10px 24px rgba(140, 60, 72, 0.35);
 }
 
-.btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 32px rgba(120, 45, 60, 0.4);
-}
-
-/* 淺色主按鈕 */
-.btn-primary-light {
-  border-color: var(--color-accent-gold-deep);
-  background: #FFF7EF;
-  color: var(--color-primary-deep);
-}
-
-.btn-primary-light:hover {
-  background: #F5E4D2;
-  transform: translateY(-2px);
-}
-
-/* 柔和次按鈕 */
 .btn-soft {
-  border-color: var(--color-border-soft);
+  border: 1px solid var(--color-border-soft);
   background: #FFFDFB;
   color: var(--color-primary-deep);
 }
 
-.btn-soft:hover {
-  background: #F7EDE4;
-  transform: translateY(-2px);
-}
-
-/* 按下時縮放效果（由 JS 加 .btn-pressed） */
-.btn-pressed {
-  transform: scale(0.96) !important;
-  box-shadow: none !important;
-}
-
-/* 滿版寬度按鈕 */
 .btn-full {
   width: 100%;
-  justify-content: center;
 }
-
-/* 產品卡片 - 詳細介紹按鈕 */
-.btn-detail {
-  display: inline-block;
-  margin-top: 12px;
-  text-align: center;
-}
-
 
 /* =========================================
-   INDEX：產品卡片（首頁）
+   GUILU PAGE（轉換優化）
    ========================================= */
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.product-card {
-  background: #FFFCF9;
-  padding: 18px 18px 20px;
-  border-radius: 20px;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(205, 170, 150, 0.28);
-  transition: 0.35s ease;
-}
-
-.product-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 55px rgba(40, 20, 20, 0.15);
-}
-
-.product-image-wrap {
-  border-radius: 16px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
-
-.product-name {
-  font-size: 1.1rem;
-  color: var(--color-primary-deep);
-  margin-bottom: 6px;
-}
-
-.product-desc {
-  font-size: 0.96rem;
-  color: var(--color-text-muted);
-  margin-bottom: 10px;
-}
-
-.center-more {
-  margin-top: 18px;
-  text-align: center;
-}
-
-
-/* =========================================
-   PRODUCTS 頁面：精品產品卡片
-   ========================================= */
-
-.product-page-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 26px;
-}
-
-.pro-card {
-  padding: 20px;
-  background: #FFFCF9;
-  border-radius: 22px;
-  box-shadow: var(--shadow-card);
-  border: 1px solid rgba(205, 170, 150, 0.28);
-  transition: 0.4s ease;
-}
-
-.pro-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 55px rgba(40, 20, 20, 0.15);
-}
-
-/* 圖片框（相紙感） */
-.product-image-frame {
-  background: #fff;
-  padding: 12px;
-  border-radius: 16px;
-  box-shadow: var(--shadow-soft);
-  margin-bottom: 14px;
-}
-
-.product-content p {
-  margin-bottom: 12px;
-}
-
-/* Featured product card （龜鹿膏） */
-.pro-card--featured {
-  position: relative;
-  border-color: var(--color-accent-gold-deep);
-  box-shadow: 0 24px 60px rgba(50, 25, 20, 0.18);
-}
-
-.product-badge {
-  position: absolute;
-  top: 14px;
-  left: 16px;
-  padding: 4px 10px;
-  border-radius: 999px;
-  border: 1px solid var(--color-accent-gold);
-  background: rgba(255, 249, 244, 0.96);
-  font-size: 0.78rem;
-  letter-spacing: 0.16em;
-  color: var(--color-primary-deep);
-}
-
-/* 產品亮點列表 */
-.product-highlight-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 8px 0 10px;
-  font-size: 0.94rem;
-  color: var(--color-text-main);
-}
-
-.product-highlight-list li {
-  position: relative;
-  padding-left: 1.1rem;
-  margin-bottom: 4px;
-}
-
-.product-highlight-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--color-primary);
-}
-
-
-/* =========================================
-   CONTACT（精品版按鈕 + 門市照）
-   ========================================= */
-
-.contact-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 0 0 14px;
-}
-
-.contact-list li {
-  margin-bottom: 6px;
-}
-
-/* 按鈕群組 */
-.pro-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 16px 0;
-}
-
-/* 額外說明文字 */
-.contact-extra {
-  font-size: 0.95rem;
-  color: var(--color-text-main);
-}
-
-/* 金色外框按鈕 */
-.btn-outline-gold {
-  display: block;
-  text-align: center;
-  padding: 12px 18px;
-  border-radius: 14px;
-  border: 1.6px solid var(--color-accent-gold-deep);
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  transition: 0.25s ease;
-  background: #FFFDFB;
-}
-
-.btn-outline-gold:hover {
-  background: #F9EFE4;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 14px rgba(120, 80, 60, 0.12);
-}
-
-/* LINE 強化版按鈕 */
-.btn-line-strong {
-  display: block;
-  padding: 12px 18px;
-  border-radius: 14px;
-  font-weight: 700;
-  background: #06C755;
-  text-align: center;
-  color: #fff;
-  font-size: 1rem;
-  transition: 0.25s ease;
-}
-
-.btn-line-strong:hover {
-  background: #05b34d;
-  transform: translateY(-3px);
-}
-
-/* 店面照片相紙框 */
-.store-image-frame {
-  background: white;
-  padding: 14px;
-  border-radius: 20px;
-  box-shadow: var(--shadow-card);
-}
-
-.store-img {
-  border-radius: 16px;
-}
-
-
-/* =========================================
-   FOOTER
-   ========================================= */
-
-.site-footer {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  border-top: 1px solid var(--color-border-soft);
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-}
-
-.footer-brand {
-  font-weight: 600;
-}
-
-
-/* =========================================
-   SCROLL REVEAL 動畫 CLASS
-   ========================================= */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition: 0.8s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-up {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: 0.85s ease;
-}
-
-.reveal-up.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* 視覺敏感使用者：減少動畫 */
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .reveal-up {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
-}
-
-
-/* =========================================
-   龜鹿膏單頁 & LINE 導流頁
-   ========================================= */
-
-/* guilu 主視覺整體 layout */
 .guilu-hero {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 26px;
   align-items: center;
 }
 
 .guilu-hero-image {
-  border-radius: 24px;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(60, 30, 20, 0.22);
+  box-shadow: 0 24px 60px rgba(60,30,20,.25);
 }
 
 .guilu-hero-content {
@@ -635,58 +232,29 @@ p {
 }
 
 .guilu-hero-subtitle {
-  font-size: 1rem;
   color: var(--color-text-muted);
-  line-height: 1.7;
   margin-bottom: 18px;
-}
-
-/* 產品說明 layout */
-.guilu-section {
-  /* 使用一般 section 視覺，這裡視需要額外覆寫 */
+  line-height: 1.7;
 }
 
 .guilu-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  grid-template-columns: 1.1fr 1fr;
   gap: 24px;
-  align-items: flex-start;
 }
 
 .guilu-panel {
   background: #FFFCF9;
+  padding: 18px;
   border-radius: 18px;
-  padding: 18px 16px 20px;
-  box-shadow: var(--shadow-card, 0 18px 45px rgba(70, 35, 35, 0.08));
+  box-shadow: var(--shadow-card);
 }
 
-/* 特色列表（guilu） */
-.feature-list {
-  list-style: none;
-  padding-left: 0;
-  margin: 8px 0 10px;
-}
+/* =========================================
+   GUILU LINE
+   ========================================= */
 
-.feature-list li {
-  position: relative;
-  padding-left: 1.2rem;
-  margin-bottom: 6px;
-  font-size: 0.96rem;
-  color: var(--color-text-main);
-}
-
-.feature-list li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--color-primary);
-}
-
-/* LINE 導流頁 */
 .guilu-line-section {
-  max-width: 720px;
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -694,107 +262,34 @@ p {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin: 18px 0 16px;
+  margin: 18px 0;
 }
 
 .guilu-line-note {
-  font-size: 0.95rem;
+  font-size: .95rem;
   color: var(--color-text-muted);
 }
-
 
 /* =========================================
    RWD
    ========================================= */
 
 @media (max-width: 960px) {
-  .product-page-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .section--hero {
-    grid-template-columns: 1fr;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .guilu-layout {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
+  .guilu-layout,
   .guilu-hero {
     grid-template-columns: 1fr;
-  }
-
-  .guilu-hero-content {
     text-align: center;
   }
 }
 
 @media (max-width: 768px) {
-
   .header-inner {
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .section {
-    padding: 26px 18px;
-  }
-
-  .product-page-grid,
-  .product-grid {
-    grid-template-columns: 1fr;
+    align-items: center;
   }
 }
 
 @media (max-width: 480px) {
-
-  .site-logo {
-    width: 58px;
-    height: 58px;
-  }
-
   .page-title {
     font-size: 1.38rem;
-  }
-
-  .hero-title {
-    font-size: 1.45rem;
-  }
-}
-/* =========================================
-   Mobile Navigation 優化（橫向滑動、不換行）
-   ========================================= */
-
-@media (max-width: 768px) {
-
-  /* 導覽列本體：可橫滑 */
-  .site-nav {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* 移除手機版 scrollbar（美觀） */
-  .site-nav::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* 導覽項目橫向排列、不換行 */
-  .site-nav ul {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 22px;
-    padding: 0 6px;
-  }
-
-  /* 每一個選單字：永遠一行 */
-  .nav-link {
-    white-space: nowrap;
-    font-size: 0.88rem;
-    padding-bottom: 6px;
   }
 }
