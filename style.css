@@ -284,3 +284,21 @@ img {
     flex-wrap: nowrap;
   }
 }
+/* =========================================
+   FIX：guilu-line.html LINE 按鈕顯示問題
+   ========================================= */
+
+/* 滿版按鈕 */
+.btn-full {
+  width: 100%;
+}
+
+/* LINE 導流頁專用寬度 */
+.simple-page .site-main {
+  max-width: 720px;
+}
+
+/* 強制導流頁按鈕穩定顯示 */
+.guilu-line-actions a {
+  display: flex;
+}
