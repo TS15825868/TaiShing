@@ -40,7 +40,7 @@ img {
 }
 
 /* =========================================
-   HEADER（穩定 + Apple 感縮高）
+   HEADER（固定・穩定・Apple 感）
    ========================================= */
 .site-header {
   position: fixed;
@@ -65,6 +65,7 @@ img {
   padding: 4px 20px;
 }
 
+/* Brand */
 .brand-block {
   display: flex;
   align-items: center;
@@ -97,7 +98,7 @@ img {
 }
 
 /* =========================================
-   NAV（永不換行）
+   NAV（不換行・穩定底線）
    ========================================= */
 .site-nav ul {
   display: flex;
@@ -132,12 +133,12 @@ img {
 }
 
 /* =========================================
-   MAIN
+   MAIN（padding-top 只給 JS）
    ========================================= */
 .site-main {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 120px 20px 60px;
+  padding: 0 20px 60px;
 }
 
 /* =========================================
@@ -165,7 +166,7 @@ img {
 }
 
 /* =========================================
-   ✅ 標註性文字（品牌經典等）
+   標註性文字（品牌經典等）
    ========================================= */
 .highlight-tag {
   display: inline-block;
@@ -180,12 +181,14 @@ img {
 }
 
 /* =========================================
-   ✅ BUTTON（全站統一）
+   ✅ BUTTON（全站統一、不消失）
    ========================================= */
-a.btn,
 .btn-primary,
 .btn-soft,
-.btn-outline {
+.btn-outline,
+.btn-outline-gold,
+.btn-line-strong,
+.btn-detail {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -212,20 +215,36 @@ a.btn,
 
 /* 次 CTA */
 .btn-soft,
-.btn-outline {
+.btn-outline,
+.btn-outline-gold {
   background: #FFFDFB;
   border: 1.5px solid var(--color-accent-gold-deep);
   color: var(--color-primary-deep);
 }
 
-.btn-soft:hover {
+.btn-soft:hover,
+.btn-outline:hover,
+.btn-outline-gold:hover {
   background: #F7EDE4;
 }
 
+/* LINE */
+.btn-line-strong {
+  background: #06C755;
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn-line-strong:hover {
+  background: #05b34d;
+}
+
 /* =========================================
-   ✅ 圖片 / 按鈕間距防跑版
+   圖片與按鈕間距（安全）
    ========================================= */
-img {
+.product-image,
+.hero-image,
+.store-img {
   margin-bottom: 12px;
 }
 
@@ -264,9 +283,4 @@ img {
   .site-nav ul {
     flex-wrap: nowrap;
   }
-
-  .site-main {
-    padding-top: 140px;
-  }
-
 }
