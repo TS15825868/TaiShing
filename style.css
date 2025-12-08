@@ -1,58 +1,30 @@
 /* =========================================
    GLOBAL RESET
    ========================================= */
-
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
-html, body {
-  margin: 0;
-  padding: 0;
-}
+html, body { margin: 0; padding: 0; }
 
 body {
-  font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
-               "PingFang TC", "Microsoft JhengHei", serif;
+  font-family: "Noto Serif TC","PingFang TC","Microsoft JhengHei",serif;
   background: var(--color-bg);
   color: var(--color-text-main);
   line-height: 1.85;
-  -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-  transition: 0.25s ease;
-}
+a { text-decoration: none; color: inherit; }
 
-img {
-  max-width: 100%;
-  display: block;
-}
-
-ul { padding-left: 1.2rem; }
-li { margin-bottom: 0.25rem; }
+img { max-width: 100%; display: block; }
 
 /* =========================================
-   WRAPPER
+   HEADER（最終精品版）
    ========================================= */
-
-.site-wrapper {
-  min-height: 100vh;
-  background: var(--color-bg-soft);
-}
-
-/* =========================================
-   HEADER（Fixed 精品壓縮版）
-   ========================================= */
-
 .site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
-  background: rgba(251,245,242,0.96);
+  background: rgba(251,245,242,.96);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border-soft);
   z-index: 999;
@@ -65,13 +37,10 @@ li { margin-bottom: 0.25rem; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: padding .25s ease;
+  transition: .25s ease;
 }
 
-/* 滑動後更緊（Apple 感） */
-.header--compact .header-inner {
-  padding: 4px 20px;
-}
+.header--compact .header-inner { padding: 4px 20px; }
 
 /* Brand */
 .brand-block {
@@ -79,7 +48,6 @@ li { margin-bottom: 0.25rem; }
   align-items: center;
   gap: 12px;
 }
-
 .site-logo {
   width: 60px;
   height: 60px;
@@ -87,11 +55,14 @@ li { margin-bottom: 0.25rem; }
   box-shadow: var(--shadow-soft);
   transition: .25s ease;
 }
+.header--compact .site-logo { width: 52px; height: 52px; }
 
-.header--compact .site-logo {
-  width: 52px;
-  height: 52px;
+.brand-title {
+  font-size: .95rem;
+  letter-spacing: .12em;
+  color: var(--color-primary-deep);
 }
+.header--compact .brand-title { font-size: .88rem; }
 
 .brand-since {
   font-size: .65rem;
@@ -99,37 +70,22 @@ li { margin-bottom: 0.25rem; }
   color: var(--color-text-label);
 }
 
-.brand-title {
-  font-size: .95rem;
-  letter-spacing: .12em;
-  font-weight: 600;
-  color: var(--color-primary-deep);
-  transition: .25s ease;
-}
-
-.header--compact .brand-title {
-  font-size: .88rem;
-}
-
 /* =========================================
-   NAV（永不換行）
+   NAV
    ========================================= */
-
 .site-nav ul {
+  list-style: none;
   display: flex;
   gap: 18px;
-  list-style: none;
   margin: 0;
   padding: 0;
 }
-
 .nav-link {
   position: relative;
   font-size: .88rem;
   letter-spacing: .14em;
   white-space: nowrap;
 }
-
 .nav-link::after {
   content: "";
   position: absolute;
@@ -139,181 +95,95 @@ li { margin-bottom: 0.25rem; }
   height: 2px;
   background: var(--color-accent-gold-deep);
   transform: translateX(-50%);
-  transition: .3s ease;
+  transition: .28s ease;
 }
-
 .nav-link:hover::after,
-.nav-link--active::after {
-  width: 100%;
-}
-
-.nav-link--active::after {
-  box-shadow:
-    0 2px 6px rgba(192,147,98,.25),
-    0 6px 14px rgba(192,147,98,.15);
-}
+.nav-link--active::after { width: 100%; }
 
 /* =========================================
-   MAIN（由 JS 補 padding-top）
+   MAIN
    ========================================= */
-
 .site-main {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 0 20px 60px;
+  padding: 120px 20px 60px; /* ✅ fixed header 補 padding */
 }
 
-.simple-page .site-main {
-  max-width: 720px;
-}
+.simple-page .site-main { max-width: 720px; }
 
 /* =========================================
-   SECTIONS
+   SECTION
    ========================================= */
-
 .section {
   background: #FFFCF9;
   padding: 34px 26px;
   margin-bottom: 38px;
   border-radius: 24px;
   box-shadow: var(--shadow-soft);
-  transition: .3s ease;
-}
-
-.section:hover { transform: translateY(-3px); }
-
-.section-kicker {
-  font-size: .78rem;
-  letter-spacing: .28em;
-  color: var(--color-text-label);
-  margin-bottom: 6px;
-}
-
-.page-title,
-.section-title {
-  font-size: 1.55rem;
-  color: var(--color-primary-deep);
-  margin-bottom: 14px;
-}
-
-.page-subtitle {
-  color: var(--color-text-muted);
 }
 
 /* =========================================
-   ✅ GLOBAL BUTTON SYSTEM（最終版）
+   BUTTONS（全站統一）
    ========================================= */
-
 .btn-primary,
 .btn-soft,
 .btn-outline-gold {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
-  padding: 12px 24px;
-  min-height: 46px;
-
-  font-size: 0.95rem;
-  line-height: 1.2;
-  letter-spacing: 0.12em;
-
+  padding: 12px 22px;
   border-radius: 999px;
-  white-space: nowrap;
-  cursor: pointer;
-
-  transition:
-    transform .2s ease,
-    box-shadow .2s ease,
-    background .2s ease;
+  font-size: .95rem;
+  letter-spacing: .12em;
 }
 
-/* 主 CTA（權重最強） */
 .btn-primary {
   background: linear-gradient(135deg,#B6656F,#8C3C48);
   color: #fff;
-  box-shadow:
-    0 6px 14px rgba(140,60,72,.22),
-    0 2px 6px rgba(140,60,72,.18);
+  box-shadow: 0 10px 24px rgba(120,45,60,.35);
 }
 
-.btn-primary:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(140,60,72,.28);
-}
-
-/* 次 CTA */
 .btn-soft {
+  border: 1px solid var(--color-border-soft);
   background: #FFFDFB;
   color: var(--color-primary-deep);
-  border: 1px solid var(--color-border-soft);
 }
 
-.btn-soft:hover {
-  background: #FFF5F3;
-  border-color: var(--color-accent-gold);
-}
-
-/* Outline */
 .btn-outline-gold {
-  background: transparent;
-  border: 1.5px solid var(--color-accent-gold);
-  color: var(--color-primary-deep);
+  border: 1.6px solid var(--color-accent-gold-deep);
+  background: #FFFDFB;
 }
 
-.btn-outline-gold:hover {
-  background: rgba(217,180,140,.12);
-}
+.btn-full { width: 100%; }
 
-.btn-full {
-  width: 100%;
-}
+/* ✅ 按鈕與圖片距離 */
+.product-card a,
+.pro-card a,
+.hero-text a { margin-top: 14px; }
 
 /* =========================================
-   HERO / PRODUCTS / GUILU
+   PRODUCTS / GUILU
    ========================================= */
-
-.guilu-hero {
+.product-grid,
+.product-page-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 26px;
-  align-items: center;
-}
-
-.guilu-hero-image {
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 24px 60px rgba(60,30,20,.22);
-}
-
-.guilu-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* ✅ 左右平均 */
   gap: 24px;
 }
 
-.guilu-panel {
-  background: #FFFCF9;
-  padding: 20px;
-  border-radius: 18px;
-  box-shadow: var(--shadow-soft);
-}
+.product-grid { grid-template-columns: repeat(3,1fr); }
+.product-page-grid { grid-template-columns: repeat(3,1fr); }
 
-.feature-list {
-  list-style: none;
-  padding-left: 0;
+.guilu-hero,
+.guilu-layout {
+  display: grid;
+  gap: 24px;
 }
-
-.feature-list li::before {
-  content: "•";
-  color: var(--color-primary);
-  margin-right: 6px;
-}
+.guilu-hero { grid-template-columns: 1fr 1fr; }
+.guilu-layout { grid-template-columns: 1fr 1fr; }
 
 /* =========================================
    FOOTER
    ========================================= */
-
 .site-footer {
   max-width: 1080px;
   margin: 0 auto;
@@ -326,7 +196,6 @@ li { margin-bottom: 0.25rem; }
 /* =========================================
    MOBILE
    ========================================= */
-
 @media (max-width: 768px) {
 
   .header-inner {
@@ -338,24 +207,15 @@ li { margin-bottom: 0.25rem; }
   .site-nav {
     width: 100%;
     overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
   }
 
   .site-nav ul {
     flex-wrap: nowrap;
-    gap: 16px;
   }
 
-  .btn-primary,
-  .btn-soft,
-  .btn-outline-gold {
-    width: 100%;
-  }
-
-  .guilu-hero {
-    grid-template-columns: 1fr;
-  }
-
+  .product-grid,
+  .product-page-grid,
+  .guilu-hero,
   .guilu-layout {
     grid-template-columns: 1fr;
   }
