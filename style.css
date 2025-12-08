@@ -25,6 +25,7 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+  transition: 0.25s ease;
 }
 
 img {
@@ -47,7 +48,7 @@ li { margin-bottom: 0.25rem; }
 
 
 /* =========================================
-   HEADER（精品壓縮版）
+   HEADER（精品壓縮版・固定在上方）
    ========================================= */
 
 .site-header {
@@ -69,6 +70,7 @@ li { margin-bottom: 0.25rem; }
 }
 
 /* Brand */
+
 .brand-block {
   display: flex;
   align-items: center;
@@ -97,7 +99,7 @@ li { margin-bottom: 0.25rem; }
 
 
 /* =========================================
-   NAV（不換行）
+   NAV（不換行 + 底線動畫）
    ========================================= */
 
 .site-nav ul {
@@ -134,7 +136,7 @@ li { margin-bottom: 0.25rem; }
 
 
 /* =========================================
-   MAIN（為 fixed header 留空間）
+   MAIN（為 fixed header 預留空間）
    ========================================= */
 
 .site-main {
@@ -164,12 +166,14 @@ li { margin-bottom: 0.25rem; }
   font-size: 0.78rem;
   letter-spacing: 0.28em;
   color: var(--color-text-label);
+  margin-bottom: 6px;
 }
 
 .page-title,
 .section-title {
   font-size: 1.55rem;
   color: var(--color-primary-deep);
+  margin: 0 0 14px;
 }
 
 .page-subtitle {
@@ -178,7 +182,7 @@ li { margin-bottom: 0.25rem; }
 
 
 /* =========================================
-   BUTTONS（✅完整修正區）
+   BUTTONS（全站共用）
    ========================================= */
 
 .btn-primary,
@@ -187,31 +191,29 @@ li { margin-bottom: 0.25rem; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   padding: 12px 22px;
   border-radius: 999px;
-
   font-size: 0.95rem;
   letter-spacing: 0.12em;
   white-space: nowrap;
   word-break: keep-all;
 }
 
-/* 主按鈕 */
+/* 主色實心 */
 .btn-primary {
   background: linear-gradient(135deg,#B6656F,#8C3C48);
   color: #fff;
   box-shadow: 0 10px 24px rgba(140,60,72,0.35);
 }
 
-/* 淡色描邊按鈕（✅「前往完整產品介紹」用這個） */
+/* 淺色描邊（首頁「前往完整產品介紹」用這個） */
 .btn-primary-light {
   border: 1px solid var(--color-accent-gold-deep);
   background: #FFF7EF;
   color: var(--color-primary-deep);
 }
 
-/* 軟按鈕 */
+/* 細框柔和 */
 .btn-soft {
   border: 1px solid var(--color-border-soft);
   background: #FFFDFB;
@@ -224,8 +226,10 @@ li { margin-bottom: 0.25rem; }
 
 
 /* =========================================
-   PRODUCTS / GUILU
+   GUILU（龜鹿膏單頁）
    ========================================= */
+
+/* Hero 區 */
 
 .guilu-hero {
   display: grid;
@@ -240,10 +244,24 @@ li { margin-bottom: 0.25rem; }
   box-shadow: 0 24px 60px rgba(60,30,20,0.22);
 }
 
+/* 特色區：左右平均寬 */
+
 .guilu-layout {
   display: grid;
-  grid-template-columns: 1.1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));  /* ✅ 左右平均 */
   gap: 24px;
+  align-items: flex-start;
+}
+
+.feature-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.feature-list li::before {
+  content: "•";
+  color: var(--color-primary);
+  margin-right: 6px;
 }
 
 
@@ -262,8 +280,15 @@ li { margin-bottom: 0.25rem; }
 
 
 /* =========================================
-   MOBILE
+   RWD
    ========================================= */
+
+/* 先讓龜鹿膏特色區在 960px 以下變成上下排，避免擠在一起 */
+@media (max-width: 960px) {
+  .guilu-layout {
+    grid-template-columns: 1fr;      /* ✅ 手機與小平板改為單欄 */
+  }
+}
 
 @media (max-width: 768px) {
 
@@ -276,6 +301,7 @@ li { margin-bottom: 0.25rem; }
   .site-nav {
     width: 100%;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .site-nav ul {
@@ -286,7 +312,7 @@ li { margin-bottom: 0.25rem; }
     padding-top: 140px;
   }
 
-  /* ✅ 手機按鈕間距修正（你剛剛卡住的地方） */
+  /* 手機上按鈕多一點上下空氣 */
   .btn-primary,
   .btn-soft,
   .btn-primary-light {
