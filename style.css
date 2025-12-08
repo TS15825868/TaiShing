@@ -283,3 +283,53 @@ li { margin-bottom: 0.25rem; }
     gap: 16px;
   }
 }
+/* =========================================
+   HEADER 滾動縮小（精品感）
+   ========================================= */
+
+.site-header {
+  transition: padding 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.header--compact .header-inner {
+  padding: 4px 20px; /* ✅ 再縮一段 */
+}
+
+.header--compact .site-logo {
+  width: 52px;
+  height: 52px;
+}
+
+.header--compact .brand-title {
+  font-size: 0.88rem;
+}
+
+/* =========================================
+   NAV 底線滑動動畫（非跳動）
+   ========================================= */
+
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: var(--color-accent-gold-deep);
+  transition: all 0.28s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after,
+.nav-link--active::after {
+  width: 100%;
+}
+
+/* Active 狀態不要原本 border */
+.nav-link {
+  border-bottom: none;
+}
