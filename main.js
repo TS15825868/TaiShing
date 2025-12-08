@@ -1,8 +1,8 @@
 /* =========================================
-   Main.js — 精品版 Header & Nav 互動
+   Main.js – 精品版穩定核心
    ========================================= */
 
-/* Header 高度補 main padding（防遮擋） */
+/* Header 高度補 main（只算一次） */
 function adjustMainPadding() {
   const header = document.querySelector(".site-header");
   const main = document.querySelector(".site-main");
@@ -10,54 +10,24 @@ function adjustMainPadding() {
   main.style.paddingTop = header.offsetHeight + "px";
 }
 
-window.addEventListener("load", adjustMainPadding);
-window.addEventListener("resize", adjustMainPadding);
-
-/* =========================================
-   1️⃣ Header 滾動縮小
-   ========================================= */
-
-let lastScrollY = 0;
-const header = document.querySelector(".site-header");
-
-window.addEventListener("scroll", () => {
+/* Header scroll compact */
+function handleHeaderScroll() {
+  const header = document.querySelector(".site-header");
   if (!header) return;
-
-  if (window.scrollY > 10) {
+  if (window.scrollY > 40) {
     header.classList.add("header--compact");
   } else {
     header.classList.remove("header--compact");
   }
-});
-
-/* =========================================
-   2️⃣ Scroll Reveal
-   ========================================= */
-
-function revealOnScroll() {
-  const reveals = document.querySelectorAll(".reveal, .reveal-up");
-  const triggerBottom = window.innerHeight * 0.88;
-
-  reveals.forEach((el) => {
-    if (el.getBoundingClientRect().top < triggerBottom) {
-      el.classList.add("active");
-    }
-  });
 }
 
-window.addEventListener("scroll", () => {
-  requestAnimationFrame(revealOnScroll);
+window.addEventListener("load", () => {
+  adjustMainPadding();
+  handleHeaderScroll();
 });
-window.addEventListener("load", revealOnScroll);
 
-/* =========================================
-   Button 微互動
-   ========================================= */
+window.addEventListener("resize", adjustMainPadding);
+window.addEventListener("scroll", handleHeaderScroll);
 
-document.addEventListener("click", (e) => {
-  const btn = e.target.closest("a, button");
-  if (!btn) return;
-
-  btn.classList.add("btn-pressed");
-  setTimeout(() => btn.classList.remove("btn-pressed"), 160);
-});
+/* 平滑捲動 */
+document.documentElement.style.scrollBehavior = "smooth";
