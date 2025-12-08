@@ -1,51 +1,63 @@
 /* =========================================
-   main.js — C 文青精品風格互動核心
+   Main.js — 精品版 Header & Nav 互動
    ========================================= */
 
-/* 1. 動態調整 Main Padding（避免 fixed header 遮住內容） */
+/* Header 高度補 main padding（防遮擋） */
 function adjustMainPadding() {
   const header = document.querySelector(".site-header");
   const main = document.querySelector(".site-main");
   if (!header || !main) return;
-
-  const headerHeight = header.offsetHeight;
-  main.style.paddingTop = headerHeight + "px";
+  main.style.paddingTop = header.offsetHeight + "px";
 }
 
 window.addEventListener("load", adjustMainPadding);
 window.addEventListener("resize", adjustMainPadding);
 
-/* 2. Scroll Reveal（淡入上滑動畫） */
+/* =========================================
+   1️⃣ Header 滾動縮小
+   ========================================= */
+
+let lastScrollY = 0;
+const header = document.querySelector(".site-header");
+
+window.addEventListener("scroll", () => {
+  if (!header) return;
+
+  if (window.scrollY > 10) {
+    header.classList.add("header--compact");
+  } else {
+    header.classList.remove("header--compact");
+  }
+});
+
+/* =========================================
+   2️⃣ Scroll Reveal
+   ========================================= */
+
 function revealOnScroll() {
   const reveals = document.querySelectorAll(".reveal, .reveal-up");
   const triggerBottom = window.innerHeight * 0.88;
 
   reveals.forEach((el) => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < triggerBottom) {
+    if (el.getBoundingClientRect().top < triggerBottom) {
       el.classList.add("active");
     }
   });
 }
 
 window.addEventListener("scroll", () => {
-  window.requestAnimationFrame(revealOnScroll);
+  requestAnimationFrame(revealOnScroll);
 });
 window.addEventListener("load", revealOnScroll);
 
-/* 3. 平滑捲動（全站） */
-document.documentElement.style.scrollBehavior = "smooth";
+/* =========================================
+   Button 微互動
+   ========================================= */
 
-/* 4. 按鈕點擊微互動（精品回饋感） */
 document.addEventListener("click", (e) => {
-  const btn = e.target.closest(
-    "a, button, .btn-outline-gold, .btn-line-strong, .btn-primary, .btn-primary-light, .btn-soft"
-  );
+  const btn = e.target.closest("a, button");
   if (!btn) return;
 
   btn.classList.add("btn-pressed");
-
-  setTimeout(() => {
-    btn.classList.remove("btn-pressed");
-  }, 180);
+  setTimeout(() => btn.classList.remove("btn-pressed"), 160);
 });
