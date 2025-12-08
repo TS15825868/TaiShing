@@ -40,7 +40,7 @@ img {
 }
 
 /* =========================================
-   HEADER（固定・穩定・Apple 感）
+   HEADER（Fixed + Apple 感）
    ========================================= */
 .site-header {
   position: fixed;
@@ -98,7 +98,7 @@ img {
 }
 
 /* =========================================
-   NAV（不換行・穩定底線）
+   NAV（不換行）
    ========================================= */
 .site-nav ul {
   display: flex;
@@ -133,12 +133,16 @@ img {
 }
 
 /* =========================================
-   MAIN（padding-top 只給 JS）
+   MAIN（padding-top 由 JS）
    ========================================= */
 .site-main {
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 20px 60px;
+}
+
+.simple-page .site-main {
+  max-width: 720px;
 }
 
 /* =========================================
@@ -165,13 +169,10 @@ img {
   color: var(--color-primary-deep);
 }
 
-/* =========================================
-   標註性文字（品牌經典等）
-   ========================================= */
+/* 標註性文字 */
 .highlight-tag {
   display: inline-block;
   padding: 4px 10px;
-  margin-bottom: 10px;
   font-size: .85rem;
   letter-spacing: .18em;
   border-radius: 6px;
@@ -181,7 +182,7 @@ img {
 }
 
 /* =========================================
-   ✅ BUTTON（全站統一、不消失）
+   ✅ BUTTON（全站統一）
    ========================================= */
 .btn-primary,
 .btn-soft,
@@ -197,8 +198,16 @@ img {
   font-size: .95rem;
   letter-spacing: .08em;
   white-space: nowrap;
-  margin-top: 14px;
   transition: .25s ease;
+}
+
+.section .btn-primary,
+.section .btn-soft,
+.section .btn-outline,
+.section .btn-outline-gold,
+.section .btn-line-strong,
+.section .btn-detail {
+  margin-top: 16px;
 }
 
 /* 主 CTA */
@@ -239,17 +248,18 @@ img {
   background: #05b34d;
 }
 
+/* 滿版 */
+.btn-full {
+  width: 100%;
+}
+
 /* =========================================
-   圖片與按鈕間距（安全）
+   圖片 / 按鈕安全間距
    ========================================= */
 .product-image,
 .hero-image,
 .store-img {
   margin-bottom: 12px;
-}
-
-.section a {
-  margin-top: 16px;
 }
 
 /* =========================================
@@ -268,7 +278,6 @@ img {
    MOBILE
    ========================================= */
 @media (max-width: 768px) {
-
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -282,23 +291,15 @@ img {
 
   .site-nav ul {
     flex-wrap: nowrap;
+    padding-bottom: 6px;
   }
 }
+
 /* =========================================
-   FIX：guilu-line.html LINE 按鈕顯示問題
+   ✅ guilu-line 專用穩定修正
    ========================================= */
-
-/* 滿版按鈕 */
-.btn-full {
-  width: 100%;
-}
-
-/* LINE 導流頁專用寬度 */
-.simple-page .site-main {
-  max-width: 720px;
-}
-
-/* 強制導流頁按鈕穩定顯示 */
-.guilu-line-actions a {
+.guilu-line-actions .btn-primary,
+.guilu-line-actions .btn-soft,
+.guilu-line-actions .btn-outline {
   display: flex;
 }
