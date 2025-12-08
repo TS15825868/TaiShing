@@ -30,11 +30,20 @@ a {
   transition: 0.25s ease;
 }
 
+a:hover {
+  color: var(--color-primary-deep);
+}
+
 /* Images */
 img {
   max-width: 100%;
   display: block;
 }
+
+/* Lists */
+ul { padding-left: 1.2rem; }
+li { margin-bottom: 0.25rem; }
+
 
 /* =========================================
    LAYOUT
@@ -45,15 +54,14 @@ img {
   background: var(--color-bg-soft);
 }
 
+
 /* =========================================
-   HEADER
+   HEADER（壓縮精品版 ✅）
    ========================================= */
 
 .site-header {
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   background: rgba(251, 245, 242, 0.96);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--color-border-soft);
@@ -63,22 +71,21 @@ img {
 .header-inner {
   max-width: 1080px;
   margin: 0 auto;
-  padding: 12px 20px;
+  padding: 8px 20px;        /* ✅ 原 12px → 8px */
   display: flex;
   align-items: center;
-  gap: 16px;
+  justify-content: space-between;
 }
 
 /* Brand */
 .brand-block {
   display: flex;
   align-items: center;
-  gap: 12px;
-  flex-shrink: 0;
+  gap: 12px;                /* ✅ 稍微壓 */
 }
 
 .site-logo {
-  width: 60px;
+  width: 60px;              /* ✅ 原 64 */
   height: 60px;
   border-radius: 14px;
   box-shadow: var(--shadow-soft);
@@ -86,55 +93,51 @@ img {
 
 .brand-since {
   font-size: 0.65rem;
-  letter-spacing: 0.2em;
-  color: var(--color-text-label);
+  letter-spacing: 0.22em;
   margin: 0;
+  color: var(--color-text-label);
 }
 
 .brand-title {
-  font-size: 0.95rem;
+  font-size: 0.95rem;       /* ✅ 原 1rem */
+  margin-top: 2px;
+  letter-spacing: 0.12em;
   font-weight: 600;
-  letter-spacing: 0.1em;
   color: var(--color-primary-deep);
 }
 
+
 /* =========================================
-   NAV（手機橫滑、永不換行）
+   NAV（不換行、不亂滑）
    ========================================= */
-
-.site-nav {
-  flex: 1;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.site-nav::-webkit-scrollbar {
-  display: none;
-}
 
 .site-nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
-  padding: 0;
+  gap: 18px;
   margin: 0;
-  flex-wrap: nowrap;
+  padding: 0;
 }
 
 .nav-link {
-  white-space: nowrap;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 6px 2px;
+  white-space: nowrap;
+  padding-bottom: 4px;
   border-bottom: 2px solid transparent;
 }
 
+.nav-link:hover {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-accent-gold);
+}
+
 .nav-link--active {
+  color: var(--color-primary-deep);
   border-bottom-color: var(--color-accent-gold-deep);
   font-weight: 600;
-  color: var(--color-primary-deep);
 }
+
 
 /* =========================================
    MAIN
@@ -150,28 +153,34 @@ img {
   max-width: 720px;
 }
 
+
 /* =========================================
-   SECTIONS
+   SECTION
    ========================================= */
 
 .section {
   background: #FFFCF9;
-  padding: 32px 24px;
-  margin-bottom: 36px;
-  border-radius: 22px;
+  padding: 34px 26px;
+  margin-bottom: 38px;
+  border-radius: 24px;
   box-shadow: var(--shadow-soft);
 }
 
+.section:hover {
+  transform: translateY(-3px);
+}
+
 .section-kicker {
-  font-size: 0.75rem;
-  letter-spacing: 0.3em;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
   color: var(--color-text-label);
+  margin-bottom: 6px;
 }
 
 .page-title,
 .section-title {
   font-size: 1.55rem;
-  margin: 8px 0 14px;
+  margin-bottom: 14px;
   color: var(--color-primary-deep);
 }
 
@@ -179,25 +188,17 @@ img {
   color: var(--color-text-muted);
 }
 
+
 /* =========================================
    BUTTONS
    ========================================= */
 
-.btn-primary,
-.btn-soft {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
+.btn-primary {
   padding: 10px 20px;
   border-radius: 999px;
-  font-size: 0.95rem;
-  letter-spacing: 0.12em;
-}
-
-.btn-primary {
   background: linear-gradient(135deg, #B6656F, #8C3C48);
   color: #fff;
+  letter-spacing: 0.12em;
 }
 
 .btn-soft {
@@ -210,8 +211,9 @@ img {
   width: 100%;
 }
 
+
 /* =========================================
-   GUILU PAGE（轉換優化）
+   GUILU
    ========================================= */
 
 .guilu-hero {
@@ -222,19 +224,9 @@ img {
 }
 
 .guilu-hero-image {
-  border-radius: 22px;
+  border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 24px 60px rgba(60,30,20,.25);
-}
-
-.guilu-hero-content {
-  text-align: left;
-}
-
-.guilu-hero-subtitle {
-  color: var(--color-text-muted);
-  margin-bottom: 18px;
-  line-height: 1.7;
+  box-shadow: 0 24px 60px rgba(60,30,20,0.22);
 }
 
 .guilu-layout {
@@ -243,53 +235,51 @@ img {
   gap: 24px;
 }
 
-.guilu-panel {
-  background: #FFFCF9;
-  padding: 18px;
-  border-radius: 18px;
-  box-shadow: var(--shadow-card);
+.feature-list {
+  list-style: none;
+  padding-left: 0;
 }
 
+.feature-list li::before {
+  content: "•";
+  margin-right: 6px;
+  color: var(--color-primary);
+}
+
+
 /* =========================================
-   GUILU LINE
+   FOOTER
    ========================================= */
 
-.guilu-line-section {
+.site-footer {
+  border-top: 1px solid var(--color-border-soft);
+  padding: 40px 20px;
   text-align: center;
 }
 
-.guilu-line-actions {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 18px 0;
-}
-
-.guilu-line-note {
-  font-size: .95rem;
-  color: var(--color-text-muted);
-}
 
 /* =========================================
    RWD
    ========================================= */
 
-@media (max-width: 960px) {
-  .guilu-layout,
-  .guilu-hero {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-}
-
 @media (max-width: 768px) {
-  .header-inner {
-    align-items: center;
-  }
-}
 
-@media (max-width: 480px) {
-  .page-title {
-    font-size: 1.38rem;
+  .header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .site-logo {
+    width: 54px;           /* ✅ 原 58 */
+    height: 54px;
+  }
+
+  .brand-title {
+    font-size: 0.9rem;
+  }
+
+  .site-nav ul {
+    gap: 16px;
   }
 }
