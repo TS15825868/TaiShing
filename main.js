@@ -1,5 +1,5 @@
 /* =========================================
-   header 高度補正 + Mobile 穩定
+   Header 高度補正（唯一控制 padding-top）
    ========================================= */
 
 function adjustMainPadding() {
@@ -14,15 +14,26 @@ function adjustMainPadding() {
 window.addEventListener("load", adjustMainPadding);
 window.addEventListener("resize", adjustMainPadding);
 
-/* 滾動時縮 header（Apple 感） */
-let lastY = 0;
-window.addEventListener("scroll", () => {
-  const header = document.querySelector(".site-header");
-  if (!header) return;
+/* =========================================
+   Apple 感 Header 縮高（安全版）
+   ========================================= */
 
-  if (window.scrollY > 60) {
-    header.classList.add("header--compact");
-  } else {
-    header.classList.remove("header--compact");
+let ticking = false;
+
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      const header = document.querySelector(".site-header");
+      if (!header) return;
+
+      if (window.scrollY > 60) {
+        header.classList.add("header--compact");
+      } else {
+        header.classList.remove("header--compact");
+      }
+
+      ticking = false;
+    });
+    ticking = true;
   }
 });
