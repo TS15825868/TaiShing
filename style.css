@@ -1,233 +1,40 @@
 /* =====================================================
-   GLOBAL RESET
+   全站互動規則：按鈕與標註「明顯分級」
    ===================================================== */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
-               "PingFang TC", "Microsoft JhengHei", serif;
-  background: var(--color-bg);
-  color: var(--color-text-main);
-  line-height: 1.85;
-  -webkit-font-smoothing: antialiased;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
-
-ul { padding-left: 1.2rem; }
-li { margin-bottom: .25rem; }
-
-/* =====================================================
-   WRAPPER
-   ===================================================== */
-
-.site-wrapper {
-  min-height: 100vh;
-  background: var(--color-bg-soft);
-}
-
-/* =====================================================
-   HEADER（Fixed + Apple-style 壓縮）
-   ===================================================== */
-
-.site-header {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  background: rgba(251,245,242,.96);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--color-border-soft);
-  z-index: 999;
-}
-
-.header-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 8px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: padding .25s ease;
-}
-
-.header--compact .header-inner {
-  padding: 4px 20px;
-}
-
-/* Brand */
-.brand-block {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.site-logo {
-  width: 60px;
-  height: 60px;
-  border-radius: 14px;
-  box-shadow: var(--shadow-soft);
-  transition: .25s ease;
-}
-
-.header--compact .site-logo {
-  width: 52px;
-  height: 52px;
-}
-
-.brand-since {
-  font-size: .65rem;
-  letter-spacing: .22em;
-  color: var(--color-text-label);
-}
-
-.brand-title {
-  font-size: .95rem;
-  letter-spacing: .12em;
-  color: var(--color-primary-deep);
-}
-
-.header--compact .brand-title {
-  font-size: .88rem;
-}
-
-/* =====================================================
-   NAV
-   ===================================================== */
-
-.site-nav {
-  width: 100%;
-}
-
-.site-nav ul {
-  display: flex;
-  gap: 18px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-link {
-  position: relative;
-  font-size: .88rem;
-  letter-spacing: .14em;
-  white-space: nowrap;
-}
-
-.nav-link::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  bottom: -4px;
-  width: 0;
-  height: 2px;
-  background: var(--color-accent-gold-deep);
-  transform: translateX(-50%);
-  transition: .28s ease;
-}
-
-.nav-link:hover::after,
-.nav-link--active::after {
-  width: 100%;
-}
-
-.nav-link--active::after {
-  box-shadow:
-    0 2px 6px rgba(192,147,98,.25),
-    0 6px 14px rgba(192,147,98,.15);
-}
-
-/* =====================================================
-   MAIN（補 header 高度）
-   ===================================================== */
-
-.site-main {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 96px 20px 60px;
-}
-
-.simple-page .site-main {
-  max-width: 720px;
-}
-
-/* =====================================================
-   SECTION
-   ===================================================== */
-
-.section {
-  background: #FFFCF9;
-  padding: 34px 26px;
-  margin-bottom: 38px;
-  border-radius: 24px;
-  box-shadow: var(--shadow-soft);
-}
-
-.section-kicker {
-  font-size: .78rem;
-  letter-spacing: .28em;
-  color: var(--color-text-label);
-  margin-bottom: 6px;
-}
-
-.section-title,
-.page-title {
-  font-size: 1.55rem;
-  color: var(--color-primary-deep);
-  margin-bottom: 14px;
-}
-
-/* =====================================================
-   CTA BUTTON SYSTEM（最重要）
-   ===================================================== */
-
-/* 主 CTA（首頁 / LINE） */
+/* ---------- 主 CTA（最高權重） ---------- */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 26px;
-  margin-top: 16px;
 
-  font-size: .95rem;
+  padding: 12px 28px;
+  margin-top: 18px;
+
+  font-size: 1rem;
   letter-spacing: .12em;
   white-space: nowrap;
 
   color: #fff;
   border-radius: 999px;
   background: linear-gradient(135deg,#B6656F,#8C3C48);
-  box-shadow: 0 10px 26px rgba(140,60,72,.35);
+
+  box-shadow: 0 10px 26px rgba(140,60,72,.38);
   transition: .25s ease;
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(140,60,72,.4);
+  box-shadow: 0 18px 40px rgba(140,60,72,.45);
 }
 
-/* ✅ 次 CTA（了解更多 / 前往完整產品介紹 / LINE 加入） */
+/* ---------- 次 CTA（全站統一） ---------- */
 .cta-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  padding: 10px 22px;
+  padding: 10px 24px;
   margin-top: 14px;
 
   font-size: .95rem;
@@ -237,25 +44,83 @@ li { margin-bottom: .25rem; }
   color: var(--color-primary-deep);
   border: 1.5px solid var(--color-accent-gold-deep);
   border-radius: 999px;
-  background: rgba(255,253,251,.95);
 
+  background: rgba(255,253,251,.96);
   transition: .25s ease;
 }
 
 .cta-outline:hover {
   background: #F6E9DC;
-  box-shadow: 0 4px 12px rgba(140,60,72,.12);
+  box-shadow: 0 4px 14px rgba(140,60,72,.18);
   transform: translateY(-1px);
 }
 
+/* ---------- LINE 強調 CTA ---------- */
+.cta-line {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 12px 24px;
+  margin-top: 16px;
+
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  white-space: nowrap;
+
+  color: #fff;
+  background: #06C755;
+  border-radius: 999px;
+  box-shadow: 0 10px 24px rgba(6,199,85,.35);
+}
+
+.cta-line:hover {
+  background: #05b34d;
+}
+
 /* =====================================================
-   PRODUCT / IMAGE SPACING（解決你所有貼圖問題）
+   視覺標註（不是按鈕，但要顯眼）
    ===================================================== */
 
-.product-image-wrap,
-.product-image-frame,
-.section img {
-  margin-top: 14px;
+/* 像「品牌經典」這種 */
+.badge-highlight {
+  display: inline-block;
+  padding: 4px 12px;
+  margin-bottom: 10px;
+
+  font-size: .85rem;
+  letter-spacing: .18em;
+
+  color: var(--color-primary-deep);
+  border: 1px solid var(--color-accent-gold);
+  border-radius: 999px;
+  background: #FFF6EC;
+}
+
+/* 英文段落標示（ABOUT THE PRODUCT 等） */
+.section-kicker {
+  font-size: .78rem;
+  letter-spacing: .28em;
+  color: var(--color-text-label);
+  margin-bottom: 6px;
+}
+
+/* =====================================================
+   防呆：避免「像按鈕卻沒框」
+   ===================================================== */
+
+.section a:not(.btn-primary):not(.cta-outline):not(.cta-line) {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  opacity: .75;
+}
+
+/* =====================================================
+   按鈕 & 圖片距離統一（防止貼住）
+   ===================================================== */
+
+img {
   margin-bottom: 14px;
 }
 
@@ -264,61 +129,16 @@ li { margin-bottom: .25rem; }
 }
 
 /* =====================================================
-   GUILU 專頁排版
-   ===================================================== */
-
-.guilu-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.guilu-panel {
-  text-align: justify;
-}
-
-/* =====================================================
-   FOOTER
-   ===================================================== */
-
-.site-footer {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 40px 20px;
-  border-top: 1px solid var(--color-border-soft);
-  font-size: .9rem;
-  color: var(--color-text-muted);
-}
-
-/* =====================================================
-   MOBILE
+   Mobile 對齊與穩定
    ===================================================== */
 
 @media (max-width: 768px) {
 
-  .header-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-
-  .site-nav {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .site-nav ul {
-    flex-wrap: nowrap;
-    gap: 16px;
-  }
-
   .btn-primary,
-  .cta-outline {
+  .cta-outline,
+  .cta-line {
     margin-left: auto;
     margin-right: auto;
   }
 
-  .guilu-layout {
-    grid-template-columns: 1fr;
-  }
 }
