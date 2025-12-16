@@ -303,3 +303,11 @@ img {
 .guilu-line-actions .btn-outline {
   display: flex;
 }
+
+
+/* Section meta (e.g., capacity) */
+.section-meta{
+  margin-top: 10px;
+  font-size: 0.98rem;
+  opacity: 0.9;
+}
