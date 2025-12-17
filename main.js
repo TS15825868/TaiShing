@@ -5,47 +5,32 @@
    - Reveal animations
    - Auto inject Floating LINE button (All pages)
    ========================================================= */
-
 (function () {
   "use strict";
 
-  /* -----------------------------
-     1) Layout: main padding-top = header height
-     ----------------------------- */
   function setMainPaddingTop() {
     const header = document.querySelector(".site-header");
     const main = document.querySelector(".site-main");
     if (!header || !main) return;
-
     const h = header.offsetHeight || 0;
-    main.style.paddingTop = `${h + 18}px`; // +18 做一點呼吸空間
+    main.style.paddingTop = `${h + 18}px`;
   }
 
-  /* -----------------------------
-     2) Header: compact on scroll
-     ----------------------------- */
   function setupCompactHeader() {
     const header = document.querySelector(".site-header");
     if (!header) return;
-
     const onScroll = () => {
       if (window.scrollY > 24) header.classList.add("header--compact");
       else header.classList.remove("header--compact");
     };
-
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  /* -----------------------------
-     3) Reveal animations
-     - add "is-visible" when in viewport
-     ----------------------------- */
   function setupReveal() {
     const targets = document.querySelectorAll(".reveal, .reveal-up");
     if (!targets.length) return;
 
-    // 若瀏覽器不支援 IntersectionObserver，就直接顯示
     if (!("IntersectionObserver" in window)) {
       targets.forEach(el => el.classList.add("is-visible"));
       return;
@@ -60,21 +45,14 @@
           }
         });
       },
-      { root: null, threshold: 0.12 }
+      { threshold: 0.12 }
     );
 
     targets.forEach(el => io.observe(el));
   }
 
-  /* -----------------------------
-     4) Auto Inject: Floating LINE Button (All Pages)
-     - Injects only if not already present
-     - Needs your style.css has .line-float-btn / .line-toast styles
-     ----------------------------- */
   function injectLineFloat() {
     const LINE_URL = "https://lin.ee/sHZW7NkR";
-
-    // 若頁面已經手動放了，就不要重複注入
     if (document.querySelector(".line-float-btn")) return;
 
     const btn = document.createElement("a");
@@ -92,7 +70,6 @@
       <span class="line-float-text">LINE 諮詢</span>
     `;
 
-    // Toast（若已存在就不重複放）
     let toast = document.querySelector(".line-toast");
     if (!toast) {
       toast = document.createElement("div");
@@ -104,13 +81,11 @@
 
     document.body.appendChild(btn);
 
-    // 夜間深綠（依本機時間）
     try {
       const h = new Date().getHours();
       if (h >= 19 || h <= 6) btn.classList.add("is-night");
     } catch (_) {}
 
-    // 接近頁尾自動縮小，避免擋內容（沒有 footer 就跳過）
     const footer = document.querySelector(".site-footer");
     const updateCompact = () => {
       if (!footer) return;
@@ -124,7 +99,6 @@
     window.addEventListener("scroll", updateCompact, { passive: true });
     window.addEventListener("resize", updateCompact);
 
-    // 點擊提示（不影響跳轉）
     btn.addEventListener("click", () => {
       if (!toast) return;
       toast.textContent = "正在前往 LINE 諮詢…";
@@ -133,15 +107,11 @@
     });
   }
 
-  /* -----------------------------
-     Init
-     ----------------------------- */
   function init() {
     setMainPaddingTop();
     setupCompactHeader();
     setupReveal();
     injectLineFloat();
-
     window.addEventListener("resize", setMainPaddingTop);
   }
 
