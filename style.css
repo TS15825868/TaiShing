@@ -263,21 +263,6 @@ img {
 }
 
 /* =========================================
-   PRODUCT GRID
-   ========================================= */
-.product-page-grid{
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-  align-items: stretch;
-}
-
-/* Make cards fill grid cells neatly */
-.product-page-grid .product-card{
-  height: 100%;
-}
-
-/* =========================================
    FOOTER
    ========================================= */
 .site-footer {
@@ -293,11 +278,6 @@ img {
    MOBILE
    ========================================= */
 @media (max-width: 768px) {
-  .product-page-grid{
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px;
-  }
-
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
@@ -325,9 +305,145 @@ img {
 }
 
 
-/* Section meta (e.g., capacity) */
-.section-meta{
-  margin-top: 10px;
-  font-size: 0.98rem;
-  opacity: 0.9;
+/* =========================================
+   FLOATING LINE CTA + PRODUCT CONSULT CTA
+   ========================================= */
+.line-float-btn {
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #06c755; /* LINE 綠 */
+  color: #fff;
+  text-decoration: none;
+
+  padding: 12px 16px;
+  border-radius: 999px;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, padding 0.18s ease;
+}
+
+.line-float-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.28);
+}
+
+.line-float-icon {
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+}
+
+.line-float-icon svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  display: block;
+}
+
+.line-float-text {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* 夜間自動深綠 */
+.line-float-btn.is-night {
+  background: #03a54a;
+}
+
+/* 接近頁尾自動縮小（避免擋內容） */
+.line-float-btn.is-compact {
+  padding: 10px 12px;
+  gap: 8px;
+}
+.line-float-btn.is-compact .line-float-text {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .line-float-btn {
+    right: 14px;
+    bottom: 16px;
+    padding: 14px 16px;
+  }
+  .line-float-text {
+    font-size: 16px;
+  }
+  .line-float-btn.is-compact {
+    padding: 12px 14px;
+  }
+}
+
+/* Toast */
+.line-toast {
+  position: fixed;
+  right: 16px;
+  bottom: 76px;
+  z-index: 10000;
+
+  background: rgba(0,0,0,0.82);
+  color: #fff;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.35;
+
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.line-toast.is-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .line-toast {
+    right: 14px;
+    bottom: 86px;
+    max-width: calc(100vw - 28px);
+  }
+}
+
+/* 產品卡片內「諮詢此商品」 */
+.product-cta {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.line-consult-trigger.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* 若 btn-outline 沒定義，給一套保底樣式 */
+.line-consult-trigger {
+  border: 1px solid rgba(6, 199, 85, 0.65);
+  color: #04a948;
+  background: transparent;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.line-consult-trigger:hover {
+  background: rgba(6, 199, 85, 0.08);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.10);
 }
