@@ -263,6 +263,21 @@ img {
 }
 
 /* =========================================
+   PRODUCT GRID
+   ========================================= */
+.product-page-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Make cards fill grid cells neatly */
+.product-page-grid .product-card{
+  height: 100%;
+}
+
+/* =========================================
    FOOTER
    ========================================= */
 .site-footer {
@@ -278,6 +293,11 @@ img {
    MOBILE
    ========================================= */
 @media (max-width: 768px) {
+  .product-page-grid{
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
   .header-inner {
     flex-direction: column;
     align-items: flex-start;
