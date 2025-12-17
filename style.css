@@ -3,16 +3,11 @@
    ========================================= */
 *,
 *::before,
-*::after {
-  box-sizing: border-box;
-}
+*::after { box-sizing: border-box; }
 
-html, body {
-  margin: 0;
-  padding: 0;
-}
+html, body { margin: 0; padding: 0; }
 
-body {
+body{
   font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
                "PingFang TC", "Microsoft JhengHei", serif;
   background: var(--color-bg);
@@ -21,20 +16,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  display: block;
-}
+a{ color: inherit; text-decoration: none; }
+img{ max-width: 100%; display: block; }
 
 /* =========================================
    WRAPPER
    ========================================= */
-.site-wrapper {
+.site-wrapper{
   min-height: 100vh;
   background: var(--color-bg-soft);
 }
@@ -42,7 +30,7 @@ img {
 /* =========================================
    HEADER（Fixed + Apple 感）
    ========================================= */
-.site-header {
+.site-header{
   position: fixed;
   top: 0; left: 0; right: 0;
   background: rgba(251,245,242,0.96);
@@ -51,7 +39,7 @@ img {
   z-index: 999;
 }
 
-.header-inner {
+.header-inner{
   max-width: 1080px;
   margin: 0 auto;
   padding: 8px 20px;
@@ -61,18 +49,16 @@ img {
   transition: padding .25s ease;
 }
 
-.header--compact .header-inner {
-  padding: 4px 20px;
-}
+.header--compact .header-inner{ padding: 4px 20px; }
 
 /* Brand */
-.brand-block {
+.brand-block{
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-.site-logo {
+.site-logo{
   width: 60px;
   height: 60px;
   border-radius: 14px;
@@ -80,18 +66,18 @@ img {
   transition: .25s ease;
 }
 
-.header--compact .site-logo {
+.header--compact .site-logo{
   width: 52px;
   height: 52px;
 }
 
-.brand-title {
+.brand-title{
   font-size: .95rem;
   letter-spacing: .12em;
   color: var(--color-primary-deep);
 }
 
-.brand-since {
+.brand-since{
   font-size: .65rem;
   letter-spacing: .22em;
   color: var(--color-text-label);
@@ -100,7 +86,7 @@ img {
 /* =========================================
    NAV（不換行）
    ========================================= */
-.site-nav ul {
+.site-nav ul{
   display: flex;
   gap: 18px;
   list-style: none;
@@ -108,14 +94,14 @@ img {
   padding: 0;
 }
 
-.nav-link {
+.nav-link{
   position: relative;
   font-size: .88rem;
   letter-spacing: .14em;
   white-space: nowrap;
 }
 
-.nav-link::after {
+.nav-link::after{
   content: "";
   position: absolute;
   left: 50%;
@@ -128,27 +114,23 @@ img {
 }
 
 .nav-link:hover::after,
-.nav-link--active::after {
-  width: 100%;
-}
+.nav-link--active::after{ width: 100%; }
 
 /* =========================================
    MAIN（padding-top 由 JS）
    ========================================= */
-.site-main {
+.site-main{
   max-width: 1080px;
   margin: 0 auto;
   padding: 0 20px 60px;
 }
 
-.simple-page .site-main {
-  max-width: 720px;
-}
+.simple-page .site-main{ max-width: 720px; }
 
 /* =========================================
    SECTION
    ========================================= */
-.section {
+.section{
   background: #FFFCF9;
   padding: 34px 26px;
   margin-bottom: 38px;
@@ -156,21 +138,58 @@ img {
   box-shadow: var(--shadow-soft);
 }
 
-.section-kicker {
+.section-kicker{
   font-size: .78rem;
   letter-spacing: .28em;
   color: var(--color-text-label);
   margin-bottom: 6px;
 }
 
-.page-title,
-.section-title {
-  font-size: 1.55rem;
+/* =========================================
+   TYPOGRAPHY（全站最佳化）
+   ========================================= */
+.section p{ margin: 0 0 14px; }
+
+.page-title{
+  font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+  line-height: 1.25;
+  letter-spacing: .06em;
+  margin: 6px 0 14px;
   color: var(--color-primary-deep);
 }
 
+.section-title,
+.section h2{
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  line-height: 1.35;
+  margin: 20px 0 10px;
+  letter-spacing: .06em;
+  color: var(--color-primary-deep);
+}
+
+.section,
+.section p,
+.section li{
+  font-size: .98rem; /* 約 15.5px */
+  line-height: 1.9;
+}
+
+.section p strong{
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: .06em;
+  margin-bottom: 4px;
+}
+
+.section ul{
+  margin: 10px 0 14px;
+  padding-left: 18px;
+}
+
+.section li{ margin: 6px 0; }
+
 /* 標註性文字 */
-.highlight-tag {
+.highlight-tag{
   display: inline-block;
   padding: 4px 10px;
   font-size: .85rem;
@@ -189,7 +208,7 @@ img {
 .btn-outline,
 .btn-outline-gold,
 .btn-line-strong,
-.btn-detail {
+.btn-detail{
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -206,18 +225,23 @@ img {
 .section .btn-outline,
 .section .btn-outline-gold,
 .section .btn-line-strong,
-.section .btn-detail {
-  margin-top: 16px;
-}
+.section .btn-detail{ margin-top: 14px; }
+
+/* 同區塊多顆按鈕：間距一致（桌機） */
+.section a.btn-primary + a,
+.section a.btn-outline + a,
+.section a.btn-soft + a,
+.section a.btn-line-strong + a,
+.section a.btn-detail + a{ margin-left: 10px; }
 
 /* 主 CTA */
-.btn-primary {
+.btn-primary{
   background: linear-gradient(135deg,#B6656F,#8C3C48);
   color: #fff;
   box-shadow: 0 10px 22px rgba(140,60,72,.35);
 }
 
-.btn-primary:hover {
+.btn-primary:hover{
   transform: translateY(-2px);
   box-shadow: 0 16px 36px rgba(120,45,60,.45);
 }
@@ -225,7 +249,7 @@ img {
 /* 次 CTA */
 .btn-soft,
 .btn-outline,
-.btn-outline-gold {
+.btn-outline-gold{
   background: #FFFDFB;
   border: 1.5px solid var(--color-accent-gold-deep);
   color: var(--color-primary-deep);
@@ -233,39 +257,31 @@ img {
 
 .btn-soft:hover,
 .btn-outline:hover,
-.btn-outline-gold:hover {
-  background: #F7EDE4;
-}
+.btn-outline-gold:hover{ background: #F7EDE4; }
 
 /* LINE */
-.btn-line-strong {
+.btn-line-strong{
   background: #06C755;
   color: #fff;
   font-weight: 700;
 }
 
-.btn-line-strong:hover {
-  background: #05b34d;
-}
+.btn-line-strong:hover{ background: #05b34d; }
 
 /* 滿版 */
-.btn-full {
-  width: 100%;
-}
+.btn-full{ width: 100%; }
 
 /* =========================================
    圖片 / 按鈕安全間距
    ========================================= */
 .product-image,
 .hero-image,
-.store-img {
-  margin-bottom: 12px;
-}
+.store-img{ margin-bottom: 12px; }
 
 /* =========================================
    FOOTER
    ========================================= */
-.site-footer {
+.site-footer{
   max-width: 1080px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -275,9 +291,9 @@ img {
 }
 
 /* =========================================
-   ✅ MOBILE NAV 最終修正（防止「每個字換行」）
+   ✅ MOBILE NAV（防止「每個字換行」）
    ========================================= */
-@media (max-width: 768px) {
+@media (max-width: 768px){
   .header-inner{
     flex-direction: column;
     align-items: flex-start;
@@ -285,9 +301,7 @@ img {
     padding: 10px 16px;
   }
 
-  .brand-block{
-    width: 100%;
-  }
+  .brand-block{ width: 100%; }
 
   .site-nav{
     width: 100%;
@@ -304,9 +318,7 @@ img {
     list-style: none;
   }
 
-  .site-nav li{
-    flex: 0 0 auto;
-  }
+  .site-nav li{ flex: 0 0 auto; }
 
   .nav-link{
     display: inline-block;
@@ -314,206 +326,53 @@ img {
     word-break: keep-all;
     line-height: 1;
     padding: 10px 8px;
-    font-size: 0.88rem;
-    letter-spacing: 0.10em;
+    font-size: .88rem;
+    letter-spacing: .10em;
   }
 }
 
 /* =========================================
-   ✅ guilu-line 專用穩定修正
+   ✅ MOBILE：Section/Buttons 微調
    ========================================= */
-.guilu-line-actions .btn-primary,
-.guilu-line-actions .btn-soft,
-.guilu-line-actions .btn-outline {
+@media (max-width: 768px){
+  .section{
+    padding: 26px 18px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+  }
+
+  .page-title{ letter-spacing: .04em; }
+
+  .section p{ margin: 0 0 12px; }
+
+  /* 同區塊多顆按鈕：改直排更乾淨 */
+  .section a.btn-primary + a,
+  .section a.btn-outline + a,
+  .section a.btn-soft + a,
+  .section a.btn-line-strong + a,
+  .section a.btn-detail + a{
+    margin-left: 0;
+    margin-top: 10px;
+  }
+}
+
+/* =========================================
+   contact 的按鈕列（如果 contact.html 有用）
+   ========================================= */
+.contact-actions{
   display: flex;
-}
-
-/* guilu-line 區塊（CSS 正規化：移除 HTML inline style） */
-.guilu-line-section .highlight-tag{
-  margin-bottom: 12px;
-}
-
-.guilu-line-header .section-title{
-  margin-top: 0;
-}
-
-.guilu-line-section .page-subtitle{
-  margin-top: 8px;
-  margin-bottom: 0;
-}
-
-.guilu-line-actions{
-  margin-top: 18px;
-  display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: 10px;
-}
-
-.guilu-line-note{
   margin-top: 14px;
-  line-height: 1.85;
 }
-
-/* 常見問題卡片 */
-.section-highlight{
-  margin-top: 18px;
-  text-align: left;
-  background: #FFFDFB;
-  border: 1px solid rgba(0,0,0,0.10);
-  border-radius: 14px;
-  padding: 14px 16px;
-}
-
-.section-highlight ul{
-  margin-top: 8px;
-  padding-left: 1.2rem;
-}
+.contact-actions a{ flex: 0 0 auto; }
 
 @media (max-width: 768px){
-  .guilu-line-actions{
-    margin-top: 16px;
+  .contact-actions{
+    flex-direction: column;
+    align-items: stretch;
   }
-}
-
-/* =========================================
-   FLOATING LINE CTA + PRODUCT CONSULT CTA
-   ========================================= */
-.line-float-btn {
-  position: fixed;
-  right: 16px;
-  bottom: 18px;
-  z-index: 9999;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-
-  background: #06c755;
-  color: #fff;
-  text-decoration: none;
-
-  padding: 12px 16px;
-  border-radius: 999px;
-
-  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, padding 0.18s ease;
-}
-
-.line-float-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(0,0,0,0.28);
-}
-
-.line-float-icon {
-  width: 22px;
-  height: 22px;
-  display: inline-flex;
-}
-
-.line-float-icon svg {
-  width: 22px;
-  height: 22px;
-  fill: currentColor;
-  display: block;
-}
-
-.line-float-text {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
-
-.line-float-btn.is-night {
-  background: #03a54a;
-}
-
-.line-float-btn.is-compact {
-  padding: 10px 12px;
-  gap: 8px;
-}
-.line-float-btn.is-compact .line-float-text {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .line-float-btn {
-    right: 14px;
-    bottom: 16px;
-    padding: 14px 16px;
-  }
-  .line-float-text {
-    font-size: 16px;
-  }
-  .line-float-btn.is-compact {
-    padding: 12px 14px;
-  }
-}
-
-/* Toast */
-.line-toast {
-  position: fixed;
-  right: 16px;
-  bottom: 76px;
-  z-index: 10000;
-
-  background: rgba(0,0,0,0.82);
-  color: #fff;
-
-  padding: 10px 12px;
-  border-radius: 10px;
-  font-size: 14px;
-  line-height: 1.35;
-
-  opacity: 0;
-  transform: translateY(8px);
-  pointer-events: none;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-.line-toast.is-show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (max-width: 768px) {
-  .line-toast {
-    right: 14px;
-    bottom: 86px;
-    max-width: calc(100vw - 28px);
-  }
-}
-
-/* 產品卡片內「諮詢此商品」 */
-.product-cta {
-  margin-top: 14px;
-  display: flex;
-  justify-content: flex-start;
-}
-
-.line-consult-trigger.btn-outline {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
-
-/* 保底樣式 */
-.line-consult-trigger {
-  border: 1px solid rgba(6, 199, 85, 0.65);
-  color: #04a948;
-  background: transparent;
-  padding: 10px 12px;
-  border-radius: 12px;
-  font-weight: 700;
-  text-decoration: none;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-}
-
-.line-consult-trigger:hover {
-  background: rgba(6, 199, 85, 0.08);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.10);
+  .contact-actions a{ width: 100%; }
 }
 
 /* =========================================
@@ -555,9 +414,7 @@ article.product-card:hover,
 }
 
 @media (max-width: 360px){
-  .product-page-grid{
-    grid-template-columns: 1fr;
-  }
+  .product-page-grid{ grid-template-columns: 1fr; }
 }
 
 /* 卡片內圖片框更一致 */
@@ -567,159 +424,251 @@ article.product-card:hover,
   margin-bottom: 12px;
 }
 
-/* =================================================
-   ✅ products.html：字體大小／段落間距最佳化
-   ================================================= */
-.product-page-grid .product-card{
-  gap: 0;
-}
-
+/* products 卡片：標題與簡介（新版本 products.html 會用到） */
 .product-page-grid .product-name{
   font-size: 1.15rem;      /* 約 18~19px */
   line-height: 1.4;
   font-weight: 600;
   margin: 0 0 12px;
-  letter-spacing: 0.04em;
+  letter-spacing: .04em;
 }
 
-.product-page-grid .product-content{
-  font-size: 0.96rem;      /* 約 15px */
-  line-height: 1.85;
+/* 如果卡片內直接用 <p> 當簡介（不包 product-content） */
+.product-page-grid .product-card > p{
+  font-size: .95rem;
+  line-height: 1.75;
+  margin: 0 0 12px;
   color: var(--color-text-main);
 }
 
-.product-page-grid .product-content p{
-  margin: 0 0 12px;
+/* 舊版若仍有 product-content，也照顧到 */
+.product-page-grid .product-content{
+  font-size: .96rem;
+  line-height: 1.85;
+  color: var(--color-text-main);
 }
-
+.product-page-grid .product-content p{ margin: 0 0 12px; }
 .product-page-grid .product-content p strong{
   display: inline-block;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: .06em;
   margin-bottom: 4px;
 }
-
 .product-page-grid .product-highlight-list{
   margin: 10px 0 12px;
   padding-left: 18px;
   line-height: 1.8;
 }
+.product-page-grid .product-highlight-list li{ margin: 6px 0; }
 
-.product-page-grid .product-highlight-list li{
-  margin: 6px 0;
+/* =========================================
+   ✅ 產品詳細頁：共用「LINE 諮詢・不強推」區塊（新版標準）
+   你新的 guilu.html / guilu-drink.html / antler.html 建議都用這套 class
+   ========================================= */
+.consult-section .highlight-tag{ margin-bottom: 10px; }
+
+.consult-title{
+  margin: 10px 0 10px;
+  line-height: 1.3;
 }
 
-.product-page-grid .btn-detail,
-.product-page-grid .product-cta{
-  margin-top: 14px;
-}
-
-/* =================================================
-   ✅ 全站（index/story/brand_origin/contact）字體大小＋間距最佳化
-   ================================================= */
-
-/* 段落間距更乾淨 */
-.section p{
+.consult-subtitle{
   margin: 0 0 14px;
+  color: var(--color-text-muted);
 }
 
-/* 大標題更有層級 */
-.page-title{
-  font-size: clamp(1.55rem, 2.4vw, 2.05rem);
-  line-height: 1.25;
-  letter-spacing: 0.06em;
-  margin: 6px 0 14px;
-}
-
-/* 二級標題（故事頁/品牌頁更清楚） */
-.section-title,
-.section h2{
-  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
-  line-height: 1.35;
-  margin: 20px 0 10px;
-  letter-spacing: 0.06em;
-}
-
-/* 內文更好讀 */
-.section,
-.section p,
-.section li{
-  font-size: 0.98rem; /* 約 15.5px */
-  line-height: 1.9;
-}
-
-/* 小標 strong 變欄位感 */
-.section p strong{
-  display: inline-block;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  margin-bottom: 4px;
-}
-
-/* 列表呼吸 */
-.section ul{
-  margin: 10px 0 14px;
-  padding-left: 18px;
-}
-.section li{
-  margin: 6px 0;
-}
-
-/* 同區塊多顆按鈕：間距一致 */
-.section a.btn-primary,
-.section a.btn-outline,
-.section a.btn-soft,
-.section a.btn-line-strong,
-.section a.btn-detail{
+.consult-actions{
   margin-top: 14px;
-}
-.section a.btn-primary + a,
-.section a.btn-outline + a,
-.section a.btn-soft + a,
-.section a.btn-line-strong + a{
-  margin-left: 10px;
-}
-
-/* contact 的按鈕列更好點 */
-.contact-actions{
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
   gap: 10px;
+}
+
+.consult-note{
+  margin-top: 12px;
+  line-height: 1.85;
+}
+
+.consult-faq{
   margin-top: 14px;
-}
-.contact-actions a{
-  flex: 0 0 auto;
+  text-align: left;
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #FFFDFB;
+  border: 1px solid rgba(0,0,0,0.10);
 }
 
-/* 手機：section 內距縮、按鈕改直排、contact 改滿版 */
+.consult-faq ul{
+  margin: 10px 0 0;
+  padding-left: 1.2rem;
+  line-height: 1.85;
+}
+
+/* =========================================
+   ✅ 相容保留：舊版 guilu-line-section（避免舊頁還在用時跑版）
+   你可以慢慢把 HTML 換成 consult-section，之後想刪也行
+   ========================================= */
+.guilu-line-actions .btn-primary,
+.guilu-line-actions .btn-soft,
+.guilu-line-actions .btn-outline{ display: flex; }
+
+.guilu-line-section .highlight-tag{ margin-bottom: 12px; }
+.guilu-line-section .page-subtitle{ margin-top: 8px; margin-bottom: 0; }
+
+.guilu-line-actions{
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.guilu-line-note{ margin-top: 14px; line-height: 1.85; }
+
+.section-highlight{
+  margin-top: 18px;
+  text-align: left;
+  background: #FFFDFB;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.section-highlight ul{
+  margin-top: 8px;
+  padding-left: 1.2rem;
+}
+
+/* =========================================
+   FLOATING LINE CTA
+   ========================================= */
+.line-float-btn{
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  background: #06c755;
+  color: #fff;
+  text-decoration: none;
+
+  padding: 12px 16px;
+  border-radius: 999px;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+  transition: transform .18s ease, box-shadow .18s ease, padding .18s ease;
+}
+
+.line-float-btn:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.28);
+}
+
+.line-float-icon{
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+}
+
+.line-float-icon svg{
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+  display: block;
+}
+
+.line-float-text{
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .5px;
+  white-space: nowrap;
+}
+
+/* 夜間自動深綠 */
+.line-float-btn.is-night{ background: #03a54a; }
+
+/* 接近頁尾自動縮小（避免擋內容） */
+.line-float-btn.is-compact{
+  padding: 10px 12px;
+  gap: 8px;
+}
+.line-float-btn.is-compact .line-float-text{ display: none; }
+
 @media (max-width: 768px){
-  .section{
-    padding: 26px 18px;
-    margin-bottom: 22px;
-    border-radius: 20px;
+  .line-float-btn{
+    right: 14px;
+    bottom: 16px;
+    padding: 14px 16px;
   }
+  .line-float-text{ font-size: 16px; }
+  .line-float-btn.is-compact{ padding: 12px 14px; }
+}
 
-  .page-title{
-    letter-spacing: 0.04em;
-  }
+/* Toast */
+.line-toast{
+  position: fixed;
+  right: 16px;
+  bottom: 76px;
+  z-index: 10000;
 
-  .section p{
-    margin: 0 0 12px;
-  }
+  background: rgba(0,0,0,0.82);
+  color: #fff;
 
-  .section a.btn-primary + a,
-  .section a.btn-outline + a,
-  .section a.btn-soft + a,
-  .section a.btn-line-strong + a{
-    margin-left: 0;
-    margin-top: 10px;
-  }
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 1.35;
 
-  .contact-actions{
-    flex-direction: column;
-    align-items: stretch;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.line-toast.is-show{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px){
+  .line-toast{
+    right: 14px;
+    bottom: 86px;
+    max-width: calc(100vw - 28px);
   }
-  .contact-actions a{
-    width: 100%;
-  }
+}
+
+/* =========================================
+   可選保留：若未來又想用「諮詢此商品」按鈕（目前可不使用也沒差）
+   ========================================= */
+.product-cta{
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.line-consult-trigger.btn-outline{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.line-consult-trigger{
+  border: 1px solid rgba(6, 199, 85, 0.65);
+  color: #04a948;
+  background: transparent;
+  padding: 10px 12px;
+  border-radius: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.line-consult-trigger:hover{
+  background: rgba(6, 199, 85, 0.08);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.10);
 }
