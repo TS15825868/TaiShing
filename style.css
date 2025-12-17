@@ -328,6 +328,53 @@ img {
   display: flex;
 }
 
+/* guilu-line 區塊（CSS 正規化：移除 HTML inline style） */
+.guilu-line-section .highlight-tag{
+  margin-bottom: 12px;
+}
+
+.guilu-line-header .section-title{
+  margin-top: 0;
+}
+
+.guilu-line-section .page-subtitle{
+  margin-top: 8px;
+  margin-bottom: 0;
+}
+
+.guilu-line-actions{
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.guilu-line-note{
+  margin-top: 14px;
+  line-height: 1.85;
+}
+
+/* 常見問題卡片 */
+.section-highlight{
+  margin-top: 18px;
+  text-align: left;
+  background: #FFFDFB;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+
+.section-highlight ul{
+  margin-top: 8px;
+  padding-left: 1.2rem;
+}
+
+@media (max-width: 768px){
+  .guilu-line-actions{
+    margin-top: 16px;
+  }
+}
+
 /* =========================================
    FLOATING LINE CTA + PRODUCT CONSULT CTA
    ========================================= */
