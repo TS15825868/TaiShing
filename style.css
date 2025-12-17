@@ -98,7 +98,7 @@ img {
 }
 
 /* =========================================
-   NAV（桌機）
+   NAV（不換行）
    ========================================= */
 .site-nav ul {
   display: flex;
@@ -275,7 +275,7 @@ img {
 }
 
 /* =========================================
-   ✅ MOBILE NAV 最終修正（解決你截圖那個「字裂開」問題）
+   ✅ MOBILE NAV 最終修正（防止「每個字換行」）
    ========================================= */
 @media (max-width: 768px) {
   .header-inner{
@@ -315,7 +315,7 @@ img {
     line-height: 1;
     padding: 10px 8px;
     font-size: 0.88rem;
-    letter-spacing: 0.10em; /* 手機避免擠爆 */
+    letter-spacing: 0.10em;
   }
 }
 
@@ -470,8 +470,7 @@ img {
 }
 
 /* =========================================
-   ✅ 全站所有產品都要有框框（最終統一）
-   只要外層用 product-card，就會自動變框框卡片
+   ✅ 全站產品卡片統一框框
    ========================================= */
 article.product-card,
 .product-card{
@@ -493,7 +492,7 @@ article.product-card:hover,
   box-shadow: 0 16px 36px rgba(0,0,0,0.12) !important;
 }
 
-/* products.html 的 Grid（桌機3欄、手機2欄） */
+/* products.html Grid（桌機3欄、手機2欄） */
 .product-page-grid{
   display: grid;
   gap: 20px;
