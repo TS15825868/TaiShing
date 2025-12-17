@@ -519,3 +519,50 @@ article.product-card:hover,
   overflow: hidden;
   margin-bottom: 12px;
 }
+
+/* =================================================
+   ✅ products.html：字體大小／段落間距最佳化（重點）
+   ================================================= */
+.product-page-grid .product-card{
+  gap: 0;
+}
+
+.product-page-grid .product-name{
+  font-size: 1.15rem;      /* 約 18~19px */
+  line-height: 1.4;
+  font-weight: 600;
+  margin: 0 0 12px;
+  letter-spacing: 0.04em;
+}
+
+.product-page-grid .product-content{
+  font-size: 0.96rem;      /* 約 15px */
+  line-height: 1.85;
+  color: var(--color-text-main);
+}
+
+.product-page-grid .product-content p{
+  margin: 0 0 12px;
+}
+
+.product-page-grid .product-content p strong{
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+.product-page-grid .product-highlight-list{
+  margin: 10px 0 12px;
+  padding-left: 18px;
+  line-height: 1.8;
+}
+
+.product-page-grid .product-highlight-list li{
+  margin: 6px 0;
+}
+
+.product-page-grid .btn-detail,
+.product-page-grid .product-cta{
+  margin-top: 14px;
+}
