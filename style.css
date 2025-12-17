@@ -521,7 +521,7 @@ article.product-card:hover,
 }
 
 /* =================================================
-   ✅ products.html：字體大小／段落間距最佳化（重點）
+   ✅ products.html：字體大小／段落間距最佳化
    ================================================= */
 .product-page-grid .product-card{
   gap: 0;
@@ -565,4 +565,114 @@ article.product-card:hover,
 .product-page-grid .btn-detail,
 .product-page-grid .product-cta{
   margin-top: 14px;
+}
+
+/* =================================================
+   ✅ 全站（index/story/brand_origin/contact）字體大小＋間距最佳化
+   ================================================= */
+
+/* 段落間距更乾淨 */
+.section p{
+  margin: 0 0 14px;
+}
+
+/* 大標題更有層級 */
+.page-title{
+  font-size: clamp(1.55rem, 2.4vw, 2.05rem);
+  line-height: 1.25;
+  letter-spacing: 0.06em;
+  margin: 6px 0 14px;
+}
+
+/* 二級標題（故事頁/品牌頁更清楚） */
+.section-title,
+.section h2{
+  font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+  line-height: 1.35;
+  margin: 20px 0 10px;
+  letter-spacing: 0.06em;
+}
+
+/* 內文更好讀 */
+.section,
+.section p,
+.section li{
+  font-size: 0.98rem; /* 約 15.5px */
+  line-height: 1.9;
+}
+
+/* 小標 strong 變欄位感 */
+.section p strong{
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+
+/* 列表呼吸 */
+.section ul{
+  margin: 10px 0 14px;
+  padding-left: 18px;
+}
+.section li{
+  margin: 6px 0;
+}
+
+/* 同區塊多顆按鈕：間距一致 */
+.section a.btn-primary,
+.section a.btn-outline,
+.section a.btn-soft,
+.section a.btn-line-strong,
+.section a.btn-detail{
+  margin-top: 14px;
+}
+.section a.btn-primary + a,
+.section a.btn-outline + a,
+.section a.btn-soft + a,
+.section a.btn-line-strong + a{
+  margin-left: 10px;
+}
+
+/* contact 的按鈕列更好點 */
+.contact-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.contact-actions a{
+  flex: 0 0 auto;
+}
+
+/* 手機：section 內距縮、按鈕改直排、contact 改滿版 */
+@media (max-width: 768px){
+  .section{
+    padding: 26px 18px;
+    margin-bottom: 22px;
+    border-radius: 20px;
+  }
+
+  .page-title{
+    letter-spacing: 0.04em;
+  }
+
+  .section p{
+    margin: 0 0 12px;
+  }
+
+  .section a.btn-primary + a,
+  .section a.btn-outline + a,
+  .section a.btn-soft + a,
+  .section a.btn-line-strong + a{
+    margin-left: 0;
+    margin-top: 10px;
+  }
+
+  .contact-actions{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .contact-actions a{
+    width: 100%;
+  }
 }
