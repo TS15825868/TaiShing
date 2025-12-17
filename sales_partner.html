@@ -2,15 +2,94 @@
 <html lang="zh-Hant-TW">
 <head>
   <meta charset="UTF-8" />
-  <title>合作洽談｜台興山產・仙加味</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
+  <title>合作銷售頁｜台興山產・仙加味</title>
+  <meta name="description" content="仙加味龜鹿系列合作銷售頁（中醫診所／中藥房／通路），提供龜鹿膏、龜鹿飲（單包/10包）、龜鹿膠塊、鹿茸粉、駝鹿角原料等品項合作洽談。" />
+
+  <!-- 沿用官網風格 -->
+  <link rel="stylesheet" href="theme_herbalrosegold.css">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- 銷售頁補強（只影響本頁） -->
+  <style>
+    .sales-wrap{max-width:1080px;margin:0 auto;padding:0 20px 70px;}
+    .simple-page .sales-wrap{max-width:980px;}
+    .sales-hero{margin-top:22px}
+    .sales-hero .page-title{margin-top:6px}
+    .sales-badge{display:inline-flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .sales-badge span{background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:999px;padding:8px 12px;font-size:.92rem}
+
+    .sales-cta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+    .sales-cta-row a{flex:1 1 220px}
+    .sales-cta-row a.btn-line-strong{flex:2 1 260px}
+    @media (max-width:768px){.sales-cta-row a{flex:1 1 100%}}
+
+    .sales-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    @media (max-width:768px){.sales-grid{grid-template-columns:1fr}}
+
+    .sales-card{background:#fff;border:1px solid rgba(0,0,0,.12);border-radius:18px;box-shadow:0 10px 26px rgba(0,0,0,.08);overflow:hidden}
+    .sales-card-inner{padding:18px 16px 18px}
+    .sales-card .product-name{font-size:1.15rem;line-height:1.35;margin:0 0 8px;letter-spacing:.04em}
+    .sales-sub{color:var(--color-text-muted);font-size:.95rem;line-height:1.7;margin:0 0 14px}
+
+    /* ✅ 多包裝照片：橫向滑動 */
+    .gallery{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      padding:12px 12px 10px;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      background: #f7f3ef;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .gallery::-webkit-scrollbar{height:8px}
+    .gallery::-webkit-scrollbar-thumb{background:rgba(0,0,0,.18);border-radius:999px}
+    .gallery-item{
+      flex: 0 0 auto;
+      width: min(320px, 78vw);
+      scroll-snap-align:start;
+      border-radius:14px;
+      overflow:hidden;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.10);
+      box-shadow: 0 6px 16px rgba(0,0,0,.08);
+    }
+    .gallery-item img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:cover;
+      aspect-ratio: 4/3;
+      background:#f4f1ee;
+    }
+    .gallery-cap{
+      padding:8px 10px;
+      font-size:.88rem;
+      color:var(--color-text-muted);
+      line-height:1.4;
+      border-top:1px solid rgba(0,0,0,.06);
+      background:#fff;
+    }
+
+    .sales-kv{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 12px}
+    .sales-kv b{font-weight:700}
+    .sales-kv span{background:rgba(217,180,140,.14);border:1px solid rgba(217,180,140,.25);color:var(--color-primary-deep);border-radius:10px;padding:6px 10px;font-size:.9rem}
+
+    .spec-table{width:100%;border-collapse:separate;border-spacing:0 8px;font-size:.96rem;line-height:1.8}
+    .spec-table th{width:96px;text-align:left;color:var(--color-text-label);font-weight:700;vertical-align:top;padding-right:10px}
+    .spec-table td{color:var(--color-text-main)}
+    .sales-note{margin-top:10px;color:var(--color-text-muted);font-size:.95rem;line-height:1.75}
+
+    .sales-footer-cta{margin-top:18px;display:flex;flex-direction:column;gap:10px}
+    .sales-footer-cta a{width:100%}
+  </style>
 </head>
 
 <body>
 <div class="site-wrapper">
 
-  <!-- HEADER：只留品牌，不要導覽 -->
+  <!-- HEADER：只留品牌，不要導覽列 -->
   <header class="site-header">
     <div class="header-inner">
       <div class="brand-block">
@@ -24,46 +103,245 @@
   </header>
 
   <main class="site-main simple-page">
+    <div class="sales-wrap">
 
-    <section class="section">
-      <h1 class="page-title">合作洽談專用頁</h1>
-      <p>
-        本頁為中醫診所、中藥房、餐飲通路與團購合作洽談使用。<br>
-        以實際規格、供應方式與搭配情境為主，不走誇大話術，合作細節可依需求調整。
-      </p>
+      <!-- HERO -->
+      <section class="section sales-hero reveal">
+        <div class="section-kicker">B2B / CLINIC / PHARMACY</div>
+        <h1 class="page-title">龜鹿系列・合作洽談專用頁</h1>
+        <p class="page-subtitle">
+          本頁提供中醫診所／中藥房／通路合作洽談使用。以「規格、供應方式、搭配情境」為主，
+          不走誇大話術，合作細節可依需求調整。
+        </p>
 
-      <div class="section-highlight">
-        <ul>
-          <li>✔ 規格清楚</li>
-          <li>✔ 供應彈性</li>
-          <li>✔ 長期配合</li>
-          <li>✔ LINE 快速洽談</li>
-        </ul>
-      </div>
+        <div class="sales-badge" aria-label="合作重點">
+          <span>✔ 規格清楚</span>
+          <span>✔ 供應彈性</span>
+          <span>✔ 長期配合</span>
+          <span>✔ LINE 快速洽談</span>
+        </div>
 
-      <a href="https://lin.ee/sHZW7NkR"
-         class="btn-line-strong btn-full"
-         target="_blank" rel="noopener">
-        加入 LINE 洽談合作
-      </a>
+        <div class="sales-cta-row">
+          <a class="btn-line-strong" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">加入 LINE 洽談合作</a>
+          <a class="btn-outline" href="仙加味_合作型錄_完整版.pdf" target="_blank" rel="noopener">一鍵下載合作型錄 PDF</a>
+        </div>
 
-      <a href="仙加味_合作型錄_完整版.pdf"
-         class="btn-outline btn-full"
-         target="_blank">
-        一鍵下載合作型錄 PDF
-      </a>
+        <p class="sales-note">合作流程：先說明通路型態（診所／藥房／餐飲／團購）→ 我們依需求提供合適規格與報價。</p>
+      </section>
 
-    </section>
+      <!-- PRODUCTS -->
+      <section class="section reveal">
+        <div class="section-kicker">PRODUCTS</div>
+        <h2 class="section-title">全系列品項（合作用）</h2>
 
+        <div class="sales-grid">
+
+          <!-- 龜鹿膏 -->
+          <article class="sales-card">
+            <div class="gallery" aria-label="龜鹿膏圖片（可左右滑）">
+              <div class="gallery-item">
+                <img src="images/product-guiku-main.jpg" alt="仙加味 龜鹿膏 形象照" loading="lazy">
+                <div class="gallery-cap">形象照</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/guilu_paste_usage_closeup.jpeg" alt="仙加味 龜鹿膏 使用方式示意" loading="lazy">
+                <div class="gallery-cap">食用方式／近拍</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/guilu_paste_label_info.png" alt="仙加味 龜鹿膏 標示資訊" loading="lazy">
+                <div class="gallery-cap">標示資訊</div>
+              </div>
+            </div>
+
+            <div class="sales-card-inner">
+              <h3 class="product-name">仙加味 龜鹿膏</h3>
+              <p class="sales-sub">家族四代熬膠工藝｜經典主力款</p>
+
+              <div class="sales-kv">
+                <span><b>容量</b>：100±5g</span>
+                <span><b>定位</b>：主力補養品項</span>
+              </div>
+
+              <table class="spec-table" aria-label="龜鹿膏規格表">
+                <tr><th>食用建議</th><td>每日早上及下午各一小匙，可單吃或搭配溫開水、煮湯。</td></tr>
+                <tr><th>成分</th><td>鹿角、全龜、枸杞、紅棗、粉光蔘、黃耆（以實際標示為準）。</td></tr>
+                <tr><th>適用範圍</th><td>中醫診所／中藥房／熟悉漢方補養者</td></tr>
+                <tr><th>售價</th><td>依合作形式報價</td></tr>
+              </table>
+            </div>
+          </article>
+
+          <!-- 龜鹿飲 -->
+          <article class="sales-card">
+            <div class="gallery" aria-label="龜鹿飲圖片（可左右滑）">
+              <div class="gallery-item">
+                <img src="images/guilu-drink-10pack.jpg" alt="龜鹿飲 10包裝" loading="lazy">
+                <div class="gallery-cap">10包裝（整袋）</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/image-12.jpeg" alt="龜鹿飲 形象照" loading="lazy">
+                <div class="gallery-cap">形象照</div>
+              </div>
+            </div>
+
+            <div class="sales-card-inner">
+              <h3 class="product-name">龜鹿飲</h3>
+              <p class="sales-sub">液態型｜門診搭配／通路彈性供應（單包／10包裝）</p>
+
+              <div class="sales-kv">
+                <span><b>容量</b>：每包180c.c.</span>
+                <span><b>形式</b>：單包／10包</span>
+              </div>
+
+              <table class="spec-table" aria-label="龜鹿飲規格表">
+                <tr><th>販賣形式</th><td>單包販售／10包裝（通路彈性供應）</td></tr>
+                <tr><th>飲用方式</th><td>可直接飲用，或隔水加熱後溫飲。</td></tr>
+                <tr><th>成分</th><td>水、鹿角、全龜、枸杞、黃耆、紅棗、粉光蔘。</td></tr>
+                <tr><th>適用範圍</th><td>中醫門診搭配、日常補養族群</td></tr>
+                <tr><th>售價</th><td>依合作形式報價（單包／整袋）</td></tr>
+              </table>
+
+              <p class="sales-note">提供單包與10包裝兩種供應方式，方便門診搭配或通路彈性販售。</p>
+            </div>
+          </article>
+
+          <!-- 龜鹿膠塊 -->
+          <article class="sales-card">
+            <div class="gallery" aria-label="龜鹿膠塊圖片（可左右滑）">
+              <div class="gallery-item">
+                <img src="images/guilu-jelly-blocks-hero.png" alt="龜鹿膠塊 形象圖" loading="lazy">
+                <div class="gallery-cap">形象圖</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/guilu-jelly-blocks-box-open.jpg" alt="龜鹿膠塊 大盒開箱" loading="lazy">
+                <div class="gallery-cap">大盒（1斤裝）開箱</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/guilu-jelly-blocks-box-side.jpg" alt="龜鹿膠塊 小盒/大盒包裝" loading="lazy">
+                <div class="gallery-cap">盒裝示意（小盒／大盒）</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/guilu-jelly-blocks-closeup.jpg" alt="龜鹿膠塊 膠塊近拍" loading="lazy">
+                <div class="gallery-cap">膠塊近拍</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/guilu-jelly-blocks-stack.jpg" alt="龜鹿膠塊 量體示意" loading="lazy">
+                <div class="gallery-cap">量體／出貨示意</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/guilu-jelly-blocks-info.png" alt="龜鹿膠塊 資料圖" loading="lazy">
+                <div class="gallery-cap">資料／說明圖</div>
+              </div>
+            </div>
+
+            <div class="sales-card-inner">
+              <h3 class="product-name">龜鹿膠塊</h3>
+              <p class="sales-sub">以全龜板與駝鹿角熬製｜專業補養用途</p>
+
+              <div class="sales-kv">
+                <span><b>小盒</b>：4兩／半斤</span>
+                <span><b>大盒</b>：1斤</span>
+              </div>
+
+              <table class="spec-table" aria-label="龜鹿膠塊規格表">
+                <tr><th>成分</th><td>全龜板萃取物、駝鹿角萃取物</td></tr>
+                <tr><th>製程</th><td>長時間熬製 → 手工裝模定型 → 手工入袋包裝</td></tr>
+                <tr><th>包裝</th><td>小盒：4兩裝／半斤裝；大盒：1斤裝</td></tr>
+                <tr><th>適用範圍</th><td>中醫診所、中藥房、餐飲品牌、家庭自煉、專業補養用途</td></tr>
+                <tr><th>售價</th><td>依合作形式報價</td></tr>
+              </table>
+            </div>
+          </article>
+
+          <!-- 鹿茸粉 -->
+          <article class="sales-card">
+            <div class="gallery" aria-label="鹿茸粉圖片（可左右滑）">
+              <div class="gallery-item">
+                <img src="images/lurong-powder-jar.jpg" alt="鹿茸粉 罐裝" loading="lazy">
+                <div class="gallery-cap">罐裝實拍</div>
+              </div>
+              <div class="gallery-item">
+                <img src="images/lurong-powder-label.png" alt="鹿茸粉 標示資訊" loading="lazy">
+                <div class="gallery-cap">標示資訊</div>
+              </div>
+            </div>
+
+            <div class="sales-card-inner">
+              <h3 class="product-name">鹿茸粉</h3>
+              <p class="sales-sub">原料型品項｜診所／藥房配方與搭配使用</p>
+
+              <div class="sales-kv">
+                <span><b>用途</b>：配方／調配</span>
+                <span><b>供應</b>：依需求洽談</span>
+              </div>
+
+              <table class="spec-table" aria-label="鹿茸粉規格表">
+                <tr><th>規格</th><td>依實際販售規格（瓶裝／袋裝與克數）</td></tr>
+                <tr><th>適用範圍</th><td>中醫診所／中藥房／專業補養用途</td></tr>
+                <tr><th>售價</th><td>依合作形式報價</td></tr>
+              </table>
+            </div>
+          </article>
+
+          <!-- 駝鹿角原料 -->
+          <article class="sales-card">
+            <div class="gallery" aria-label="駝鹿角原料圖片（可左右滑）">
+              <div class="gallery-item">
+                <img src="images/image-14.jpeg" alt="駝鹿角原料" loading="lazy">
+                <div class="gallery-cap">原料實拍</div>
+              </div>
+            </div>
+
+            <div class="sales-card-inner">
+              <h3 class="product-name">駝鹿角原料</h3>
+              <p class="sales-sub">原料級供應｜規格依需求提供</p>
+
+              <div class="sales-kv">
+                <span><b>規格</b>：依需求提供</span>
+                <span><b>通路</b>：可長期配合</span>
+              </div>
+
+              <table class="spec-table" aria-label="駝鹿角原料規格表">
+                <tr><th>容量／規格</th><td>依需求提供</td></tr>
+                <tr><th>適用範圍</th><td>中藥房、中醫診所、餐飲品牌、家庭自煉、專業補養用途</td></tr>
+                <tr><th>售價</th><td>依合作形式報價</td></tr>
+              </table>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="sales-footer-cta">
+          <a class="btn-line-strong btn-full" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">加入 LINE 洽談合作</a>
+          <a class="btn-outline btn-full" href="仙加味_合作型錄_完整版.pdf" target="_blank" rel="noopener">一鍵下載合作型錄 PDF</a>
+        </div>
+      </section>
+
+      <section class="section reveal">
+        <div class="section-kicker">CONTACT</div>
+        <h2 class="section-title">聯絡方式</h2>
+        <p>電話：<a href="tel:+886223812990">(02) 2381-2990</a></p>
+        <p>地址：台北市萬華區西昌街 52 號</p>
+        <p>LINE：https://lin.ee/sHZW7NkR</p>
+      </section>
+
+    </div>
   </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">台興山產有限公司・仙加味</p>
+    <p class="footer-meta">本頁供合作洽談使用｜© 台興山產 版權所有</p>
+  </footer>
 
 </div>
 
-<!-- 浮動 LINE（保留） -->
-<a href="https://lin.ee/sHZW7NkR"
-   class="line-float-btn"
-   target="_blank"
-   rel="noopener">
+<!-- 浮動 LINE（沿用你全站的 style.css） -->
+<a href="https://lin.ee/sHZW7NkR" class="line-float-btn" target="_blank" rel="noopener" aria-label="LINE 諮詢">
+  <span class="line-float-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" focusable="false" role="img">
+      <path d="M19.6 10.8c0-3.8-3.8-6.8-8.5-6.8S2.6 7 2.6 10.8c0 3.4 3 6.2 7 6.7.3.1.7.2.8.5.1.2.1.6.1.8 0 0-.1.7-.1.9-.1.2-.2.9.8.5 1-.4 5.4-3.2 7.4-5.5 1.4-1.5 2-3 2-4.9z"></path>
+    </svg>
+  </span>
   <span class="line-float-text">LINE 諮詢</span>
 </a>
 
