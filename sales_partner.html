@@ -90,6 +90,47 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.08);
     }
 
+
+    /* 二分式左右圖文排版：左圖右圖／左文字右文字 */
+    .product-two-col {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+      margin-bottom: 24px;
+    }
+    .product-two-col-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .product-two-col-cell.pic {
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .product-two-col-cell.pic img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+    .product-two-col-cell.text p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px){
+      .product-two-col-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 手機仍維持左右兩格 */
+        gap: 10px;
+      }
+      .product-two-col-cell.text p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+    }
+
 @media (max-width: 768px) {
       .sales-products-grid {
         grid-template-columns: 1fr;
@@ -154,76 +195,106 @@
       <h2 class="section-title">龜鹿飲</h2>
       <p><strong>包裝形式：</strong>單包／10 包裝</p>
 
-      <div class="sales-products-grid">
-        <article class="sales-card">
-          <!-- 之後請把檔名改成你實際的圖片檔，例如 drink_single.jpg -->
-          <img src="images/drink_single.jpg" alt="龜鹿飲 單包示意">
-          <p>單包包裝示意，適合診所單次補養、試用或搭配門診衛教發放。</p>
-        </article>
-
-        <article class="sales-card">
-          <!-- 之後請把檔名改成你實際的圖片檔，例如 drink_10pack.jpg -->
-          <img src="images/drink_10pack.jpg" alt="龜鹿飲 10 包裝">
-          <p>10 包大包裝，方便作為長期調養或家庭共同補養的標準單位。</p>
-        </article>
+      <div class="product-two-col">
+        <div class="product-two-col-row product-two-col-row--images">
+          <div class="product-two-col-cell pic">
+            <img src="images/drink_single.jpg" alt="龜鹿飲 單包示意">
+          </div>
+          <div class="product-two-col-cell pic">
+            <img src="images/drink_10pack.jpg" alt="龜鹿飲 10 包裝">
+          </div>
+        </div>
+        <div class="product-two-col-row product-two-col-row--texts">
+          <div class="product-two-col-cell text">
+            <p>單包包裝示意，適合診所單次補養、試用或搭配門診衛教發放。</p>
+          </div>
+          <div class="product-two-col-cell text">
+            <p>10 包大包裝，方便作為長期調養或家庭共同補養的標準單位。</p>
+          </div>
+        </div>
       </div>
-    </section>
+    </section
 
-    <!-- 龜鹿膏 -->
+    >
+<!-- 龜鹿膏 -->
     <section class="sales-section">
       <h2 class="section-title">龜鹿膏</h2>
       <p><strong>容量：</strong>100 ± 5 公克</p>
 
-      <div class="sales-products-grid">
-        <article class="sales-card">
-          <img src="images/paste_main.jpg" alt="龜鹿膏 產品主視覺">
-          <p>盒裝主視覺與膏體示意，適合櫃檯擺放，提升龜鹿系列存在感。</p>
-        </article>
-
-        <article class="sales-card">
-          <img src="images/paste_box.jpg" alt="龜鹿膏 盒裝示意">
-          <p>可搭配簡易食用說明小卡，方便診所與藥局對客人做食用教學。</p>
-        </article>
+      <div class="product-two-col">
+        <div class="product-two-col-row product-two-col-row--images">
+          <div class="product-two-col-cell pic">
+            <img src="images/paste_main.jpg" alt="龜鹿膏 產品主視覺">
+          </div>
+          <div class="product-two-col-cell pic">
+            <img src="images/paste_box.jpg" alt="龜鹿膏 盒裝示意">
+          </div>
+        </div>
+        <div class="product-two-col-row product-two-col-row--texts">
+          <div class="product-two-col-cell text">
+            <p>盒裝主視覺與膏體示意，適合櫃檯擺放，提升龜鹿系列存在感。</p>
+          </div>
+          <div class="product-two-col-cell text">
+            <p>可搭配簡易食用說明小卡，方便診所與藥局對客人做食用教學。</p>
+          </div>
+        </div>
       </div>
-    </section>
+    </section
 
-    <!-- 龜鹿膠塊 -->
+    >
+<!-- 龜鹿膠塊 -->
     <section class="sales-section">
       <h2 class="section-title">龜鹿膠塊</h2>
       <p><strong>包裝形式：</strong>小盒（4 兩／半斤）、大盒（1 斤）</p>
 
-      <div class="sales-products-grid">
-        <article class="sales-card">
-          <img src="images/block_smallbox.jpg" alt="龜鹿膠塊 小盒 4兩／半斤">
-          <p>小盒包裝，適合診所或中藥房小量開立，亦可搭配補酒／藥膳使用。</p>
-        </article>
-
-        <article class="sales-card">
-          <img src="images/block_bigbox.jpg" alt="龜鹿膠塊 大盒 1斤">
-          <p>大盒 1 斤裝，方便門市備庫存或設計成禮盒組合銷售。</p>
-        </article>
+      <div class="product-two-col">
+        <div class="product-two-col-row product-two-col-row--images">
+          <div class="product-two-col-cell pic">
+            <img src="images/block_smallbox.jpg" alt="龜鹿膠塊 小盒 4兩／半斤">
+          </div>
+          <div class="product-two-col-cell pic">
+            <img src="images/block_bigbox.jpg" alt="龜鹿膠塊 大盒 1斤">
+          </div>
+        </div>
+        <div class="product-two-col-row product-two-col-row--texts">
+          <div class="product-two-col-cell text">
+            <p>小盒包裝，適合診所或中藥房小量開立，亦可搭配補酒／藥膳使用。</p>
+          </div>
+          <div class="product-two-col-cell text">
+            <p>大盒 1 斤裝，方便門市備庫存或設計成禮盒組合銷售。</p>
+          </div>
+        </div>
       </div>
-    </section>
+    </section
 
-    <!-- 鹿茸粉 -->
+    >
+<!-- 鹿茸粉 -->
     <section class="sales-section">
       <h2 class="section-title">鹿茸粉</h2>
       <p><strong>容量：</strong>75 公克</p>
 
-      <div class="sales-products-grid">
-        <article class="sales-card">
-          <img src="images/powder_bottle.jpg" alt="鹿茸粉 罐裝">
-          <p>罐裝鹿茸粉，適合陳列於補養專區，作為加強型選項或搭配其他品項銷售。</p>
-        </article>
-
-        <article class="sales-card">
-          <img src="images/powder_label.png" alt="鹿茸粉 標示資訊">
-          <p>標示與成分一目了然，有助於建立客戶對產品來源與內容物的信任感。</p>
-        </article>
+      <div class="product-two-col">
+        <div class="product-two-col-row product-two-col-row--images">
+          <div class="product-two-col-cell pic">
+            <img src="images/powder_bottle.jpg" alt="鹿茸粉 罐裝">
+          </div>
+          <div class="product-two-col-cell pic">
+            <img src="images/powder_label.png" alt="鹿茸粉 標示資訊">
+          </div>
+        </div>
+        <div class="product-two-col-row product-two-col-row--texts">
+          <div class="product-two-col-cell text">
+            <p>罐裝鹿茸粉，適合陳列於補養專區，作為加強型選項或搭配其他品項銷售。</p>
+          </div>
+          <div class="product-two-col-cell text">
+            <p>標示與成分一目了然，有助於建立客戶對產品來源與內容物的信任感。</p>
+          </div>
+        </div>
       </div>
-    </section>
+    </section
 
-    <!-- 一鍵下載型錄 -->
+    >
+<!-- 一鍵下載型錄 -->
 
   </main>
 </div>
