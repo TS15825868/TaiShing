@@ -9,6 +9,96 @@
 
   <link rel="stylesheet" href="theme_herbalrosegold.css" />
   <link rel="stylesheet" href="style.css" />
+
+  <style>
+    /* 銷售頁專用區塊 */
+    .sales-section {
+      background: #FFFCF9;
+      padding: 24px 20px;
+      margin-bottom: 20px;
+      border-radius: 18px;
+      box-shadow: var(--shadow-soft);
+    }
+    .sales-section h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+    }
+    .sales-section p {
+      margin: 0 0 10px;
+    }
+
+    .sales-products-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .sales-card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 10px 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .sales-card img {
+      border-radius: 10px;
+      max-height: 160px;
+      object-fit: cover;
+    }
+    .sales-card p {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: 1.5px solid var(--color-primary-deep);
+      background: #fff;
+      color: var(--color-primary-deep);
+      font-size: .95rem;
+      letter-spacing: .08em;
+      text-decoration: none;
+      margin-top: 12px;
+    }
+
+    @media (max-width: 768px) {
+      .sales-products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 列印友善：白底、無陰影、無圓角，按鈕保留邊框 */
+    @media print {
+      body {
+        background: #fff !important;
+      }
+      .site-wrapper {
+        background: #fff !important;
+      }
+      .sales-section {
+        box-shadow: none !important;
+        border-radius: 0;
+        margin: 0 0 12px 0;
+        padding: 12px 0;
+        border-bottom: 1px solid #ddd;
+      }
+      .sales-card {
+        box-shadow: none;
+        border-radius: 0;
+      }
+      .btn-download {
+        border-color: #000;
+        color: #000;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -16,7 +106,7 @@
   <main class="site-main">
 
     <!-- 頁首說明 -->
-    <section class="section reveal">
+    <section class="sales-section">
       <h1 class="page-title">龜鹿系列 合作銷售頁</h1>
       <p>
         適用：中醫診所／中藥房／養生品牌／批發合作。<br>
@@ -26,100 +116,85 @@
     </section>
 
     <!-- 龜鹿飲 -->
-    <section class="section reveal">
+    <section class="sales-section">
       <h2 class="section-title">龜鹿飲</h2>
       <p><strong>包裝形式：</strong>單包／10 包裝</p>
 
-      <div class="product-image-grid">
-        <!-- 請將檔名改成你實際上傳到 images/ 的名稱 -->
-        <article class="product-card">
-          <div class="product-image-frame">
-            <img src="images/sales_drink_single.jpg" alt="龜鹿飲 單包示意">
-          </div>
-          <p>單包包裝示意，適合診所單次補養或試用需求。</p>
+      <div class="sales-products-grid">
+        <article class="sales-card">
+          <!-- 之後請把檔名改成你實際的圖片檔，例如 drink_single.jpg -->
+          <img src="images/drink_single.jpg" alt="龜鹿飲 單包示意">
+          <p>單包包裝示意，適合診所單次補養、試用或搭配門診衛教發放。</p>
         </article>
 
-        <article class="product-card">
-          <div class="product-image-frame">
-            <img src="images/sales_drink_10pack.jpg" alt="龜鹿飲 10 包裝">
-          </div>
-          <p>10 包大包裝，適合作為門診長期調養配方搭配。</p>
+        <article class="sales-card">
+          <!-- 之後請把檔名改成你實際的圖片檔，例如 drink_10pack.jpg -->
+          <img src="images/drink_10pack.jpg" alt="龜鹿飲 10 包裝">
+          <p>10 包大包裝，方便作為長期調養或家庭共同補養的標準單位。</p>
         </article>
       </div>
     </section>
 
     <!-- 龜鹿膏 -->
-    <section class="section reveal">
+    <section class="sales-section">
       <h2 class="section-title">龜鹿膏</h2>
       <p><strong>容量：</strong>100 ± 5 公克</p>
 
-      <div class="product-image-grid">
-        <article class="product-card">
-          <div class="product-image-frame">
-            <img src="images/sales_paste_main.jpg" alt="龜鹿膏 產品主視覺">
-          </div>
-          <p>盒裝與罐裝主視覺，方便於櫃檯或藥局陳列展示。</p>
+      <div class="sales-products-grid">
+        <article class="sales-card">
+          <img src="images/paste_main.jpg" alt="龜鹿膏 產品主視覺">
+          <p>盒裝主視覺與膏體示意，適合櫃檯擺放，提升龜鹿系列存在感。</p>
         </article>
 
-        <article class="product-card">
-          <div class="product-image-frame">
-            <img src="images/sales_paste_box.jpg" alt="龜鹿膏 內裝示意">
-          </div>
-          <p>內裝與膠體示意，可搭配診所衛教說明食用方式。</p>
+        <article class="sales-card">
+          <img src="images/paste_box.jpg" alt="龜鹿膏 盒裝示意">
+          <p>可搭配簡易食用說明小卡，方便診所與藥局對客人做食用教學。</p>
         </article>
       </div>
     </section>
 
     <!-- 龜鹿膠塊 -->
-    <section class="section reveal">
+    <section class="sales-section">
       <h2 class="section-title">龜鹿膠塊</h2>
       <p><strong>包裝形式：</strong>小盒（4 兩／半斤）、大盒（1 斤）</p>
 
-      <div class="product-image-grid">
-        <article class="product-card">
-          <div class="product-image-frame">
-            <img src="images/sales_block_smallbox.jpg" alt="龜鹿膠塊 小盒 4兩／半斤">
-          </div>
-          <p>小盒包裝（4 兩／半斤），適合家用或診所小量開立。</p>
+      <div class="sales-products-grid">
+        <article class="sales-card">
+          <img src="images/block_smallbox.jpg" alt="龜鹿膠塊 小盒 4兩／半斤">
+          <p>小盒包裝，適合診所或中藥房小量開立，亦可搭配補酒／藥膳使用。</p>
         </article>
 
-        <article class="product-card">
-          <div class="product-image-frame">
-            <img src="images/sales_block_bigbox.jpg" alt="龜鹿膠塊 大盒 1斤">
-          </div>
-          <p>大盒 1 斤裝，方便診所自行分裝或與其他方劑搭配使用。</p>
+        <article class="sales-card">
+          <img src="images/block_bigbox.jpg" alt="龜鹿膠塊 大盒 1斤">
+          <p>大盒 1 斤裝，方便門市備庫存或設計成禮盒組合銷售。</p>
         </article>
       </div>
     </section>
 
     <!-- 鹿茸粉 -->
-    <section class="section reveal">
+    <section class="sales-section">
       <h2 class="section-title">鹿茸粉</h2>
       <p><strong>容量：</strong>75 公克</p>
 
-      <div class="product-image-grid">
-        <article class="product-card">
-          <div class="product-image-frame">
-            <img src="images/sales_powder_bottle.jpg" alt="鹿茸粉 罐裝">
-          </div>
-          <p>罐裝鹿茸粉，適合門市零售或搭配其他補養產品銷售。</p>
+      <div class="sales-products-grid">
+        <article class="sales-card">
+          <img src="images/powder_bottle.jpg" alt="鹿茸粉 罐裝">
+          <p>罐裝鹿茸粉，適合陳列於補養專區，作為加強型選項或搭配其他品項銷售。</p>
         </article>
 
-        <article class="product-card">
-          <div class="product-image-frame">
-            <img src="images/sales_powder_label.jpg" alt="鹿茸粉 標示資訊">
-          </div>
-          <p>標示與營養資訊示意，協助客戶了解來源與內容物。</p>
+        <article class="sales-card">
+          <img src="images/powder_label.jpg" alt="鹿茸粉 標示資訊">
+          <p>標示與成分一目了然，有助於建立客戶對產品來源與內容物的信任感。</p>
         </article>
       </div>
     </section>
 
     <!-- 一鍵下載型錄 -->
-    <section class="section reveal">
+    <section class="sales-section">
       <h2 class="section-title">合作型錄下載</h2>
       <p>若需與診所、藥局或通路合作，可直接列印或轉傳下列型錄：</p>
       <a href="台興山產_合作型錄_一鍵下載.pdf"
-         class="btn-outline"
+         class="btn-download"
          download>
         一鍵下載合作型錄 PDF
       </a>
@@ -127,6 +202,5 @@
 
   </main>
 </div>
-
 </body>
 </html>
