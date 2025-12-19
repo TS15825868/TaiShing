@@ -858,3 +858,31 @@ img.product-image{
   box-shadow: 0 8px 18px rgba(0,0,0,0.22);
 }
 
+
+
+/* 產品詳細：回到全部產品 */
+.back-to-products {
+  text-align: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+
+.back-link {
+  margin: 8px 0 24px;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  color: var(--color-accent, #9b3f4c);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+}
+
