@@ -339,17 +339,19 @@ img {
 
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+
+  width: 56px;
+  height: 56px;
 
   background: #06c755;
   color: #fff;
   text-decoration: none;
 
-  padding: 12px 16px;
-  border-radius: 999px;
+  border-radius: 50%;
 
   box-shadow: 0 8px 18px rgba(0,0,0,0.22);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, padding 0.18s ease;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .line-float-btn:hover {
@@ -358,14 +360,14 @@ img {
 }
 
 .line-float-icon {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   display: inline-flex;
 }
 
 .line-float-icon svg {
-  width: 22px;
-  height: 22px;
+  width: 28px;
+  height: 28px;
   fill: currentColor;
   display: block;
 }
@@ -393,13 +395,6 @@ img {
   .line-float-btn {
     right: 14px;
     bottom: 16px;
-    padding: 14px 16px;
-  }
-  .line-float-text {
-    font-size: 16px;
-  }
-  .line-float-btn.is-compact {
-    padding: 12px 14px;
   }
 }
 
