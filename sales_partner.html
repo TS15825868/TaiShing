@@ -1,218 +1,102 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>龜鹿系列 合作銷售頁</title>
+  <meta charset="UTF-8">
+  <title>龜鹿系列合作與通路洽談｜台興山產・仙加味</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: "Microsoft JhengHei", sans-serif;
-      background: #fffaf7;
-      color: #333;
-      line-height: 1.85;
-    }
+  <meta name="description" content="提供龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉合作銷售與通路洽談，適合中藥行、診所與相關店家了解合作模式。">
 
-    .site-main {
-      max-width: 1380px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #803030;
-      margin-bottom: 6px;
-      letter-spacing: 0.04em;
-    }
-
-    .sub {
-      font-size: 1rem;
-      margin-bottom: 40px;
-      color: #666;
-    }
-
-    .product-block {
-      margin-bottom: 60px;
-    }
-
-    .product-title {
-      font-size: 1.45rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: 0.03em;
-      color: #5a2d2d;
-    }
-
-    .product-info {
-      font-size: 1rem;
-      margin-bottom: 18px;
-    }
-
-    .product-row {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: 1fr;
-    }
-
-    .product-row img {
-      width: 100%;
-      border-radius: 8px;
-      display: block;
-    }
-
-    .qr-area {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-top: 20px;
-      margin-bottom: 50px;
-    }
-
-    .qr-area img {
-      width: 110px;
-      height: auto;
-      border-radius: 10px;
-    }
-
-    .line-btn {
-      display: inline-block;
-      padding: 14px 28px;
-      background: #06c755;
-      color: white;
-      border-radius: 8px;
-      font-size: 1.1rem;
-      letter-spacing: 0.05em;
-      font-weight: 700;
-      text-decoration: none;
-    }
-
-    @media (min-width: 1024px) {
-      .product-row {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 28px;
-      }
-      .product-block {
-        margin-bottom: 80px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.55rem;
-      }
-      .qr-area img {
-        width: 90px;
-      }
-    }
-
-    .qr-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .qr-btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 20px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      letter-spacing: 0.08em;
-      text-decoration: none;
-      border: 1px solid transparent;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .qr-btn-line {
-      background: #06c755;
-      color: #fff;
-      border-color: #06c755;
-    }
-
-    .qr-btn-home {
-      background: #fff;
-      color: #9b3f4c;
-      border-color: #d8b4a0;
-    }
-
-    .qr-btn:hover {
-      opacity: 0.9;
-    }
-
-  </style>
-
+  <link rel="stylesheet" href="theme_herbalrosegold.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="main.js" defer></script>
 </head>
+
 <body>
+<div class="site-wrapper">
 
-  <main class="site-main">
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-block">
+        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo">
+        <div class="brand-text">
+          <p class="brand-since">SINCE 1978</p>
+          <p class="brand-title">台興山產・仙加味</p>
+        </div>
+      </a>
 
-    <h1>龜鹿系列 合作銷售頁</h1>
-    <p class="sub">適用：中醫診所 / 中藥房 / 養生品牌 / 批發合作</p>
+      <button class="nav-toggle" type="button" aria-label="切換主選單">☰</button>
 
-    <div class="qr-area">
-      <img src="images/line_qr.png" alt="LINE QR" />
-      <div class="qr-actions">
-        <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="qr-btn qr-btn-line">LINE 合作洽談</a>
-        <a href="index.html" class="qr-btn qr-btn-home">前往官網首頁</a>
-      </div>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html" class="nav-link">首頁</a></li>
+          <li><a href="index.html#all-products" class="nav-link">產品總覽</a></li>
+          <li><a href="about.html" class="nav-link">關於我們</a></li>
+          <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+          <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
+        </ul>
+      </nav>
     </div>
+  </header>
 
-    <p style="font-size: 1.1rem; margin-bottom: 40px;">
-      供應品項包含：龜鹿飲、龜鹿膏、龜鹿膠塊，皆以全龜板與駝鹿角為核心原料；<br>
-      而鹿茸粉則是使用乾品鹿茸研磨成粉，產品皆強調真材實料與穩定供應。
-    </p>
+  <!-- MAIN -->
+  <main class="site-main simple-page">
+    <section class="section reveal">
+      <div class="section-kicker">PARTNER</div>
+      <h1 class="page-title">龜鹿系列合作銷售</h1>
 
-    <!-- 龜鹿飲 -->
-    <section class="product-block">
-      <div class="product-title">龜鹿飲</div>
-      <div class="product-info">包裝形式：單包 / 10包</div>
+      <p>
+        若您是中藥行、診所、門市或其他通路，希望了解龜鹿膏、龜鹿飲、龜鹿湯塊或鹿茸粉的合作方式，<br>
+        歡迎與我們聯繫，一起討論最合適的合作模式。
+      </p>
 
-      <div class="product-row">
-        <img src="images/drink_single.jpg" alt="龜鹿飲 單包" />
-        <img src="images/drink_10pack.jpg" alt="龜鹿飲 10包" />
-      </div>
+      <h2 class="section-title">可合作產品範圍</h2>
+      <ul>
+        <li><a href="guilu.html">仙加味 龜鹿膏</a></li>
+        <li><a href="guilu-drink.html">仙加味 龜鹿飲</a></li>
+        <li><a href="soup.html">仙加味 龜鹿湯塊</a></li>
+        <li><a href="lurong.html">仙加味 鹿茸粉</a></li>
+        <li><a href="antler.html">駝鹿角原料</a></li>
+      </ul>
+
+      <h2 class="section-title">聯繫方式</h2>
+      <p>
+        您可以先透過 LINE 留下：
+      </p>
+      <ul>
+        <li>店家名稱與所在縣市</li>
+        <li>大致想合作的品項與數量區間</li>
+        <li>是否已有相關產品販售經驗</li>
+      </ul>
+
+      <p>
+        我們會再依照您的需求，逐一說明供貨形式與可能的合作方式。
+      </p>
+
+      <p>
+        <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-primary">
+          透過 LINE 洽談合作
+        </a>
+      </p>
+
+      <p class="text-note">
+        合作條件會視實際品項、數量與門市型態調整，詳細內容將於洽談時說明。
+      </p>
+
     </section>
-
-    <!-- 龜鹿膏 -->
-    <section class="product-block">
-      <div class="product-title">龜鹿膏</div>
-      <div class="product-info">容量：100±5g / 罐</div>
-
-      <div class="product-row">
-        <img src="images/paste_front.jpg" alt="龜鹿膏正面" />
-        <img src="images/paste_box.jpg" alt="龜鹿膏包裝" />
-      </div>
-    </section>
-
-    <!-- 龜鹿膠塊 -->
-    <section class="product-block">
-      <div class="product-title">龜鹿膠塊</div>
-      <div class="product-info">規格：小盒（4兩 / 半斤）/ 大盒（1斤）</div>
-
-      <div class="product-row">
-        <img src="images/block_smallbox.jpg" alt="龜鹿膠塊 小盒" />
-        <img src="images/block_bigbox.jpg" alt="龜鹿膠塊 大盒" />
-      </div>
-    </section>
-
-    <!-- 鹿茸粉 -->
-    <section class="product-block">
-      <div class="product-title">鹿茸粉</div>
-      <div class="product-info">容量：75g</div>
-
-      <div class="product-row">
-        <img src="images/powder_front.jpg" alt="鹿茸粉 正面" />
-        <img src="images/powder_label.jpg" alt="鹿茸粉標示" />
-      </div>
-    </section>
-
   </main>
 
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <p class="footer-brand">台興山產有限公司・仙加味</p>
+    <p class="footer-meta">
+      公司地址：台北市萬華區西昌街 52 號<br>
+      電話：<a href="tel:+886223812990">(02) 2381-2990</a><br>
+      © 台興山產 版權所有
+    </p>
+  </footer>
+
+</div>
 </body>
 </html>
