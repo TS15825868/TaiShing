@@ -993,3 +993,51 @@ a:hover {
 
 /* 產品卡片中的操作按鈕若有使用 .btn-*，亦一併套用上述風格 */
 
+.feature-line {
+  font-size: 1.1rem;
+  margin: 0.5em 0 1.5em;
+  color: var(--color-accent-dark, #9a7b6d);
+  font-weight: 500;
+}
+
+.product-tagline {
+  font-size: 0.9rem;
+  margin: 0.3em 0 0.8em;
+  color: var(--color-accent-dark, #9a7b6d);
+}
+
+.faq-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 1.5em 0;
+}
+.faq-item + .faq-item {
+  margin-top: 1em;
+}
+.faq-question {
+  font-weight: 600;
+  margin-bottom: 0.3em;
+}
+.faq-answer {
+  margin: 0;
+  line-height: 1.7;
+}
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+.guide-card {
+  padding: 1.2rem 1.4rem;
+  border-radius: 8px;
+  background: #f7eee8;
+}
+.guide-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+}
+.guide-card p {
+  margin: 0.2rem 0;
+}
+
