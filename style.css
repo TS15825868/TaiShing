@@ -739,3 +739,81 @@ img.product-image{
   padding-left: 1.2rem;
   line-height: 1.85;
 }
+/* =========================================
+   NAV：漢堡選單（三條線）
+   ========================================= */
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 4px 6px;
+  color: var(--color-primary-deep);
+}
+
+/* 手機版：使用漢堡選單展開 */
+@media (max-width: 768px) {
+  .header-inner {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 16px;
+  }
+
+  .brand-block {
+    flex: 1;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
+  .site-nav {
+    width: 100%;
+    margin-top: 8px;
+    display: none;
+  }
+
+  .site-nav.is-open {
+    display: block;
+  }
+
+  .site-nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .nav-link {
+    display: block;
+    padding: 9px 0;
+    font-size: 0.9rem;
+  }
+}
+
+/* =========================================
+   首頁：主打商品區塊
+   ========================================= */
+
+.home-hero-actions {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.home-products-grid {
+  margin-top: 20px;
+}
+
+.home-products-grid .product-card {
+  text-align: left;
+}
+
+.section-center {
+  text-align: center;
+}

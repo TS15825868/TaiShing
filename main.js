@@ -67,7 +67,7 @@
           <path d="M19.6 10.8c0-3.8-3.8-6.8-8.5-6.8S2.6 7 2.6 10.8c0 3.4 3 6.2 7 6.7.3.1.7.2.8.5.1.2.1.6.1.8 0 0-.1.7-.1.9-.1.2-.2.9.8.5 1-.4 5.4-3.2 7.4-5.5 1.4-1.5 2-3 2-4.9z"></path>
         </svg>
       </span>
-      <span class="line-float-text">LINE 諮詢</span>
+      <span class="line-float-text">LINE</span>
     `;
 
     let toast = document.querySelector(".line-toast");
@@ -107,8 +107,19 @@
     });
   }
 
+
+  function setupNavToggle() {
+    var toggle = document.querySelector(".nav-toggle");
+    var nav = document.querySelector(".site-nav");
+    if (!toggle || !nav) return;
+    toggle.addEventListener("click", function () {
+      nav.classList.toggle("is-open");
+    });
+  }
+
   function init() {
     setMainPaddingTop();
+    setupNavToggle();
     setupCompactHeader();
     setupReveal();
     injectLineFloat();

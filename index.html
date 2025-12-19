@@ -26,54 +26,97 @@
 
   <!-- HEADER -->
   <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="brand-block">
-        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo">
-        <div class="brand-text">
-          <p class="brand-since">SINCE 1978</p>
-          <p class="brand-title">台興山產・仙加味</p>
-        </div>
-      </a>
+  <div class="header-inner">
+    <a href="index.html" class="brand-block">
+      <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo">
+      <div class="brand-text">
+        <p class="brand-since">SINCE 1978</p>
+        <p class="brand-title">台興山產・仙加味</p>
+      </div>
+    </a>
 
-      <nav class="site-nav">
-        <ul>
-          <li><a href="index.html" class="nav-link nav-link--active">首頁</a></li>
-          <li><a href="story.html" class="nav-link">品牌故事</a></li>
-          <li><a href="brand_origin.html" class="nav-link">品牌與商標</a></li>
-          <li><a href="products.html" class="nav-link">產品介紹</a></li>
-          <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <button class="nav-toggle" type="button" aria-label="切換主選單">
+      ☰
+    </button>
+
+    <nav class="site-nav">
+      <ul>
+        <li><a href="index.html" class="nav-link">首頁</a></li>
+        <li><a href="products.html" class="nav-link">產品總覽</a></li>
+        <li><a href="about.html" class="nav-link">關於我們</a></li>
+        <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+        <li><a href="https://lin.ee/1MK4NR9" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
   <!-- MAIN -->
   <main class="site-main">
 
-    <!-- HERO -->
-    <section class="section reveal">
-      <div class="section-kicker">SINCE 1978</div>
-      <h1 class="page-title">龜鹿補養・四代熬膠</h1>
-      <p>
-        仙加味承襲家族四代熬膠工藝，重視真材實料與穩定調養。
-        以龜鹿雙補為核心，打造適合日常保養與長期補養的系列品項。
-      </p>
+  <!-- HERO：龜鹿主打 -->
+  <section class="section reveal">
+    <div class="section-kicker">SINCE 1978</div>
+    <h1 class="page-title">龜鹿補養・四代熬膠</h1>
+    <p>
+      仙加味承襲家族四代熬膠工藝，專注龜鹿膏、龜鹿飲與龜鹿湯塊等補養產品，
+      希望讓補身像喝一杯溫熱飲一樣，成為日常的一部分。
+    </p>
 
-      <!-- 只保留導頁按鈕 -->
-      <a href="guilu.html" class="btn-primary">查看龜鹿膏介紹</a>
-    </section>
+    <div class="home-hero-actions">
+      <a href="guilu.html" class="btn-primary">查看龜鹿膏</a>
+      <a href="products.html" class="btn-outline">查看全部產品</a>
+    </div>
+  </section>
 
-    <!-- PRODUCTS ENTRY -->
-    <section class="section reveal">
-      <div class="section-kicker">PRODUCTS</div>
-      <h2 class="section-title">仙加味・龜鹿系列</h2>
-      <p>
-        依照不同生活型態與補養習慣，仙加味將龜鹿系列分為液態龜鹿飲、傳統龜鹿膏、粉狀鹿茸粉，以及原料駝鹿角。
-      </p>
-      <a href="products.html" class="btn-outline">前往產品介紹</a>
-    </section>
+  <!-- 主打商品：龜鹿系列 -->
+  <section class="section reveal">
+    <div class="section-kicker">PRODUCTS</div>
+    <h2 class="section-title">仙加味・龜鹿系列主打</h2>
+    <p>
+      依照不同生活型態與補養習慣，龜鹿系列分為液態龜鹿飲、膏方龜鹿膏與方便沖泡的龜鹿湯塊，
+      可依個人喜好與使用情境選擇。
+    </p>
 
-  </main>
+    <div class="product-page-grid home-products-grid">
+      <!-- 龜鹿膏 -->
+      <article class="product-card reveal-up">
+        <div class="highlight-tag">品牌經典</div>
+        <div class="product-image-frame">
+          <img src="images/product-guiku-main.jpg" alt="仙加味 龜鹿膏" class="product-image">
+        </div>
+        <h2 class="product-name">仙加味 龜鹿膏</h2>
+        <p>家族四代熬膠工藝，重視長期穩定補養。</p>
+        <a href="guilu.html" class="btn-soft btn-full">查看詳細介紹</a>
+      </article>
+
+      <!-- 龜鹿飲 -->
+      <article class="product-card reveal-up">
+        <div class="product-image-frame">
+          <img src="images/image-12.jpeg" alt="仙加味 龜鹿飲" class="product-image">
+        </div>
+        <h2 class="product-name">仙加味 龜鹿飲</h2>
+        <p>液態好入口，適合日常保養與忙碌族群。</p>
+        <a href="guilu-drink.html" class="btn-soft btn-full">查看詳細介紹</a>
+      </article>
+
+      <!-- 龜鹿湯塊 -->
+      <article class="product-card reveal-up">
+        <div class="product-image-frame">
+          <img src="images/block_smallbox.jpg" alt="龜鹿湯塊" class="product-image">
+        </div>
+        <h2 class="product-name">龜鹿湯塊</h2>
+        <p>將龜鹿熬膠製成等尺寸塊狀湯底，小盒與大盒包裝，方便日常沖泡與燉湯料理。</p>
+        <a href="soup.html" class="btn-soft btn-full">查看詳細介紹</a>
+      </article>
+    </div>
+
+    <div class="section section-center">
+      <a href="products.html" class="btn-outline">前往全部產品</a>
+    </div>
+  </section>
+
+</main>
 
   <!-- FOOTER -->
   <footer class="site-footer">
