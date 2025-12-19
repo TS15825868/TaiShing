@@ -1,8 +1,11 @@
-// main.js - 專心處理：漢堡選單 + 返回上一頁
+// main.js - 漢堡選單 + 返回上一頁 + Header 高度補償
 document.addEventListener('DOMContentLoaded', function () {
   setupNavToggle();
   setupBackLinks();
+  adjustMainTopPadding();
 });
+
+window.addEventListener('resize', adjustMainTopPadding);
 
 /**
  * 三條線漢堡選單
@@ -50,5 +53,24 @@ function setupBackLinks() {
       e.preventDefault();
       window.location.href = 'index.html#all-products';
     });
+  });
+}
+
+/**
+ * 讓內容不被固定 Header 壓住
+ * - 讀取 .site-header 高度
+ * - 幫所有 .site-main 加上對應 padding-top
+ */
+function adjustMainTopPadding() {
+  const header = document.querySelector('.site-header');
+  const mains = document.querySelectorAll('.site-main');
+
+  if (!header || !mains.length) return;
+
+  const h = header.offsetHeight || 0;
+  const extra = 16; // 再多一點安全距離
+
+  mains.forEach(function (main) {
+    main.style.paddingTop = (h + extra) + 'px';
   });
 }
