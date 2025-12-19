@@ -1,9 +1,17 @@
 /* =========================================================
-   TaiShing Site - main.js (Final)
-   - Header padding-top auto fix
-   - Compact header on scroll
-   - Reveal animations
-   - Auto inject Floating LINE button (All pages)
+   TaiShing Site - main.js (Final Clean Version)
+
+   - 自動計算主內容與固定 header 間距
+   - 捲動時 header 微縮小
+   - 基本 reveal 動畫
+   - 全站注入 LINE 浮動按鈕 (使用 images/line-float-icon.png)
+   - back-link：
+       若從同站頁面點進來 → history.back()
+       若從外部進來或直接打網址 → 回首頁產品區 index.html#all-products
+   - 三條線：
+       - 點擊切換 is-open
+       - 點選選單項目自動收合
+       - 點畫面其他地方也會收合
    ========================================================= */
 (function () {
   "use strict";
@@ -60,9 +68,9 @@
     btn.className = "line-float-btn";
     btn.target = "_blank";
     btn.rel = "noopener";
-    btn.setAttribute("aria-label", "LINE 諮詢");
+    btn.setAttribute("aria-label", "LINE 問詢");
     btn.innerHTML = `
-   <img src="images/line-float-icon.png" alt="LINE" class="line-float-img">
+      <img src="images/line-float-icon.png" alt="LINE" class="line-float-img">
     `;
 
     let toast = document.querySelector(".line-toast");
@@ -75,11 +83,6 @@
     }
 
     document.body.appendChild(btn);
-
-    try {
-      const h = new Date().getHours();
-      if (h >= 19 || h <= 6) btn.classList.add("is-night");
-    } catch (_) {}
 
     const footer = document.querySelector(".site-footer");
     const updateCompact = () => {
@@ -96,37 +99,11 @@
 
     btn.addEventListener("click", () => {
       if (!toast) return;
-      toast.textContent = "正在前往 LINE 諮詢…";
+      toast.textContent = "正在前往 LINE…";
       toast.classList.add("is-show");
       setTimeout(() => toast.classList.remove("is-show"), 1200);
     });
   }
-
-
-  function setupNavToggle() {
-    var toggle = document.querySelector(".nav-toggle");
-    var nav = document.querySelector(".site-nav");
-    if (!toggle || !nav) return;
-
-    function closeNav() {
-      nav.classList.remove("is-open");
-    }
-
-    toggle.addEventListener("click", function () {
-      nav.classList.toggle("is-open");
-    });
-
-    var links = nav.querySelectorAll(".nav-link");
-    links.forEach(function (link) {
-      link.addEventListener("click", function () {
-        // 點選選單項目後自動收合（含同頁錨點）
-        if (nav.classList.contains("is-open")) {
-          closeNav();
-        }
-      });
-    });
-  }
-
 
   function setupBackLinks() {
     const backButtons = document.querySelectorAll(".back-link");
@@ -147,17 +124,46 @@
         const sameOriginRef =
           document.referrer && document.referrer.startsWith(window.location.origin);
 
-        // 先把手機選單收起
         closeNav();
 
         if (sameOriginRef) {
-          // 有上一頁而且在同一個網站 → 回上一頁
           window.history.back();
         } else {
-          // 沒有上一頁或從外部進來 → 統一回首頁產品區
           window.location.href = "index.html#all-products";
         }
       });
+    });
+  }
+
+  function setupNavToggle() {
+    const toggle = document.querySelector(".nav-toggle");
+    const nav = document.querySelector(".site-nav");
+    if (!toggle || !nav) return;
+
+    function closeNav() {
+      nav.classList.remove("is-open");
+    }
+
+    toggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      nav.classList.toggle("is-open");
+    });
+
+    const links = nav.querySelectorAll(".nav-link");
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
+        if (nav.classList.contains("is-open")) {
+          closeNav();
+        }
+      });
+    });
+
+    document.addEventListener("click", function (event) {
+      if (!nav.contains(event.target) && !toggle.contains(event.target)) {
+        if (nav.classList.contains("is-open")) {
+          closeNav();
+        }
+      }
     });
   }
 
