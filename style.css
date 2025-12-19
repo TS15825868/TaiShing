@@ -108,6 +108,12 @@ img {
 /* =========================================
    NAV（不換行）
    ========================================= */
+
+/* base nav layout */
+.site-nav {
+  margin-left: auto;
+}
+
 .site-nav ul {
   display: flex;
   gap: 18px;
@@ -298,9 +304,11 @@ img {
   }
 
   .site-nav{
+    display: none;
     width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
+  }
+  .site-nav.is-open{
+    display: block;
   }
 
   .site-nav ul{
