@@ -19,46 +19,36 @@
   function setupCompactHeader() {
     const header = document.querySelector(".site-header");
     if (!header) return;
-
-    let lastScrollY = window.pageYOffset || window.scrollY || 0;
-
-    function onScroll() {
-      const currentY = window.pageYOffset || window.scrollY || 0;
-
-      if (currentY > 40) {
-        header.classList.add("is-compact");
-      } else {
-        header.classList.remove("is-compact");
-      }
-
-      lastScrollY = currentY;
-    }
-
+    const onScroll = () => {
+      if (window.scrollY > 24) header.classList.add("header--compact");
+      else header.classList.remove("header--compact");
+    };
+    onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
   function setupReveal() {
-    const revealEls = document.querySelectorAll(".reveal");
-    if (!revealEls.length) return;
+    const targets = document.querySelectorAll(".reveal, .reveal-up");
+    if (!targets.length) return;
 
     if (!("IntersectionObserver" in window)) {
-      revealEls.forEach((el) => el.classList.add("is-visible"));
+      targets.forEach(el => el.classList.add("is-visible"));
       return;
     }
 
-    const observer = new IntersectionObserver(
-      (entries, obs) => {
+    const io = new IntersectionObserver(
+      (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
-            obs.unobserve(entry.target);
+            io.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { threshold: 0.12 }
     );
 
-    revealEls.forEach((el) => observer.observe(el));
+    targets.forEach(el => io.observe(el));
   }
 
   function injectLineFloat() {
@@ -79,70 +69,64 @@
     if (!toast) {
       toast = document.createElement("div");
       toast.className = "line-toast";
-      toast.textContent = "正在前往 LINE 諮詢…";
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
       document.body.appendChild(toast);
     }
 
-    btn.addEventListener("click", function () {
-      toast.classList.add("is-visible");
-      setTimeout(() => {
-        toast.classList.remove("is-visible");
-      }, 2100);
-    });
-
     document.body.appendChild(btn);
 
-    function updatePosition() {
-      const footer = document.querySelector(".site-footer");
+    try {
+      const h = new Date().getHours();
+      if (h >= 19 || h <= 6) btn.classList.add("is-night");
+    } catch (_) {}
+
+    const footer = document.querySelector(".site-footer");
+    const updateCompact = () => {
       if (!footer) return;
+      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+      const viewportBottom = window.scrollY + window.innerHeight;
+      const nearFooter = viewportBottom > (footerTop - 120);
+      btn.classList.toggle("is-compact", nearFooter);
+    };
 
-      const btnRect = btn.getBoundingClientRect();
-      const footerRect = footer.getBoundingClientRect();
+    updateCompact();
+    window.addEventListener("scroll", updateCompact, { passive: true });
+    window.addEventListener("resize", updateCompact);
 
-      const overlap = btnRect.bottom > footerRect.top;
-      if (overlap) {
-        btn.classList.add("is-compact");
-      } else {
-        btn.classList.remove("is-compact");
-      }
-    }
-
-    window.addEventListener("scroll", updatePosition, { passive: true });
-    window.addEventListener("resize", updatePosition);
-    updatePosition();
+    btn.addEventListener("click", () => {
+      if (!toast) return;
+      toast.textContent = "正在前往 LINE 諮詢…";
+      toast.classList.add("is-show");
+      setTimeout(() => toast.classList.remove("is-show"), 1200);
+    });
   }
 
+
   function setupNavToggle() {
-    const navToggle = document.querySelector(".nav-toggle");
-    const nav = document.querySelector(".site-nav");
-    if (!navToggle || !nav) return;
+    var toggle = document.querySelector(".nav-toggle");
+    var nav = document.querySelector(".site-nav");
+    if (!toggle || !nav) return;
 
     function closeNav() {
       nav.classList.remove("is-open");
     }
 
-    navToggle.addEventListener("click", function (event) {
-      event.stopPropagation();
+    toggle.addEventListener("click", function () {
       nav.classList.toggle("is-open");
-    });
-
-    document.addEventListener("click", function (event) {
-      if (!nav.contains(event.target) && !navToggle.contains(event.target)) {
-        if (nav.classList.contains("is-open")) {
-          closeNav();
-        }
-      }
     });
 
     var links = nav.querySelectorAll(".nav-link");
     links.forEach(function (link) {
       link.addEventListener("click", function () {
+        // 點選選單項目後自動收合（含同頁錨點）
         if (nav.classList.contains("is-open")) {
           closeNav();
         }
       });
     });
   }
+
 
   function setupBackLinks() {
     const backButtons = document.querySelectorAll(".back-link");
@@ -163,11 +147,14 @@
         const sameOriginRef =
           document.referrer && document.referrer.startsWith(window.location.origin);
 
+        // 先把手機選單收起
         closeNav();
 
         if (sameOriginRef) {
+          // 有上一頁而且在同一個網站 → 回上一頁
           window.history.back();
         } else {
+          // 沒有上一頁或從外部進來 → 統一回首頁產品區
           window.location.href = "index.html#all-products";
         }
       });
