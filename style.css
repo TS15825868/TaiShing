@@ -911,3 +911,85 @@ img.product-image{
   line-height: 1.6;
 }
 
+.back-link {
+  display: inline-block;
+  margin-bottom: 1em;
+  padding: 0.4em 0.8em;
+  border: 1px solid #b99383;
+  color: #b99383;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+.back-link:hover {
+  background-color: #b99383;
+  color: #fff;
+}
+
+:root {
+  --color-accent: #b99383;
+  --color-accent-dark: #9a7b6d;
+  --color-accent-soft: #f6ece7;
+}
+
+/* 全站玫瑰金主題：按鈕、連結、導覽 */
+a:hover {
+  color: var(--color-accent);
+}
+
+/* 導覽連結 hover 下底線改為玫瑰金 */
+.nav-link::after {
+  background: var(--color-accent);
+}
+
+/* 主要按鈕樣式（玫瑰金） */
+.btn-primary {
+  background: var(--color-accent);
+  color: #fff;
+  border: 1px solid var(--color-accent);
+}
+.btn-primary:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+
+/* 柔和款按鈕 */
+.btn-soft {
+  background: var(--color-accent-soft);
+  color: var(--color-accent-dark);
+  border: 1px solid var(--color-accent-soft);
+}
+.btn-soft:hover {
+  background: #f1e1d9;
+}
+
+/* 外框型按鈕（含 detail） */
+.btn-outline,
+.btn-outline-gold,
+.btn-detail {
+  background: transparent;
+  border: 1px solid var(--color-accent);
+  color: var(--color-accent);
+}
+.btn-outline:hover,
+.btn-outline-gold:hover,
+.btn-detail:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* LINE 強調按鈕也走玫瑰金主題（浮動圓鈕仍維持官方綠色圖示） */
+.btn-line-strong {
+  background: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  color: #fff;
+  font-weight: 700;
+}
+.btn-line-strong:hover {
+  background: var(--color-accent-dark);
+  border-color: var(--color-accent-dark);
+}
+
+/* 產品卡片中的操作按鈕若有使用 .btn-*，亦一併套用上述風格 */
+

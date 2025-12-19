@@ -138,6 +138,54 @@
     });
 
     // 點擊選單區域以外時，自動收合三條線選單（桌機與手機皆適用）
+    function handleOutsideClose(event) {
+      if (!nav.classList.contains("is-open")) return;
+
+      var clickInsideNav = nav.contains(event.target);
+      var clickOnToggle = toggle.contains(event.target);
+
+      if (!clickInsideNav && !clickOnToggle) {
+        closeNav();
+      }
+    }
+
+    document.addEventListener("click", handleOutsideClose);
+    document.addEventListener("touchstart", handleOutsideClose, { passive: true });
+
+    // 手機或桌機只要開始捲動畫面，也自動收合選單
+    window.addEventListener("scroll", function () {
+      if (nav.classList.contains("is-open")) {
+        closeNav();
+      }
+    }, { passive: true });
+  }
+
+    toggle.addEventListener("click", function () {
+      nav.classList.toggle("is-open");
+    });
+
+    var links = nav.querySelectorAll(".nav-link");
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
+        // 點選選單項目後自動收合（含同頁錨點）
+        if (nav.classList.contains("is-open")) {
+          closeNav();
+        }
+      });
+    });
+
+    // 返回上一頁按鈕點擊時，也一併收合選單
+    var backLinks = document.querySelectorAll(".back-link");
+    backLinks.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (nav.classList.contains("is-open")) {
+          closeNav();
+        }
+        // 仍交由原本的 window.history.back() 處理導頁
+      });
+    });
+
+    // 點擊選單區域以外時，自動收合三條線選單（桌機與手機皆適用）
     document.addEventListener("click", function (event) {
       if (!nav.classList.contains("is-open")) return;
 
