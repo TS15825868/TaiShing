@@ -822,7 +822,7 @@ img.product-image{
 /* 首頁主打產品專用：單欄置中顯示 */
 .home-feature-grid {
   grid-template-columns: minmax(0, 1fr);
-  max-width: 420px;
+  max-width: 960px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -833,6 +833,23 @@ img.product-image{
 
 @media (max-width: 768px){
   .home-feature-grid {
-    grid-template-columns: minmax(0, 1fr);
-  }
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+}
+}
+
+
+/* 首頁主打產品圖片放大為橫幅 */
+.home-feature-grid .product-image-frame {
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.home-feature-grid .product-image-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
