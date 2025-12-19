@@ -10,6 +10,14 @@
 html, body {
   margin: 0;
   padding: 0;
+  font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
+               "PingFang TC", "Microsoft JhengHei", serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: var(--color-text, #3a2a28);
+  background: var(--color-bg, #f8f3ee);
 }
 
 body {
@@ -293,6 +301,10 @@ img {
     width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    display: none;
+  }
+  .site-nav.is-open{
+    display: block;
   }
 
   .site-nav ul{
@@ -367,7 +379,7 @@ img {
   padding: 10px 12px;
   gap: 8px;
 }
-.line-float-btn.is-compact {}
+.line-float-btn.is-compact 
 
 @media (max-width: 768px) {
   .line-float-btn {
@@ -886,3 +898,78 @@ img.product-image{
   opacity: 0.8;
 }
 
+.page-title {
+  font-size: 1.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+
+
+/* =========================================
+   EXTRA COMPONENTS FOR NEW PAGES
+   ========================================= */
+.feature-line {
+  font-size: 1.1rem;
+  margin: 0.5em 0 1.5em;
+  color: var(--color-accent-dark, #9a7b6d);
+  font-weight: 500;
+}
+
+.product-tagline {
+  font-size: 0.9rem;
+  margin: 0.3em 0 0.8em;
+  color: var(--color-accent-dark, #9a7b6d);
+}
+
+.text-note {
+  font-size: 0.85rem;
+  color: #777777;
+  line-height: 1.7;
+  margin-top: 1.2rem;
+}
+
+.faq-list {
+  margin: 1.5rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+}
+
+.faq-item h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.faq-item p {
+  margin: 0.2rem 0;
+}
+
+.guide-card {
+  padding: 1.2rem 1.4rem;
+  border-radius: 8px;
+  background: #f7eee8;
+}
+
+.guide-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.4rem;
+}
+
+.guide-card p {
+  margin: 0.2rem 0;
+}
