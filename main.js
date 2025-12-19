@@ -1,145 +1,179 @@
-// main.js
-// 台興山產・仙加味 主站通用腳本
+/* =========================================================
+   TaiShing Site - main.js (Final)
+   - Header padding-top auto fix
+   - Compact header on scroll
+   - Reveal animations
+   - Auto inject Floating LINE button (All pages)
+   ========================================================= */
+(function () {
+  "use strict";
 
-document.addEventListener("DOMContentLoaded", () => {
-  setupNavToggle();
-  setupRevealOnScroll();
-  setupBackLinks();
-  setupSmoothAnchorScroll();
-});
-
-/**
- * 三條線選單切換（手機 & 小螢幕）
- * --------------------------------
- * .nav-toggle ＝ 右上角三條線按鈕
- * .site-nav   ＝ 導覽列 <nav>
- * .site-nav.is-open ⇒ 手機版展開
- */
-function setupNavToggle() {
-  const navToggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".site-nav");
-
-  if (!navToggle || !nav) return;
-
-  const closeNav = () => {
-    nav.classList.remove("is-open");
-  };
-
-  // 點三條線 → 開／關選單
-  navToggle.addEventListener("click", (event) => {
-    event.stopPropagation();
-    nav.classList.toggle("is-open");
-  });
-
-  // 點選單裡任一連結 → 自動關閉（避免停在展開狀態）
-  nav.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      closeNav();
-    });
-  });
-
-  // 點畫面其他地方 → 自動關閉
-  document.addEventListener("click", (event) => {
-    if (!nav.contains(event.target) && !navToggle.contains(event.target)) {
-      closeNav();
-    }
-  });
-
-  // 捲動畫面也順便收起（避免遮到內容）
-  window.addEventListener(
-    "scroll",
-    () => {
-      if (nav.classList.contains("is-open")) {
-        closeNav();
-      }
-    },
-    { passive: true }
-  );
-}
-
-/**
- * 捲動顯示動畫（.reveal 元素）
- * ------------------------------
- * 進畫面才慢慢浮現
- */
-function setupRevealOnScroll() {
-  const revealEls = document.querySelectorAll(".reveal");
-  if (!revealEls.length) return;
-
-  if (!("IntersectionObserver" in window)) {
-    // 舊瀏覽器：直接全部顯示
-    revealEls.forEach((el) => el.classList.add("is-visible"));
-    return;
+  function setMainPaddingTop() {
+    const header = document.querySelector(".site-header");
+    const main = document.querySelector(".site-main");
+    if (!header || !main) return;
+    const h = header.offsetHeight || 0;
+    main.style.paddingTop = `${h + 18}px`;
   }
 
-  const observer = new IntersectionObserver(
-    (entries, obs) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          obs.unobserve(entry.target);
+  function setupCompactHeader() {
+    const header = document.querySelector(".site-header");
+    if (!header) return;
+    const onScroll = () => {
+      if (window.scrollY > 24) header.classList.add("header--compact");
+      else header.classList.remove("header--compact");
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  function setupReveal() {
+    const targets = document.querySelectorAll(".reveal, .reveal-up");
+    if (!targets.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      targets.forEach(el => el.classList.add("is-visible"));
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            io.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    targets.forEach(el => io.observe(el));
+  }
+
+  function injectLineFloat() {
+    const LINE_URL = "https://lin.ee/sHZW7NkR";
+    if (document.querySelector(".line-float-btn")) return;
+
+    const btn = document.createElement("a");
+    btn.href = LINE_URL;
+    btn.className = "line-float-btn";
+    btn.target = "_blank";
+    btn.rel = "noopener";
+    btn.setAttribute("aria-label", "LINE 諮詢");
+    btn.innerHTML = `
+   <img src="images/line-float-icon.png" alt="LINE" class="line-float-img">
+    `;
+
+    let toast = document.querySelector(".line-toast");
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.className = "line-toast";
+      toast.setAttribute("role", "status");
+      toast.setAttribute("aria-live", "polite");
+      document.body.appendChild(toast);
+    }
+
+    document.body.appendChild(btn);
+
+    try {
+      const h = new Date().getHours();
+      if (h >= 19 || h <= 6) btn.classList.add("is-night");
+    } catch (_) {}
+
+    const footer = document.querySelector(".site-footer");
+    const updateCompact = () => {
+      if (!footer) return;
+      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+      const viewportBottom = window.scrollY + window.innerHeight;
+      const nearFooter = viewportBottom > (footerTop - 120);
+      btn.classList.toggle("is-compact", nearFooter);
+    };
+
+    updateCompact();
+    window.addEventListener("scroll", updateCompact, { passive: true });
+    window.addEventListener("resize", updateCompact);
+
+    btn.addEventListener("click", () => {
+      if (!toast) return;
+      toast.textContent = "正在前往 LINE 諮詢…";
+      toast.classList.add("is-show");
+      setTimeout(() => toast.classList.remove("is-show"), 1200);
+    });
+  }
+
+
+  function setupNavToggle() {
+    var toggle = document.querySelector(".nav-toggle");
+    var nav = document.querySelector(".site-nav");
+    if (!toggle || !nav) return;
+
+    function closeNav() {
+      nav.classList.remove("is-open");
+    }
+
+    toggle.addEventListener("click", function () {
+      nav.classList.toggle("is-open");
+    });
+
+    var links = nav.querySelectorAll(".nav-link");
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
+        // 點選選單項目後自動收合（含同頁錨點）
+        if (nav.classList.contains("is-open")) {
+          closeNav();
         }
       });
-    },
-    { threshold: 0.1 }
-  );
+    });
+  }
 
-  revealEls.forEach((el) => observer.observe(el));
-}
 
-/**
- * 「← 返回上一頁」按鈕
- * --------------------
- * .back-link 會呼叫 history.back()
- * 並順便把手機選單收起
- */
-function setupBackLinks() {
-  const backButtons = document.querySelectorAll(".back-link");
-  if (!backButtons.length) return;
+  function setupBackLinks() {
+    const backButtons = document.querySelectorAll(".back-link");
+    if (!backButtons.length) return;
 
-  const nav = document.querySelector(".site-nav");
+    const nav = document.querySelector(".site-nav");
 
-  backButtons.forEach((btn) => {
-    btn.addEventListener("click", (event) => {
-      event.preventDefault();
-      // 先收選單
+    function closeNav() {
       if (nav && nav.classList.contains("is-open")) {
         nav.classList.remove("is-open");
       }
-      // 再回上一頁
-      window.history.back();
-    });
-  });
-}
+    }
 
-/**
- * 站內錨點平滑捲動（#all-products 等）
- * -----------------------------------
- */
-function setupSmoothAnchorScroll() {
-  const links = document.querySelectorAll('a[href^="#"]');
-  if (!links.length) return;
+    backButtons.forEach((btn) => {
+      btn.addEventListener("click", function (event) {
+        event.preventDefault();
 
-  links.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      const href = link.getAttribute("href");
-      if (!href || href === "#") return;
+        const sameOriginRef =
+          document.referrer && document.referrer.startsWith(window.location.origin);
 
-      const target = document.querySelector(href);
-      if (!target) return;
+        // 先把手機選單收起
+        closeNav();
 
-      event.preventDefault();
-
-      const header = document.querySelector(".site-header");
-      const headerHeight = header ? header.offsetHeight : 0;
-
-      const rect = target.getBoundingClientRect();
-      const offsetTop = rect.top + window.pageYOffset - headerHeight - 12;
-
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
+        if (sameOriginRef) {
+          // 有上一頁而且在同一個網站 → 回上一頁
+          window.history.back();
+        } else {
+          // 沒有上一頁或從外部進來 → 統一回首頁產品區
+          window.location.href = "index.html#all-products";
+        }
       });
     });
-  });
-}
+  }
+
+  function init() {
+    setMainPaddingTop();
+    setupBackLinks();
+    setupNavToggle();
+    setupCompactHeader();
+    setupReveal();
+    injectLineFloat();
+    window.addEventListener("resize", setMainPaddingTop);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
