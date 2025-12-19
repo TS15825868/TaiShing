@@ -108,6 +108,43 @@
         width: 90px;
       }
     }
+
+    .qr-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .qr-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      border: 1px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .qr-btn-line {
+      background: #06c755;
+      color: #fff;
+      border-color: #06c755;
+    }
+
+    .qr-btn-home {
+      background: #fff;
+      color: #9b3f4c;
+      border-color: #d8b4a0;
+    }
+
+    .qr-btn:hover {
+      opacity: 0.9;
+    }
+
   </style>
 
 </head>
@@ -120,6 +157,10 @@
 
     <div class="qr-area">
       <img src="images/line_qr.png" alt="LINE QR" />
+      <div class="qr-actions">
+        <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="qr-btn qr-btn-line">LINE 合作洽談</a>
+        <a href="index.html" class="qr-btn qr-btn-home">前往官網首頁</a>
+      </div>
     </div>
 
     <p style="font-size: 1.1rem; margin-bottom: 40px;">
