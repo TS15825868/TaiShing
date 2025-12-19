@@ -10,6 +10,14 @@
 html, body {
   margin: 0;
   padding: 0;
+  font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
+               "PingFang TC", "Microsoft JhengHei", serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  color: var(--color-text, #3a2a28);
+  background: var(--color-bg, #f8f3ee);
 }
 
 body {
@@ -884,5 +892,22 @@ img.product-image{
 
 .back-link:hover {
   opacity: 0.8;
+}
+
+.page-title {
+  font-size: 1.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+}
+
+.section-title {
+  font-size: 1.25rem;
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+}
+
+.section-subtitle {
+  font-size: 1.05rem;
+  line-height: 1.6;
 }
 

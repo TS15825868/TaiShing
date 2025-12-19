@@ -125,6 +125,29 @@
         }
       });
     });
+
+    // 返回上一頁按鈕點擊時，也一併收合選單
+    var backLinks = document.querySelectorAll(".back-link");
+    backLinks.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        if (nav.classList.contains("is-open")) {
+          closeNav();
+        }
+        // 仍交由原本的 window.history.back() 處理導頁
+      });
+    });
+
+    // 點擊選單區域以外時，自動收合三條線選單（桌機與手機皆適用）
+    document.addEventListener("click", function (event) {
+      if (!nav.classList.contains("is-open")) return;
+
+      var clickInsideNav = nav.contains(event.target);
+      var clickOnToggle = toggle.contains(event.target);
+
+      if (!clickInsideNav && !clickOnToggle) {
+        closeNav();
+      }
+    });
   }
 
   function init() {
