@@ -338,16 +338,19 @@ img {
   z-index: 9999;
 
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
 
-  background: transparent;
-  color: #06c755;
+  width: 56px;
+  height: 56px;
+
+  background: #06c755;
+  color: #fff;
   text-decoration: none;
+  border-radius: 50%;
 
-  box-shadow: none;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
 .line-float-btn:hover {
@@ -379,16 +382,19 @@ img {
   z-index: 9999;
 
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
 
-  background: transparent;
-  color: #06c755;
+  width: 56px;
+  height: 56px;
+
+  background: #06c755;
+  color: #fff;
   text-decoration: none;
+  border-radius: 50%;
 
-  box-shadow: none;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 }
 
@@ -844,15 +850,11 @@ img.product-image{
 }
 
 
+
 .line-float-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #06c755;
+  width: 32px;
+  height: 32px;
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
 }
 
 
@@ -863,10 +865,6 @@ img.product-image{
 
 
 .line-float-text {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  color: #06c755;
-  line-height: 1;
+  display: none;
 }
 
