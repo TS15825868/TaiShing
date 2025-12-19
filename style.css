@@ -359,25 +359,11 @@ img {
   box-shadow: 0 12px 24px rgba(0,0,0,0.28);
 }
 
-.line-float-icon {
-  width: 28px;
-  height: 28px;
-  display: inline-flex;
-}
 
-.line-float-icon svg {
-  width: 28px;
-  height: 28px;
-  fill: currentColor;
-  display: block;
-}
 
-.line-float-text {
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  white-space: nowrap;
-}
+
+
+
 
 .line-float-btn.is-night {
   background: #03a54a;
@@ -387,15 +373,31 @@ img {
   padding: 10px 12px;
   gap: 8px;
 }
-.line-float-btn.is-compact .line-float-text {
-  display: none;
-}
+.line-float-btn.is-compact 
 
 @media (max-width: 768px) {
   .line-float-btn {
-    right: 14px;
-    bottom: 16px;
-  }
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  z-index: 9999;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 56px;
+  height: 56px;
+
+  background: #06c755;
+  color: #fff;
+  text-decoration: none;
+
+  border-radius: 50%;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,0.22);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
 }
 
 /* Toast */
@@ -847,4 +849,21 @@ img.product-image{
   width: 100%;
   height: auto;
   display: block;
+}
+
+.line-float-icon {
+  width: 28px;
+  height: 28px;
+  display: inline-flex;
+}
+
+.line-float-icon svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+  display: block;
+}
+
+.line-float-text {
+  display: none;
 }
