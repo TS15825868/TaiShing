@@ -62,12 +62,7 @@
     btn.rel = "noopener";
     btn.setAttribute("aria-label", "LINE 諮詢");
     btn.innerHTML = `
-      <span class="line-float-icon" aria-hidden="true">
-        <svg viewBox="0 0 24 24" focusable="false" role="img">
-          <path d="M19.6 10.8c0-3.8-3.8-6.8-8.5-6.8S2.6 7 2.6 10.8c0 3.4 3 6.2 7 6.7.3.1.7.2.8.5.1.2.1.6.1.8 0 0-.1.7-.1.9-.1.2-.2.9.8.5 1-.4 5.4-3.2 7.4-5.5 1.4-1.5 2-3 2-4.9z"></path>
-        </svg>
-      </span>
-      <span class="line-float-text">LINE</span>
+   <img src="images/line-float-icon.png" alt="LINE" class="line-float-img">
     `;
 
     let toast = document.querySelector(".line-toast");
