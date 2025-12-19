@@ -107,8 +107,23 @@
     var toggle = document.querySelector(".nav-toggle");
     var nav = document.querySelector(".site-nav");
     if (!toggle || !nav) return;
+
+    function closeNav() {
+      nav.classList.remove("is-open");
+    }
+
     toggle.addEventListener("click", function () {
       nav.classList.toggle("is-open");
+    });
+
+    var links = nav.querySelectorAll(".nav-link");
+    links.forEach(function (link) {
+      link.addEventListener("click", function () {
+        // 點選選單項目後自動收合（含同頁錨點）
+        if (nav.classList.contains("is-open")) {
+          closeNav();
+        }
+      });
     });
   }
 
