@@ -213,3 +213,21 @@
     init();
   }
 })();
+
+// --- hamburger toggle fix ---
+document.addEventListener("DOMContentLoaded",()=>{
+  const btn=document.querySelector(".nav-toggle");
+  const nav=document.querySelector(".site-nav");
+  if(btn&&nav){
+    btn.addEventListener("click",(e)=>{
+      e.stopPropagation();
+      nav.classList.toggle("is-open");
+    });
+    document.addEventListener("click",(e)=>{
+      if(!nav.contains(e.target)&&!btn.contains(e.target)){
+        nav.classList.remove("is-open");
+      }
+    });
+  }
+});
+
