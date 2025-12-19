@@ -817,3 +817,22 @@ img.product-image{
 .section-center {
   text-align: center;
 }
+
+
+/* 首頁主打產品專用：單欄置中顯示 */
+.home-feature-grid {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.home-feature-grid .product-card {
+  text-align: center;
+}
+
+@media (max-width: 768px){
+  .home-feature-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
