@@ -19,7 +19,7 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="brand-block">
-        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo">
+        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo" loading="lazy">
         <div class="brand-text">
           <p class="brand-since">SINCE 1978</p>
           <p class="brand-title">台興山產・仙加味</p>
@@ -34,7 +34,9 @@
         <ul>
           <li><a href="index.html" class="nav-link">首頁</a></li>
           <li><a href="index.html#all-products" class="nav-link">產品總覽</a></li>
+          <li><a href="guide.html" class="nav-link">依需求挑選</a></li>
           <li><a href="about.html" class="nav-link">關於我們</a></li>
+          <li><a href="faq.html" class="nav-link">常見問題</a></li>
           <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
           <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
         </ul>
@@ -49,22 +51,12 @@
       <div class="section-kicker">PRODUCT</div>
       <h1 class="page-title">仙加味 龜鹿飲</h1>
 
-      <!-- 返回上一頁：交給 main.js 統一處理 -->
-      <button class="back-link" type="button">
+      <button class="back-link" type="button" onclick="window.history.back()">
         ← 返回上一頁
       </button>
 
-      <!-- 單包＋10 包雙欄圖片 -->
-      <div class="product-image-row">
-        <!-- 單包 -->
-        <div class="product-image-frame">
-          <img src="images/guilu-drink.jpg" alt="仙加味 龜鹿飲（單包）" class="product-image" loading="lazy" />
-        </div>
-
-        <!-- 10 包一袋 -->
-        <div class="product-image-frame">
-          <img src="images/product-guilu-drink-10pack.jpg" alt="仙加味 龜鹿飲 10 包一袋" class="product-image" loading="lazy" />
-        </div>
+      <div class="product-image-frame">
+        <img src="images/guilu-drink.jpg" alt="仙加味 龜鹿飲" class="product-image" loading="lazy" />
       </div>
 
       <!-- 一句話定位 -->
@@ -79,16 +71,13 @@
         常溫即可飲用，也可隔水微溫，適合作息緊湊、希望補養更輕鬆的人。
       </p>
 
-      <!-- 容量／規格：單包＋10包 -->
+      <!-- 容量／規格 -->
       <h2 class="section-title">容量／規格</h2>
-      <ul>
-        <li>單包：每包 180 cc</li>
-        <li>10 包一袋：180 cc × 10 包（實際以外包裝標示為準）</li>
-      </ul>
+      <p>容量：180 cc ／ 包（實際以外包裝標示為準）</p>
 
       <!-- 成分 -->
       <h2 class="section-title">成分</h2>
-      <p>水、全龜板、駝鹿角、粉光蔘、枸杞、紅棗、黃耆。</p>
+      <p>龜板、鹿角與漢方食材熬製之濃縮液體基底。（實際以外包裝標示為準）</p>
 
       <!-- 適合族群 -->
       <h2 class="section-title">適合族群</h2>
@@ -121,37 +110,42 @@
       </p>
     </section>
 
-    <!-- LINE 諮詢區塊（可保留，讓各產品頁統一） -->
+    <!-- LINE 諮詢・不強推（統一版區塊） -->
     <section class="section reveal consult-section">
       <div class="highlight-tag">LINE 諮詢・不強推</div>
 
       <h2 class="section-title consult-title">
-        仙加味 龜鹿飲適不適合你？<br>先聊聊再說
+        不確定龜鹿飲怎麼安排？<br>可以先在 LINE 問問
       </h2>
 
       <p class="consult-subtitle">
-        每個人的作息、體力與補養方式不同，<br>
-        歡迎先透過 LINE 跟我們聊聊，<br>
-        再決定是否適合補養。
+        作息忙碌、班表不固定、三餐時間不一樣，<br>
+        其實都可以依你的生活節奏來安排龜鹿飲，<br>
+        歡迎先透過 LINE 跟我們聊聊，再一起調整比較合適的使用方式。
       </p>
 
       <p class="consult-note">
-        ✔ 不話術<br>
-        ✔ 不急著成交<br>
-        ✔ 只依多年經驗提供實際建議
+        ✔ 不話術　✔ 不急著成交　✔ 只依多年經驗提供實際建議
       </p>
 
       <div class="consult-faq">
         常有人在 LINE 上詢問：
         <ul>
-          <li>一天喝幾包比較剛好？</li>
-          <li>出門、上班帶著喝怎麼安排時間？</li>
-          <li>和龜鹿膏、湯塊一起使用怎麼搭配比較順？</li>
+          <li>上班族／輪班族，應該什麼時間喝比較好？</li>
+          <li>已經在吃保健品或看診中，龜鹿飲怎麼搭配？</li>
+          <li>想跟家人一起喝，一包要怎麼分配比較剛好？</li>
         </ul>
       </div>
     </section>
 
-  </main>
+  
+    <div class="back-to-products bottom-back">
+      <button class="back-link" type="button">
+        ← 返回上一頁
+      </button>
+    </div>
+
+</main>
 
   <!-- FOOTER -->
   <footer class="site-footer">
@@ -162,6 +156,11 @@
       © 台興山產 版權所有
     </p>
   </footer>
+
+  <!-- 浮動 LINE 按鈕 -->
+  <a href="https://lin.ee/sHZW7NkR" class="line-float" target="_blank" rel="noopener" aria-label="透過 LINE 聯絡我們">
+    <img src="images/line-float-icon.png" alt="LINE" loading="lazy">
+  </a>
 
 </div>
 </body>

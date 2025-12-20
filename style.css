@@ -279,10 +279,10 @@ img {
 }
 
 /* =========================================
-   浮動 LINE 按鈕整合（class: line-float + line-float-btn）
+   FLOATING LINE CTA
+   （class="line-float" + img）
    ========================================= */
-.line-float,
-.line-float-btn {
+.line-float {
   position: fixed;
   right: 16px;
   bottom: 18px;
@@ -299,21 +299,19 @@ img {
   border-radius: 50%;
 }
 
-.line-float img,
-.line-float-btn img {
+.line-float img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
 }
 
-.line-float:hover,
-.line-float-btn:hover {
+.line-float:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
 }
 
-/* Toast */
+/* Toast（目前若有搭配 JS 顯示） */
 .line-toast {
   position: fixed;
   right: 16px;
@@ -339,10 +337,9 @@ img {
   transform: translateY(0);
 }
 
-/* 手機調整 */
+/* 手機：浮動按鈕 & 提示位置微調 */
 @media (max-width: 768px) {
-  .line-float,
-  .line-float-btn {
+  .line-float {
     right: 16px;
     bottom: 18px;
   }
@@ -418,23 +415,6 @@ article.product-card:hover,
   object-fit: contain;
 }
 
-/* =========================================
-   龜鹿飲詳細頁：單包＋10包雙欄圖片
-   ========================================= */
-.product-image-row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 14px;
-  align-items: center;
-}
-
-/* 手機直排 */
-@media (max-width: 768px) {
-  .product-image-row {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* 詳細頁圖片尺寸控制 */
 img.product-image {
   max-width: 100%;
@@ -497,7 +477,7 @@ img.product-image {
 }
 
 /* =========================================
-   NAV：漢堡選單（三條線）
+   NAV：漢堡選單（三條線版本）
    ========================================= */
 .nav-toggle {
   display: none;
@@ -510,7 +490,7 @@ img.product-image {
   color: var(--color-primary-deep);
 }
 
-/* 手機版展開 */
+/* 手機版：使用漢堡選單展開 */
 @media (max-width: 768px) {
   .header-inner {
     flex-direction: row;
@@ -635,7 +615,7 @@ img.product-image {
   flex: 0 0 auto;
 }
 
-/* 手機：section 排版優化 */
+/* 手機：section 內距縮、按鈕改直排、contact 改滿版 */
 @media (max-width: 768px) {
   .section {
     padding: 26px 18px;
@@ -670,11 +650,15 @@ img.product-image {
 }
 
 /* =========================================
-   HERO 區塊
+   首頁 HERO 區塊
    ========================================= */
-.hero.section {}
+.hero.section {
+  /* 已有 section 基本框，可視需要再加特別效果 */
+}
 
-.hero-inner {}
+.hero-inner {
+  /* 若之後要做左右排版，可以在這裡加 display:flex */
+}
 
 .hero-title {
   font-size: clamp(1.7rem, 2.6vw, 2.1rem);
@@ -687,13 +671,14 @@ img.product-image {
   margin-bottom: 0;
 }
 
+/* 主打產品圖片可點連結 */
 .hero-image-link {
   display: block;
   margin-top: 16px;
 }
 
 /* =========================================
-   詳細頁：返回上一頁
+   產品詳細：回到上一頁
    ========================================= */
 .back-to-products {
   text-align: center;
@@ -703,84 +688,48 @@ img.product-image {
 
 .back-link {
   margin: 8px 0 24px;
-  padding: 4px 0;
-  border: none;
-  background: transparent;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent-gold-deep);
+  background: #FFF7F5;
   color: var(--color-accent, #9b3f4c);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   cursor: pointer;
 }
 
 .back-link:hover {
-  opacity: 0.8;
+  background: #F7EDE4;
+  opacity: 1;
 }
+
 
 /* =========================================
-   FAQ / GUIDE 共用元件（風格版）
+   FAQ / GUIDE 共用元件
    ========================================= */
-
-/* FAQ 列表容器 */
 .faq-list {
-  margin: 1.6rem 0 0;
+  margin: 1.5rem 0 0;
   padding: 0;
   list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 
-/* 每一題 FAQ 是一個小卡片 */
 .faq-item {
-  padding: 12px 16px 12px 18px;
-  border-radius: 16px;
-  background: #FFFDFB;
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.04);
+  margin-bottom: 1.5rem;
 }
 
-/* 問題行：稍微加粗＋左邊有 Q 標籤 */
 .faq-question {
-  position: relative;
-  margin: 0 0 4px;
   font-weight: 600;
-  letter-spacing: 0.03em;
-  color: var(--color-primary-deep);
-  padding-left: 20px;
+  margin: 0 0 0.35rem;
 }
 
-.faq-question::before {
-  content: "Q";
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--color-accent-gold-deep);
-}
-
-/* 答案行：顏色稍微柔和一點，加 A 標籤 */
 .faq-answer {
-  position: relative;
   margin: 0;
-  padding-left: 20px;
-  color: var(--color-text-main);
 }
 
-.faq-answer::before {
-  content: "A";
-  position: absolute;
-  left: 0;
-  top: 0;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--color-text-label);
-}
-
-/* GUIDE 卡片維持原本風格，微調一下內距 */
 .guide-grid {
   display: grid;
   gap: 18px;
@@ -790,7 +739,7 @@ img.product-image {
 .guide-card {
   padding: 1.2rem 1.4rem;
   border-radius: 16px;
-  background: #F7EEE8;
+  background: #f7eee8;
 }
 
 .guide-card h3 {
@@ -803,11 +752,6 @@ img.product-image {
 }
 
 @media (max-width: 768px) {
-  .faq-item {
-    padding: 10px 12px 10px 14px;
-    border-radius: 14px;
-  }
-
   .guide-grid {
     grid-template-columns: 1fr;
   }
