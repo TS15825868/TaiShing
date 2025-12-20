@@ -4,6 +4,7 @@
    - Compact header on scroll
    - Reveal animations
    - Floating LINE button helper（用既有 .line-float，沒有才自動生成）
+   - Mobile 漢堡選單：點外面 or 捲動自動收合
    ========================================================= */
 (function () {
   "use strict";
@@ -93,13 +94,13 @@
       document.body.appendChild(toast);
     }
 
-    // 4. 夜間模式（只是顏色 class，CSS 可自行決定要不要用）
+    // 4. 夜間模式 class（如果要特別樣式可以在 CSS 裡用 .line-float.is-night）
     try {
       const h = new Date().getHours();
       if (h >= 19 || h <= 6) btn.classList.add("is-night");
     } catch (_) {}
 
-    // 5. 監控是否接近 footer（要做縮小或位移可以加 .is-compact 用）
+    // 5. 監控是否接近 footer（縮小、位移用 .is-compact）
     const footer = document.querySelector(".site-footer");
     const updateCompact = () => {
       if (!footer) return;
@@ -131,19 +132,41 @@
       nav.classList.remove("is-open");
     }
 
-    toggle.addEventListener("click", function () {
+    // 點漢堡：開 / 關
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation(); // 避免馬上被「點外面關閉」那支事件關掉
       nav.classList.toggle("is-open");
     });
 
+    // 點選選單項目後自動收合（含同頁錨點）
     const links = nav.querySelectorAll(".nav-link");
     links.forEach(function (link) {
       link.addEventListener("click", function () {
-        // 點選選單項目後自動收合（含同頁錨點）
         if (nav.classList.contains("is-open")) {
           closeNav();
         }
       });
     });
+
+    // ✅ 點選「非 nav / 非漢堡」的地方，自動收合
+    document.addEventListener("click", function (e) {
+      const clickInsideNav = nav.contains(e.target);
+      const clickOnToggle = toggle.contains(e.target);
+      if (!clickInsideNav && !clickOnToggle) {
+        closeNav();
+      }
+    });
+
+    // ✅ 手機版：開始捲動就自動收合（避免蓋住畫面）
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (window.innerWidth <= 768 && nav.classList.contains("is-open")) {
+          closeNav();
+        }
+      },
+      { passive: true }
+    );
   }
 
   function setupBackLinks() {
