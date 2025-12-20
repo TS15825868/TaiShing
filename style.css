@@ -279,10 +279,10 @@ img {
 }
 
 /* =========================================
-   FLOATING LINE CTA
-   （class="line-float" + img）
+   浮動 LINE 按鈕整合（class: line-float + line-float-btn）
    ========================================= */
-.line-float {
+.line-float,
+.line-float-btn {
   position: fixed;
   right: 16px;
   bottom: 18px;
@@ -299,19 +299,21 @@ img {
   border-radius: 50%;
 }
 
-.line-float img {
+.line-float img,
+.line-float-btn img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
 }
 
-.line-float:hover {
+.line-float:hover,
+.line-float-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
 }
 
-/* Toast（目前若有搭配 JS 顯示） */
+/* Toast */
 .line-toast {
   position: fixed;
   right: 16px;
@@ -337,9 +339,10 @@ img {
   transform: translateY(0);
 }
 
-/* 手機：浮動按鈕 & 提示位置微調 */
+/* 手機調整 */
 @media (max-width: 768px) {
-  .line-float {
+  .line-float,
+  .line-float-btn {
     right: 16px;
     bottom: 18px;
   }
@@ -415,6 +418,23 @@ article.product-card:hover,
   object-fit: contain;
 }
 
+/* =========================================
+   龜鹿飲詳細頁：單包＋10包雙欄圖片
+   ========================================= */
+.product-image-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  align-items: center;
+}
+
+/* 手機直排 */
+@media (max-width: 768px) {
+  .product-image-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* 詳細頁圖片尺寸控制 */
 img.product-image {
   max-width: 100%;
@@ -477,7 +497,7 @@ img.product-image {
 }
 
 /* =========================================
-   NAV：漢堡選單（三條線版本）
+   NAV：漢堡選單（三條線）
    ========================================= */
 .nav-toggle {
   display: none;
@@ -490,7 +510,7 @@ img.product-image {
   color: var(--color-primary-deep);
 }
 
-/* 手機版：使用漢堡選單展開 */
+/* 手機版展開 */
 @media (max-width: 768px) {
   .header-inner {
     flex-direction: row;
@@ -615,7 +635,7 @@ img.product-image {
   flex: 0 0 auto;
 }
 
-/* 手機：section 內距縮、按鈕改直排、contact 改滿版 */
+/* 手機：section 排版優化 */
 @media (max-width: 768px) {
   .section {
     padding: 26px 18px;
@@ -650,15 +670,11 @@ img.product-image {
 }
 
 /* =========================================
-   首頁 HERO 區塊
+   HERO 區塊
    ========================================= */
-.hero.section {
-  /* 已有 section 基本框，可視需要再加特別效果 */
-}
+.hero.section {}
 
-.hero-inner {
-  /* 若之後要做左右排版，可以在這裡加 display:flex */
-}
+.hero-inner {}
 
 .hero-title {
   font-size: clamp(1.7rem, 2.6vw, 2.1rem);
@@ -671,14 +687,13 @@ img.product-image {
   margin-bottom: 0;
 }
 
-/* 主打產品圖片可點連結 */
 .hero-image-link {
   display: block;
   margin-top: 16px;
 }
 
 /* =========================================
-   產品詳細：回到上一頁
+   詳細頁：返回上一頁
    ========================================= */
 .back-to-products {
   text-align: center;
