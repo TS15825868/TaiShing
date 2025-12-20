@@ -3,7 +3,8 @@
    - Header padding-top auto fix
    - Compact header on scroll
    - Reveal animations
-   - Auto inject Floating LINE button (All pages)
+   - Floating LINE button helper（用既有 .line-float，沒有才自動生成）
+   - Mobile 漢堡選單：點外面 or 捲動自動收合
    ========================================================= */
 (function () {
   "use strict";
@@ -32,7 +33,7 @@
     if (!targets.length) return;
 
     if (!("IntersectionObserver" in window)) {
-      targets.forEach(el => el.classList.add("is-visible"));
+      targets.forEach((el) => el.classList.add("is-visible"));
       return;
     }
 
@@ -48,23 +49,42 @@
       { threshold: 0.12 }
     );
 
-    targets.forEach(el => io.observe(el));
+    targets.forEach((el) => io.observe(el));
   }
 
-  function injectLineFloat() {
+  // 使用現有 .line-float；沒有才建立
+  function setupLineFloat() {
     const LINE_URL = "https://lin.ee/sHZW7NkR";
-    if (document.querySelector(".line-float-btn")) return;
 
-    const btn = document.createElement("a");
-    btn.href = LINE_URL;
-    btn.className = "line-float-btn";
-    btn.target = "_blank";
-    btn.rel = "noopener";
-    btn.setAttribute("aria-label", "LINE 諮詢");
-    btn.innerHTML = `
-   <img src="images/line-float-icon.png" alt="LINE" class="line-float-img">
-    `;
+    // 1. 先找看頁面上有沒有 .line-float
+    let btn = document.querySelector(".line-float");
 
+    // 2. 如果沒有，就自動生成一顆 .line-float
+    if (!btn) {
+      btn = document.createElement("a");
+      btn.href = LINE_URL;
+      btn.className = "line-float";
+      btn.target = "_blank";
+      btn.rel = "noopener";
+      btn.setAttribute("aria-label", "透過 LINE 聯絡我們");
+
+      const img = document.createElement("img");
+      img.src = "images/line-float-icon.png";
+      img.alt = "LINE";
+
+      btn.appendChild(img);
+      document.body.appendChild(btn);
+    } else {
+      // 保險起見，確保屬性正確
+      if (!btn.getAttribute("href")) btn.href = LINE_URL;
+      if (!btn.getAttribute("target")) btn.target = "_blank";
+      if (!btn.getAttribute("rel")) btn.rel = "noopener";
+      if (!btn.getAttribute("aria-label")) {
+        btn.setAttribute("aria-label", "透過 LINE 聯絡我們");
+      }
+    }
+
+    // 3. toast 元件（如果沒存在就建立一個）
     let toast = document.querySelector(".line-toast");
     if (!toast) {
       toast = document.createElement("div");
@@ -74,19 +94,19 @@
       document.body.appendChild(toast);
     }
 
-    document.body.appendChild(btn);
-
+    // 4. 夜間模式 class（如果要特別樣式可以在 CSS 裡用 .line-float.is-night）
     try {
       const h = new Date().getHours();
       if (h >= 19 || h <= 6) btn.classList.add("is-night");
     } catch (_) {}
 
+    // 5. 監控是否接近 footer（縮小、位移用 .is-compact）
     const footer = document.querySelector(".site-footer");
     const updateCompact = () => {
       if (!footer) return;
       const footerTop = footer.getBoundingClientRect().top + window.scrollY;
       const viewportBottom = window.scrollY + window.innerHeight;
-      const nearFooter = viewportBottom > (footerTop - 120);
+      const nearFooter = viewportBottom > footerTop - 120;
       btn.classList.toggle("is-compact", nearFooter);
     };
 
@@ -94,6 +114,7 @@
     window.addEventListener("scroll", updateCompact, { passive: true });
     window.addEventListener("resize", updateCompact);
 
+    // 6. 點擊時顯示提示文字
     btn.addEventListener("click", () => {
       if (!toast) return;
       toast.textContent = "正在前往 LINE 諮詢…";
@@ -102,26 +123,81 @@
     });
   }
 
-
   function setupNavToggle() {
-    var toggle = document.querySelector(".nav-toggle");
-    var nav = document.querySelector(".site-nav");
+    const toggle = document.querySelector(".nav-toggle");
+    const nav = document.querySelector(".site-nav");
     if (!toggle || !nav) return;
 
     function closeNav() {
       nav.classList.remove("is-open");
     }
 
-    toggle.addEventListener("click", function () {
+    // 點漢堡：開 / 關
+    toggle.addEventListener("click", function (e) {
+      e.stopPropagation(); // 避免馬上被「點外面關閉」那支事件關掉
       nav.classList.toggle("is-open");
     });
 
-    var links = nav.querySelectorAll(".nav-link");
+    // 點選選單項目後自動收合（含同頁錨點）
+    const links = nav.querySelectorAll(".nav-link");
     links.forEach(function (link) {
       link.addEventListener("click", function () {
-        // 點選選單項目後自動收合（含同頁錨點）
         if (nav.classList.contains("is-open")) {
           closeNav();
+        }
+      });
+    });
+
+    // ✅ 點選「非 nav / 非漢堡」的地方，自動收合
+    document.addEventListener("click", function (e) {
+      const clickInsideNav = nav.contains(e.target);
+      const clickOnToggle = toggle.contains(e.target);
+      if (!clickInsideNav && !clickOnToggle) {
+        closeNav();
+      }
+    });
+
+    // ✅ 手機版：開始捲動就自動收合（避免蓋住畫面）
+    window.addEventListener(
+      "scroll",
+      function () {
+        if (window.innerWidth <= 768 && nav.classList.contains("is-open")) {
+          closeNav();
+        }
+      },
+      { passive: true }
+    );
+  }
+
+  function setupBackLinks() {
+    const backButtons = document.querySelectorAll(".back-link");
+    if (!backButtons.length) return;
+
+    const nav = document.querySelector(".site-nav");
+
+    function closeNav() {
+      if (nav && nav.classList.contains("is-open")) {
+        nav.classList.remove("is-open");
+      }
+    }
+
+    backButtons.forEach((btn) => {
+      btn.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const sameOriginRef =
+          document.referrer &&
+          document.referrer.startsWith(window.location.origin);
+
+        // 先把手機選單收起
+        closeNav();
+
+        if (sameOriginRef) {
+          // 有上一頁而且在同一個網站 → 回上一頁
+          window.history.back();
+        } else {
+          // 沒有上一頁或從外部進來 → 統一回首頁產品區
+          window.location.href = "index.html#all-products";
         }
       });
     });
@@ -129,10 +205,11 @@
 
   function init() {
     setMainPaddingTop();
+    setupBackLinks();
     setupNavToggle();
     setupCompactHeader();
     setupReveal();
-    injectLineFloat();
+    setupLineFloat();
     window.addEventListener("resize", setMainPaddingTop);
   }
 

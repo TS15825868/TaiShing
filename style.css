@@ -688,21 +688,25 @@ img.product-image {
 
 .back-link {
   margin: 8px 0 24px;
-  padding: 4px 0;
-  border: none;
-  background: transparent;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--color-accent-gold-deep);
+  background: #FFF7F5;
   color: var(--color-accent, #9b3f4c);
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.05em;
   display: inline-flex;
   align-items: center;
+  gap: 4px;
   cursor: pointer;
 }
 
 .back-link:hover {
-  opacity: 0.8;
+  background: #F7EDE4;
+  opacity: 1;
 }
+
 
 /* =========================================
    FAQ / GUIDE 共用元件
