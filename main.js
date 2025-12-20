@@ -169,39 +169,30 @@
     );
   }
 
-  function setupBackLinks() {
-    const backButtons = document.querySelectorAll(".back-link");
-    if (!backButtons.length) return;
+function setupBackLinks() {
+  const backButtons = document.querySelectorAll(".back-link");
+  if (!backButtons.length) return;
 
-    const nav = document.querySelector(".site-nav");
+  const nav = document.querySelector(".site-nav");
 
-    function closeNav() {
-      if (nav && nav.classList.contains("is-open")) {
-        nav.classList.remove("is-open");
-      }
+  function closeNav() {
+    if (nav && nav.classList.contains("is-open")) {
+      nav.classList.remove("is-open");
     }
-
-    backButtons.forEach((btn) => {
-      btn.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        const sameOriginRef =
-          document.referrer &&
-          document.referrer.startsWith(window.location.origin);
-
-        // 先把手機選單收起
-        closeNav();
-
-        if (sameOriginRef) {
-          // 有上一頁而且在同一個網站 → 回上一頁
-          window.history.back();
-        } else {
-          // 沒有上一頁或從外部進來 → 統一回首頁產品區
-          window.location.href = "index.html#all-products";
-        }
-      });
-    });
   }
+
+  backButtons.forEach((btn) => {
+    btn.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      // 手機版若漢堡選單有打開，先收起來
+      closeNav();
+
+      // 一律導回首頁產品總覽
+      window.location.href = "index.html#all-products";
+    });
+  });
+}
 
   function init() {
     setMainPaddingTop();
