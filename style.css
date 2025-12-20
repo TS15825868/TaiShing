@@ -732,7 +732,7 @@ img.product-image {
 
 .guide-grid {
   display: grid;
-  gap: 18px;
+  gap: 20px;
   margin-top: 1.4rem;
 }
 
@@ -747,8 +747,8 @@ img.product-image {
   margin-bottom: 0.4rem;
 }
 
-.guide-card p {
-  margin: 0.2rem 0;
+.guide-card p:last-child {
+  margin-top: 0.6rem;
 }
 
 @media (max-width: 768px) {
