@@ -789,3 +789,89 @@ img.product-image {
     height: 240px;
   }
 }
+
+/* =========================================
+   FAQ 縮圖導覽（聯絡頁用）
+   ========================================= */
+.faq-shortcuts .guide-card {
+  background: #fffaf5;
+}
+
+.faq-shortcuts .btn-soft {
+  margin-top: 0.6rem;
+}
+
+/* =========================================
+   FOOTER CTA 區塊（全站共用）
+   ========================================= */
+.footer-cta {
+  margin-bottom: 20px;
+  padding: 18px 18px 20px;
+  border-radius: 18px;
+  background: #fff7f1;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+}
+
+.footer-cta-title {
+  margin: 0 0 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-primary-deep);
+}
+
+.footer-cta-text {
+  margin: 0 0 12px;
+  font-size: 0.92rem;
+  color: var(--color-text-main);
+}
+
+.footer-cta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-cta-actions .btn-line-strong,
+.footer-cta-actions .btn-outline-gold {
+  flex: 0 0 auto;
+}
+
+/* 手機：按鈕改直排滿版 */
+@media (max-width: 768px) {
+  .footer-cta {
+    padding: 16px 14px 18px;
+  }
+
+  .footer-cta-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .footer-cta-actions .btn-line-strong,
+  .footer-cta-actions .btn-outline-gold {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* =========================================
+   Scroll Reveal 動態
+   ========================================= */
+.reveal,
+.reveal-up {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.reveal.is-visible,
+.reveal-up.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 平滑錨點滾動 */
+html {
+  scroll-behavior: smooth;
+}
