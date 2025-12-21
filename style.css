@@ -756,3 +756,11 @@ img.product-image {
     grid-template-columns: 1fr;
   }
 }
+
+/* =========================================
+   FLOATING LINE CTA：靠近 footer 時縮小
+   ========================================= */
+.line-float.is-compact {
+  transform: scale(0.86) translateY(-4px);
+  transition: transform 0.2s ease;
+}
