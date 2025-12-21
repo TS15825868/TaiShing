@@ -185,6 +185,24 @@ img {
   border-left: 3px solid var(--color-accent-gold-deep);
 }
 
+/* 小副標題 */
+.section-subtitle {
+  font-size: 1rem;
+  margin: 14px 0 6px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+/* 一句話定位 / feature line */
+.product-one-liner,
+.feature-line {
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin: 12px 0 4px;
+  color: var(--color-primary-deep);
+}
+
 /* =========================================
    BUTTON（全站統一）
    ========================================= */
@@ -297,6 +315,7 @@ img {
 
   text-decoration: none;
   border-radius: 50%;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .line-float img {
@@ -309,6 +328,11 @@ img {
 .line-float:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
+}
+
+/* 靠近 footer 時縮小一點，避免太壓迫 */
+.line-float.is-compact {
+  transform: scale(0.86) translateY(-4px);
 }
 
 /* Toast（目前若有搭配 JS 顯示） */
@@ -430,6 +454,21 @@ img.product-image {
 @media (max-width: 768px) {
   .site-main.simple-page img.product-image {
     max-height: 320px;
+  }
+}
+
+/* 產品詳細頁：雙欄圖片（龜鹿飲 單包＋10 包） */
+.product-image-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  align-items: stretch;
+  margin: 10px 0 18px;
+}
+
+@media (max-width: 640px) {
+  .product-image-row {
+    grid-template-columns: 1fr;
   }
 }
 
@@ -707,7 +746,6 @@ img.product-image {
   opacity: 1;
 }
 
-
 /* =========================================
    FAQ / GUIDE 共用元件
    ========================================= */
@@ -757,121 +795,31 @@ img.product-image {
   }
 }
 
-/* FLOATING LINE CTA：靠近 footer 時縮小（平滑過渡版） */
-.line-float {
-  transition: transform 0.32s cubic-bezier(.25,.8,.25,1), opacity 0.32s ease;
-}
-
-.line-float.is-compact {
-  transform: scale(0.86) translateY(-4px);
-  opacity: 0.95;
-}
-
 /* =========================================
-   Google Map 互動式地圖
+   文案補充類型
    ========================================= */
-.map-embed {
-  margin-top: 14px;
-  border-radius: 18px;
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-  background: #f4ece6;
-}
-
-.map-embed iframe {
-  width: 100%;
-  height: 280px;
-  border: 0;
-}
-
-@media (max-width: 768px) {
-  .map-embed iframe {
-    height: 240px;
-  }
+.text-note {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  margin-top: 10px;
 }
 
 /* =========================================
-   FAQ 縮圖導覽（聯絡頁用）
-   ========================================= */
-.faq-shortcuts .guide-card {
-  background: #fffaf5;
-}
-
-.faq-shortcuts .btn-soft {
-  margin-top: 0.6rem;
-}
-
-/* =========================================
-   FOOTER CTA 區塊（全站共用）
-   ========================================= */
-.footer-cta {
-  margin-bottom: 20px;
-  padding: 18px 18px 20px;
-  border-radius: 18px;
-  background: #fff7f1;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-}
-
-.footer-cta-title {
-  margin: 0 0 6px;
-  font-size: 1rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--color-primary-deep);
-}
-
-.footer-cta-text {
-  margin: 0 0 12px;
-  font-size: 0.92rem;
-  color: var(--color-text-main);
-}
-
-.footer-cta-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.footer-cta-actions .btn-line-strong,
-.footer-cta-actions .btn-outline-gold {
-  flex: 0 0 auto;
-}
-
-/* 手機：按鈕改直排滿版 */
-@media (max-width: 768px) {
-  .footer-cta {
-    padding: 16px 14px 18px;
-  }
-
-  .footer-cta-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .footer-cta-actions .btn-line-strong,
-  .footer-cta-actions .btn-outline-gold {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-/* =========================================
-   Scroll Reveal 動態
+   REVEAL 動畫（對應 .reveal / .reveal-up）
    ========================================= */
 .reveal,
 .reveal-up {
   opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal-up {
   transform: translateY(14px);
-  transition: opacity 0.45s ease, transform 0.45s ease;
 }
 
 .reveal.is-visible,
 .reveal-up.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* 平滑錨點滾動 */
-html {
-  scroll-behavior: smooth;
 }
