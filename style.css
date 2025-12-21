@@ -766,3 +766,26 @@ img.product-image {
   transform: scale(0.86) translateY(-4px);
   opacity: 0.95;
 }
+
+/* =========================================
+   Google Map 互動式地圖
+   ========================================= */
+.map-embed {
+  margin-top: 14px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  background: #f4ece6;
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 280px;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .map-embed iframe {
+    height: 240px;
+  }
+}
