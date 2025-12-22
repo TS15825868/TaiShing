@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>台興山產・仙加味｜龜鹿補養一頁簡介</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="台北萬華四代鹿角家族品牌「台興山產・仙加味」，以一頁式介紹龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉，協助你快速了解每款定位與使用方式。">
+  <meta name="keywords" content="龜鹿膏, 龜鹿飲, 龜鹿湯塊, 鹿茸粉, 台興山產, 仙加味, 萬華中藥, 補養">
+
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
+        "PingFang TC", "Microsoft JhengHei", serif;
+      background: #f9f2ec;
+      color: #3c2724;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.8;
+    }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-shell {
+      min-height: 100vh;
+      padding: 18px 16px 40px;
+      background: radial-gradient(circle at top left, #fbe9df 0, #f9f2ec 38%, #f6eee7 100%);
+      display: flex;
+      justify-content: center;
+    }
+    .page-inner {
+      width: 100%;
+      max-width: 960px;
+      background: #fffaf7;
+      border-radius: 24px;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+      padding: 22px 22px 28px;
+    }
+
+    .header-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+    .logo-box {
+      width: 70px;
+      height: 70px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.18);
+      flex-shrink: 0;
+    }
+    .brand-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .since-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: #9a7964;
+    }
+    .brand-name {
+      font-size: 1.1rem;
+      letter-spacing: 0.18em;
+      color: #7b3e43;
+    }
+
+    .hero-tagline {
+      font-size: 0.8rem;
+      letter-spacing: 0.28em;
+      color: #a88c78;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      margin: 10px 0 10px;
+      font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+      line-height: 1.35;
+      letter-spacing: 0.06em;
+      color: #4a2629;
+    }
+
+    .hero-lead {
+      font-size: 0.98rem;
+      margin: 0 0 16px;
+    }
+
+    .hero-lead strong {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .qr-box {
+      display: flex;
+      gap: 18px;
+      margin: 16px 0 18px;
+      flex-wrap: wrap;
+    }
+    .qr-item {
+      width: 140px;
+      text-align: center;
+    }
+    .qr-item img {
+      width: 140px;
+      height: 140px;
+      border-radius: 12px;
+      background: #fff;
+      padding: 8px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.08);
+    }
+    .qr-item-label {
+      margin-top: 6px;
+      font-size: 0.85rem;
+      color: #6a4a3b;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-note {
+      font-size: 0.86rem;
+      color: #8f7262;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      margin: 10px 0 12px;
+      font-size: 1.05rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #a6846f;
+    }
+    .section-subtitle {
+      margin: 0 0 10px;
+      font-size: 1.1rem;
+      color: #4a2629;
+      letter-spacing: 0.06em;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 6px;
+      margin-bottom: 12px;
+    }
+
+    @media (max-width: 640px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .product-card {
+      background: #fffdfb;
+      border-radius: 18px;
+      border: 1px solid rgba(0, 0, 0, 0.06);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
+      padding: 12px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .product-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.08);
+    }
+
+    .product-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fff;
+      margin-bottom: 10px;
+      aspect-ratio: 4 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .product-name {
+      font-size: 1rem;
+      margin: 0 0 4px;
+      color: #4a2629;
+      letter-spacing: 0.08em;
+    }
+    .product-tagline {
+      font-size: 0.9rem;
+      margin: 0 0 8px;
+      color: #7a5c4c;
+    }
+    .product-meta {
+      font-size: 0.85rem;
+      margin: 0;
+      color: #7c6153;
+    }
+    .product-meta strong {
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-right: 2px;
+    }
+
+    .divider {
+      margin: 18px 0 16px;
+      border: 0;
+      border-top: 1px dashed rgba(146, 112, 89, 0.35);
+    }
+
+    .footer-cta-title {
+      margin: 0 0 6px;
+      font-size: 1rem;
+      color: #512a2f;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-cta-text {
+      margin: 0 0 12px;
+      font-size: 0.93rem;
+      color: #7d6355;
+    }
+
+    .footer-row {
+      margin-top: 16px;
+      font-size: 0.82rem;
+      color: #85695b;
+    }
+    .footer-row strong {
+      letter-spacing: 0.06em;
+    }
+    .footer-row a {
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+  </style>
+</head>
+
+<body>
+<div class="page-shell">
+  <main class="page-inner">
+
+    <!-- HEADER / TITLE -->
+    <header>
+      <div class="header-row">
+        <div class="logo-box">
+          <img src="images/logo-pro.jpeg" alt="台興山產・仙加味 Logo">
+        </div>
+        <div class="brand-text-block">
+          <div class="since-tag">SINCE 1978</div>
+          <div class="brand-name">台興山產・仙加味</div>
+        </div>
+      </div>
+
+      <div class="hero-tagline">龜鹿補養・四代鹿角家族</div>
+      <h1 class="hero-title">把補養變成日常的一部分</h1>
+      <p class="hero-lead">
+        台興山產・仙加味從萬華起家，家族四代與鹿角打交道。早年另在坪林山林養鹿，
+        把第一線照護與挑料經驗帶回萬華街巷。如今，我們專注
+        <strong>龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉</strong>，
+        讓原本複雜的熬膠工序變成日常補養，陪你安穩調整生活節奏。
+      </p>
+
+      <!-- QR ZONE -->
+      <div class="qr-box">
+        <div class="qr-item">
+          <img src="images/qr-line.png" alt="LINE QR">
+          <div class="qr-item-label">LINE 一對一諮詢</div>
+        </div>
+
+        <div class="qr-item">
+          <img src="images/qr-website.png" alt="Official Site QR">
+          <div class="qr-item-label">前往完整官網</div>
+        </div>
+      </div>
+
+      <p class="hero-note">
+        若你正接受治療或有固定用藥習慣，也可以先聊聊目前狀況，
+        讓我們一起評估哪些部份適合用日常補養協助、哪些則以醫師建議為主。
+      </p>
+    </header>
+
+
+    <!-- PRODUCTS CONTENT 保留不動 -->
+    （此區保持與原版本一致）
+
+    <!-- 底部再次加入 QR -->
+    <section>
+      <hr class="divider">
+
+      <h2 class="footer-cta-title">不確定哪一款適合你？</h2>
+      <p class="footer-cta-text">
+        你可以先整理作息、目前補養情況、想改善的方向，
+        我們會依照多年經驗協助提供實際可行的安排方法。
+      </p>
+
+      <div class="qr-box" style="justify-content:flex-start;margin-bottom:6px;">
+        <div class="qr-item">
+          <img src="images/qr-line.png" alt="LINE QR">
+          <div class="qr-item-label">LINE 諮詢</div>
+        </div>
+
+        <div class="qr-item">
+          <img src="images/qr-website.png" alt="Official Site QR">
+          <div class="qr-item-label">官網更多資訊</div>
+        </div>
+      </div>
+
+      <p class="hero-note">
+        ※ 日常補養建議僅供參考，若有特殊狀況請遵循醫師評估。
+      </p>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="footer-row">
+      <div><strong>台興山產有限公司・仙加味</strong></div>
+      <div>地址：台北市萬華區西昌街 52 號｜電話：(02) 2381-2990</div>
+      <div>龜鹿系列產品與鹿茸粉為日常補養用途，非醫療行為或療效保證。</div>
+    </footer>
+
+  </main>
+</div>
+</body>
+</html>
