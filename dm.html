@@ -7,18 +7,52 @@
 
   <style>
     * { box-sizing: border-box; }
-    html, body {
+
+    html,
+    body {
       margin: 0;
       padding: 0;
     }
+
     body {
       font-family: -apple-system, BlinkMacSystemFont, "PingFang TC",
-                   "Microsoft JhengHei", system-ui, sans-serif;
+        "Microsoft JhengHei", system-ui, sans-serif;
       background: #f5e6dc;
       color: #4a342d;
       -webkit-font-smoothing: antialiased;
     }
 
+    /* === A4 列印設定 === */
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        background: #fff;
+      }
+
+      .dm-wrapper {
+        min-height: 0;
+        padding: 0;
+        display: block;
+      }
+
+      .dm-card {
+        width: 210mm;
+        height: 297mm;
+        max-width: none;
+        border-radius: 0;
+        box-shadow: none;
+        margin: 0;
+      }
+    }
+
+    /* === 版面（螢幕預覽） === */
     .dm-wrapper {
       min-height: 100vh;
       display: flex;
@@ -49,13 +83,15 @@
       gap: 14px;
       margin-bottom: 18px;
     }
+
     .dm-logo {
       width: 60px;
       height: 60px;
       border-radius: 18px;
       object-fit: cover;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
+
     .dm-brand-text-small {
       font-size: 0.72rem;
       letter-spacing: 0.18em;
@@ -63,6 +99,7 @@
       color: #b27c5d;
       margin-bottom: 4px;
     }
+
     .dm-brand-name {
       font-size: 1.02rem;
       letter-spacing: 0.16em;
@@ -75,6 +112,7 @@
       margin: 2px 0 6px;
       color: #7a4235;
     }
+
     .dm-subtitle {
       font-size: 0.9rem;
       color: #8a6a58;
@@ -84,17 +122,19 @@
     /* Product grid */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
       margin-bottom: 22px;
     }
+
     @media (min-width: 640px) {
       .product-grid {
         gap: 18px;
       }
     }
+
     .product-item {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 18px;
       padding: 10px 10px 12px;
       box-shadow: 0 10px 24px rgba(160, 90, 60, 0.16);
@@ -103,6 +143,7 @@
       align-items: center;
       text-align: center;
     }
+
     .product-img-wrap {
       width: 100%;
       aspect-ratio: 4 / 3;
@@ -114,11 +155,13 @@
       justify-content: center;
       margin-bottom: 8px;
     }
+
     .product-img-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
+
     .product-name {
       font-size: 0.92rem;
       letter-spacing: 0.12em;
@@ -130,15 +173,17 @@
       margin: 4px 0 22px;
       padding: 10px 12px 12px;
       border-radius: 14px;
-      background: rgba(255,255,255,0.8);
+      background: rgba(255, 255, 255, 0.8);
       border: 1px solid rgba(190, 120, 90, 0.35);
     }
+
     .partner-label {
       font-size: 0.78rem;
       letter-spacing: 0.26em;
       color: #b27c5d;
       margin: 0 0 6px;
     }
+
     .partner-name {
       font-size: 0.96rem;
       font-weight: 600;
@@ -146,6 +191,7 @@
       margin: 0;
       color: #5b382f;
     }
+
     .partner-note {
       margin: 6px 0 0;
       font-size: 0.8rem;
@@ -160,24 +206,28 @@
       margin: 0 0 12px;
       text-align: center;
     }
+
     .qr-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
     }
+
     .qr-item {
-      background: rgba(255,255,255,0.9);
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 18px;
       padding: 10px 10px 12px;
       box-shadow: 0 10px 24px rgba(160, 90, 60, 0.18);
       text-align: center;
     }
+
     .qr-label {
       font-size: 0.86rem;
       letter-spacing: 0.14em;
       margin: 0 0 8px;
       color: #5b382f;
     }
+
     .qr-img-wrap {
       width: 100%;
       aspect-ratio: 1 / 1;
@@ -188,6 +238,7 @@
       align-items: center;
       justify-content: center;
     }
+
     .qr-img-wrap img {
       width: 100%;
       height: 100%;
@@ -241,14 +292,14 @@
         <div class="product-img-wrap">
           <img src="images/guilu-soup-block.jpg" alt="仙加味 龜鹿湯塊">
         </div>
-        <div class="product-name">龜鹿湯塊（4兩/半斤/1斤）</div>
+        <div class="product-name">龜鹿湯塊（4兩／半斤／1斤）</div>
       </div>
 
       <div class="product-item">
         <div class="product-img-wrap">
           <img src="images/product-lurong-powder.jpg" alt="仙加味 鹿茸粉">
         </div>
-        <div class="product-name">鹿茸粉 75公克</div>
+        <div class="product-name">鹿茸粉 75 公克</div>
       </div>
     </div>
 
@@ -277,7 +328,7 @@
     </div>
 
     <div class="dm-footer">
-      台興山產有限公司・仙加味｜台北市萬華區西昌街 52 號｜電話：(02) 2381-2990<br>
+      台興山產有限公司・仙加味｜台北市萬華區西昌街 52 號｜電話：(02) 2381-2990
     </div>
 
   </div>
