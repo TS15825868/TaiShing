@@ -6,18 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <style>
-    /* =========================
-       A4 PRINT SETUP
-       ========================= */
     @page { size: A4; margin: 0; }
 
     :root{
       --ink:#1a1a1a;
       --muted:#6b6b6b;
       --line:#e2e2e2;
-      --soft:#faf7f5;        /* 淡淡玫瑰金底（很淡，白底印刷仍乾淨） */
-      --brand:#7a4a3a;       /* 漢方咖 */
-      --brand-2:#b27c5d;     /* 玫瑰金棕 */
+      --soft:#faf7f5;
+      --brand:#7a4a3a;
+      --brand-2:#b27c5d;
     }
 
     *{ box-sizing:border-box; }
@@ -33,7 +30,6 @@
       text-rendering:optimizeLegibility;
     }
 
-    /* 螢幕預覽置中；列印時由 @media print 改成貼齊 */
     body{
       display:flex;
       justify-content:center;
@@ -41,29 +37,32 @@
       background:#f3f3f3;
     }
 
-    /* 固定 A4 單頁：210mm x 297mm */
+    /* A4 固定一頁 */
     .page{
       width:210mm;
       height:297mm;
       background:#fff;
-      overflow:hidden; /* 避免溢出擠到第 2 頁 */
+      overflow:hidden;
       border:1px solid #eee;
       box-shadow:0 10px 30px rgba(0,0,0,.08);
-      position:relative; /* 讓 footer 可以 absolute 貼底 */
+
+      /* 關鍵：整頁用 flex，footer 用 margin-top:auto 推到底 */
+      display:flex;
+      flex-direction:column;
     }
 
-    /* 內距用 mm，並預留 footer 高度 */
+    /* 內容區：可以縮、避免把 footer 擠掉 */
     .safe{
-      height:100%;
-      padding:14mm 14mm 26mm; /* 底部加大：預留 footer 空間，避免被擠出頁面 */
+      flex:1;
+      min-height:0;            /* 關鍵：允許內容區收縮 */
+      padding:14mm 14mm 10mm;
       display:flex;
       flex-direction:column;
       gap:8mm;
+      overflow:hidden;         /* 關鍵：避免溢出造成第二頁 */
     }
 
-    /* =========================
-       HEADER
-       ========================= */
+    /* HEADER */
     .brand-row{
       display:flex;
       align-items:center;
@@ -92,13 +91,8 @@
       color:var(--brand);
     }
 
-    /* =========================
-       SUBTITLE
-       ========================= */
+    /* SUBTITLE */
     .title-block{
-      display:flex;
-      flex-direction:column;
-      gap:2mm;
       border-left:3px solid var(--brand-2);
       padding-left:8mm;
     }
@@ -109,9 +103,7 @@
       letter-spacing:.08em;
     }
 
-    /* =========================
-       PRODUCTS (4-grid)
-       ========================= */
+    /* PRODUCTS */
     .products{
       display:grid;
       grid-template-columns:1fr 1fr;
@@ -135,14 +127,12 @@
       border:1px solid var(--line);
       background:var(--soft);
       overflow:hidden;
-      height:38mm;          /* 產品圖高度 */
+      height:38mm;
       display:flex;
       align-items:center;
       justify-content:center;
       padding:2mm;
     }
-
-    /* 產品圖：完整顯示，不裁切 */
     .img-wrap img{
       width:100%;
       height:100%;
@@ -167,9 +157,7 @@
       text-align:center;
     }
 
-    /* =========================
-       PARTNER
-       ========================= */
+    /* PARTNER */
     .partner{
       border:1px solid var(--brand);
       border-radius:4mm;
@@ -191,9 +179,7 @@
       color:var(--brand);
     }
 
-    /* =========================
-       QR AREA
-       ========================= */
+    /* QR */
     .qr-title{
       margin:0;
       text-align:center;
@@ -224,8 +210,8 @@
       color:#333;
     }
     .qr-img{
-      width:30mm;
-      height:30mm;
+      width:28mm;            /* 再小一點，給 footer 空間更穩 */
+      height:28mm;
       margin:0 auto;
       border:1px solid var(--line);
       border-radius:3mm;
@@ -242,15 +228,9 @@
       display:block;
     }
 
-    /* =========================
-       FOOTER（固定貼底，列印不消失）
-       ========================= */
+    /* FOOTER：不 absolute，永遠在底部，不會蓋到內容 */
     .footer{
-      position:absolute;
-      left:14mm;
-      right:14mm;
-      bottom:10mm;
-      padding-top:4mm;
+      padding:6mm 14mm 8mm;
       border-top:1px solid var(--line);
       text-align:center;
       font-size:10.5pt;
@@ -260,28 +240,18 @@
       background:#fff;
     }
 
-    /* =========================
-       PRINT OVERRIDES
-       ========================= */
     @media print{
       body{ padding:0; background:#fff; }
       .page{ border:none; box-shadow:none; }
-      a{ color:inherit; text-decoration:none; }
     }
 
-    /* 手機預覽 */
     @media (max-width: 480px){
       body{ padding:10px; }
       .page{ width:100%; height:auto; }
-      .safe{ padding:16px; padding-bottom:90px; gap:14px; }
+      .safe{ padding:16px; gap:14px; overflow:visible; }
       .products{ gap:12px; }
       .card{ min-height:unset; }
       .img-wrap{ height:140px; }
-      .footer{
-        position:static;  /* 手機就不要 absolute，不然會怪 */
-        margin-top:14px;
-        left:auto; right:auto; bottom:auto;
-      }
     }
   </style>
 </head>
@@ -290,7 +260,6 @@
   <div class="page">
     <div class="safe">
 
-      <!-- Header / Brand -->
       <div class="brand-row">
         <img class="logo" src="images/logo-pro.jpeg" alt="台興山產・仙加味 商標">
         <div class="brand-text">
@@ -299,12 +268,10 @@
         </div>
       </div>
 
-      <!-- Subtitle -->
       <div class="title-block">
         <p class="subtitle">本 DM 供合作診所、門市試用參考</p>
       </div>
 
-      <!-- Products -->
       <section class="products" aria-label="產品一覽">
         <div class="card">
           <div class="img-wrap">
@@ -339,13 +306,11 @@
         </div>
       </section>
 
-      <!-- Partner -->
       <div class="partner" aria-label="試用合作單位">
         <small>試用合作單位</small>
         <strong>中醫診所・中藥房・養生品牌・批發合作</strong>
       </div>
 
-      <!-- QR -->
       <p class="qr-title">掃描 QR 以瞭解更多或聯繫</p>
       <div class="qr-grid">
         <div class="qr-item">
@@ -364,7 +329,6 @@
 
     </div>
 
-    <!-- Footer（固定在 A4 底部） -->
     <div class="footer">
       台興山產・仙加味｜台北市萬華區西昌街52號｜電話：(02) 2381-2990
     </div>
