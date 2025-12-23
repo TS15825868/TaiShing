@@ -1,285 +1,223 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8">
-  <title>台興山產・仙加味｜龜鹿系列試用 DM</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>台興山產・仙加味｜龜鹿系列試用 DM</title>
 
-  <style>
-    * { box-sizing: border-box; }
-    html, body {
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "PingFang TC",
-                   "Microsoft JhengHei", system-ui, sans-serif;
-      background: #f5e6dc;
-      color: #4a342d;
-      -webkit-font-smoothing: antialiased;
-    }
+<style>
+/* ===== A4 印刷基準 ===== */
+@page {
+  size: A4;
+  margin: 12mm;
+}
 
-    .dm-wrapper {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px 12px;
-    }
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #f5e6dc;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC",
+               "Microsoft JhengHei", sans-serif;
+  color: #4a342d;
+}
 
-    .dm-card {
-      width: 100%;
-      max-width: 760px;
-      background: linear-gradient(180deg, #fff8f3, #f7e6d8);
-      border-radius: 26px;
-      box-shadow: 0 16px 42px rgba(120, 60, 40, 0.25);
-      padding: 26px 20px 26px;
-    }
+/* ===== A4 主容器 ===== */
+.dm-a4 {
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto;
+  background: linear-gradient(180deg, #fff8f3, #f7e6d8);
+  padding: 18mm;
+  box-sizing: border-box;
+}
 
-    @media (min-width: 640px) {
-      .dm-card {
-        padding: 30px 34px 32px;
-      }
-    }
+/* ===== Header ===== */
+.dm-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12mm;
+}
 
-    /* Brand */
-    .dm-brand-row {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-    .dm-logo {
-      width: 60px;
-      height: 60px;
-      border-radius: 18px;
-      object-fit: cover;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.2);
-    }
-    .dm-brand-text-small {
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: #b27c5d;
-      margin-bottom: 4px;
-    }
-    .dm-brand-name {
-      font-size: 1.02rem;
-      letter-spacing: 0.16em;
-    }
+.dm-logo {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+}
 
-    /* Title */
-    .dm-title {
-      font-size: 1.28rem;
-      letter-spacing: 0.16em;
-      margin: 2px 0 6px;
-      color: #7a4235;
-    }
-    .dm-subtitle {
-      font-size: 0.9rem;
-      color: #8a6a58;
-      margin: 0 0 20px;
-    }
+.dm-brand small {
+  letter-spacing: 0.3em;
+  color: #b27c5d;
+  font-size: 12px;
+}
 
-    /* Product grid */
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 18px;
-      margin-bottom: 22px;
-    }
-    .product-item {
-      background: rgba(255,255,255,0.9);
-      border-radius: 18px;
-      padding: 10px 10px 14px;
-      box-shadow: 0 10px 24px rgba(160, 90, 60, 0.16);
-      text-align: center;
-    }
-    .product-img-wrap {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #fdf5ee;
-      margin-bottom: 10px;
-    }
-    .product-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .product-name {
-      font-size: 0.94rem;
-      letter-spacing: 0.12em;
-      color: #5b382f;
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-    .product-subname {
-      font-size: 0.8rem;
-      color: #7a5a4b;
-      letter-spacing: 0.08em;
-      line-height: 1.4;
-    }
+.dm-brand h1 {
+  margin: 6px 0 0;
+  font-size: 22px;
+  letter-spacing: 0.2em;
+}
 
-    /* Partner */
-    .partner-block {
-      margin: 4px 0 22px;
-      padding: 10px 12px 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.8);
-      border: 1px solid rgba(190, 120, 90, 0.35);
-    }
-    .partner-label {
-      font-size: 0.78rem;
-      letter-spacing: 0.26em;
-      color: #b27c5d;
-      margin: 0 0 6px;
-    }
-    .partner-name {
-      font-size: 0.96rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      margin: 0;
-      color: #5b382f;
-    }
+/* ===== 標題 ===== */
+.dm-title {
+  font-size: 26px;
+  letter-spacing: 0.25em;
+  margin: 6mm 0 4mm;
+  color: #7a4235;
+}
 
-    /* QR area */
-    .qr-section-title {
-      font-size: 0.88rem;
-      letter-spacing: 0.16em;
-      color: #7a4235;
-      margin: 0 0 12px;
-      text-align: center;
-    }
-    .qr-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0,1fr));
-      gap: 18px;
-    }
-    .qr-item {
-      background: rgba(255,255,255,0.9);
-      border-radius: 18px;
-      padding: 10px 10px 12px;
-      box-shadow: 0 10px 24px rgba(160, 90, 60, 0.18);
-      text-align: center;
-    }
-    .qr-label {
-      font-size: 0.86rem;
-      letter-spacing: 0.14em;
-      margin: 0 0 8px;
-      color: #5b382f;
-    }
-    .qr-img-wrap {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .qr-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-    }
+.dm-sub {
+  font-size: 14px;
+  color: #8a6a58;
+  margin-bottom: 10mm;
+}
 
-    .dm-footer {
-      margin-top: 18px;
-      font-size: 0.78rem;
-      color: #9b7965;
-      text-align: center;
-      line-height: 1.6;
-    }
-  </style>
+/* ===== 產品區 ===== */
+.products {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10mm;
+  margin-bottom: 12mm;
+}
+
+.product {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 8mm;
+  text-align: center;
+}
+
+.product img {
+  width: 100%;
+  height: 65mm;
+  object-fit: contain;
+  margin-bottom: 6mm;
+}
+
+.product-name {
+  font-size: 16px;
+  letter-spacing: 0.15em;
+  line-height: 1.6;
+}
+
+/* ===== 合作單位 ===== */
+.partner {
+  border: 1px solid #caa58c;
+  border-radius: 12px;
+  padding: 6mm;
+  margin-bottom: 12mm;
+}
+
+.partner-title {
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  color: #b27c5d;
+  margin-bottom: 3mm;
+}
+
+.partner-text {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* ===== QR 區 ===== */
+.qr-area {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14mm;
+  margin-top: 6mm;
+}
+
+.qr-box {
+  background: #fff;
+  border-radius: 14px;
+  padding: 8mm;
+  text-align: center;
+}
+
+.qr-box img {
+  width: 70mm;
+  height: 70mm;
+}
+
+.qr-box p {
+  margin-top: 4mm;
+  font-size: 14px;
+  letter-spacing: 0.15em;
+}
+
+/* ===== Footer ===== */
+.dm-footer {
+  margin-top: 10mm;
+  text-align: center;
+  font-size: 12px;
+  color: #9b7965;
+}
+</style>
 </head>
 
 <body>
-<div class="dm-wrapper">
-  <div class="dm-card">
 
-    <!-- Brand -->
-    <div class="dm-brand-row">
-      <img src="images/logo-pro.jpeg" alt="台興山產・仙加味" class="dm-logo">
-      <div>
-        <div class="dm-brand-text-small">SINCE 1978</div>
-        <div class="dm-brand-name">台興山產・仙加味</div>
-      </div>
+<div class="dm-a4">
+
+  <!-- Header -->
+  <div class="dm-header">
+    <img src="images/logo-pro.jpeg" class="dm-logo">
+    <div class="dm-brand">
+      <small>SINCE 1978</small>
+      <h1>台興山產・仙加味</h1>
     </div>
-
-    <h1 class="dm-title">仙加味 龜鹿系列</h1>
-    <p class="dm-subtitle">本 DM 供合作診所、門市試用參考。</p>
-
-    <!-- Products -->
-    <div class="product-grid">
-
-      <div class="product-item">
-        <div class="product-img-wrap">
-          <img src="images/guilu-main.jpg" alt="仙加味 龜鹿膏">
-        </div>
-        <div class="product-name">龜鹿膏</div>
-        <div class="product-subname">100g ±5g / 罐</div>
-      </div>
-
-      <div class="product-item">
-        <div class="product-img-wrap">
-          <img src="images/guilu-drink.jpg" alt="仙加味 龜鹿飲">
-        </div>
-        <div class="product-name">龜鹿飲</div>
-        <div class="product-subname">180cc / 單包<br>10包裝 / 袋</div>
-      </div>
-
-      <div class="product-item">
-        <div class="product-img-wrap">
-          <img src="images/guilu-soup-block.jpg" alt="仙加味 龜鹿湯塊">
-        </div>
-        <div class="product-name">龜鹿湯塊</div>
-        <div class="product-subname">小盒(4兩/半斤)<br>大盒(1斤)</div>
-      </div>
-
-      <div class="product-item">
-        <div class="product-img-wrap">
-          <img src="images/product-lurong-powder.jpg" alt="仙加味 鹿茸粉">
-        </div>
-        <div class="product-name">鹿茸粉</div>
-        <div class="product-subname">75g / 罐</div>
-      </div>
-
-    </div>
-
-    <!-- Partner -->
-    <div class="partner-block">
-      <p class="partner-label">試用合作單位</p>
-      <p class="partner-name">中醫診所／中藥房／養生品牌／批發合作</p>
-    </div>
-
-    <!-- QR section -->
-    <p class="qr-section-title">掃描 QR 以瞭解更多或聯繫</p>
-    <div class="qr-grid">
-
-      <div class="qr-item">
-        <p class="qr-label">LINE 官方帳號</p>
-        <div class="qr-img-wrap">
-          <img src="images/line_qr.png" alt="LINE 官方帳號 QR Code">
-        </div>
-      </div>
-
-      <div class="qr-item">
-        <p class="qr-label">台興山產・仙加味 網站</p>
-        <div class="qr-img-wrap">
-          <img src="images/qr-site.png" alt="官方網站 QR Code">
-        </div>
-      </div>
-
-    </div>
-
-    <div class="dm-footer">
-      台興山產有限公司・仙加味｜台北市萬華區西昌街 52 號｜電話：(02) 2381-2990
-    </div>
-
   </div>
+
+  <div class="dm-title">仙加味 龜鹿系列</div>
+  <div class="dm-sub">本 DM 供合作診所、門市試用參考</div>
+
+  <!-- Products -->
+  <div class="products">
+    <div class="product">
+      <img src="images/guilu-main.jpg">
+      <div class="product-name">龜鹿膏<br>100 ± 5 g／罐</div>
+    </div>
+
+    <div class="product">
+      <img src="images/guilu-drink.jpg">
+      <div class="product-name">龜鹿飲<br>180 cc／單包・10包入袋</div>
+    </div>
+
+    <div class="product">
+      <img src="images/guilu-soup-block.jpg">
+      <div class="product-name">龜鹿湯塊<br>4兩／半斤／1斤</div>
+    </div>
+
+    <div class="product">
+      <img src="images/product-lurong-powder.jpg">
+      <div class="product-name">鹿茸粉<br>75 公克</div>
+    </div>
+  </div>
+
+  <!-- Partner -->
+  <div class="partner">
+    <div class="partner-title">試用合作單位</div>
+    <div class="partner-text">
+      中醫診所／中藥房／養生品牌／批發合作
+    </div>
+  </div>
+
+  <!-- QR -->
+  <div class="qr-area">
+    <div class="qr-box">
+      <img src="images/line_qr.png">
+      <p>LINE 官方帳號</p>
+    </div>
+    <div class="qr-box">
+      <img src="images/qr-site.png">
+      <p>官方網站</p>
+    </div>
+  </div>
+
+  <div class="dm-footer">
+    台興山產有限公司・仙加味｜台北市萬華區西昌街 52 號｜(02) 2381-2990
+  </div>
+
 </div>
+
 </body>
 </html>
