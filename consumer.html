@@ -1,334 +1,240 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>台興山產・仙加味｜把補養變成日常</title>
-  <meta name="description" content="台興山產・仙加味（SINCE 1978）龜鹿系列：龜鹿膏、龜鹿飲、龜鹿湯塊、鹿茸粉。掃描 QR 加入 LINE 諮詢或前往官網了解更多。" />
+  <meta charset="UTF-8">
+  <title>台興山產・仙加味｜龜鹿系列</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     :root{
       --ink:#1a1a1a;
       --muted:#666;
-      --line:#e6e6e6;
+      --line:#e0e0e0;
       --soft:#f7f7f7;
-      --paper:#ffffff;
-      --bg:#fafafa;
+      --brand:#7a4a3a;
     }
+
     *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; }
+
     body{
-      font-family:-apple-system, BlinkMacSystemFont, "PingFang TC","Microsoft JhengHei", system-ui, sans-serif;
-      color:var(--ink);
-      background:var(--bg);
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-
-    /* Layout */
-    .wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 18px 12px 28px;
-    }
-    .card{
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: 0 12px 30px rgba(0,0,0,.06);
-      overflow: hidden;
-    }
-    .pad{ padding: 18px; }
-    @media (min-width: 760px){
-      .pad{ padding: 26px; }
-    }
-
-    /* Header */
-    .brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-    }
-    .logo{
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      object-fit: cover;
-      border: 1px solid var(--line);
+      margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, "PingFang TC",
+                   "Microsoft JhengHei", system-ui, sans-serif;
       background:#fff;
-      flex: 0 0 auto;
-    }
-    .brand-text{ line-height:1.25; }
-    .since{
-      font-size: 12px;
-      letter-spacing: .22em;
-      color: var(--muted);
-    }
-    .bname{
-      margin-top: 6px;
-      font-weight: 800;
-      letter-spacing: .18em;
-      font-size: 16px;
-    }
-
-    /* Hero */
-    .hero{
-      margin-top: 14px;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .kicker{
-      font-size: 12px;
-      letter-spacing: .26em;
-      color: var(--muted);
-    }
-    h1{
-      margin: 0;
-      font-size: 26px;
-      letter-spacing: .12em;
-      line-height: 1.25;
-    }
-    .lead{
-      margin: 0;
-      color: #333;
-      line-height: 1.75;
-      font-size: 15px;
-    }
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap: 8px;
-      padding: 10px 12px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      background: #fff;
-      width: fit-content;
-      color: #333;
-      font-size: 13px;
-      letter-spacing: .08em;
-    }
-
-    /* Products */
-    .section{
-      margin-top: 18px;
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-    }
-    .stitle{
-      margin: 0 0 10px;
-      font-size: 16px;
-      letter-spacing: .14em;
-      font-weight: 900;
-    }
-    .grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-    @media (min-width: 760px){
-      .grid{ gap: 14px; }
-    }
-    .p{
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 12px;
-      background: #fff;
-      display:flex;
-      flex-direction:column;
-      gap: 10px;
-    }
-    .img{
-      width:100%;
-      height: 150px;
-      border-radius: 12px;
-      border: 1px solid #eee;
-      background: var(--soft);
-      overflow:hidden;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 8px;
-    }
-    .img img{
-      width:100%;
-      height:100%;
-      object-fit: contain; /* 消費者頁：以完整清楚為主 */
-      display:block;
-    }
-    .pname{
-      margin:0;
-      font-weight: 900;
-      letter-spacing: .12em;
-      font-size: 15px;
-      text-align:center;
-    }
-    .pspec{
-      margin:0;
-      color:#333;
-      font-size: 13px;
-      letter-spacing: .06em;
-      text-align:center;
+      color:var(--ink);
       line-height:1.6;
     }
-    .note{
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 12px;
-      line-height: 1.7;
+
+    .wrap{
+      max-width:1100px;
+      margin:0 auto;
+      padding:20px 16px 40px;
     }
 
-    /* QR */
-    .qrwrap{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .qr{
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      padding: 12px;
-      text-align:center;
-      background:#fff;
-    }
-    .qr h3{
-      margin: 0 0 8px;
-      font-size: 13px;
-      letter-spacing: .10em;
-      font-weight: 900;
-    }
-    .qrbox{
-      width: 150px;
-      height: 150px;
-      margin: 0 auto;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      background:#fff;
+    /* ===== Header ===== */
+    .header{
       display:flex;
       align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      padding: 6px;
+      gap:14px;
+      margin-bottom:24px;
     }
-    .qrbox img{
+    .logo{
+      width:64px;
+      height:64px;
+      border-radius:14px;
+      object-fit:cover;
+      border:1px solid var(--line);
+    }
+    .brand-text small{
+      display:block;
+      font-size:13px;
+      letter-spacing:.22em;
+      color:var(--muted);
+      margin-bottom:4px;
+    }
+    .brand-text h1{
+      margin:0;
+      font-size:20px;
+      letter-spacing:.18em;
+      font-weight:800;
+    }
+
+    /* ===== Intro ===== */
+    .intro{
+      margin-bottom:28px;
+    }
+    .intro h2{
+      margin:0 0 8px;
+      font-size:22px;
+      letter-spacing:.18em;
+      color:var(--brand);
+    }
+    .intro p{
+      margin:0;
+      font-size:16px;
+      color:#333;
+    }
+
+    /* ===== Products ===== */
+    .products{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+      gap:18px;
+      margin-bottom:32px;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      border-radius:16px;
+      overflow:hidden;
+      background:#fff;
+    }
+    .card img{
       width:100%;
-      height:100%;
-      object-fit: contain;
+      height:180px;
+      object-fit:cover;
+      background:var(--soft);
       display:block;
     }
-    @media (min-width: 760px){
-      .qrbox{ width: 170px; height: 170px; }
-    }
-
-    /* Footer */
-    .foot{
-      margin-top: 18px;
-      border-top: 1px solid var(--line);
-      padding-top: 14px;
+    .card-body{
+      padding:14px;
       text-align:center;
-      color:#333;
-      font-size: 12px;
-      letter-spacing: .06em;
-      line-height: 1.7;
+    }
+    .card-body h3{
+      margin:0 0 4px;
+      font-size:18px;
+      letter-spacing:.12em;
+      font-weight:800;
+    }
+    .card-body p{
+      margin:0;
+      font-size:14px;
+      color:#444;
     }
 
-    /* Print friendly (若要列印消費者頁) */
-    @media print{
-      body{ background:#fff; }
-      .wrap{ padding:0; }
-      .card{ box-shadow:none; border:none; }
+    /* ===== CTA ===== */
+    .cta{
+      border-top:1px solid var(--line);
+      padding-top:24px;
+      margin-bottom:24px;
+      text-align:center;
+    }
+    .cta h3{
+      margin:0 0 10px;
+      font-size:18px;
+      letter-spacing:.12em;
+    }
+    .qr-row{
+      display:flex;
+      justify-content:center;
+      gap:32px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+    .qr-item{
+      text-align:center;
+    }
+    .qr-item img{
+      width:120px;
+      height:120px;
+      object-fit:contain;
+      border:1px solid var(--line);
+      border-radius:12px;
+      background:#fff;
+    }
+    .qr-item p{
+      margin:8px 0 0;
+      font-size:14px;
+    }
+
+    /* ===== Footer ===== */
+    .footer{
+      margin-top:30px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      text-align:center;
+      font-size:14px;
+      color:#333;
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <div class="card">
-      <div class="pad">
 
-        <!-- Brand -->
-        <div class="brand">
-          <img class="logo" src="images/logo-pro.jpeg" alt="台興山產・仙加味 商標">
-          <div class="brand-text">
-            <div class="since">SINCE 1978</div>
-            <div class="bname">台興山產・仙加味</div>
-          </div>
-        </div>
-
-        <!-- Hero -->
-        <div class="hero">
-          <div class="kicker">龜鹿補養・日常節奏</div>
-          <h1>把補養變成日常的一部分</h1>
-          <p class="lead">
-            龜鹿系列以「好理解、好使用、好安排」為原則，
-            讓你依生活節奏選擇膏、飲、湯塊或粉，循序調整日常狀態。
-          </p>
-          <div class="badge">需要確認適不適合？掃描下方 LINE QR 一對一諮詢</div>
-        </div>
-
-        <!-- Products -->
-        <div class="section">
-          <p class="stitle">龜鹿系列產品</p>
-
-          <div class="grid">
-            <div class="p">
-              <div class="img"><img src="images/guilu-main.jpg" alt="龜鹿膏"></div>
-              <p class="pname">龜鹿膏</p>
-              <p class="pspec">100±5g／罐</p>
-            </div>
-
-            <div class="p">
-              <div class="img"><img src="images/guilu-drink.jpg" alt="龜鹿飲"></div>
-              <p class="pname">龜鹿飲</p>
-              <p class="pspec">單包／10包入袋</p>
-            </div>
-
-            <div class="p">
-              <div class="img"><img src="images/guilu-soup-block.jpg" alt="龜鹿湯塊"></div>
-              <p class="pname">龜鹿湯塊</p>
-              <p class="pspec">4兩／半斤／1斤</p>
-            </div>
-
-            <div class="p">
-              <div class="img"><img src="images/product-lurong-powder.jpg" alt="鹿茸粉"></div>
-              <p class="pname">鹿茸粉</p>
-              <p class="pspec">75g／罐</p>
-            </div>
-          </div>
-
-          <p class="note">
-            提醒：若你目前正接受治療、懷孕哺乳、或有長期用藥習慣，建議先以專業建議為主；
-            也可掃描 LINE QR 先把狀況簡述，我們會協助你判斷是否適合從日常補養開始。
-          </p>
-        </div>
-
-        <!-- QR -->
-        <div class="section">
-          <p class="stitle">掃描 QR 了解更多</p>
-          <div class="qrwrap">
-            <div class="qr">
-              <h3>LINE 官方帳號（諮詢）</h3>
-              <div class="qrbox">
-                <img src="images/line_qr.png" alt="LINE QR Code">
-              </div>
-            </div>
-            <div class="qr">
-              <h3>官方網站（產品資訊）</h3>
-              <div class="qrbox">
-                <img src="images/qr-site.png" alt="官網 QR Code">
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Footer -->
-       <div class="foot">
-  台興山產・仙加味｜台北市萬華區西昌街52號｜電話：(02) 2381-2990
-</div>
-
+    <!-- Header -->
+    <div class="header">
+      <img src="images/logo-pro.jpeg" alt="台興山產・仙加味" class="logo">
+      <div class="brand-text">
+        <small>SINCE 1978</small>
+        <h1>台興山產・仙加味</h1>
       </div>
     </div>
+
+    <!-- Intro -->
+    <div class="intro">
+      <h2>龜鹿系列</h2>
+      <p>
+        從萬華起家，家族四代與鹿角打交道。<br>
+        將繁複的熬膠工序，轉化為貼近日常的補養選擇。
+      </p>
+    </div>
+
+    <!-- Products -->
+    <section class="products">
+      <div class="card">
+        <img src="images/guilu-main.jpg" alt="龜鹿膏">
+        <div class="card-body">
+          <h3>龜鹿膏</h3>
+          <p>100 ± 5 g／罐</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/guilu-drink.jpg" alt="龜鹿飲">
+        <div class="card-body">
+          <h3>龜鹿飲</h3>
+          <p>單包／10 包入袋</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/guilu-soup-block.jpg" alt="龜鹿湯塊">
+        <div class="card-body">
+          <h3>龜鹿湯塊</h3>
+          <p>4 兩／半斤／1 斤</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="images/product-lurong-powder.jpg" alt="鹿茸粉">
+        <div class="card-body">
+          <h3>鹿茸粉</h3>
+          <p>75 g／罐</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <div class="cta">
+      <h3>了解更多資訊</h3>
+      <div class="qr-row">
+        <div class="qr-item">
+          <img src="images/line_qr.png" alt="LINE 官方帳號 QR Code">
+          <p>LINE 官方帳號</p>
+        </div>
+        <div class="qr-item">
+          <img src="images/qr-site.png" alt="官方網站 QR Code">
+          <p>官方網站</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      台興山產・仙加味｜台北市萬華區西昌街52號｜電話：(02) 2381-2990
+    </div>
+
   </div>
 </body>
 </html>
