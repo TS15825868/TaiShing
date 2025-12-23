@@ -1,152 +1,203 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
 <title>台興山產・仙加味｜龜鹿系列試用 DM</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <style>
-@page { size: A4; margin: 18mm; }
-* { box-sizing: border-box; }
+  /* A4 列印設定 */
+  @page { size: A4; margin: 16mm; }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC",
-               "Microsoft JhengHei", system-ui, sans-serif;
-  color: #000;
-  background: #fff;
-}
+  * { box-sizing: border-box; }
 
-.dm {
-  max-width: 210mm;
-  margin: 0 auto;
-}
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang TC",
+                 "Microsoft JhengHei", system-ui, sans-serif;
+    color: #000;
+    background: #fff;
+  }
 
-.header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
-}
+  /* 內容區（A4 寬度） */
+  .dm {
+    width: 210mm;
+    max-width: 100%;
+    margin: 0 auto;
+  }
 
-.header img {
-  width: 56px;
-}
+  /* Header：商標＋品牌 */
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10mm;
+  }
+  .logo {
+    width: 18mm;
+    height: 18mm;
+    object-fit: contain;
+  }
+  .brand {
+    line-height: 1.25;
+  }
+  .brand small {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+  }
+  .brand strong {
+    display: block;
+    font-size: 14px;
+    letter-spacing: 0.18em;
+  }
 
-.brand {
-  font-size: 14px;
-  letter-spacing: 0.2em;
-}
+  /* 標題區 */
+  .title {
+    font-size: 22px;
+    letter-spacing: 0.26em;
+    margin: 0 0 6px;
+  }
+  .subtitle {
+    font-size: 14px;
+    margin: 0 0 12mm;
+  }
 
-.title {
-  font-size: 22px;
-  letter-spacing: 0.3em;
-  margin: 16px 0 6px;
-}
+  /* 產品區：固定卡片高度，圖片不裁切不變形 */
+  .products {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8mm;
+    margin-bottom: 8mm;
+  }
 
-.subtitle {
-  font-size: 14px;
-  margin-bottom: 18px;
-}
+  .product {
+    text-align: center;
+    border: 1px solid #000;
+    padding: 6mm;
+  }
 
-.products {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 16px;
-  margin-bottom: 20px;
-}
+  .product-img {
+    width: 100%;
+    height: 52mm;          /* ✅ 圖片放大：固定高度 */
+    object-fit: contain;    /* ✅ 不裁切、不變形 */
+    display: block;
+    margin: 0 auto 4mm;
+  }
 
-.product {
-  text-align: center;
-}
+  .product-name {
+    font-size: 14px;
+    letter-spacing: 0.08em;
+    margin: 0;
+  }
 
-.product img {
-  width: 100%;
-  height: auto;
-}
+  /* 合作單位 */
+  .partner {
+    border: 1px solid #000;
+    padding: 4mm 5mm;
+    font-size: 14px;
+    text-align: center;
+    margin: 0 0 10mm;
+  }
 
-.product-name {
-  margin-top: 6px;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-}
+  /* QR 區：縮小 */
+  .qr {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10mm;
+    align-items: start;
+    margin-bottom: 8mm;
+  }
 
-.partner {
-  border: 1px solid #000;
-  padding: 10px;
-  font-size: 14px;
-  margin-bottom: 18px;
-  text-align: center;
-}
+  .qr-item {
+    text-align: center;
+    border: 1px solid #000;
+    padding: 5mm;
+  }
 
-.qr {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 20px;
-  margin-top: 12px;
-}
+  .qr-label {
+    font-size: 13px;
+    margin: 0 0 4mm;
+  }
 
-.qr img {
-  width: 120px;
-}
+  .qr-img {
+    width: 34mm;           /* ✅ QR 縮小 */
+    height: 34mm;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+  }
 
-.qr div {
-  text-align: center;
-  font-size: 13px;
-}
+  /* Footer */
+  .footer {
+    font-size: 12px;
+    text-align: center;
+    border-top: 1px solid #000;
+    padding-top: 4mm;
+  }
 
-.footer {
-  margin-top: 18px;
-  font-size: 12px;
-  text-align: center;
-}
+  /* 避免被切成兩頁（保守） */
+  .dm, .products, .partner, .qr { break-inside: avoid; page-break-inside: avoid; }
 </style>
 </head>
 
 <body>
-<div class="dm">
+  <div class="dm">
 
-  <div class="title">仙加味 龜鹿系列</div>
-  <div class="subtitle">本 DM 供合作診所、門市試用參考</div>
+    <!-- ✅ Header（商標回來） -->
+    <div class="header">
+      <img class="logo" src="images/logo_only.png" alt="台興山產・仙加味 商標" />
+      <div class="brand">
+        <small>SINCE 1978</small>
+        <strong>台興山產・仙加味</strong>
+      </div>
+    </div>
 
-  <div class="products">
-    <div class="product">
-      <img src="images/guilu-main.jpg">
-      <div class="product-name">龜鹿膏 100±5g</div>
+    <h1 class="title">仙加味 龜鹿系列</h1>
+    <p class="subtitle">本 DM 供合作診所、門市試用參考</p>
+
+    <div class="products">
+      <div class="product">
+        <img class="product-img" src="images/guilu-main.jpg" alt="龜鹿膏" />
+        <p class="product-name">龜鹿膏 100±5g</p>
+      </div>
+
+      <div class="product">
+        <img class="product-img" src="images/guilu-drink.jpg" alt="龜鹿飲" />
+        <p class="product-name">龜鹿飲 單包 / 10包入袋</p>
+      </div>
+
+      <div class="product">
+        <img class="product-img" src="images/guilu-soup-block.jpg" alt="龜鹿湯塊" />
+        <p class="product-name">龜鹿湯塊（4兩／半斤／1斤）</p>
+      </div>
+
+      <div class="product">
+        <img class="product-img" src="images/product-lurong-powder.jpg" alt="鹿茸粉" />
+        <p class="product-name">鹿茸粉 75g</p>
+      </div>
     </div>
-    <div class="product">
-      <img src="images/guilu-drink.jpg">
-      <div class="product-name">龜鹿飲 單包 / 10包入袋</div>
+
+    <div class="partner">
+      試用合作單位：中醫診所・中藥房・養生品牌・批發合作
     </div>
-    <div class="product">
-      <img src="images/guilu-soup-block.jpg">
-      <div class="product-name">龜鹿湯塊（4兩／半斤／1斤）</div>
+
+    <div class="qr">
+      <div class="qr-item">
+        <p class="qr-label">LINE 官方帳號</p>
+        <img class="qr-img" src="images/line_qr.png" alt="LINE 官方帳號 QR Code" />
+      </div>
+
+      <div class="qr-item">
+        <p class="qr-label">官方網站</p>
+        <img class="qr-img" src="images/qr-site.png" alt="官方網站 QR Code" />
+      </div>
     </div>
-    <div class="product">
-      <img src="images/product-lurong-powder.jpg">
-      <div class="product-name">鹿茸粉 75g</div>
+
+    <div class="footer">
+      台興山產・仙加味｜02-2381-2990
     </div>
+
   </div>
-
-  <div class="partner">
-    試用合作單位：中醫診所・中藥房・養生品牌・批發合作
-  </div>
-
-  <div class="qr">
-    <div>
-      LINE 官方帳號<br>
-      <img src="images/line_qr.png">
-    </div>
-    <div>
-      官方網站<br>
-      <img src="images/qr-site.png">
-    </div>
-  </div>
-
-  <div class="footer">
-    台興山產・仙加味｜02-2381-2990
-  </div>
-
-</div>
 </body>
 </html>
