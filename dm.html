@@ -13,9 +13,11 @@
 
     :root{
       --ink:#1a1a1a;
-      --muted:#666;
-      --line:#d8d8d8;
-      --soft:#f7f7f7;
+      --muted:#6b6b6b;
+      --line:#e2e2e2;
+      --soft:#faf7f5;        /* 淡淡玫瑰金底（很淡，白底印刷仍乾淨） */
+      --brand:#7a4a3a;       /* 漢方咖 */
+      --brand-2:#b27c5d;     /* 玫瑰金棕 */
     }
 
     *{ box-sizing:border-box; }
@@ -36,7 +38,7 @@
       display:flex;
       justify-content:center;
       padding:16px;
-      background:#fafafa;
+      background:#f3f3f3;
     }
 
     /* 固定 A4 單頁：210mm x 297mm */
@@ -47,12 +49,13 @@
       overflow:hidden; /* 避免溢出擠到第 2 頁 */
       border:1px solid #eee;
       box-shadow:0 10px 30px rgba(0,0,0,.08);
+      position:relative; /* 讓 footer 可以 absolute 貼底 */
     }
 
-    /* 內距用 mm，降低不同裝置造成的高度飄移 */
+    /* 內距用 mm，並預留 footer 高度 */
     .safe{
       height:100%;
-      padding:14mm 14mm 12mm;
+      padding:14mm 14mm 26mm; /* 底部加大：預留 footer 空間，避免被擠出頁面 */
       display:flex;
       flex-direction:column;
       gap:8mm;
@@ -79,22 +82,25 @@
     .since{
       font-size:10.5pt;
       letter-spacing:.24em;
-      color:var(--muted);
+      color:var(--brand-2);
     }
     .brand-name{
       margin-top:2mm;
       font-size:13pt;
       letter-spacing:.22em;
-      font-weight:700;
+      font-weight:800;
+      color:var(--brand);
     }
 
     /* =========================
-       TITLE / SUBTITLE
+       SUBTITLE
        ========================= */
     .title-block{
       display:flex;
       flex-direction:column;
       gap:2mm;
+      border-left:3px solid var(--brand-2);
+      padding-left:8mm;
     }
     .subtitle{
       margin:0;
@@ -126,21 +132,21 @@
     .img-wrap{
       width:100%;
       border-radius:4mm;
-      border:1px solid #ececec;
-      background:#fff;      /* 印刷白底乾淨 */
+      border:1px solid var(--line);
+      background:var(--soft);
       overflow:hidden;
-      height:38mm;          /* 產品圖高度（可再微調） */
+      height:38mm;          /* 產品圖高度 */
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:2mm;          /* 讓 contain 不貼邊更像精品 */
+      padding:2mm;
     }
 
     /* 產品圖：完整顯示，不裁切 */
     .img-wrap img{
       width:100%;
       height:100%;
-      object-fit:contain;   /* 關鍵：不裁切 */
+      object-fit:contain;
       object-position:center;
       display:block;
     }
@@ -149,8 +155,9 @@
       margin:0;
       font-size:13pt;
       letter-spacing:.14em;
-      font-weight:800;
+      font-weight:900;
       text-align:center;
+      color:var(--brand);
     }
     .pspec{
       margin:0;
@@ -164,10 +171,11 @@
        PARTNER
        ========================= */
     .partner{
-      border:1px solid var(--ink);
+      border:1px solid var(--brand);
       border-radius:4mm;
       padding:5mm;
       text-align:center;
+      background:#fff;
     }
     .partner small{
       display:block;
@@ -179,7 +187,8 @@
     .partner strong{
       font-size:12pt;
       letter-spacing:.12em;
-      font-weight:800;
+      font-weight:900;
+      color:var(--brand);
     }
 
     /* =========================
@@ -190,7 +199,8 @@
       text-align:center;
       font-size:12pt;
       letter-spacing:.14em;
-      color:#333;
+      color:var(--brand);
+      font-weight:800;
     }
 
     .qr-grid{
@@ -210,13 +220,14 @@
       margin:0 0 3mm;
       font-size:11.5pt;
       letter-spacing:.10em;
-      font-weight:700;
+      font-weight:800;
+      color:#333;
     }
     .qr-img{
-      width:30mm;   /* QR 縮小 */
+      width:30mm;
       height:30mm;
       margin:0 auto;
-      border:1px solid #ececec;
+      border:1px solid var(--line);
       border-radius:3mm;
       background:#fff;
       display:flex;
@@ -232,17 +243,21 @@
     }
 
     /* =========================
-       FOOTER
+       FOOTER（固定貼底，列印不消失）
        ========================= */
     .footer{
-      margin-top:auto;
-      padding-top:5mm;
+      position:absolute;
+      left:14mm;
+      right:14mm;
+      bottom:10mm;
+      padding-top:4mm;
       border-top:1px solid var(--line);
       text-align:center;
       font-size:10.5pt;
       color:#333;
       letter-spacing:.06em;
       line-height:1.6;
+      background:#fff;
     }
 
     /* =========================
@@ -258,10 +273,15 @@
     @media (max-width: 480px){
       body{ padding:10px; }
       .page{ width:100%; height:auto; }
-      .safe{ padding:16px; gap:14px; }
+      .safe{ padding:16px; padding-bottom:90px; gap:14px; }
       .products{ gap:12px; }
       .card{ min-height:unset; }
       .img-wrap{ height:140px; }
+      .footer{
+        position:static;  /* 手機就不要 absolute，不然會怪 */
+        margin-top:14px;
+        left:auto; right:auto; bottom:auto;
+      }
     }
   </style>
 </head>
@@ -342,11 +362,11 @@
         </div>
       </div>
 
-      <!-- Footer -->
-      <div class="footer">
-        台興山產・仙加味｜台北市萬華區西昌街52號｜02-2381-2990
-      </div>
+    </div>
 
+    <!-- Footer（固定在 A4 底部） -->
+    <div class="footer">
+      台興山產・仙加味｜台北市萬華區西昌街52號｜電話：(02) 2381-2990
     </div>
   </div>
 </body>
