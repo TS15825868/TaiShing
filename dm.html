@@ -2,200 +2,339 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="UTF-8" />
-<title>台興山產・仙加味｜龜鹿系列試用 DM</title>
+<title>台興山產・仙加味｜龜鹿系列試用 DM（A4 單頁）</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <style>
-  /* A4 列印設定 */
-  @page { size: A4; margin: 16mm; }
+  /* =========================
+     A4 PRINT SETUP
+     ========================= */
+  @page { size: A4; margin: 14mm; }
+
+  :root{
+    --ink:#111;
+    --muted:#555;
+    --line:#1a1a1a;
+    --hair: 0.6px;                /* 精品細線 */
+    --radius: 10px;
+    --pad: 6.2mm;
+    --gap: 7.5mm;
+  }
 
   * { box-sizing: border-box; }
 
-  body {
+  html, body {
     margin: 0;
+    padding: 0;
+    background: #fff;
+    color: var(--ink);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body{
     font-family: -apple-system, BlinkMacSystemFont, "PingFang TC",
                  "Microsoft JhengHei", system-ui, sans-serif;
-    color: #000;
-    background: #fff;
+    letter-spacing: 0.02em;
   }
 
-  /* 內容區（A4 寬度） */
-  .dm {
+  /* 讓畫面預覽也接近 A4 */
+  .page{
     width: 210mm;
-    max-width: 100%;
     margin: 0 auto;
+    padding: 0;
   }
 
-  /* Header：商標＋品牌 */
-  .header {
+  /* 避免列印切頁 */
+  .page, .grid, .partner, .qr-grid { break-inside: avoid; page-break-inside: avoid; }
+
+  /* =========================
+     HEADER (Premium)
+     ========================= */
+  .topbar{
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-bottom: 10mm;
+    gap: 10px;
+    padding-bottom: 7mm;
+    border-bottom: var(--hair) solid var(--line);
+    margin-bottom: 8mm;
   }
-  .logo {
-    width: 18mm;
-    height: 18mm;
+
+  .logo{
+    width: 19mm;
+    height: 19mm;
     object-fit: contain;
-  }
-  .brand {
-    line-height: 1.25;
-  }
-  .brand small {
     display: block;
+  }
+
+  .brand{
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .since{
     font-size: 11px;
-    letter-spacing: 0.18em;
-  }
-  .brand strong {
-    display: block;
-    font-size: 14px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.22em;
+    color: var(--muted);
   }
 
-  /* 標題區 */
-  .title {
-    font-size: 22px;
-    letter-spacing: 0.26em;
-    margin: 0 0 6px;
-  }
-  .subtitle {
-    font-size: 14px;
-    margin: 0 0 12mm;
+  .brand-name{
+    font-size: 15px;
+    letter-spacing: 0.20em;
+    font-weight: 700;
+    margin-top: 2px;
   }
 
-  /* 產品區：固定卡片高度，圖片不裁切不變形 */
-  .products {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 8mm;
-    margin-bottom: 8mm;
-  }
-
-  .product {
-    text-align: center;
-    border: 1px solid #000;
-    padding: 6mm;
-  }
-
-  .product-img {
-    width: 100%;
-    height: 52mm;          /* ✅ 圖片放大：固定高度 */
-    object-fit: contain;    /* ✅ 不裁切、不變形 */
-    display: block;
-    margin: 0 auto 4mm;
-  }
-
-  .product-name {
-    font-size: 14px;
-    letter-spacing: 0.08em;
+  /* =========================
+     TITLE
+     ========================= */
+  .title{
     margin: 0;
+    font-size: 22px;
+    letter-spacing: 0.28em;
+    font-weight: 800;
   }
 
-  /* 合作單位 */
-  .partner {
-    border: 1px solid #000;
-    padding: 4mm 5mm;
-    font-size: 14px;
-    text-align: center;
-    margin: 0 0 10mm;
-  }
-
-  /* QR 區：縮小 */
-  .qr {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10mm;
-    align-items: start;
-    margin-bottom: 8mm;
-  }
-
-  .qr-item {
-    text-align: center;
-    border: 1px solid #000;
-    padding: 5mm;
-  }
-
-  .qr-label {
+  .subtitle{
+    margin: 4px 0 8mm;
     font-size: 13px;
-    margin: 0 0 4mm;
+    color: var(--muted);
+    letter-spacing: 0.10em;
   }
 
-  .qr-img {
-    width: 34mm;           /* ✅ QR 縮小 */
-    height: 34mm;
+  /* =========================
+     PRODUCTS (Premium Grid)
+     ========================= */
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--gap);
+    margin-bottom: 7mm;
+  }
+
+  .card{
+    border: var(--hair) solid var(--line);
+    border-radius: var(--radius);
+    padding: var(--pad);
+  }
+
+  .imgbox{
+    border: var(--hair) solid rgba(0,0,0,0.55);
+    border-radius: 8px;
+    padding: 3mm;
+  }
+
+  /* ✅ 圖片更大、但仍保證單頁 */
+  .product-img{
+    width: 100%;
+    height: 56mm;            /* 放大產品圖 */
+    object-fit: contain;     /* 不裁切、不變形 */
+    display: block;
+  }
+
+  .pname{
+    margin: 4mm 0 0;
+    font-size: 14px;
+    letter-spacing: 0.10em;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .pmeta{
+    margin: 1.5mm 0 0;
+    font-size: 12.5px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    text-align: center;
+  }
+
+  /* =========================
+     PARTNER
+     ========================= */
+  .partner{
+    border: var(--hair) solid var(--line);
+    border-radius: var(--radius);
+    padding: 4.5mm 6mm;
+    text-align: center;
+    margin-bottom: 7mm;
+  }
+
+  .partner-kicker{
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.26em;
+    color: var(--muted);
+    margin-bottom: 2mm;
+  }
+
+  .partner-text{
+    margin: 0;
+    font-size: 13.5px;
+    letter-spacing: 0.10em;
+    font-weight: 700;
+  }
+
+  /* =========================
+     QR (Smaller)
+     ========================= */
+  .qr-title{
+    margin: 0 0 4mm;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .qr-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8mm;
+    margin-bottom: 7mm;
+  }
+
+  .qr-card{
+    border: var(--hair) solid var(--line);
+    border-radius: var(--radius);
+    padding: 5mm;
+    text-align: center;
+  }
+
+  .qr-label{
+    margin: 0 0 3.5mm;
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+  }
+
+  /* ✅ QR 縮小（更像印刷版） */
+  .qr-img{
+    width: 32mm;
+    height: 32mm;
     object-fit: contain;
     display: block;
     margin: 0 auto;
   }
 
-  /* Footer */
-  .footer {
-    font-size: 12px;
-    text-align: center;
-    border-top: 1px solid #000;
+  /* =========================
+     FOOTER
+     ========================= */
+  .footer{
+    border-top: var(--hair) solid var(--line);
     padding-top: 4mm;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--ink);
   }
 
-  /* 避免被切成兩頁（保守） */
-  .dm, .products, .partner, .qr { break-inside: avoid; page-break-inside: avoid; }
+  .footer small{
+    display: block;
+    margin-top: 2mm;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+  }
+
+  /* =========================
+     SCREEN (Preview Comfort)
+     ========================= */
+  @media screen{
+    body{ padding: 14px; }
+    .page{
+      background:#fff;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.12);
+      padding: 14mm;
+    }
+  }
+
+  /* =========================
+     PRINT (Hard Guard)
+     ========================= */
+  @media print{
+    body{ padding: 0; }
+    .page{
+      box-shadow: none;
+      padding: 0;
+    }
+  }
 </style>
 </head>
 
 <body>
-  <div class="dm">
+  <div class="page">
 
-    <!-- ✅ Header（商標回來） -->
-    <div class="header">
+    <!-- HEADER -->
+    <div class="topbar">
       <img class="logo" src="images/logo-pro.jpeg" alt="台興山產・仙加味 商標" />
       <div class="brand">
-        <small>SINCE 1978</small>
-        <strong>台興山產・仙加味</strong>
+        <span class="since">SINCE 1978</span>
+        <span class="brand-name">台興山產・仙加味</span>
       </div>
     </div>
 
+    <!-- TITLE -->
     <h1 class="title">仙加味 龜鹿系列</h1>
     <p class="subtitle">本 DM 供合作診所、門市試用參考</p>
 
-    <div class="products">
-      <div class="product">
-        <img class="product-img" src="images/guilu-main.jpg" alt="龜鹿膏" />
-        <p class="product-name">龜鹿膏 100±5g</p>
+    <!-- PRODUCTS -->
+    <section class="grid">
+      <div class="card">
+        <div class="imgbox">
+          <img class="product-img" src="images/guilu-main.jpg" alt="龜鹿膏" />
+        </div>
+        <p class="pname">龜鹿膏</p>
+        <p class="pmeta">100±5g／罐</p>
       </div>
 
-      <div class="product">
-        <img class="product-img" src="images/guilu-drink.jpg" alt="龜鹿飲" />
-        <p class="product-name">龜鹿飲 單包 / 10包入袋</p>
+      <div class="card">
+        <div class="imgbox">
+          <img class="product-img" src="images/guilu-drink.jpg" alt="龜鹿飲" />
+        </div>
+        <p class="pname">龜鹿飲</p>
+        <p class="pmeta">單包／10包入袋</p>
       </div>
 
-      <div class="product">
-        <img class="product-img" src="images/guilu-soup-block.jpg" alt="龜鹿湯塊" />
-        <p class="product-name">龜鹿湯塊（4兩／半斤／1斤）</p>
+      <div class="card">
+        <div class="imgbox">
+          <img class="product-img" src="images/guilu-soup-block.jpg" alt="龜鹿湯塊" />
+        </div>
+        <p class="pname">龜鹿湯塊</p>
+        <p class="pmeta">4兩／半斤／1斤</p>
       </div>
 
-      <div class="product">
-        <img class="product-img" src="images/product-lurong-powder.jpg" alt="鹿茸粉" />
-        <p class="product-name">鹿茸粉 75g</p>
+      <div class="card">
+        <div class="imgbox">
+          <img class="product-img" src="images/product-lurong-powder.jpg" alt="鹿茸粉" />
+        </div>
+        <p class="pname">鹿茸粉</p>
+        <p class="pmeta">75g／罐</p>
       </div>
-    </div>
+    </section>
 
-    <div class="partner">
-      試用合作單位：中醫診所・中藥房・養生品牌・批發合作
-    </div>
+    <!-- PARTNER -->
+    <section class="partner">
+      <span class="partner-kicker">試用合作單位</span>
+      <p class="partner-text">中醫診所・中藥房・養生品牌・批發合作</p>
+    </section>
 
-    <div class="qr">
-      <div class="qr-item">
+    <!-- QR -->
+    <p class="qr-title">掃描 QR 以瞭解更多或聯繫</p>
+    <section class="qr-grid">
+      <div class="qr-card">
         <p class="qr-label">LINE 官方帳號</p>
         <img class="qr-img" src="images/line_qr.png" alt="LINE 官方帳號 QR Code" />
       </div>
 
-      <div class="qr-item">
+      <div class="qr-card">
         <p class="qr-label">官方網站</p>
         <img class="qr-img" src="images/qr-site.png" alt="官方網站 QR Code" />
       </div>
-    </div>
+    </section>
 
+    <!-- FOOTER -->
     <div class="footer">
       台興山產・仙加味｜02-2381-2990
+      <small>台北市萬華區西昌街 52 號</small>
     </div>
 
   </div>
