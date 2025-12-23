@@ -31,7 +31,7 @@
       text-rendering:optimizeLegibility;
     }
 
-    /* 螢幕預覽置中；列印時會由 @media print 改成貼齊 */
+    /* 螢幕預覽置中；列印時由 @media print 改成貼齊 */
     body{
       display:flex;
       justify-content:center;
@@ -44,18 +44,18 @@
       width:210mm;
       height:297mm;
       background:#fff;
-      overflow:hidden; /* 關鍵：避免溢出被擠到第2頁 */
+      overflow:hidden; /* 避免溢出擠到第 2 頁 */
       border:1px solid #eee;
       box-shadow:0 10px 30px rgba(0,0,0,.08);
     }
 
-    /* 內距用 mm，避免不同裝置字體換行造成高度飄移 */
+    /* 內距用 mm，降低不同裝置造成的高度飄移 */
     .safe{
       height:100%;
       padding:14mm 14mm 12mm;
       display:flex;
       flex-direction:column;
-      gap:8mm; /* 原 10mm，略縮減避免爆頁 */
+      gap:8mm;
     }
 
     /* =========================
@@ -72,6 +72,8 @@
       border-radius:4mm;
       object-fit:cover;
       border:1px solid var(--line);
+      background:#fff;
+      display:block;
     }
     .brand-text{ line-height:1.25; }
     .since{
@@ -107,7 +109,7 @@
     .products{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:6mm; /* 原 7mm */
+      gap:6mm;
     }
 
     .card{
@@ -117,28 +119,29 @@
       background:#fff;
       display:flex;
       flex-direction:column;
-      gap:3mm;      /* 原 4mm */
-      min-height:66mm; /* 原 72mm：縮一點，讓整頁更安全 */
+      gap:3mm;
+      min-height:66mm;
     }
 
     .img-wrap{
       width:100%;
       border-radius:4mm;
       border:1px solid #ececec;
-      background:var(--soft);
+      background:#fff;      /* 印刷白底乾淨 */
       overflow:hidden;
-
-      /* 產品圖高度再縮減：44mm → 38mm */
-      height:38mm;
-
+      height:38mm;          /* 產品圖高度（可再微調） */
       display:flex;
       align-items:center;
       justify-content:center;
+      padding:2mm;          /* 讓 contain 不貼邊更像精品 */
     }
+
+    /* 產品圖：完整顯示，不裁切 */
     .img-wrap img{
       width:100%;
       height:100%;
-      object-fit:cover;
+      object-fit:contain;   /* 關鍵：不裁切 */
+      object-position:center;
       display:block;
     }
 
@@ -151,7 +154,7 @@
     }
     .pspec{
       margin:0;
-      font-size:11.2pt; /* 原 11.5pt */
+      font-size:11.2pt;
       letter-spacing:.08em;
       color:#333;
       text-align:center;
@@ -210,7 +213,7 @@
       font-weight:700;
     }
     .qr-img{
-      width:30mm;   /* 32 → 30：再小一點更穩 */
+      width:30mm;   /* QR 縮小 */
       height:30mm;
       margin:0 auto;
       border:1px solid #ececec;
@@ -233,7 +236,7 @@
        ========================= */
     .footer{
       margin-top:auto;
-      padding-top:5mm; /* 原 6mm */
+      padding-top:5mm;
       border-top:1px solid var(--line);
       text-align:center;
       font-size:10.5pt;
@@ -246,18 +249,12 @@
        PRINT OVERRIDES
        ========================= */
     @media print{
-      body{
-        padding:0;
-        background:#fff;
-      }
-      .page{
-        border:none;
-        box-shadow:none;
-      }
+      body{ padding:0; background:#fff; }
+      .page{ border:none; box-shadow:none; }
       a{ color:inherit; text-decoration:none; }
     }
 
-    /* 手機預覽：避免被縮到太小 */
+    /* 手機預覽 */
     @media (max-width: 480px){
       body{ padding:10px; }
       .page{ width:100%; height:auto; }
