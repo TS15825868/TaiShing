@@ -44,7 +44,7 @@
       width:210mm;
       height:297mm;
       background:#fff;
-      overflow:hidden;                 /* 關鍵：避免溢出被擠到第2頁 */
+      overflow:hidden; /* 關鍵：避免溢出被擠到第2頁 */
       border:1px solid #eee;
       box-shadow:0 10px 30px rgba(0,0,0,.08);
     }
@@ -52,10 +52,10 @@
     /* 內距用 mm，避免不同裝置字體換行造成高度飄移 */
     .safe{
       height:100%;
-      padding:14mm 14mm 12mm;          /* 上右下左 */
+      padding:14mm 14mm 12mm;
       display:flex;
       flex-direction:column;
-      gap:10mm;
+      gap:8mm; /* 原 10mm，略縮減避免爆頁 */
     }
 
     /* =========================
@@ -67,15 +67,13 @@
       gap:10px;
     }
     .logo{
-      width:18mm;                      /* 印刷穩定 */
+      width:18mm;
       height:18mm;
       border-radius:4mm;
       object-fit:cover;
       border:1px solid var(--line);
     }
-    .brand-text{
-      line-height:1.25;
-    }
+    .brand-text{ line-height:1.25; }
     .since{
       font-size:10.5pt;
       letter-spacing:.24em;
@@ -88,16 +86,13 @@
       font-weight:700;
     }
 
+    /* =========================
+       TITLE / SUBTITLE
+       ========================= */
     .title-block{
       display:flex;
       flex-direction:column;
       gap:2mm;
-    }
-    .title{
-      font-size:22pt;
-      letter-spacing:.28em;
-      font-weight:800;
-      margin:0;
     }
     .subtitle{
       margin:0;
@@ -112,7 +107,7 @@
     .products{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:7mm;
+      gap:6mm; /* 原 7mm */
     }
 
     .card{
@@ -122,8 +117,8 @@
       background:#fff;
       display:flex;
       flex-direction:column;
-      gap:4mm;
-      min-height:72mm;                 /* 穩定高度，避免排版跳動 */
+      gap:3mm;      /* 原 4mm */
+      min-height:66mm; /* 原 72mm：縮一點，讓整頁更安全 */
     }
 
     .img-wrap{
@@ -133,8 +128,9 @@
       background:var(--soft);
       overflow:hidden;
 
-      /* 固定圖片框高度：避免圖片太高把內容撐到第二頁 */
-      height:44mm;
+      /* 產品圖高度再縮減：44mm → 38mm */
+      height:38mm;
+
       display:flex;
       align-items:center;
       justify-content:center;
@@ -155,7 +151,7 @@
     }
     .pspec{
       margin:0;
-      font-size:11.5pt;
+      font-size:11.2pt; /* 原 11.5pt */
       letter-spacing:.08em;
       color:#333;
       text-align:center;
@@ -214,8 +210,8 @@
       font-weight:700;
     }
     .qr-img{
-      width:32mm;                      /* 你要 QR 縮小：這裡就是縮小後尺寸 */
-      height:32mm;
+      width:30mm;   /* 32 → 30：再小一點更穩 */
+      height:30mm;
       margin:0 auto;
       border:1px solid #ececec;
       border-radius:3mm;
@@ -236,8 +232,8 @@
        FOOTER
        ========================= */
     .footer{
-      margin-top:auto;                 /* 把 footer 推到最底，避免內容擠壓 */
-      padding-top:6mm;
+      margin-top:auto;
+      padding-top:5mm; /* 原 6mm */
       border-top:1px solid var(--line);
       text-align:center;
       font-size:10.5pt;
@@ -258,7 +254,6 @@
         border:none;
         box-shadow:none;
       }
-      /* 避免瀏覽器自動加頁首/頁尾造成第二頁：仍以使用者列印設定為主 */
       a{ color:inherit; text-decoration:none; }
     }
 
@@ -269,7 +264,7 @@
       .safe{ padding:16px; gap:14px; }
       .products{ gap:12px; }
       .card{ min-height:unset; }
-      .img-wrap{ height:160px; }
+      .img-wrap{ height:150px; }
     }
   </style>
 </head>
@@ -287,7 +282,7 @@
         </div>
       </div>
 
-      <!-- Title -->
+      <!-- Subtitle -->
       <div class="title-block">
         <p class="subtitle">本 DM 供合作診所、門市試用參考</p>
       </div>
