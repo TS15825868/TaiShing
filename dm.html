@@ -245,17 +245,23 @@
     /* =========================
        PRINT OVERRIDES
        ========================= */
-    @media print{
-      body{
-        padding:0;
-        background:#fff;
-      }
-      .page{
-        border:none;
-        box-shadow:none;
-      }
-      a{ color:inherit; text-decoration:none; }
-    }
+@media print{
+  body{
+    padding:0;
+    background:#fff;
+  }
+  .page{
+    border:none;
+    box-shadow:none;
+
+    /* ✅ 單頁保險：列印時縮小 2%（避免被擠到第二頁） */
+    transform: scale(0.98);
+    transform-origin: top left;
+  }
+
+  /* ✅ 避免瀏覽器自動加頁首/頁尾造成版面偏移 */
+  a{ color:inherit; text-decoration:none; }
+}
 
     /* 手機預覽：避免被縮到太小 */
     @media (max-width: 480px){
