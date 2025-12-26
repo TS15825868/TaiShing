@@ -398,6 +398,33 @@ article.product-card:hover,
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12) !important;
 }
 
+/* =========================================
+   全部產品：整張 product-card 可點（新增）
+   ========================================= */
+.product-card {
+  position: relative; /* 讓覆蓋連結定位 */
+}
+
+/* 覆蓋整張卡片的透明連結 */
+.product-card .card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 16px; /* 與卡片一致 */
+}
+
+/* 內容顯示在上層（視覺不變；點擊仍進連結） */
+.product-card > *:not(.card-link) {
+  position: relative;
+  z-index: 4;
+}
+
+/* 鍵盤可用：Tab 時會看到焦點框 */
+.product-card .card-link:focus-visible {
+  outline: 3px solid var(--color-accent-gold-deep);
+  outline-offset: 4px;
+}
+
 /* 首頁 product-grid（全部產品） */
 .product-grid {
   display: grid;
@@ -822,14 +849,4 @@ img.product-image {
 .reveal-up.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* ✅ 使用者裝置偏好減少動態：直接顯示，避免首屏被隱藏 */
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .reveal-up {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
 }
