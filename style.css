@@ -823,3 +823,13 @@ img.product-image {
   opacity: 1;
   transform: translateY(0);
 }
+
+/* ✅ 使用者裝置偏好減少動態：直接顯示，避免首屏被隱藏 */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-up {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
