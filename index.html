@@ -94,7 +94,7 @@
   <!-- MAIN -->
   <main class="site-main">
 
-    <!-- HERO / 品牌開場（✅ A選1：移除 reveal；✅ HERO 短版 2–3 行） -->
+    <!-- HERO（短版 2–3 行；不加 reveal） -->
     <section class="hero section">
       <div class="hero-inner">
         <div class="hero-text">
@@ -131,7 +131,7 @@
       </div>
     </section>
 
-    <!-- 全部產品總覽 -->
+    <!-- 全部產品總覽（✅ 整張卡片可點：加入 .card-link 覆蓋連結） -->
     <section class="section reveal" id="all-products">
       <div class="section-kicker">PRODUCTS</div>
       <h2 class="section-title">全部產品</h2>
@@ -140,69 +140,79 @@
         也提供駝鹿角原料給中藥房、中醫診所與餐飲品牌使用。
       </p>
 
-<div class="product-grid">
+      <div class="product-grid">
 
-  <!-- 龜鹿膏 -->
-  <article class="product-card">
-    <a class="card-link" href="guilu.html" aria-label="查看 仙加味 龜鹿膏 詳細介紹"></a>
+        <!-- 龜鹿膏 -->
+        <article class="product-card">
+          <a class="card-link" href="guilu.html" aria-label="前往 仙加味 龜鹿膏 詳細頁"></a>
 
-    <div class="product-image-frame">
-      <img src="images/guilu-main.jpg" alt="仙加味 龜鹿膏" class="product-image" loading="lazy">
-    </div>
+          <div class="product-image-link">
+            <div class="product-image-frame">
+              <img src="images/guilu-main.jpg" alt="仙加味 龜鹿膏" class="product-image" loading="lazy">
+            </div>
+          </div>
 
-    <h3 class="product-name">仙加味 龜鹿膏</h3>
-    <p class="product-note">適合想把補養排進每天作息、觀察一罐一段時間變化的人。</p>
-  </article>
+          <h3 class="product-name">仙加味 龜鹿膏</h3>
+          <p class="product-note">適合想把補養排進每天作息、觀察一罐一段時間變化的人。</p>
+        </article>
 
-  <!-- 龜鹿飲 -->
-  <article class="product-card">
-    <a class="card-link" href="guilu-drink.html" aria-label="查看 仙加味 龜鹿飲 詳細介紹"></a>
+        <!-- 龜鹿飲 -->
+        <article class="product-card">
+          <a class="card-link" href="guilu-drink.html" aria-label="前往 仙加味 龜鹿飲 詳細頁"></a>
 
-    <div class="product-image-frame">
-      <img src="images/guilu-drink.jpg" alt="仙加味 龜鹿飲" class="product-image" loading="lazy">
-    </div>
+          <div class="product-image-link">
+            <div class="product-image-frame">
+              <img src="images/guilu-drink.jpg" alt="仙加味 龜鹿飲" class="product-image" loading="lazy">
+            </div>
+          </div>
 
-    <h3 class="product-name">仙加味 龜鹿飲</h3>
-    <p class="product-note">一包裝好帶，適合工作節奏快、常在外奔波或出差的族群。</p>
-  </article>
+          <h3 class="product-name">仙加味 龜鹿飲</h3>
+          <p class="product-note">一包裝好帶，適合工作節奏快、常在外奔波或出差的族群。</p>
+        </article>
 
-  <!-- 龜鹿湯塊 -->
-  <article class="product-card">
-    <a class="card-link" href="soup.html" aria-label="查看 仙加味 龜鹿湯塊 詳細介紹"></a>
+        <!-- 龜鹿湯塊 -->
+        <article class="product-card">
+          <a class="card-link" href="soup.html" aria-label="前往 仙加味 龜鹿湯塊 詳細頁"></a>
 
-    <div class="product-image-frame">
-      <img src="images/guilu-soup-block.jpg" alt="仙加味 龜鹿湯塊" class="product-image" loading="lazy">
-    </div>
+          <div class="product-image-link">
+            <div class="product-image-frame">
+              <img src="images/guilu-soup-block.jpg" alt="仙加味 龜鹿湯塊" class="product-image" loading="lazy">
+            </div>
+          </div>
 
-    <h3 class="product-name">仙加味 龜鹿湯塊</h3>
-    <p class="product-note">一塊入鍋，一鍋湯全家分享，適合平常就愛煮湯的家庭。</p>
-  </article>
+          <h3 class="product-name">仙加味 龜鹿湯塊</h3>
+          <p class="product-note">一塊入鍋，一鍋湯全家分享，適合平常就愛煮湯的家庭。</p>
+        </article>
 
-  <!-- 鹿茸粉 -->
-  <article class="product-card">
-    <a class="card-link" href="lurong.html" aria-label="查看 仙加味 鹿茸粉 詳細介紹"></a>
+        <!-- 鹿茸粉 -->
+        <article class="product-card">
+          <a class="card-link" href="lurong.html" aria-label="前往 仙加味 鹿茸粉 詳細頁"></a>
 
-    <div class="product-image-frame">
-      <img src="images/product-lurong-powder.jpg" alt="仙加味 鹿茸粉" class="product-image" loading="lazy">
-    </div>
+          <div class="product-image-link">
+            <div class="product-image-frame">
+              <img src="images/product-lurong-powder.jpg" alt="仙加味 鹿茸粉" class="product-image" loading="lazy">
+            </div>
+          </div>
 
-    <h3 class="product-name">仙加味 鹿茸粉</h3>
-    <p class="product-note">可拌入早餐、飲品或日常膳食，讓補養自然融入三餐。</p>
-  </article>
+          <h3 class="product-name">仙加味 鹿茸粉</h3>
+          <p class="product-note">可拌入早餐、飲品或日常膳食，讓補養自然融入三餐。</p>
+        </article>
 
-  <!-- 駝鹿角原料 -->
-  <article class="product-card">
-    <a class="card-link" href="antler.html" aria-label="查看 駝鹿角原料 詳細介紹"></a>
+        <!-- 駝鹿角原料 -->
+        <article class="product-card">
+          <a class="card-link" href="antler.html" aria-label="前往 駝鹿角原料 詳細頁"></a>
 
-    <div class="product-image-frame">
-      <img src="images/antler-raw.jpg" alt="駝鹿角原料" class="product-image" loading="lazy">
-    </div>
+          <div class="product-image-link">
+            <div class="product-image-frame">
+              <img src="images/antler-raw.jpg" alt="駝鹿角原料" class="product-image" loading="lazy">
+            </div>
+          </div>
 
-    <h3 class="product-name">駝鹿角原料</h3>
-    <p class="product-note">提供中藥房、中醫診所、餐飲品牌與自煉使用的原料方案。</p>
-  </article>
+          <h3 class="product-name">駝鹿角原料</h3>
+          <p class="product-note">提供中藥房、中醫診所、餐飲品牌與自煉使用的原料方案。</p>
+        </article>
 
-</div>
+      </div>
     </section>
 
     <!-- 挑選指南導流 -->
