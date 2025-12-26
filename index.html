@@ -68,7 +68,8 @@
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="brand-block">
-        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo" loading="lazy">
+        <!-- 首屏 logo 建議不要 lazy，避免 iOS 初始顯示延遲 -->
+        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo">
         <div class="brand-text">
           <p class="brand-since">SINCE 1978</p>
           <p class="brand-title">台興山產・仙加味</p>
@@ -94,29 +95,21 @@
   <!-- MAIN -->
   <main class="site-main">
 
-    <!-- HERO / 品牌開場 -->
-    <section class="hero section reveal">
+    <!-- HERO（✅ A 選 1：移除 reveal，避免首屏空白） -->
+    <section class="hero section">
       <div class="hero-inner">
         <div class="hero-text">
           <p class="section-kicker">龜鹿補養・四代熬膠</p>
-          <h1 class="hero-title">從鹿場到萬華街巷，<br>把龜鹿補養變成日常的一部分</h1>
+          <h1 class="hero-title">萬華四代傳承，<br>把龜鹿補養做成日常節奏</h1>
           <p class="hero-body">
-            台興山產・仙加味從萬華起家，家族四代與鹿角打交道。早年另在坪林山林養鹿，把第一線照護與挑料經驗帶回萬華街巷。如今，我們專注龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉，讓原本複雜的熬膠工序變成日常補養，陪你安穩調整生活節奏。
+            專注龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉，讓補養更好安排、也更好持續。
           </p>
 
           <div class="contact-actions">
-            <a href="guide.html" class="btn-primary">
-              依需求挑選龜鹿產品
-            </a>
-            <a href="#all-products" class="btn-soft">
-              先看看全部產品
-            </a>
+            <!-- 你已把 consumer.html 改名 dm.html：這裡直接連到 dm.html -->
+            <a href="dm.html" class="btn-primary">列印／存檔 精品 DM</a>
+            <a href="#all-products" class="btn-soft">先看全部產品</a>
           </div>
-
-          <p class="note" style="margin-top:10px;">
-            若你目前正接受治療、或已有長期用藥習慣，也可以先聊聊狀況，
-            我們會告訴你哪些部份適合從日常補養著手，哪些仍以醫師建議為主。
-          </p>
         </div>
       </div>
     </section>
@@ -137,12 +130,8 @@
       </a>
 
       <div class="contact-actions">
-        <a href="guilu.html" class="btn-outline">
-          看龜鹿膏詳細介紹
-        </a>
-        <a href="faq.html#faq-guilu" class="btn-soft">
-          先看龜鹿膏 FAQ
-        </a>
+        <a href="guilu.html" class="btn-outline">看龜鹿膏詳細介紹</a>
+        <a href="faq.html#faq-guilu" class="btn-soft">先看龜鹿膏 FAQ</a>
       </div>
     </section>
 
@@ -156,8 +145,6 @@
       </p>
 
       <div class="product-grid">
-
-        <!-- 龜鹿膏 -->
         <article class="product-card">
           <a href="guilu.html" class="product-image-link">
             <div class="product-image-frame">
@@ -165,12 +152,9 @@
             </div>
           </a>
           <h3 class="product-name">仙加味 龜鹿膏</h3>
-          <p class="product-note">
-            適合想把補養排進每天作息、觀察一罐一段時間變化的人。
-          </p>
+          <p class="product-note">適合想把補養排進每天作息、觀察一罐一段時間變化的人。</p>
         </article>
 
-        <!-- 龜鹿飲 -->
         <article class="product-card">
           <a href="guilu-drink.html" class="product-image-link">
             <div class="product-image-frame">
@@ -178,12 +162,9 @@
             </div>
           </a>
           <h3 class="product-name">仙加味 龜鹿飲</h3>
-          <p class="product-note">
-            一包裝好帶，適合工作節奏快、常在外奔波或出差的族群。
-          </p>
+          <p class="product-note">一包裝好帶，適合工作節奏快、常在外奔波或出差的族群。</p>
         </article>
 
-        <!-- 龜鹿湯塊 -->
         <article class="product-card">
           <a href="soup.html" class="product-image-link">
             <div class="product-image-frame">
@@ -191,12 +172,9 @@
             </div>
           </a>
           <h3 class="product-name">仙加味 龜鹿湯塊</h3>
-          <p class="product-note">
-            一塊入鍋，一鍋湯全家分享，適合平常就愛煮湯的家庭。
-          </p>
+          <p class="product-note">一塊入鍋，一鍋湯全家分享，適合平常就愛煮湯的家庭。</p>
         </article>
 
-        <!-- 鹿茸粉 -->
         <article class="product-card">
           <a href="lurong.html" class="product-image-link">
             <div class="product-image-frame">
@@ -204,12 +182,9 @@
             </div>
           </a>
           <h3 class="product-name">仙加味 鹿茸粉</h3>
-          <p class="product-note">
-            可拌入早餐、飲品或日常膳食，讓補養自然融入三餐。
-          </p>
+          <p class="product-note">可拌入早餐、飲品或日常膳食，讓補養自然融入三餐。</p>
         </article>
 
-        <!-- 駝鹿角原料 -->
         <article class="product-card">
           <a href="antler.html" class="product-image-link">
             <div class="product-image-frame">
@@ -217,11 +192,8 @@
             </div>
           </a>
           <h3 class="product-name">駝鹿角原料</h3>
-          <p class="product-note">
-            提供中藥房、中醫診所、餐飲品牌與自煉使用的原料方案。
-          </p>
+          <p class="product-note">提供中藥房、中醫診所、餐飲品牌與自煉使用的原料方案。</p>
         </article>
-
       </div>
     </section>
 
@@ -265,9 +237,7 @@
       </div>
 
       <div class="contact-actions" style="margin-top:16px;">
-        <a href="guide.html" class="btn-outline">
-          看完整「怎麼挑龜鹿產品」指南
-        </a>
+        <a href="guide.html" class="btn-outline">看完整「怎麼挑龜鹿產品」指南</a>
       </div>
     </section>
 
@@ -321,9 +291,7 @@
         <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-line-strong">
           透過 LINE 一對一諮詢
         </a>
-        <a href="contact.html" class="btn-soft">
-          看門市資訊與其他聯絡方式
-        </a>
+        <a href="contact.html" class="btn-soft">看門市資訊與其他聯絡方式</a>
       </div>
 
       <div class="consult-faq">
@@ -354,9 +322,7 @@
         <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-line-strong">
           透過 LINE 諮詢
         </a>
-        <a href="guide.html" class="btn-outline-gold">
-          看「怎麼挑龜鹿產品」
-        </a>
+        <a href="guide.html" class="btn-outline-gold">看「怎麼挑龜鹿產品」</a>
       </div>
     </div>
 
