@@ -398,33 +398,6 @@ article.product-card:hover,
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* =========================================
-   全部產品：整張 product-card 可點（新增）
-   ========================================= */
-.product-card {
-  position: relative; /* 讓覆蓋連結定位 */
-}
-
-/* 覆蓋整張卡片的透明連結 */
-.product-card .card-link {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  border-radius: 16px; /* 與卡片一致 */
-}
-
-/* 內容顯示在上層（視覺不變；點擊仍進連結） */
-.product-card > *:not(.card-link) {
-  position: relative;
-  z-index: 4;
-}
-
-/* 鍵盤可用：Tab 時會看到焦點框 */
-.product-card .card-link:focus-visible {
-  outline: 3px solid var(--color-accent-gold-deep);
-  outline-offset: 4px;
-}
-
 /* 首頁 product-grid（全部產品） */
 .product-grid {
   display: grid;
@@ -464,6 +437,22 @@ article.product-card:hover,
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* 產品標題與描述（補上，避免不同頁面樣式不一致） */
+.product-name {
+  margin: 6px 0 6px;
+  font-size: 1.02rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--color-primary-deep);
+}
+
+.product-note {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 /* 詳細頁圖片尺寸控制 */
@@ -722,10 +711,6 @@ img.product-image {
   /* 已有 section 基本框，可視需要再加特別效果 */
 }
 
-.hero-inner {
-  /* 若之後要做左右排版，可以在這裡加 display:flex */
-}
-
 .hero-title {
   font-size: clamp(1.7rem, 2.6vw, 2.1rem);
   line-height: 1.35;
@@ -849,4 +834,28 @@ img.product-image {
 .reveal-up.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* =========================================
+   ✅ 修正：整張產品卡片可點（關鍵：z-index 要比內容高）
+   ========================================= */
+.product-card {
+  position: relative;
+}
+
+.product-card .card-link {
+  position: absolute;
+  inset: 0;
+  z-index: 10; /* ✅ 一定要高，才不會被內容蓋住 */
+  border-radius: 16px;
+}
+
+.product-card > *:not(.card-link) {
+  position: relative;
+  z-index: 1;
+}
+
+.product-card .card-link:focus-visible {
+  outline: 3px solid var(--color-accent-gold-deep);
+  outline-offset: 4px;
 }
