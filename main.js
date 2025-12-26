@@ -2,7 +2,7 @@
    TaiShing Site - main.js (Final)
    - Header padding-top auto fix
    - Compact header on scroll
-   - Reveal animations
+   - Reveal animations（✅ iOS/Safari 首屏不再空白）
    - Floating LINE button helper（用既有 .line-float，沒有才自動生成）
    - Mobile 漢堡選單：點外面 or 捲動自動收合
    ========================================================= */
@@ -28,9 +28,18 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
+  // ✅ 修正：首屏元素先顯示，避免 iOS/Safari IntersectionObserver 延遲導致空白
   function setupReveal() {
     const targets = document.querySelectorAll(".reveal, .reveal-up");
     if (!targets.length) return;
+
+    function forceRevealAboveFold() {
+      const vh = window.innerHeight || 0;
+      targets.forEach((el) => {
+        const r = el.getBoundingClientRect();
+        if (r.top < vh * 0.95) el.classList.add("is-visible");
+      });
+    }
 
     if (!("IntersectionObserver" in window)) {
       targets.forEach((el) => el.classList.add("is-visible"));
@@ -46,10 +55,15 @@
           }
         });
       },
-      { threshold: 0.12 }
+      { threshold: 0.12, rootMargin: "80px 0px 80px 0px" }
     );
 
     targets.forEach((el) => io.observe(el));
+
+    // 立刻跑一次 + 載入後再補一次（更穩）
+    forceRevealAboveFold();
+    window.addEventListener("load", forceRevealAboveFold);
+    setTimeout(forceRevealAboveFold, 250);
   }
 
   // 使用現有 .line-float；沒有才建立
@@ -94,7 +108,7 @@
       document.body.appendChild(toast);
     }
 
-    // 4. 夜間模式 class（如果要特別樣式可以在 CSS 裡用 .line-float.is-night）
+    // 4. 夜間模式 class
     try {
       const h = new Date().getHours();
       if (h >= 19 || h <= 6) btn.classList.add("is-night");
@@ -134,7 +148,7 @@
 
     // 點漢堡：開 / 關
     toggle.addEventListener("click", function (e) {
-      e.stopPropagation(); // 避免馬上被「點外面關閉」那支事件關掉
+      e.stopPropagation();
       nav.classList.toggle("is-open");
     });
 
@@ -142,22 +156,18 @@
     const links = nav.querySelectorAll(".nav-link");
     links.forEach(function (link) {
       link.addEventListener("click", function () {
-        if (nav.classList.contains("is-open")) {
-          closeNav();
-        }
+        if (nav.classList.contains("is-open")) closeNav();
       });
     });
 
-    // ✅ 點選「非 nav / 非漢堡」的地方，自動收合
+    // 點選「非 nav / 非漢堡」的地方，自動收合
     document.addEventListener("click", function (e) {
       const clickInsideNav = nav.contains(e.target);
       const clickOnToggle = toggle.contains(e.target);
-      if (!clickInsideNav && !clickOnToggle) {
-        closeNav();
-      }
+      if (!clickInsideNav && !clickOnToggle) closeNav();
     });
 
-    // ✅ 手機版：開始捲動就自動收合（避免蓋住畫面）
+    // 手機版：開始捲動就自動收合
     window.addEventListener(
       "scroll",
       function () {
@@ -169,30 +179,26 @@
     );
   }
 
-function setupBackLinks() {
-  const backButtons = document.querySelectorAll(".back-link");
-  if (!backButtons.length) return;
+  function setupBackLinks() {
+    const backButtons = document.querySelectorAll(".back-link");
+    if (!backButtons.length) return;
 
-  const nav = document.querySelector(".site-nav");
+    const nav = document.querySelector(".site-nav");
 
-  function closeNav() {
-    if (nav && nav.classList.contains("is-open")) {
-      nav.classList.remove("is-open");
+    function closeNav() {
+      if (nav && nav.classList.contains("is-open")) {
+        nav.classList.remove("is-open");
+      }
     }
-  }
 
-  backButtons.forEach((btn) => {
-    btn.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      // 手機版若漢堡選單有打開，先收起來
-      closeNav();
-
-      // 一律導回首頁產品總覽
-      window.location.href = "index.html#all-products";
+    backButtons.forEach((btn) => {
+      btn.addEventListener("click", function (event) {
+        event.preventDefault();
+        closeNav();
+        window.location.href = "index.html#all-products";
+      });
     });
-  });
-}
+  }
 
   function init() {
     setMainPaddingTop();
@@ -201,7 +207,12 @@ function setupBackLinks() {
     setupCompactHeader();
     setupReveal();
     setupLineFloat();
+
     window.addEventListener("resize", setMainPaddingTop);
+
+    // ✅ 載入完成再補跑一次，避免首屏計算因字體/圖片造成偏差
+    window.addEventListener("load", setMainPaddingTop);
+    setTimeout(setMainPaddingTop, 250);
   }
 
   if (document.readyState === "loading") {
