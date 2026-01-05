@@ -4,15 +4,14 @@
   <meta charset="UTF-8" />
   <title>中醫觀點｜龜鹿補養分享｜台興山產・仙加味</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <meta name="description" content="合作中醫師公開平台影片分享：中醫觀點與日常補養經驗。僅作為知識交流，不涉及醫療診斷或治療。" />
 
+  <!-- 你全站既有 CSS/JS（保持一致） -->
   <link rel="stylesheet" href="theme_herbalrosegold.css">
   <link rel="stylesheet" href="style.css">
   <script src="main.js" defer></script>
 
   <style>
-    /* 讓影片區塊更像DM、易讀 */
     .video-grid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -22,7 +21,6 @@
     @media (max-width: 768px){
       .video-grid{ grid-template-columns: 1fr; }
     }
-
     .video-card{
       background:#fff;
       border:1px solid rgba(0,0,0,.10);
@@ -31,21 +29,12 @@
       padding: 14px 14px 16px;
       overflow:hidden;
     }
-
     .video-card h3{
       font-size: 1.05rem;
       margin: 0 0 10px;
       letter-spacing: .04em;
       color: var(--color-primary-deep);
     }
-
-    .video-note{
-      font-size: .92rem;
-      color: var(--color-text-muted);
-      margin: 10px 0 0;
-      line-height: 1.7;
-    }
-
     .video-fallback{
       margin-top: 10px;
       font-size: .95rem;
@@ -54,8 +43,6 @@
       text-decoration: underline;
       color: var(--color-primary-deep);
     }
-
-    /* TikTok embed 在卡片內自適應 */
     .tiktok-embed{
       margin: 0 !important;
       max-width: 100% !important;
@@ -67,7 +54,7 @@
 <body>
 <div class="site-wrapper">
 
-  <!-- HEADER（沿用全站） -->
+  <!-- 顶部选单（我已含 “中醫觀點”） -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="brand-block">
@@ -81,19 +68,19 @@
       <nav class="site-nav">
         <ul>
           <li><a href="index.html" class="nav-link">首頁</a></li>
-          <li><a href="story.html" class="nav-link">品牌故事</a></li>
-          <li><a href="brand_origin.html" class="nav-link">品牌與商標</a></li>
-          <li><a href="products.html" class="nav-link">產品介紹</a></li>
+          <li><a href="products.html" class="nav-link">產品總覽</a></li>
+          <li><a href="index.html#guide" class="nav-link">依需求挑選</a></li>
+          <li><a href="story.html" class="nav-link">關於我們</a></li>
+          <li><a href="index.html#faq" class="nav-link">常見問題</a></li>
           <li><a href="doctor_tiktok.html" class="nav-link nav-link--active">中醫觀點</a></li>
           <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+          <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <!-- MAIN -->
   <main class="site-main">
-
     <section class="section reveal">
       <div class="section-kicker">DOCTOR VIEW</div>
       <h1 class="page-title">中醫觀點｜龜鹿補養分享</h1>
@@ -103,121 +90,92 @@
       </p>
 
       <a href="https://lin.ee/sHZW7NkR" class="btn-line-strong" target="_blank" rel="noopener">加入 LINE 諮詢洽談</a>
-      <a href="products.html" class="btn-outline">回到產品介紹</a>
+      <a href="products.html" class="btn-outline">回到產品總覽</a>
     </section>
 
     <section class="section reveal">
       <div class="section-kicker">VIDEOS</div>
       <h2 class="section-title">影片列表</h2>
       <p class="page-subtitle">
-        若手機或瀏覽器因隱私設定無法顯示嵌入影片，可使用每張卡片下方的「開啟原影片」連結直接觀看。
+        若因瀏覽器隱私設定無法顯示嵌入影片，可使用卡片下方「開啟原影片」直接觀看。
       </p>
 
       <div class="video-grid">
 
-        <!-- 1 -->
         <article class="video-card">
-          <h3>影片 01</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fKwcve/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fKwcve/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 01</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7440039107708914945" data-video-id="7440039107708914945" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7440039107708914945" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 2 -->
         <article class="video-card">
-          <h3>影片 02</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fKosYJ/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fKosYJ/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 02</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7441142424518315280" data-video-id="7441142424518315280" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7441142424518315280" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 3 -->
         <article class="video-card">
-          <h3>影片 03</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fKEH8R/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fKEH8R/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 03</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7441892944057027896" data-video-id="7441892944057027896" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7441892944057027896" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 4 -->
         <article class="video-card">
-          <h3>影片 04</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fK4HSx/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fK4HSx/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 04</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7442637133308759352" data-video-id="7442637133308759352" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7442637133308759352" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 5 -->
         <article class="video-card">
-          <h3>影片 05</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fEYJU7/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fEYJU7/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 05</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7443754721195691319" data-video-id="7443754721195691319" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7443754721195691319" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 6 -->
         <article class="video-card">
-          <h3>影片 06</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fED9Ar/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fED9Ar/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 06</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7444051217757752583" data-video-id="7444051217757752583" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7444051217757752583" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 7 -->
         <article class="video-card">
-          <h3>影片 07</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fEYtp3/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fEYtp3/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 07</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7444467481059560712" data-video-id="7444467481059560712" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7444467481059560712" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 8 -->
         <article class="video-card">
-          <h3>影片 08</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fEDs5f/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fEDs5f/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 08</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7444622264642833671" data-video-id="7444622264642833671" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7444622264642833671" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 9 -->
         <article class="video-card">
-          <h3>影片 09</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fEyvoA/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fEyvoA/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 09</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7445221794769898759" data-video-id="7445221794769898759" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7445221794769898759" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
-        <!-- 10 -->
         <article class="video-card">
-          <h3>影片 10</h3>
-          <blockquote class="tiktok-embed" cite="https://vt.tiktok.com/ZS5fEUyuJ/" data-embed-from="embed_page" style="max-width: 605px;min-width: 325px;">
-            <section></section>
-          </blockquote>
-          <p class="video-fallback">看不到影片？<a href="https://vt.tiktok.com/ZS5fEUyuJ/" target="_blank" rel="noopener">開啟原影片</a></p>
-          <p class="video-note">內容為公開平台影片分享，僅作知識交流。</p>
+          <h3>中醫觀點分享 10</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7446332181263289607" data-video-id="7446332181263289607" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7446332181263289607" target="_blank" rel="noopener">開啟原影片</a></p>
+        </article>
+
+        <article class="video-card">
+          <h3>中醫觀點分享 11</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7475988696827727112" data-video-id="7475988696827727112" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7475988696827727112" target="_blank" rel="noopener">開啟原影片</a></p>
+        </article>
+
+        <article class="video-card">
+          <h3>中醫觀點分享 12</h3>
+          <blockquote class="tiktok-embed" cite="https://www.tiktok.com/@changwuchi2023/video/7561374523564543249" data-video-id="7561374523564543249" style="max-width: 605px;min-width: 325px;"><section></section></blockquote>
+          <p class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7561374523564543249" target="_blank" rel="noopener">開啟原影片</a></p>
         </article>
 
       </div>
     </section>
-
   </main>
 
   <footer class="site-footer">
@@ -231,8 +189,7 @@
 
 </div>
 
-<!-- TikTok 官方嵌入腳本（一定要有） -->
+<!-- TikTok 官方嵌入脚本（必须） -->
 <script async src="https://www.tiktok.com/embed.js"></script>
-
 </body>
 </html>
