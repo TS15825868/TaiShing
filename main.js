@@ -179,6 +179,182 @@
     );
   }
 
+  // ------------------------------
+  // ✅ 全站統一：漢堡選單順序 + 拿掉「LINE」項目
+  // - 以 JS 生成選單，避免每頁 HTML 都要同步修改
+  // - 仍保留各頁面 CTA / 浮動 LINE 按鈕（不影響）
+  // ------------------------------
+  function setupUnifiedNav() {
+    const navUl = document.querySelector(".site-nav ul");
+    if (!navUl) return;
+
+    // 你要的固定順序（全站一致）
+    const items = [
+      { href: "index.html", label: "首頁", key: "home" },
+      { href: "index.html#all-products", label: "產品總覽", key: "products" },
+      { href: "guide.html", label: "依需求挑選", key: "guide" },
+      { href: "doctor_tiktok.html", label: "中醫觀點", key: "tcm" },
+      { href: "about.html", label: "關於我們", key: "about" },
+      { href: "faq.html", label: "常見問題", key: "faq" },
+      { href: "contact.html", label: "聯絡我們", key: "contact" }
+      // ❌ LINE：依你的需求，從漢堡選單移除
+    ];
+
+    const path = (window.location.pathname || "").split("/").pop() || "index.html";
+    const hash = window.location.hash || "";
+
+    function isActive(key) {
+      if (key === "home") return path === "" || path === "index.html";
+      if (key === "products") return (path === "" || path === "index.html") && hash === "#all-products";
+      if (key === "guide") return path === "guide.html";
+      if (key === "tcm") return path === "doctor_tiktok.html";
+      if (key === "about") return path === "about.html";
+      if (key === "faq") return path === "faq.html";
+      if (key === "contact") return path === "contact.html";
+      return false;
+    }
+
+    // 生成 HTML
+    navUl.innerHTML = items
+      .map((it) => {
+        const active = isActive(it.key) ? " nav-link--active" : "";
+        // 站內連結一律同分頁，不加 target
+        return `<li><a href="${it.href}" class="nav-link${active}">${it.label}</a></li>`;
+      })
+      .join("");
+  }
+
+  // ------------------------------
+  // ✅ 產品「不換頁」快速介紹（彈窗 Quick View）
+  // - 目前先針對首頁「全部產品」區塊（index.html）
+  // - 保留原本詳細頁（SEO/完整資訊），彈窗提供快速理解與導流
+  // ------------------------------
+  function setupProductQuickView() {
+    const triggers = document.querySelectorAll("[data-product-quickview]");
+    if (!triggers.length) return;
+
+    const DATA = {
+      guilu: {
+        name: "仙加味 龜鹿膏",
+        desc: "適合想建立固定補養節奏、願意每天留一小段時間給自己的人。",
+        bullets: [
+          "情境：作息較固定、想用『每日一小匙』建立儀式感",
+          "節奏：穩定、可長期觀察（建議以『一罐』作為觀察期）",
+          "方式：可直接食用或溫水攪勻"
+        ],
+        href: "guilu.html",
+        img: "images/guilu-main.jpg"
+      },
+      drink: {
+        name: "仙加味 龜鹿飲",
+        desc: "適合工作節奏快、常在外奔波或出差，希望補養方便攜帶的人。",
+        bullets: [
+          "情境：通勤/外宿/出差，需要『一包就走』",
+          "節奏：以方便帶著走維持穩定度",
+          "提醒：想喝溫的可隔水微溫，不建議直接煮沸"
+        ],
+        href: "guilu-drink.html",
+        img: "images/guilu-drink.jpg"
+      },
+      soup: {
+        name: "仙加味 龜鹿湯塊",
+        desc: "適合平常就愛煮湯的家庭，用『一鍋湯』讓全家一起補。",
+        bullets: [
+          "情境：家中本來就會煮雞湯/排骨湯",
+          "節奏：一塊入鍋，最容易融入日常",
+          "用量：可先從 1–2 塊試口感與濃度，再依鍋量調整"
+        ],
+        href: "soup.html",
+        img: "images/guilu-soup-block.jpg"
+      },
+      lurong: {
+        name: "仙加味 鹿茸粉",
+        desc: "適合早餐與飲品習慣穩定的人，讓補養自然加入日常飲食。",
+        bullets: [
+          "情境：早餐固定（豆漿/牛奶/粥/飲品）",
+          "節奏：加進原本就會吃的東西，最不容易中斷",
+          "方式：可直接入口，或加入飲品/粥品中"
+        ],
+        href: "lurong.html",
+        img: "images/product-lurong-powder.jpg"
+      },
+      antler: {
+        name: "駝鹿角原料",
+        desc: "提供中藥房、中醫診所、餐飲品牌與家庭自煉使用的原料方案。",
+        bullets: [
+          "情境：已有配方或專業用途，需要穩定供應",
+          "可討論：等級/重量/切製方式（依鍋具與用途建議）",
+          "合作：建議先告知用途與預估用量，再提供較合適方案"
+        ],
+        href: "antler.html",
+        img: "images/antler-raw.jpg"
+      }
+    };
+
+    // 建立彈窗容器（只建一次）
+    let modal = document.querySelector(".product-modal");
+    if (!modal) {
+      modal = document.createElement("div");
+      modal.className = "product-modal";
+      modal.innerHTML = `
+        <div class="product-modal__backdrop" data-modal-close></div>
+        <div class="product-modal__panel" role="dialog" aria-modal="true" aria-label="產品快速介紹">
+          <button class="product-modal__close" type="button" aria-label="關閉" data-modal-close>×</button>
+          <div class="product-modal__body"></div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    const bodyEl = modal.querySelector(".product-modal__body");
+    const closeEls = modal.querySelectorAll("[data-modal-close]");
+
+    function openModal(key) {
+      const d = DATA[key];
+      if (!d) return;
+      bodyEl.innerHTML = `
+        <div class="product-modal__grid">
+          <div class="product-modal__media">
+            <img src="${d.img}" alt="${d.name}" loading="lazy">
+          </div>
+          <div class="product-modal__content">
+            <h3 class="product-modal__title">${d.name}</h3>
+            <p class="product-modal__desc">${d.desc}</p>
+            <ul class="product-modal__list">
+              ${d.bullets.map((t) => `<li>${t}</li>`).join("")}
+            </ul>
+            <div class="product-modal__actions">
+              <a href="${d.href}" class="btn-outline">看完整介紹</a>
+              <a href="contact.html" class="btn-soft">不確定怎麼選？先問我們</a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      modal.classList.add("is-open");
+      document.documentElement.classList.add("modal-open");
+    }
+
+    function closeModal() {
+      modal.classList.remove("is-open");
+      document.documentElement.classList.remove("modal-open");
+    }
+
+    closeEls.forEach((el) => el.addEventListener("click", closeModal));
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    });
+
+    triggers.forEach((el) => {
+      el.addEventListener("click", (e) => {
+        // 保留 href，但在快速介紹模式下阻止跳頁
+        e.preventDefault();
+        const key = el.getAttribute("data-product-quickview");
+        openModal(key);
+      });
+    });
+  }
+
   function setupBackLinks() {
     const backButtons = document.querySelectorAll(".back-link");
     if (!backButtons.length) return;
@@ -203,10 +379,12 @@
   function init() {
     setMainPaddingTop();
     setupBackLinks();
+    setupUnifiedNav();
     setupNavToggle();
     setupCompactHeader();
     setupReveal();
     setupLineFloat();
+    setupProductQuickView();
 
     window.addEventListener("resize", setMainPaddingTop);
 
