@@ -10,17 +10,19 @@
     @page { size: A4; margin: 8mm; }
 
     :root{
-      --ink:#1f1a18;
-      --muted:#6f625d;
+      /* ===== DM 配色（你指定） ===== */
+      --header:#0B1F3B;     /* 標題條：深藍 */
+      --accent:#FF7A00;     /* 重點爆點：橘 */
+      --ink:#111827;        /* 內文：深灰黑 */
+      --muted:#6B7280;      /* 次資訊：灰 */
+      --bg:#F7F4ED;         /* 版面背景：米白 */
 
-      /* 玫瑰金漢方精品 */
-      --brand:#8c3c48;
-      --gold:#c9a27a;
-      --gold2:#b88963;
-
-      --line: rgba(0,0,0,.10);
-      --soft:#fbf6f2;
-      --shadow: 0 14px 34px rgba(60, 20, 20, .10);
+      /* ===== 輔助色 ===== */
+      --card:#FFFFFF;       /* 卡片底 */
+      --line:#E5E7EB;       /* 卡片框線 */
+      --rule:#D1D5DB;       /* 分隔線 */
+      --soft:#F3F4F6;       /* 淡底色（可用於 hover/淡塊） */
+      --shadow: 0 14px 34px rgba(17, 24, 39, .10);
     }
 
     *{ box-sizing:border-box; }
@@ -28,7 +30,7 @@
     body{
       font-family:-apple-system, BlinkMacSystemFont, "PingFang TC","Microsoft JhengHei", system-ui, sans-serif;
       color:var(--ink);
-      background: linear-gradient(180deg, #fff, #fbf5f1);
+      background: var(--bg);
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
     }
@@ -41,9 +43,8 @@
     }
 
     .sheet{
-      background: radial-gradient(1200px 500px at 20% 0%, rgba(201,162,122,.16), transparent 60%),
-                  linear-gradient(180deg, #ffffff, #fffaf6);
-      border: 1px solid rgba(201,162,122,.35);
+      background: linear-gradient(180deg, #ffffff, var(--bg));
+      border: 1px solid var(--line);
       border-radius: 22px;
       box-shadow: var(--shadow);
       overflow: hidden;
@@ -61,8 +62,9 @@
       align-items:center;
       gap:14px;
       padding: 14px 14px 12px;
-      border-bottom: 1px solid rgba(201,162,122,.28);
-      background: linear-gradient(135deg, rgba(201,162,122,.10), rgba(140,60,72,.05));
+      border-bottom: 1px solid rgba(255,255,255,.18);
+      background: var(--header);
+      color:#fff;
     }
 
     .logo{
@@ -70,7 +72,7 @@
       height:64px;
       border-radius:16px;
       object-fit:cover;
-      border:1px solid rgba(201,162,122,.55);
+      border:1px solid rgba(255,255,255,.22);
       background:#fff;
       display:block;
     }
@@ -79,7 +81,7 @@
       display:block;
       font-size: 12px;
       letter-spacing: .24em;
-      color: var(--muted);
+      color: rgba(255,255,255,.78);
       margin-bottom: 4px;
     }
     .brand-text h1{
@@ -87,7 +89,7 @@
       font-size: 20px;
       letter-spacing: .18em;
       font-weight: 900;
-      color: var(--ink);
+      color:#fff;
     }
 
     /* ===== Intro ===== */
@@ -105,14 +107,14 @@
       margin:0 0 8px;
       font-size: 22px;
       letter-spacing: .16em;
-      color: var(--brand);
+      color: var(--header);
       font-weight: 900;
     }
 
     .intro p{
       margin:0;
       font-size: 15px;
-      color:#3a2f2b;
+      color: var(--ink);
     }
 
     /* ===== Products ===== */
@@ -128,11 +130,11 @@
     }
 
     .card{
-      border: 1px solid rgba(201,162,122,.35);
+      border: 1px solid var(--line);
       border-radius: 16px;
       overflow:hidden;
-      background: #fff;
-      box-shadow: 0 10px 26px rgba(0,0,0,.06);
+      background: var(--card);
+      box-shadow: 0 10px 26px rgba(17,24,39,.06);
       display:flex;
       flex-direction: column;
       min-height: 100%;
@@ -143,7 +145,7 @@
       height: 180px;
       object-fit: cover; /* 螢幕好看 */
       display:block;
-      background: var(--soft);
+      background: #fff;
     }
 
     .card-body{
@@ -156,20 +158,20 @@
       font-size: 16px;
       letter-spacing: .14em;
       font-weight: 900;
-      color: #2a201d;
+      color: var(--header);
     }
 
     .card-body p{
       margin:0;
       font-size: 13px;
-      color:#4a3f3b;
+      color: var(--muted);
       letter-spacing:.06em;
     }
 
     /* ===== CTA / QR ===== */
     .cta{
       margin: 10px 14px 14px;
-      border-top: 1px solid rgba(201,162,122,.35);
+      border-top: 1px solid var(--rule);
       padding-top: 14px;
       text-align:center;
     }
@@ -179,7 +181,7 @@
       font-size: 16px;
       letter-spacing: .14em;
       font-weight: 900;
-      color: #2a201d;
+      color: var(--header);
     }
 
     .cta p{
@@ -200,11 +202,11 @@
     }
 
     .qr-item{
-      border: 1px solid rgba(201,162,122,.35);
+      border: 1px solid var(--line);
       border-radius: 16px;
       padding: 12px 10px 12px;
-      background: #fff;
-      box-shadow: 0 10px 22px rgba(0,0,0,.05);
+      background: var(--card);
+      box-shadow: 0 10px 22px rgba(17,24,39,.05);
       min-width: 0;
     }
 
@@ -212,7 +214,7 @@
       width: 108px;
       height: 108px;
       object-fit: contain;
-      border: 1px solid rgba(0,0,0,.10);
+      border: 1px solid rgba(17,24,39,.12);
       border-radius: 12px;
       background:#fff;
       display:block;
@@ -223,7 +225,7 @@
       margin: 10px 0 10px;
       font-size: 13px;
       letter-spacing: .10em;
-      color:#2a201d;
+      color: var(--ink);
       font-weight: 800;
       text-align:center;
     }
@@ -238,38 +240,43 @@
 
     .btn{
       appearance:none;
-      border: 1px solid rgba(201,162,122,.55);
-      background: linear-gradient(180deg, #ffffff, #fff6ef);
-      color:#2a201d;
+      border: 1px solid rgba(11,31,59,.35);
+      background: #fff;
+      color: var(--header);
       padding: 10px 14px;
       border-radius: 999px;
       font-size: 13px;
       letter-spacing: .08em;
-      font-weight: 800;
+      font-weight: 900;
       text-decoration:none;
       display:inline-flex;
       align-items:center;
       justify-content:center;
       min-width: 120px;
-      transition: transform .15s ease, box-shadow .15s ease;
-      box-shadow: 0 10px 18px rgba(0,0,0,.06);
+      transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease;
+      box-shadow: 0 10px 18px rgba(17,24,39,.06);
     }
+    .btn:hover{ transform: translateY(-1px); background: var(--soft); border-color: rgba(11,31,59,.55); }
 
-    .btn--line{
-      border-color: rgba(6,199,85,.45);
-      background: linear-gradient(180deg, rgba(6,199,85,.12), rgba(6,199,85,.06));
+    /* ✅ 主推橘：用於「爆點」按鈕（更像 CTA） */
+    .btn--accent{
+      border-color: rgba(255,122,0,.45);
+      background: rgba(255,122,0,.10);
+      color: var(--accent);
     }
-
-    .btn:hover{ transform: translateY(-1px); }
+    .btn--accent:hover{
+      background: rgba(255,122,0,.16);
+      border-color: rgba(255,122,0,.60);
+    }
 
     /* ===== Footer ===== */
     .footer{
       margin: 10px 14px 16px;
       padding-top: 12px;
-      border-top: 1px solid rgba(0,0,0,.10);
+      border-top: 1px solid var(--rule);
       text-align:center;
       font-size: 13px;
-      color:#3b312d;
+      color: var(--muted);
       letter-spacing:.04em;
       line-height: 1.7;
     }
@@ -281,7 +288,6 @@
       body{ background:#fff !important; }
       .wrap{ padding:0; max-width:none; }
 
-      /* ✅ 不要硬卡 height:297mm；改用留白與 footer 置底確保不爆頁 */
       .sheet{
         width: 100%;
         border: none;
@@ -289,6 +295,7 @@
         box-shadow: none;
         overflow: hidden;
         page-break-after: avoid;
+        background:#fff;
       }
 
       /* ✅ 預留底部空間給 footer（避免蓋到內容） */
@@ -297,7 +304,7 @@
         padding-bottom: 16mm; /* footer 專用空間 */
       }
 
-      .header{ padding: 8mm 8mm 5mm; }
+      .header{ padding: 8mm 8mm 5mm; background: var(--header) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
       .logo{ width: 18mm; height: 18mm; border-radius: 4mm; }
 
       .brand-text small{ font-size: 10.5pt; }
@@ -316,6 +323,7 @@
       .card{
         box-shadow: none;
         border-radius: 5mm;
+        border-color: var(--line);
       }
 
       /* ✅ 列印時圖片完整顯示 */
@@ -450,7 +458,7 @@
               <img src="images/line_qr.png" alt="LINE 官方帳號 QR Code">
               <div class="qr-label">LINE 官方帳號</div>
               <div class="qr-actions">
-                <a class="btn btn--line" id="btnLine" href="#" target="_blank" rel="noopener">前往 LINE</a>
+                <a class="btn btn--accent" id="btnLine" href="#" target="_blank" rel="noopener">前往 LINE</a>
               </div>
             </div>
 
