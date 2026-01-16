@@ -144,12 +144,22 @@
 
     function closeNav() {
       nav.classList.remove("is-open");
+      toggle.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    // default state
+    if (!toggle.hasAttribute("aria-expanded")) {
+      toggle.setAttribute("aria-expanded", "false");
     }
 
     // 點漢堡：開 / 關
     toggle.addEventListener("click", function (e) {
       e.stopPropagation();
-      nav.classList.toggle("is-open");
+      const next = !nav.classList.contains("is-open");
+      nav.classList.toggle("is-open", next);
+      toggle.classList.toggle("is-open", next);
+      toggle.setAttribute("aria-expanded", next ? "true" : "false");
     });
 
     // 點選選單項目後自動收合（含同頁錨點）
