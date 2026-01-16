@@ -154,20 +154,6 @@ img {
 }
 
 /* =========================================
-   首頁 SIGNATURE PRODUCT：只保留圖片（減少上方空白）
-   ========================================= */
-.signature-only{
-  padding-top: 10px;
-}
-.signature-only .hero-image-link{
-  display: block;
-  margin-top: 0;
-}
-.signature-only .hero-image-frame{
-  margin-top: 0;
-}
-
-/* =========================================
    SECTION 基本框
    ========================================= */
 .section {
@@ -953,4 +939,133 @@ img.product-image {
 
 @media (max-width: 768px){
   .product-modal-grid{ grid-template-columns: 1fr; }
+}
+
+/* =====================================================================
+   UI Palette Override (Navy + Orange)
+   - Aligns header, nav, buttons, links, cards with the specified brand UI.
+   ===================================================================== */
+
+body{ background: var(--color-bg-soft); color: var(--color-text-main); }
+
+a{ color: var(--color-link); }
+a:hover{ color: var(--color-link-hover); }
+
+/* Header / Nav */
+.site-header{
+  background: var(--color-header-bg) !important;
+  border-bottom: 1px solid rgba(243,244,246,0.12) !important;
+  backdrop-filter: none !important;
+}
+.site-logo{ filter: none; }
+.brand-since, .brand-title{ color: var(--color-header-text) !important; }
+
+.nav-toggle{ color: var(--color-header-text) !important; }
+
+.site-nav .nav-link{
+  color: var(--color-header-text) !important;
+  opacity: 0.94;
+}
+.site-nav .nav-link:hover{
+  color: var(--color-link-hover) !important;
+}
+.site-nav .nav-link--active{
+  color: #FFFFFF !important;
+  border-bottom-color: var(--color-cta) !important;
+}
+
+/* Mobile menu panel */
+@media (max-width: 860px){
+  .site-nav{
+    background: var(--color-header-bg) !important;
+    border-color: rgba(243,244,246,0.14) !important;
+  }
+}
+
+/* Cards / borders */
+.product-card,
+.guide-card,
+.brand-card,
+.company-block,
+.faq-item,
+.video-card{
+  background: var(--color-card) !important;
+  border-color: var(--color-border) !important;
+}
+
+hr,
+.table-line,
+.divider,
+.faq-list{
+  border-color: var(--color-divider) !important;
+}
+
+/* Buttons */
+.btn-primary,
+.btn-line-strong{
+  background: var(--color-cta) !important;
+  color: var(--color-cta-text) !important;
+  border: 1px solid var(--color-cta) !important;
+}
+.btn-primary:hover,
+.btn-line-strong:hover{
+  background: var(--color-cta-hover) !important;
+  border-color: var(--color-cta-hover) !important;
+}
+
+.btn-outline,
+.btn-outline-gold{
+  background: transparent !important;
+  border: 1px solid var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+.btn-outline:hover,
+.btn-outline-gold:hover{
+  background: var(--color-secondary-hover) !important;
+}
+
+.btn-soft{
+  background: var(--color-secondary-hover) !important;
+  border: 1px solid transparent !important;
+  color: var(--color-primary) !important;
+}
+.btn-soft:hover{
+  background: #DCE6F2 !important;
+}
+
+/* Accessibility */
+.sr-only{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
+
+/* Homepage: SIGNATURE PRODUCT (image only) */
+.signature-only{
+  padding-top: 26px;
+  padding-bottom: 26px;
+}
+.signature-image-link{ display:block; }
+.signature-image-frame{
+  max-width: 760px;
+  margin: 0 auto;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 16px 40px rgba(11,31,59,0.10);
+}
+.signature-image-frame img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+@media (max-width: 768px){
+  .signature-only{ padding-top: 18px; padding-bottom: 18px; }
+  .signature-image-frame{ max-width: 100%; border-radius: 16px; }
 }

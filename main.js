@@ -279,7 +279,7 @@
         img: "images/product-lurong-powder.jpg"
       },
       antler: {
-        name: "駝鹿角原料",
+        name: "鹿角原料",
         desc: "提供中藥房、中醫診所、餐飲品牌與家庭自煉使用的原料方案。",
         bullets: [
           "情境：已有配方或專業用途，需要穩定供應",
