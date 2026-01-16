@@ -1,60 +1,33 @@
-/*
-  Theme: Navy + Orange (User-specified UI palette)
-  Brand: 台興山產・仙加味
-
-  Palette (per user):
-  - Header/Nav BG: #0B1F3B
-  - Header/Nav Text: #F3F4F6
-  - Primary CTA BG: #FF7A00
-  - CTA Hover BG: #E86E00
-  - Secondary Hover BG: #E8EEF6
-  - Card BG: #FFFFFF
-  - Card Border: #E5E7EB
-  - Divider: #D1D5DB
-  - Link: #0B1F3B
-  - Link Hover: #FF7A00
-*/
-
 :root{
-  /* Core */
+  --font-body: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+
+  /* =============================
+     台興山產・仙加味：官網 UI 配色
+     ============================= */
+
+  /* 背景 / 文字 */
+  --color-bg: #F7F4ED;          /* 版面背景 */
+  --color-bg-soft: #FFFFFF;     /* 卡片/區塊底 */
+  --color-text-main: #111827;   /* 內文 */
+  --color-text-label: #6B7280;  /* 次資訊 */
+
+  /* 主色（Header / Link） */
+  --color-primary-deep: #0B1F3B;
   --color-primary: #0B1F3B;
-  --color-primary-deep: #08162B;
-  --color-bg: #FFFFFF;
-  --color-bg-soft: #F7FAFF;
 
-  /* Text */
-  --color-ink: #111827;
-  --color-ink-soft: #374151;
-  --color-muted: #6B7280;
+  /* CTA（橘） */
+  --color-accent-gold: #FF7A00;
+  --color-accent-gold-deep: #E86E00;
 
-  /* Header */
-  --color-header-bg: #0B1F3B;
-  --color-header-text: #F3F4F6;
-
-  /* CTA (Primary) */
-  --color-cta: #FF7A00;
-  --color-cta-text: #FFFFFF;
-  --color-cta-hover: #E86E00;
-
-  /* Secondary */
-  --color-secondary-hover: #E8EEF6;
-
-  /* Surfaces */
-  --color-card: #FFFFFF;
-  --color-border: #E5E7EB;
+  /* 線條 / 陰影 */
+  --color-border-soft: #E5E7EB;
   --color-divider: #D1D5DB;
+  --shadow-soft: 0 12px 28px rgba(0,0,0,.10);
 
-  /* Links */
+  /* 導覽列文字 */
+  --color-nav-text: #F3F4F6;
+
+  /* Link */
   --color-link: #0B1F3B;
   --color-link-hover: #FF7A00;
-
-  /* Compatibility aliases (legacy names used by existing CSS) */
-  --color-accent-gold: var(--color-cta);
-  --color-accent-gold-deep: var(--color-cta-hover);
-  --color-rose: var(--color-cta);
-  --color-rose-deep: var(--color-cta-hover);
-  --color-rose-soft: var(--color-secondary-hover);
-  --color-line: var(--color-cta);
-  --color-text-main: var(--color-ink);
-  --color-text-muted: var(--color-muted);
 }

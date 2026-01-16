@@ -278,22 +278,55 @@
     }
 
     function buildToc(container) {
-      // Collect H2s as quick anchors; if none, fall back to H3
-      const headings = Array.from(container.querySelectorAll('h2[id]'));
-      const list = headings.length ? headings : Array.from(container.querySelectorAll('h3[id]'));
-      if (!list.length) {
+      const all = Array.from(container.querySelectorAll('h2[id], h3[id]'))
+        .filter(h => (h.textContent || '').trim().length > 0);
+
+      if (!all.length) {
         tocEl.innerHTML = '';
         return;
       }
 
+      // Prefer a few practical jumps: 規格 / 成分 / 吃法 / FAQ / 保存 / 注意
+      const prefer = [
+        { key: 'spec',  re: /(規格|容量|重量|包裝|內容量)/ },
+        { key: 'ing',   re: /(成分|原料|配方|內容物)/ },
+        { key: 'use',   re: /(吃法|用法|使用|怎麼吃|沖泡|料理)/ },
+        { key: 'faq',   re: /(常見問題|FAQ)/i },
+        { key: 'keep',  re: /(保存|存放|冷藏|保存方式)/ },
+        { key: 'note',  re: /(注意|提醒|不建議|適合|不適合)/ }
+      ];
+
+      const picked = [];
+      const usedKeys = new Set();
+
+      for (const h of all) {
+        const t = (h.textContent || '').trim();
+        for (const p of prefer) {
+          if (usedKeys.has(p.key)) continue;
+          if (p.re.test(t)) {
+            picked.push(h);
+            usedKeys.add(p.key);
+            break;
+          }
+        }
+      }
+
+      // Fill remaining slots with the first few headings (keep overall order)
+      for (const h of all) {
+        if (picked.includes(h)) continue;
+        picked.push(h);
+        if (picked.length >= 8) break;
+      }
+
       const frag = document.createDocumentFragment();
-      list.slice(0, 8).forEach(h => {
+      picked.slice(0, 8).forEach(h => {
         const a = document.createElement('a');
         a.className = 'modal-toc-link';
         a.href = '#' + h.id;
-        a.textContent = h.textContent.trim();
+        a.textContent = (h.textContent || '').trim();
         frag.appendChild(a);
       });
+
       tocEl.innerHTML = '';
       tocEl.appendChild(frag);
     }
@@ -304,6 +337,16 @@
       const top = target.getBoundingClientRect().top - bodyEl.getBoundingClientRect().top + bodyEl.scrollTop - 8;
       bodyEl.scrollTo({ top, behavior: 'smooth' });
     }
+
+    // TOC quick-jump inside modal (避免只改 hash、不滾動)
+    tocEl.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+      if (!href.startsWith('#')) return;
+      e.preventDefault();
+      scrollToAnchor(href.slice(1));
+    });
 
     async function loadPageIntoModal(href, fallbackTitle) {
       setLoading(fallbackTitle);
@@ -328,18 +371,34 @@
         // Remove nested floating LINE buttons or duplicate wrappers if any
         wrapper.querySelectorAll('.line-float, .site-header, .site-footer, script, noscript').forEach(el => el.remove());
 
-        // Ensure IDs exist for main sections (so toc/anchors work)
-        wrapper.querySelectorAll('h2').forEach((h, idx) => {
-          if (!h.id) {
-            const base = 'sec-' + (idx + 1);
-            h.id = base;
+        // Ensure IDs exist for headings so toc/anchors work reliably
+        const used = new Set();
+        const slugify = (text) => {
+          const base = (text || '')
+            .toString()
+            .trim()
+            .toLowerCase()
+            // keep chinese/english/nums, collapse others into '-'
+            .replace(/[^\u4e00-\u9fff\w\s-]+/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+          return base || 'section';
+        };
+
+        wrapper.querySelectorAll('h2, h3').forEach((h, idx) => {
+          const rawId = (h.getAttribute('id') || '').trim();
+          let id = rawId || slugify(h.textContent);
+          // Guarantee uniqueness
+          let n = 1;
+          let candidate = id;
+          while (used.has(candidate) || wrapper.querySelector('#' + CSS.escape(candidate))) {
+            n += 1;
+            candidate = id + '-' + n;
           }
-        });
-        wrapper.querySelectorAll('h3').forEach((h, idx) => {
-          if (!h.id) {
-            const base = 'sub-' + (idx + 1);
-            h.id = base;
-          }
+          id = candidate;
+          used.add(id);
+          h.id = id;
         });
 
         // Inject
@@ -367,9 +426,13 @@
       }
     }
 
-    // Trigger click
-    triggers.forEach(el => {
-      el.addEventListener('click', (e) => {
+    // Trigger click (event delegation: prevents "點不到/綁不到" 的情況)
+    if (!document.documentElement.dataset.productModalDelegated) {
+      document.documentElement.dataset.productModalDelegated = '1';
+      document.addEventListener('click', (e) => {
+        const el = e.target.closest('a.js-product-modal');
+        if (!el) return;
+
         // Allow Cmd/Ctrl click to open new tab
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         e.preventDefault();
@@ -379,7 +442,7 @@
         loadPageIntoModal(href, title);
         openModal();
       });
-    });
+    }
 
     // Close handlers
     if (overlay) overlay.addEventListener('click', closeModal);

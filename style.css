@@ -14,8 +14,7 @@ body {
 }
 
 body {
-  font-family: "Noto Serif TC", -apple-system, BlinkMacSystemFont,
-    "PingFang TC", "Microsoft JhengHei", serif;
+  font-family: var(--font-body);
   background: var(--color-bg);
   color: var(--color-text-main);
   line-height: 1.85;
@@ -23,8 +22,12 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--color-link);
   text-decoration: none;
+}
+
+a:hover{
+  color: var(--color-link-hover);
 }
 
 img {
@@ -37,7 +40,7 @@ img {
    ========================================= */
 .site-wrapper {
   min-height: 100vh;
-  background: var(--color-bg-soft);
+  background: transparent;
 }
 
 /* =========================================
@@ -48,9 +51,8 @@ img {
   top: 0;
   left: 0;
   right: 0;
-  background: rgba(251, 245, 242, 0.96);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--color-border-soft);
+  background: var(--color-primary-deep);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.10);
   z-index: 999;
 }
 
@@ -91,13 +93,13 @@ img {
 .brand-title {
   font-size: 0.95rem;
   letter-spacing: 0.12em;
-  color: var(--color-primary-deep);
+  color: var(--color-nav-text);
 }
 
 .brand-since {
   font-size: 0.65rem;
   letter-spacing: 0.22em;
-  color: var(--color-text-label);
+  color: rgba(243, 244, 246, 0.78);
 }
 
 /* =========================================
@@ -109,6 +111,15 @@ img {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.site-nav a{
+  color: var(--color-nav-text);
+  text-decoration: none;
+}
+
+.site-nav a:hover{
+  color: var(--color-accent-gold);
 }
 
 .nav-link {
@@ -252,29 +263,39 @@ img {
 
 /* 主 CTA */
 .btn-primary {
-  background: linear-gradient(135deg, #b6656f, #8c3c48);
-  color: #fff;
-  box-shadow: 0 10px 22px rgba(140, 60, 72, 0.35);
+  background: var(--color-accent-gold);
+  color: #FFFFFF;
+  box-shadow: 0 10px 22px rgba(255, 122, 0, 0.35);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 16px 36px rgba(120, 45, 60, 0.45);
+  background: var(--color-accent-gold-deep);
+  box-shadow: 0 16px 36px rgba(232, 110, 0, 0.45);
 }
 
 /* 次 CTA */
 .btn-soft,
 .btn-outline,
 .btn-outline-gold {
-  background: #fffdfb;
-  border: 1.5px solid var(--color-accent-gold-deep);
-  color: var(--color-primary-deep);
+  border: 1.5px solid #0B1F3B;
+  color: #0B1F3B;
+}
+
+.btn-outline,
+.btn-outline-gold {
+  background: transparent;
+}
+
+.btn-soft {
+  background: #E8EEF6;
+  border-color: #E8EEF6;
 }
 
 .btn-soft:hover,
 .btn-outline:hover,
 .btn-outline-gold:hover {
-  background: #f7ede4;
+  background: #E8EEF6;
 }
 
 /* LINE 強調按鈕 */
@@ -399,7 +420,7 @@ img {
 article.product-card,
 .product-card {
   background: #fff !important;
-  border: 1px solid rgba(0, 0, 0, 0.12) !important;
+  border: 1px solid #E5E7EB !important;
   border-radius: 16px !important;
   box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08) !important;
   padding: 18px 16px 20px !important;
