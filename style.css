@@ -1005,23 +1005,34 @@ body.modal-open{ overflow: hidden; }
 
 .modal-toc{
   display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: 10px;
+  /* âœ… å–®è¡Œæ©«å‘æ»‘å‹•ï¼Œæ¸›å°‘é«˜åº¦é®æ“‹ */
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  gap: 6px;
+  margin-top: 6px;
+  max-height: 72px;
+  transition: opacity .2s ease, max-height .2s ease, margin-top .2s ease;
 }
+
+/* éš±è—æ²è»¸ï¼ˆä¿ç•™å¯æ»‘å‹•ï¼‰ */
+.modal-toc::-webkit-scrollbar{ height: 0; }
+.modal-toc{ scrollbar-width: none; }
 
 .modal-toc-link{
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 8px 12px;
+  padding: 6px 10px;
   border-radius: 999px;
   border: 1px solid rgba(0,0,0,.14);
   text-decoration: none;
   color: var(--color-primary-deep);
   background: rgba(11,31,59,.04);
-  font-size: .9rem;
+  font-size: .82rem;
   letter-spacing: .02em;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 
 .modal-toc-link:hover{ background: rgba(11,31,59,.08); }
@@ -1029,23 +1040,26 @@ body.modal-open{ overflow: hidden; }
 .modal-head-right{
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
-.modal-openpage{
-  font-size: .9rem;
-  letter-spacing: .04em;
-  text-decoration: none;
-  color: var(--color-primary-deep);
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.14);
-  background: rgba(255,255,255,.85);
+/* âœ… ã€Œå…ˆèŠèŠç‹€æ³ã€CTAï¼šå°Žå‘ LINE */
+.modal-toc-link.modal-toc-cta{
+  background: #06C755;
+  border-color: rgba(0,0,0,.08);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0,0,0,.16);
+}
+.modal-toc-link.modal-toc-cta:hover{
+  filter: brightness(0.95);
 }
 
-.modal-openpage:hover{
-  color: var(--color-accent-gold);
-  border-color: rgba(255,122,0,.55);
+/* âœ… å…§æ–‡å¾€ä¸‹æ»‘æ™‚ï¼ŒTOC è‡ªå‹•æ·¡å‡ºï¼Œæ¸›å°‘é®æ“‹ */
+.modal.is-body-scrolled .modal-toc{
+  opacity: 0;
+  max-height: 0;
+  margin-top: 0;
+  pointer-events: none;
 }
 
 .modal-close{
@@ -1114,7 +1128,6 @@ body.modal-open{ overflow: hidden; }
   .modal-dialog{ width: calc(100% - 18px); max-height: 90vh; margin: 9px auto; }
   .modal-head{ padding: 12px 14px; }
   .modal-body{ padding: 12px 14px 16px; }
-  .modal-openpage{ display: none; }
   /* æ‰‹æ©Ÿç«¯æ›´å¤§çš„å¯é»žæ“Šå€ï¼Œé¿å…èª¤è§¸ */
   .modal-close{ width: 48px; height: 48px; min-width: 48px; min-height: 48px; font-size: 1.85rem; border-radius: 16px; }
 }
