@@ -256,10 +256,35 @@
     const closeBtn = modal.querySelector('.modal-close');
 
     let lastFocus = null;
+    let scrollY = 0;
+
+    function lockScroll() {
+      // Robust scroll lock (esp. iOS/Safari): freeze body at current scroll position
+      scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      document.documentElement.classList.add('modal-open');
+      document.body.classList.add('modal-open');
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
+    }
+
+    function unlockScroll() {
+      document.documentElement.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
+      window.scrollTo(0, scrollY);
+    }
 
     function openModal() {
       lastFocus = document.activeElement;
-      document.documentElement.classList.add('modal-open');
+      modal.classList.remove('is-closing');
+      lockScroll();
       modal.setAttribute('aria-hidden', 'false');
       modal.classList.add('is-open');
       // focus close for accessibility
@@ -267,13 +292,22 @@
     }
 
     function closeModal() {
-      modal.classList.remove('is-open');
-      modal.setAttribute('aria-hidden', 'true');
-      document.documentElement.classList.remove('modal-open');
-      // restore focus
-      if (lastFocus && typeof lastFocus.focus === 'function') {
-        setTimeout(() => lastFocus.focus(), 0);
-      }
+      if (!modal.classList.contains('is-open')) return;
+      if (modal.classList.contains('is-closing')) return;
+
+      // Fade-out animation
+      modal.classList.add('is-closing');
+      setTimeout(() => {
+        modal.classList.remove('is-open');
+        modal.classList.remove('is-closing');
+        modal.setAttribute('aria-hidden', 'true');
+        unlockScroll();
+
+        // restore focus
+        if (lastFocus && typeof lastFocus.focus === 'function') {
+          setTimeout(() => lastFocus.focus(), 0);
+        }
+      }, 200);
     }
 
     function setLoading(titleText) {
@@ -381,6 +415,24 @@
 
         // Remove nested floating LINE buttons or duplicate wrappers if any
         wrapper.querySelectorAll('.line-float, .site-header, .site-footer, script, noscript').forEach(el => el.remove());
+
+        // ✅ 詳情頁多數區塊使用 .reveal 動畫；在彈窗內沒有 IntersectionObserver 觸發，
+        //    會導致「圖片/文字看不到」。在彈窗中直接強制顯示。
+        wrapper.querySelectorAll('.reveal, .reveal-up').forEach(el => {
+          el.classList.add('is-visible');
+        });
+
+        // ✅ 將詳情頁內的「← 返回產品列表」在彈窗模式下改成「關閉」並直接關閉彈窗
+        wrapper.querySelectorAll('.back-link').forEach((a) => {
+          a.textContent = '關閉';
+          a.setAttribute('href', '#');
+          a.setAttribute('role', 'button');
+          a.classList.add('modal-close-link');
+          a.addEventListener('click', (evt) => {
+            evt.preventDefault();
+            closeModal();
+          });
+        });
 
         // Ensure IDs exist for headings so toc/anchors work reliably
         const used = new Set();

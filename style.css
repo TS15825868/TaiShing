@@ -630,6 +630,15 @@ img.product-image {
     z-index: 900;
   }
 
+  /* ✅ 手機展開選單：背景是白色時，文字需改為深色（避免看不清楚） */
+  .site-nav a{
+    color: var(--color-primary-deep);
+  }
+
+  .site-nav a:hover{
+    color: var(--color-accent-gold-deep);
+  }
+
   .site-nav.is-open {
     display: block;
   }
@@ -928,16 +937,36 @@ body.modal-open{ overflow: hidden; }
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: none;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity .2s ease, visibility 0s linear .2s;
 }
 
-.modal.is-open{ display: block; }
+.modal.is-open{
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transition: opacity .2s ease, visibility 0s;
+}
+
+.modal.is-open.is-closing{
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
 
 .modal-overlay{
   position: absolute;
   inset: 0;
   background: rgba(0,0,0,.58);
+  opacity: 0;
+  transition: opacity .2s ease;
 }
+
+.modal.is-open .modal-overlay{ opacity: 1; }
+.modal.is-open.is-closing .modal-overlay{ opacity: 0; }
 
 .modal-dialog{
   position: relative;
@@ -950,7 +979,12 @@ body.modal-open{ overflow: hidden; }
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transform: translateY(6px) scale(.98);
+  transition: transform .2s ease;
 }
+
+.modal.is-open .modal-dialog{ transform: translateY(0) scale(1); }
+.modal.is-open.is-closing .modal-dialog{ transform: translateY(6px) scale(.98); }
 
 .modal-head{
   display: flex;
@@ -1015,18 +1049,27 @@ body.modal-open{ overflow: hidden; }
 }
 
 .modal-close{
-  border: 0;
-  background: rgba(0,0,0,.05);
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.85);
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 14px;
   cursor: pointer;
-  font-size: 1.4rem;
+  font-size: 1.65rem;
   line-height: 1;
-  color: rgba(0,0,0,.72);
+  color: var(--color-primary-deep);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,.12);
 }
 
-.modal-close:hover{ background: rgba(0,0,0,.08); }
+.modal-close:hover{
+  background: rgba(255,255,255,.95);
+  border-color: rgba(255,122,0,.55);
+  color: var(--color-accent-gold-deep);
+}
 
 .modal-body{
   padding: 14px 16px 18px;
@@ -1072,6 +1115,8 @@ body.modal-open{ overflow: hidden; }
   .modal-head{ padding: 12px 14px; }
   .modal-body{ padding: 12px 14px 16px; }
   .modal-openpage{ display: none; }
+  /* 手機端更大的可點擊區，避免誤觸 */
+  .modal-close{ width: 48px; height: 48px; min-width: 48px; min-height: 48px; font-size: 1.85rem; border-radius: 16px; }
 }
 
 .product-modal-overlay{
