@@ -436,21 +436,67 @@
       }
     }
 
-    // Trigger click (event delegation: prevents "點不到/綁不到" 的情況)
+    // Trigger click (event delegation)
+    // ✅ 全站「產品詳情頁」連結一律彈窗（但不動 header/nav/footer 的必要導頁）
     if (!document.documentElement.dataset.productModalDelegated) {
       document.documentElement.dataset.productModalDelegated = '1';
+
+      // Product detail pages that should open in modal when clicked within page content
+      const PRODUCT_DETAIL_PAGES = new Set([
+        'guilu.html',
+        'guilu-drink.html',
+        'soup.html',
+        'antler.html',
+        'lurong.html',
+        'guilu-line.html'
+      ]);
+
+      const isInterceptCandidate = (a) => {
+        if (!a) return false;
+
+        // Exclude navigation + footer (必要導頁行為不改)
+        if (a.closest('.site-header, .site-nav, .site-footer')) return false;
+        if (a.classList.contains('nav-link')) return false;
+
+        const href = (a.getAttribute('href') || '').trim();
+        if (!href) return false;
+        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return false;
+        if (href.startsWith('#')) return false; // same-page anchors remain as-is
+
+        // Normalize to filename (remove query/hash, leading ./)
+        const noQuery = href.split('?')[0];
+        const noHash = noQuery.split('#')[0];
+        const file = noHash.replace(/^\.\//, '').split('/').pop();
+
+        return PRODUCT_DETAIL_PAGES.has(file);
+      };
+
       document.addEventListener('click', (e) => {
-        const el = e.target.closest('a.js-product-modal');
-        if (!el) return;
+        const a = e.target.closest('a');
+        if (!a) return;
 
-        // Allow Cmd/Ctrl click to open new tab
+        // Allow Cmd/Ctrl/Shift/Alt click to keep default behavior (new tab / select)
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-        e.preventDefault();
 
-        const href = el.getAttribute('href');
-        const title = el.getAttribute('aria-label') || el.getAttribute('title') || '產品介紹';
-        loadPageIntoModal(href, title);
-        openModal();
+        // 1) Explicit triggers keep working
+        if (a.classList.contains('js-product-modal')) {
+          const href = a.getAttribute('href');
+          if (!href) return;
+          e.preventDefault();
+          const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
+          loadPageIntoModal(href, title);
+          openModal();
+          return;
+        }
+
+        // 2) Any internal link pointing to product detail pages inside content -> modal
+        if (isInterceptCandidate(a)) {
+          const href = a.getAttribute('href');
+          e.preventDefault();
+          const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
+          loadPageIntoModal(href, title);
+          openModal();
+        }
       });
     }
 
