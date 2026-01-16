@@ -994,6 +994,25 @@ body.modal-open{ overflow: hidden; }
   padding: 14px 16px;
   border-bottom: 1px solid rgba(0,0,0,.08);
   background: linear-gradient(180deg, rgba(11,31,59,.04), transparent);
+  /* 保險：讓 header 在內容捲動時保持可用（不會被內容頂掉） */
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+/* ✅ 關鍵修正（iOS/Safari）：
+   - 左側 TOC 必須可縮（min-width:0）才能產生 overflow 進而可橫向滑動
+   - 右側（目錄/✕）固定不被擠出畫面，避免你看到「✕ 不見」
+*/
+.modal-head-left{
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.modal-head-right{
+  flex: 0 0 auto;
+  align-items: center;
 }
 
 .modal-title{
@@ -1009,6 +1028,8 @@ body.modal-open{ overflow: hidden; }
   flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  min-width: 0;
   gap: 6px;
   margin-top: 6px;
   max-height: 72px;
@@ -1168,7 +1189,8 @@ body.modal-open{ overflow: hidden; }
 
 @media (max-width: 768px){
   .modal-dialog{ width: calc(100% - 18px); max-height: 90vh; margin: 9px auto; }
-  .modal-head{ padding: 12px 14px; }
+  /* iPhone 動態島 / Safari 上方安全區，避免把右側按鈕擠出或被遮到 */
+  .modal-head{ padding: calc(10px + env(safe-area-inset-top)) 12px 10px; }
   .modal-body{ padding: 12px 14px 16px; }
   /* 手機端更大的可點擊區，避免誤觸 */
   .modal-close{ width: 48px; height: 48px; min-width: 48px; min-height: 48px; font-size: 1.85rem; border-radius: 16px; }
