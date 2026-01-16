@@ -154,6 +154,20 @@ img {
 }
 
 /* =========================================
+   首頁 SIGNATURE PRODUCT：只保留圖片（減少上方空白）
+   ========================================= */
+.signature-only{
+  padding-top: 10px;
+}
+.signature-only .hero-image-link{
+  display: block;
+  margin-top: 0;
+}
+.signature-only .hero-image-frame{
+  margin-top: 0;
+}
+
+/* =========================================
    SECTION 基本框
    ========================================= */
 .section {
