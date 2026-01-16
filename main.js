@@ -1,86 +1,86 @@
 /* =========================================================
-   太城網站 - main.js（最終版）
-   - 頭部內邊距頂部自動修復
-   - 滾動時保持緊湊的標題
-   - 顯示動畫（✅ iOS/Safari首屏不再空白）
-   - 浮動LINE按鈕助手（用.line-float，沒有才自動產生）
-   - Mobile 漢堡選單：點外部或捲動自動收合
-   ================================================================= */
-（功能 （） {
-  “使用嚴格模式”；
+   TaiShing Site - main.js (Final)
+   - Header padding-top auto fix
+   - Compact header on scroll
+   - Reveal animations（✅ iOS/Safari 首屏不再空白）
+   - Floating LINE button helper（用既有 .line-float，沒有才自動生成）
+   - Mobile 漢堡選單：點外面 or 捲動自動收合
+   ========================================================= */
+(function () {
+  "use strict";
 
   function setMainPaddingTop() {
     const header = document.querySelector(".site-header");
-    const main = document.querySelector("site-main");
-    如果（!header || !main）則返回；
+    const main = document.querySelector(".site-main");
+    if (!header || !main) return;
     const h = header.offsetHeight || 0;
     main.style.paddingTop = `${h + 18}px`;
   }
 
   function setupCompactHeader() {
     const header = document.querySelector(".site-header");
-    如果 (!header) 返回；
+    if (!header) return;
     const onScroll = () => {
       if (window.scrollY > 24) header.classList.add("header--compact");
-      否則 header.classList.remove("header--compact");
+      else header.classList.remove("header--compact");
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  // ✅ 修正：避免首屏元素先顯示，iOS/Safari IntersectionObserver 延遲導致空白
-  函數 setupReveal() {
+  // ✅ 修正：首屏元素先顯示，避免 iOS/Safari IntersectionObserver 延遲導致空白
+  function setupReveal() {
     const targets = document.querySelectorAll(".reveal, .reveal-up");
-    如果 (!targets.length) 返回；
+    if (!targets.length) return;
 
     function forceRevealAboveFold() {
       const vh = window.innerHeight || 0;
       targets.forEach((el) => {
         const r = el.getBoundingClientRect();
-        如果 (r.top < vh * 0.95) el.classList.add("is-visible");
+        if (r.top < vh * 0.95) el.classList.add("is-visible");
       });
     }
 
-    如果 (!("IntersectionObserver" 在視窗中)) {
+    if (!("IntersectionObserver" in window)) {
       targets.forEach((el) => el.classList.add("is-visible"));
-      返回;
+      return;
     }
 
     const io = new IntersectionObserver(
-      （條目）=>{
+      (entries) => {
         entries.forEach((entry) => {
-          如果 (entry.isIntersecting) {
+          if (entry.isIntersecting) {
             entry.target.classList.add("is-visible");
             io.unobserve(entry.target);
           }
         });
       },
       { threshold: 0.12, rootMargin: "80px 0px 80px 0px" }
-    ）；
+    );
 
     targets.forEach((el) => io.observe(el));
 
-    // 重新跑一次 + 載重後再補一次（更穩定）
+    // 立刻跑一次 + 載入後再補一次（更穩）
     forceRevealAboveFold();
     window.addEventListener("load", forceRevealAboveFold);
     setTimeout(forceRevealAboveFold, 250);
   }
 
-  // 使用現有的.line-float；沒有建立
+  // 使用現有 .line-float；沒有才建立
   function setupLineFloat() {
     const LINE_URL = "https://lin.ee/sHZW7NkR";
 
-    // 1.先找頁面上有沒有.line-float
-    let btn = document.querySelector("line-float");
+    // 1. 先找看頁面上有沒有 .line-float
+    let btn = document.querySelector(".line-float");
 
-    // 2.如果沒有，就自動產生一顆 .line-float
-    如果 (!btn) {
+    // 2. 如果沒有，就自動生成一顆 .line-float
+    if (!btn) {
       btn = document.createElement("a");
       btn.href = LINE_URL;
       btn.className = "line-float";
       btn.target = "_blank";
       btn.rel = "noopener";
-      btn.setAttribute("aria-label", "透過LINE聯絡我們");
+      btn.setAttribute("aria-label", "透過 LINE 聯絡我們");
 
       const img = document.createElement("img");
       img.src = "images/line-float-icon.png";
@@ -88,36 +88,36 @@
 
       btn.appendChild(img);
       document.body.appendChild(btn);
-    } 別的 {
+    } else {
       // 保險起見，確保屬性正確
-      如果 (!btn.getAttribute("href")) btn.href = LINE_URL;
-      如果 (!btn.getAttribute("target")) btn.target = "_blank";
-      如果 (!btn.getAttribute("rel")) btn.rel = "noopener";
+      if (!btn.getAttribute("href")) btn.href = LINE_URL;
+      if (!btn.getAttribute("target")) btn.target = "_blank";
+      if (!btn.getAttribute("rel")) btn.rel = "noopener";
       if (!btn.getAttribute("aria-label")) {
-        btn.setAttribute("aria-label", "透過LINE聯絡我們");
+        btn.setAttribute("aria-label", "透過 LINE 聯絡我們");
       }
     }
 
-    // 3. toast 元件（如果不存在就建立一個）
-    let toast = document.querySelector("line-toast");
-    如果 (!toast) {
+    // 3. toast 元件（如果沒存在就建立一個）
+    let toast = document.querySelector(".line-toast");
+    if (!toast) {
       toast = document.createElement("div");
       toast.className = "line-toast";
-      toast.setAttribute("role", "status);
+      toast.setAttribute("role", "status");
       toast.setAttribute("aria-live", "polite");
       document.body.appendChild(toast);
     }
 
-    // 4.夜間模式類
-    嘗試 {
+    // 4. 夜間模式 class
+    try {
       const h = new Date().getHours();
-      如果 (h >= 19 || h <= 6) btn.classList.add("is-night");
-    } 抓住 （_） {}
+      if (h >= 19 || h <= 6) btn.classList.add("is-night");
+    } catch (_) {}
 
-    // 5. 監控是否接近頁尾（縮小、內側用.is-compact）
+    // 5. 監控是否接近 footer（縮小、位移用 .is-compact）
     const footer = document.querySelector(".site-footer");
     const updateCompact = () => {
-      如果 (!footer) 返回；
+      if (!footer) return;
       const footerTop = footer.getBoundingClientRect().top + window.scrollY;
       const viewportBottom = window.scrollY + window.innerHeight;
       const nearFooter = viewportBottom > footerTop - 120;
@@ -128,9 +128,9 @@
     window.addEventListener("scroll", updateCompact, { passive: true });
     window.addEventListener("resize", updateCompact);
 
-    // 6. 點選時顯示提示文字
+    // 6. 點擊時顯示提示文字
     btn.addEventListener("click", () => {
-      如果 (!toast) 返回；
+      if (!toast) return;
       toast.textContent = "正在前往 LINE 諮詢…";
       toast.classList.add("is-show");
       setTimeout(() => toast.classList.remove("is-show"), 1200);
@@ -140,7 +140,7 @@
   function setupNavToggle() {
     const toggle = document.querySelector(".nav-toggle");
     const nav = document.querySelector(".site-nav");
-    如果 (!toggle || !nav) 返回；
+    if (!toggle || !nav) return;
 
     function closeNav() {
       nav.classList.remove("is-open");
@@ -148,103 +148,103 @@
       toggle.setAttribute("aria-expanded", "false");
     }
 
-    // 預設狀態
+    // default state
     if (!toggle.hasAttribute("aria-expanded")) {
       toggle.setAttribute("aria-expanded", "false");
     }
 
     // 點漢堡：開 / 關
     toggle.addEventListener("click", function (e) {
-      e.停止傳播();
+      e.stopPropagation();
       const next = !nav.classList.contains("is-open");
       nav.classList.toggle("is-open", next);
       toggle.classList.toggle("is-open", next);
       toggle.setAttribute("aria-expanded", next ? "true" : "false");
     });
 
-    // 點選單項目後自動收合（含同屬性頁點）
+    // 點選選單項目後自動收合（含同頁錨點）
     const links = nav.querySelectorAll(".nav-link");
     links.forEach(function (link) {
       link.addEventListener("click", function () {
-        如果 (nav.classList.contains("is-open")) closeNav();
+        if (nav.classList.contains("is-open")) closeNav();
       });
     });
 
-    // 點選「非 nav /非漢堡」的位置，自動收合
+    // 點選「非 nav / 非漢堡」的地方，自動收合
     document.addEventListener("click", function (e) {
       const clickInsideNav = nav.contains(e.target);
       const clickOnToggle = toggle.contains(e.target);
-      如果 (!clickInsideNav && !clickOnToggle) 關閉導覽列();
+      if (!clickInsideNav && !clickOnToggle) closeNav();
     });
 
     // 手機版：開始捲動就自動收合
     window.addEventListener(
-      “滾動”，
-      功能 （） {
-        如果 (window.innerWidth <= 768 && nav.classList.contains("is-open")) {
-          關閉導航();
+      "scroll",
+      function () {
+        if (window.innerWidth <= 768 && nav.classList.contains("is-open")) {
+          closeNav();
         }
       },
       { passive: true }
-    ）；
+    );
   }
 
   // ------------------------------
   // ✅ 全站統一：漢堡選單順序 + 拿掉「LINE」項目
-  // - 以JS產生選單，避免每頁HTML都要同步修改
-  // - 仍保留各頁CTA /浮動LINE按鈕（不影響）
+  // - 以 JS 生成選單，避免每頁 HTML 都要同步修改
+  // - 仍保留各頁面 CTA / 浮動 LINE 按鈕（不影響）
   // ------------------------------
   function setupUnifiedNav() {
     const navUl = document.querySelector(".site-nav ul");
-    如果 (!navUl) 返回；
+    if (!navUl) return;
 
     // 你要的固定順序（全站一致）
     const items = [
       { href: "index.html", label: "首頁", key: "home" },
-      { href: "index.html#all-products", label: "產品總覽", key: "產品" },
-      { href: "guide.html", label: "依需求選擇", key: "guide" },
+      { href: "index.html#all-products", label: "產品總覽", key: "products" },
+      { href: "guide.html", label: "依需求挑選", key: "guide" },
       { href: "doctor_tiktok.html", label: "中醫觀點", key: "tcm" },
-      { href: "about.html", label: "關於我們", key: "關於" },
+      { href: "about.html", label: "關於我們", key: "about" },
       { href: "faq.html", label: "常見問題", key: "faq" },
       { href: "contact.html", label: "聯絡我們", key: "contact" }
-      // ❌ LINE：根據您的需求，從漢堡選單刪除
+      // ❌ LINE：依你的需求，從漢堡選單移除
     ];
 
     const path = (window.location.pathname || "").split("/").pop() || "index.html";
     const hash = window.location.hash || "";
 
     function isActive(key) {
-      如果 (key === "home") 回傳 path === "" || path === "index.html";
-      如果 (key === "products") 回傳 (path === "" || path === "index.html") && hash === "#all-products";
-      如果 (key === "guide") 回傳 path === "guide.html";
-      如果 (key === "tcm") 回傳 path === "doctor_tiktok.html";
-      如果 (key === "about") 回傳 path === "about.html";
-      如果 (key === "faq") 回傳 path === "faq.html";
-      如果 (key === "contact") 回傳 path === "contact.html";
-      返回 false；
+      if (key === "home") return path === "" || path === "index.html";
+      if (key === "products") return (path === "" || path === "index.html") && hash === "#all-products";
+      if (key === "guide") return path === "guide.html";
+      if (key === "tcm") return path === "doctor_tiktok.html";
+      if (key === "about") return path === "about.html";
+      if (key === "faq") return path === "faq.html";
+      if (key === "contact") return path === "contact.html";
+      return false;
     }
 
-    // 產生 HTML
-    navUl.innerHTML = 項目
+    // 生成 HTML
+    navUl.innerHTML = items
       .map((it) => {
         const active = isActive(it.key) ? " nav-link--active" : "";
-        // 站內連結一律同分頁，不加target
-        回傳 `<li><a href="${it.href}" class="nav-link${active}">${it.label}</a></li>`;
+        // 站內連結一律同分頁，不加 target
+        return `<li><a href="${it.href}" class="nav-link${active}">${it.label}</a></li>`;
       })
-      。加入（””）;
+      .join("");
   }
 
   
   // ------------------------------
-  // ✅ 產品「不換頁」彈跳窗：載入「詳細頁面」內容（不換頁）
-  // - 觸發：.js-product-modal（連結href保留原始詳情頁，利於SEO/分享）
-  // - 內容：抓取href頁面中的<main>（或.site-main）塞進彈窗
-  // - 支援：Esc/背景/按鈕關閉、頁面內相關點在彈窗內捲動、快速跳轉目錄
+  // ✅ 產品「不換頁」彈窗：載入「原本詳細頁」內容（不換頁）
+  // - 觸發：.js-product-modal（連結 href 保留原詳情頁，利於 SEO/分享）
+  // - 內容：抓取 href 頁面中的 <main>（或 .site-main）塞進彈窗
+  // - 支援：Esc/背景/按鈕關閉、頁內錨點在彈窗內滾動、快速跳轉目錄
   // ------------------------------
-  函數 setupProductModalFromPages() {
-    // ✅ 全站都要啟用「產品連結 -> 彈跳窗」的統一規則：
-    // -即使某頁沒有.js-product-modal，也能攔截內容區域內指向產品詳情頁的鏈接
-    // - 避免FAQ/故事頁等頁面因為沒有觸發類別而漏掉彈窗行為
+  function setupProductModalFromPages() {
+    // ✅ 全站都要啟用「產品連結 -> 彈窗」的統一規則：
+    // - 即使某頁面沒有 .js-product-modal，也要能攔截內容區域內指向產品詳情頁的連結
+    // - 避免 FAQ / 故事頁等頁面因為沒有 trigger class 而漏掉彈窗行為
 
     const modal = ensureProductModal();
     const overlay = modal.querySelector('.modal-overlay');
@@ -253,42 +253,53 @@
     const tocEl = modal.querySelector('.modal-toc');
     const bodyEl = modal.querySelector('.modal-body');
     const closeBtn = modal.querySelector('.modal-close');
+    let tocToggleBtn = modal.querySelector('.modal-toc-toggle');
+    // Back-compat: if modal existed from old build without the toggle button, inject it.
+    if (!tocToggleBtn && closeBtn && closeBtn.parentElement) {
+      tocToggleBtn = document.createElement('button');
+      tocToggleBtn.type = 'button';
+      tocToggleBtn.className = 'modal-toc-toggle';
+      tocToggleBtn.setAttribute('aria-label', '顯示目錄');
+      tocToggleBtn.setAttribute('aria-pressed', 'false');
+      tocToggleBtn.textContent = '目錄';
+      closeBtn.parentElement.insertBefore(tocToggleBtn, closeBtn);
+    }
 
-    // 目錄中「先聊聊狀況」按鈕的 CTA 鏈接
+    // CTA link for "先聊聊狀況" button inside the TOC
     const LINE_URL = 'https://lin.ee/sHZW7NkR';
 
-    let lastFocus = null; // 模態框關閉時要恢復焦點的元素
+    let lastFocus = null; // element to restore focus to when modal closes
     let scrollY = 0;
 
     function focusRestore(el) {
-      如果 (!el || !document.contains(el) || typeof el.focus !== 'function') 回傳;
+      if (!el || !document.contains(el) || typeof el.focus !== 'function') return;
 
       const isNaturallyFocusable = (
         el.matches('a[href], button, input, select, textarea, summary') ||
         el.hasAttribute('tabindex')
-      ）；
+      );
 
       let madeTabbable = false;
-      如果 (!isNaturallyFocusable) {
+      if (!isNaturallyFocusable) {
         el.setAttribute('tabindex', '-1');
         madeTabbable = true;
       }
 
-      嘗試 {
-        // 盡可能避免滾動跳躍
+      try {
+        // Avoid scroll jumps when possible
         el.focus({ preventScroll: true });
       } catch (e) {
         el.focus();
       }
 
-      如果（已製作標籤頁）{
-        // 保持 DOM 清理
+      if (madeTabbable) {
+        // Keep DOM clean
         el.removeAttribute('tabindex');
       }
     }
 
     function lockScroll() {
-      // 強大的滾動鎖定（尤其適用於 iOS/Safari）：將頁面凍結在當前滾動位置
+      // Robust scroll lock (esp. iOS/Safari): freeze body at current scroll position
       scrollY = window.scrollY || document.documentElement.scrollTop || 0;
       document.documentElement.classList.add('modal-open');
       document.body.classList.add('modal-open');
@@ -311,37 +322,37 @@
     }
 
     function openModal(triggerEl) {
-      // 優先選擇實際的點擊觸發事件（連結/卡片），而不是 document.activeElement。
+      // Prefer the actual click trigger (link/card) over document.activeElement
       lastFocus = triggerEl || document.activeElement;
       modal.classList.remove('is-closing');
       modal.classList.remove('is-body-scrolled');
       lockScroll();
       modal.setAttribute('aria-hidden', 'false');
       modal.classList.add('is-open');
-      // 關閉焦點方便存取
+      // focus close for accessibility
       setTimeout(() => closeBtn && closeBtn.focus(), 0);
     }
 
     function closeModal() {
-      如果 (!modal.classList.contains('is-open')) 回傳;
-      如果 (modal.classList.contains('is-closing')) 回傳;
+      if (!modal.classList.contains('is-open')) return;
+      if (modal.classList.contains('is-closing')) return;
 
-      // 淡出動畫
+      // Fade-out animation
       modal.classList.add('is-closing');
       setTimeout(() => {
         modal.classList.remove('is-open');
         modal.classList.remove('is-closing');
         modal.classList.remove('is-body-scrolled');
         modal.setAttribute('aria-hidden', 'true');
-        解鎖滾動條();
+        unlockScroll();
 
-        // 將焦點恢復到觸發元素
-        如果 (lastFocus) setTimeout(() => focusRestore(lastFocus), 0);
+        // restore focus back to the trigger element
+        if (lastFocus) setTimeout(() => focusRestore(lastFocus), 0);
       }, 200);
     }
 
-    函數 setLoading(titleText) {
-      titleEl.textContent = titleText || '產品介紹'；
+    function setLoading(titleText) {
+      titleEl.textContent = titleText || '產品介紹';
       tocEl.innerHTML = '';
       bodyEl.innerHTML = (
         '<div class="modal-loading">'
@@ -349,29 +360,29 @@
         + '<div class="modal-loading-bar"></div>'
         + '<div class="modal-loading-bar"></div>'
         + '</div>'
-      ）；
+      );
     }
 
     function buildToc(container) {
       const all = Array.from(container.querySelectorAll('h2[id], h3[id]'))
         .filter(h => (h.textContent || '').trim().length > 0);
 
-      如果 (!all.length) {
+      if (!all.length) {
         tocEl.innerHTML = '';
-        返回;
+        return;
       }
 
-      // 喜歡一些實用的跳躍：規格 / 成分 / 吃法 / FAQ / 保存 / 注意
+      // Prefer a few practical jumps: 規格 / 成分 / 吃法 / FAQ / 保存 / 注意
       const prefer = [
-        { key: 'aud', re: /(適合|群|物件|誰適合|推薦物件)/ },
-        { key: 'spec', re: /(規格|容量|重量|包裝|內容量)/ },
-        { key: 'ing', re: /(成分|原料|配方|內容物)/ },
-        { key: 'use', re: /(吃法|用法|用|怎麼吃|沖泡|料理)/ },
-        { key: 'faq', re: /(常見問題|FAQ)/i },
-        { key: 'keep', re: /(儲存|儲存|冷藏|保存方式)/ },
-        { key: 'note', re: /(注意|提醒|不建議|不適合|禁止)/ },
-        // 可選的類似 CTA 的標題；將轉換為 LINE 諮詢按鈕
-        { key: 'chat', re: /(先聊聊狀況|再評估|評估是否適用|聊聊狀況)/ }
+        { key: 'aud',   re: /(適合|族群|對象|誰適合|推薦對象)/ },
+        { key: 'spec',  re: /(規格|容量|重量|包裝|內容量)/ },
+        { key: 'ing',   re: /(成分|原料|配方|內容物)/ },
+        { key: 'use',   re: /(吃法|用法|使用|怎麼吃|沖泡|料理)/ },
+        { key: 'faq',   re: /(常見問題|FAQ)/i },
+        { key: 'keep',  re: /(保存|存放|冷藏|保存方式)/ },
+        { key: 'note',  re: /(注意|提醒|不建議|不適合|禁忌)/ },
+        // Optional CTA-like heading; will be transformed into LINE consultation button
+        { key: 'chat',  re: /(先聊聊狀況|再評估|評估是否適用|聊聊狀況)/ }
       ];
 
       const picked = [];
@@ -380,33 +391,33 @@
       for (const h of all) {
         const t = (h.textContent || '').trim();
         for (const p of prefer) {
-          如果 (usedKeys.has(p.key)) 繼續；
-          如果 (p.re.test(t)) {
-            pick.push(h);
+          if (usedKeys.has(p.key)) continue;
+          if (p.re.test(t)) {
+            picked.push(h);
             usedKeys.add(p.key);
-            休息;
+            break;
           }
         }
       }
 
-      // 用前幾個標題填滿剩餘位置（保持整體順序）
+      // Fill remaining slots with the first few headings (keep overall order)
       for (const h of all) {
-        如果 (picked.includes(h)) 繼續；
-        pick.push(h);
-        如果 (picked.length >= 8) 則跳出循環；
+        if (picked.includes(h)) continue;
+        picked.push(h);
+        if (picked.length >= 8) break;
       }
 
       const labelFor = (text) => {
         const t = (text || '').trim();
-        if (/(先聊狀況|聊聊狀況|再評估|評估是否適用)/.test(t)) return '先聊狀況';
-        if (/(適合|群體群體|物件|誰適合|推薦物件)/.test(t)) return '適合群體群體';
-        if (/(吃法|用法|用|怎麼吃|沖泡|料理)/.test(t)) return '使用方式';
+        if (/(先聊聊狀況|聊聊狀況|再評估|評估是否適用)/.test(t)) return '先聊聊狀況';
+        if (/(適合|族群|對象|誰適合|推薦對象)/.test(t)) return '適合族群';
+        if (/(吃法|用法|使用|怎麼吃|沖泡|料理)/.test(t)) return '使用方式';
         if (/(常見問題|FAQ)/i.test(t)) return '常見問題';
-        if (/(成分|原料|配方|內容物)/.test(t)) return '成分';
+        if (/(成分|原料|配方|內容物)/.test(t)) return '成份';
         if (/(規格|容量|重量|包裝|內容量)/.test(t)) return '規格';
-        if (/(儲存|儲存|冷藏|儲存方式)/.test(t)) return '儲存';
+        if (/(保存|存放|冷藏|保存方式)/.test(t)) return '保存';
         if (/(注意|提醒|不建議|不適合|禁忌)/.test(t)) return '注意';
-        返回 t；
+        return t;
       };
 
       const frag = document.createDocumentFragment();
@@ -417,17 +428,17 @@
         const a = document.createElement('a');
         a.className = 'modal-toc-link';
 
-        // 將特定標題轉換為 LINE CTA 按鈕
-        if (label === '先聊狀況') {
+        // Transform specific heading into LINE CTA button
+        if (label === '先聊聊狀況') {
           a.classList.add('modal-toc-cta');
           a.href = LINE_URL;
           a.target = '_blank';
           a.rel = 'noopener';
-        } 別的 {
+        } else {
           a.href = '#' + h.id;
         }
 
-        a.textContent = 標籤;
+        a.textContent = label;
         frag.appendChild(a);
       });
 
@@ -437,52 +448,52 @@
 
     function scrollToAnchor(anchorId) {
       const target = bodyEl.querySelector('#' + CSS.escape(anchorId));
-      如果 (!target) 返回；
+      if (!target) return;
       const top = target.getBoundingClientRect().top - bodyEl.getBoundingClientRect().top + bodyEl.scrollTop - 8;
       bodyEl.scrollTo({ top, behavior: 'smooth' });
     }
 
-    // TOC 模式內快速跳轉（避免只改散列、不滾動）
+    // TOC quick-jump inside modal (避免只改 hash、不滾動)
     tocEl.addEventListener('click', (e) => {
       const link = e.target.closest('a');
-      如果（!link）返回；
-      // CTA按鈕會開啟LINE；請勿攔截
-      如果 (link.classList.contains('modal-toc-cta')) 回傳;
+      if (!link) return;
+      // CTA button opens LINE; do not intercept
+      if (link.classList.contains('modal-toc-cta')) return;
       const href = link.getAttribute('href') || '';
-      如果 (!href.startsWith('#')) 回傳;
+      if (!href.startsWith('#')) return;
       e.preventDefault();
       scrollToAnchor(href.slice(1));
     });
 
     async function loadPageIntoModal(href, fallbackTitle) {
-      設定載入(fallbackTitle);
+      setLoading(fallbackTitle);
 
-      嘗試 {
+      try {
         const res = await fetch(href, { cache: 'no-store' });
-        如果 (!res.ok) 則拋出新的錯誤('獲取失敗：' + res.status);
+        if (!res.ok) throw new Error('Fetch failed: ' + res.status);
         const html = await res.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
 
-        // 標題
+        // Title
         const pageTitle = (doc.querySelector('title')?.textContent || '').trim();
-        titleEl.textContent = 頁面標題 ||後備標題 || '產品介紹'；
+        titleEl.textContent = pageTitle || fallbackTitle || '產品介紹';
 
-        // 主要的
+        // Main
         const main = doc.querySelector('main') || doc.querySelector('.site-main') || doc.body;
         const wrapper = document.createElement('div');
         wrapper.className = 'modal-page';
         wrapper.innerHTML = main.innerHTML;
 
-        // 如有巢狀的浮動 LINE 按鈕或重複的包裝器，請移除。
+        // Remove nested floating LINE buttons or duplicate wrappers if any
         wrapper.querySelectorAll('.line-float, .site-header, .site-footer, script, noscript').forEach(el => el.remove());
 
-        // ✅ 詳情頁大多數區塊使用 .reveal 動畫；在彈跳窗內沒有 IntersectionObserver 觸發，
-        // 會導致「圖片/文字看不到」。在彈跳窗中直接強制顯示。
+        // ✅ 詳情頁多數區塊使用 .reveal 動畫；在彈窗內沒有 IntersectionObserver 觸發，
+        //    會導致「圖片/文字看不到」。在彈窗中直接強制顯示。
         wrapper.querySelectorAll('.reveal, .reveal-up').forEach(el => {
           el.classList.add('is-visible');
         });
 
-        // ✅ 將詳情頁面內的「←回傳產品清單」在彈跳窗模式下修改為「關閉」並直接關閉彈窗
+        // ✅ 將詳情頁內的「← 返回產品列表」在彈窗模式下改成「關閉」並直接關閉彈窗
         wrapper.querySelectorAll('.back-link').forEach((a) => {
           a.textContent = '關閉';
           a.setAttribute('href', '#');
@@ -490,120 +501,120 @@
           a.classList.add('modal-close-link');
           a.addEventListener('click', (evt) => {
             evt.preventDefault();
-            關閉模態框();
+            closeModal();
           });
         });
 
-        // 確保標題存在 ID，以便目錄/錨點能夠可靠地工作。
+        // Ensure IDs exist for headings so toc/anchors work reliably
         const used = new Set();
         const slugify = (text) => {
           const base = (text || '')
             .toString()
-            。修剪（）
+            .trim()
             .toLowerCase()
-            // 保留中文/英文/數字，其他字元合併為“-”
+            // keep chinese/english/nums, collapse others into '-'
             .replace(/[^\u4e00-\u9fff\w\s-]+/g, '')
             .replace(/\s+/g, '-')
             .replace(/-+/g, '-')
             .replace(/^-|-$/g, '');
-          返回基底地址 || 'section'；
+          return base || 'section';
         };
 
         wrapper.querySelectorAll('h2, h3').forEach((h, idx) => {
           const rawId = (h.getAttribute('id') || '').trim();
-          讓 id = rawId || slugify(h.textContent);
-          // 保證唯一性
-          令 n = 1；
+          let id = rawId || slugify(h.textContent);
+          // Guarantee uniqueness
+          let n = 1;
           let candidate = id;
           while (used.has(candidate) || wrapper.querySelector('#' + CSS.escape(candidate))) {
             n += 1;
-            候選人 = id + '-' + n;
+            candidate = id + '-' + n;
           }
-          id = 候選人；
-          已使用.add(id);
+          id = candidate;
+          used.add(id);
           h.id = id;
         });
 
-        // 注入
+        // Inject
         bodyEl.innerHTML = '';
         bodyEl.appendChild(wrapper);
-        建置目錄（包裝器）；
+        buildToc(wrapper);
 
-        // 如果 URL 中已經包含雜湊值，則捲動至該雜湊值。
+        // If URL already has hash, scroll to it
         const hashIndex = href.indexOf('#');
-        如果 (hashIndex > -1) {
+        if (hashIndex > -1) {
           const anchorId = href.slice(hashIndex + 1);
           setTimeout(() => scrollToAnchor(anchorId), 60);
-        } 別的 {
+        } else {
           bodyEl.scrollTop = 0;
         }
       } catch (err) {
         console.error(err);
-        titleEl.textContent = FallbackTitle || '產品介紹'；
+        titleEl.textContent = fallbackTitle || '產品介紹';
         tocEl.innerHTML = '';
         bodyEl.innerHTML = (
           '<div class="modal-error">'
-          + '<p>目前無法載入產品內容。您可以修改用「開啟完整頁」檢視。 </p>'
+          + '<p>目前無法載入產品內容。你可以改用「開啟完整頁」查看。</p>'
           + '</div>'
-        ）；
+        );
       }
     }
 
-    // 觸發點擊（事件委託）
-    // ✅ 全站「產品詳情頁」必要連結一律彈窗（但不動 header/nav/footer 的導頁）
-    如果 (!document.documentElement.dataset.productModalDelegated) {
+    // Trigger click (event delegation)
+    // ✅ 全站「產品詳情頁」連結一律彈窗（但不動 header/nav/footer 的必要導頁）
+    if (!document.documentElement.dataset.productModalDelegated) {
       document.documentElement.dataset.productModalDelegated = '1';
 
-      // 點選頁面內容中的按鈕後，應以模態框形式開啟的產品詳情頁面
+      // Product detail pages that should open in modal when clicked within page content
       const PRODUCT_DETAIL_PAGES = new Set([
         'guilu.html',
         'guilu-drink.html',
-        'soup.html'，
-        'antler.html'，
-        'lurong.html'，
+        'soup.html',
+        'antler.html',
+        'lurong.html',
         'guilu-line.html'
       ]);
 
       const isInterceptCandidate = (a) => {
-        如果 (!a) 返回 false；
+        if (!a) return false;
 
-        // 排除導航+頁尾（必要導頁行為不改）
-        如果 (a.closest('.site-header, .site-nav, .site-footer')) 回傳 false;
-        如果 (a.classList.contains('nav-link')) 回傳 false;
+        // Exclude navigation + footer (必要導頁行為不改)
+        if (a.closest('.site-header, .site-nav, .site-footer')) return false;
+        if (a.classList.contains('nav-link')) return false;
 
         const href = (a.getAttribute('href') || '').trim();
-        如果 (!href) 返回 false；
-        如果 (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) 回傳 false;
-        如果 (href.startsWith('#')) 回傳 false; // 同一頁面的錨點保持不變
+        if (!href) return false;
+        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return false;
+        if (href.startsWith('#')) return false; // same-page anchors remain as-is
 
-        // 規範化為檔案名稱（移除查詢/哈希值，以及開頭的 ./）
+        // Normalize to filename (remove query/hash, leading ./)
         const noQuery = href.split('?')[0];
         const noHash = noQuery.split('#')[0];
         const file = noHash.replace(/^\.\//, '').split('/').pop();
 
-        返回 PRODUCT_DETAIL_PAGES.has(file);
+        return PRODUCT_DETAIL_PAGES.has(file);
       };
 
       document.addEventListener('click', (e) => {
         const a = e.target.closest('a');
-        如果 (!a) 返回；
+        if (!a) return;
 
-        // 允許按住 Cmd/Ctrl/Shift/Alt 鍵點擊以保持預設行為（新標籤頁/選擇）
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) 返回；
+        // Allow Cmd/Ctrl/Shift/Alt click to keep default behavior (new tab / select)
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-        // 1) 明確觸發器繼續運作
-        如果 (a.classList.contains('js-product-modal')) {
+        // 1) Explicit triggers keep working
+        if (a.classList.contains('js-product-modal')) {
           const href = a.getAttribute('href');
-          如果 (!href) 返回；
+          if (!href) return;
           e.preventDefault();
           const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
           loadPageIntoModal(href, title);
           openModal(a);
-          返回;
+          return;
         }
 
-        // 2) 內容中指向產品詳情頁面的任何內部連結 -> 模態框
-        如果 (isInterceptCandidate(a)) {
+        // 2) Any internal link pointing to product detail pages inside content -> modal
+        if (isInterceptCandidate(a)) {
           const href = a.getAttribute('href');
           e.preventDefault();
           const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
@@ -613,45 +624,92 @@
       });
     }
 
-    // 關閉處理程序
-    如果 (overlay) overlay.addEventListener('click', closeModal);
-    如果 (closeBtn) closeBtn.addEventListener('click', closeModal);
+    // Close handlers
+    if (overlay) overlay.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-    // 停止對話框內的點擊冒泡
+    // Stop click bubbling inside dialog
     if (dialog) dialog.addEventListener('click', (e) => e.stopPropagation());
 
     document.addEventListener('keydown', (e) => {
-      如果 (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
 
-    // 內部連結：對於哈希鏈接，請在模態框內捲動查看；外部連結會在新標籤頁中開啟。
+    // Inner links: for hash links, scroll inside modal; external links open new tab
     bodyEl.addEventListener('click', (e) => {
       const a = e.target.closest('a');
-      如果 (!a) 返回；
+      if (!a) return;
       const href = a.getAttribute('href') || '';
 
-      如果 (href.startsWith('#')) {
+      if (href.startsWith('#')) {
         e.preventDefault();
         scrollToAnchor(href.slice(1));
-        返回;
+        return;
       }
 
-      // 如果連結指向同一網站上的另一個產品/詳情頁面，則以模態視窗開啟。
-      如果 (!href.startsWith('http') && (href.endsWith('.html') || href.includes('.html#'))) {
+      // If link points to another product/detail page on same site, open in modal
+      if (!href.startsWith('http') && (href.endsWith('.html') || href.includes('.html#'))) {
         e.preventDefault();
         loadPageIntoModal(href, a.textContent.trim() || '內容');
       }
     });
 
-    // 當使用者在模態框內向下捲動時，淡出目錄（減少行動裝置上的頂部遮擋）
+    // Fade out TOC when user scrolls down inside the modal (reduces top obstruction on mobile)
     bodyEl.addEventListener('scroll', () => {
       const y = bodyEl.scrollTop || 0;
       modal.classList.toggle('is-body-scrolled', y > 56);
     }, { passive: true });
 
+    // When TOC is faded out (is-body-scrolled), provide a small "目錄" button to bring it back on-demand.
+    let tocPeekTimer = null;
+
+    function setTocToggleState() {
+      if (!tocToggleBtn) return;
+      const peek = modal.classList.contains('is-toc-peek');
+      tocToggleBtn.setAttribute('aria-pressed', peek ? 'true' : 'false');
+      tocToggleBtn.setAttribute('aria-label', peek ? '收起目錄' : '顯示目錄');
+      tocToggleBtn.textContent = peek ? '收起' : '目錄';
+    }
+
+    if (tocToggleBtn) {
+      tocToggleBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Toggle "peek" mode: show TOC temporarily without forcing scroll-to-top.
+        const next = !modal.classList.contains('is-toc-peek');
+        modal.classList.toggle('is-toc-peek', next);
+        setTocToggleState();
+
+        if (tocPeekTimer) clearTimeout(tocPeekTimer);
+        if (next) {
+          // Auto-hide after a short duration to avoid blocking content.
+          tocPeekTimer = setTimeout(() => {
+            modal.classList.remove('is-toc-peek');
+            setTocToggleState();
+          }, 6000);
+
+          // Focus the first TOC link if available (accessibility + fast navigation)
+          const firstLink = tocEl ? tocEl.querySelector('a') : null;
+          if (firstLink) {
+            try { firstLink.focus({ preventScroll: true }); } catch (_) { firstLink.focus(); }
+          }
+        }
+      });
+      setTocToggleState();
+    }
+
+    // If user scrolls again, dismiss peek mode (so it doesn't keep covering content).
+    bodyEl.addEventListener('scroll', () => {
+      if (modal.classList.contains('is-toc-peek')) {
+        modal.classList.remove('is-toc-peek');
+        setTocToggleState();
+      }
+    }, { passive: true });
+
     function ensureProductModal() {
       let existing = document.getElementById('productModal');
-      如果（已存在）則返回已存在；
+      if (existing) return existing;
 
       const modalEl = document.createElement('div');
       modalEl.id = 'productModal';
@@ -669,34 +727,35 @@
               + '<div class="modal-toc" aria-label="快速跳轉"></div>'
             + '</div>'
             + '<div class="modal-head-right">'
+              + '<button type="button" class="modal-toc-toggle" aria-label="顯示目錄" aria-pressed="false">目錄</button>'
               + '<button type="button" class="modal-close" aria-label="關閉">×</button>'
             + '</div>'
           + '</div>'
           + '<div class="modal-body" tabindex="0"></div>'
         + '</div>'
-      ）；
+      );
 
       document.body.appendChild(modalEl);
-      返回 modalEl；
+      return modalEl;
     }
   }
 
 function setupBackLinks() {
     const backButtons = document.querySelectorAll(".back-link");
-    如果 (!backButtons.length) 返回；
+    if (!backButtons.length) return;
 
     const nav = document.querySelector(".site-nav");
 
     function closeNav() {
-      如果 (nav && nav.classList.contains("is-open")) {
+      if (nav && nav.classList.contains("is-open")) {
         nav.classList.remove("is-open");
       }
     }
 
-    backButtons.forEach((btn​​) => {
+    backButtons.forEach((btn) => {
       btn.addEventListener("click", function (event) {
         event.preventDefault();
-        關閉導航();
+        closeNav();
         window.location.href = "index.html#all-products";
       });
     });
@@ -719,9 +778,9 @@ function setupBackLinks() {
     setTimeout(setMainPaddingTop, 250);
   }
 
-  如果 (document.readyState === "loading") {
+  if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
-  } 別的 {
-    初始化();
+  } else {
+    init();
   }
 })();

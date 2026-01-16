@@ -44,7 +44,7 @@ img {
 }
 
 /* =========================================
-   HEADERï¼ˆFixed + Apple æ„Ÿï¼‰
+   HEADER（Fixed + Apple 感）
    ========================================= */
 .site-header {
   position: fixed;
@@ -103,7 +103,7 @@ img {
 }
 
 /* =========================================
-   NAVï¼ˆæ¡Œæ©Ÿï¼‰
+   NAV（桌機）
    ========================================= */
 .site-nav ul {
   display: flex;
@@ -147,7 +147,7 @@ img {
 }
 
 /* =========================================
-   MAINï¼ˆä¸Šæ–¹é–“è·ç”± JS è¨­å®šï¼‰
+   MAIN（上方間距由 JS 設定）
    ========================================= */
 .site-main {
   max-width: 1080px;
@@ -156,16 +156,16 @@ img {
 }
 
 /*
-  âœ… å…§å®¹é é¢å¯¬åº¦
-  - å…ˆå‰ simple-page 720px åœ¨æ¡Œæ©Ÿä¸ŠéŽçª„ï¼ˆé™¤é¦–é /ç”¢å“ç¸½è¦½å¤–å¤šæ•¸é é¢éƒ½æœƒç”¨åˆ°ï¼‰
-  - é€™è£¡æ”¹ç‚ºæ¡Œæ©Ÿèˆ‡é¦–é ä¸€è‡´çš„ 1080pxï¼›æ‰‹æ©Ÿç¶­æŒè‡ªç„¶æ»¿ç‰ˆ
+  ✅ 內容頁面寬度
+  - 先前 simple-page 720px 在桌機上過窄（除首頁/產品總覽外多數頁面都會用到）
+  - 這裡改為桌機與首頁一致的 1080px；手機維持自然滿版
 */
 .site-main.simple-page {
   max-width: 1080px;
 }
 
 /* =========================================
-   é¦–é  SIGNATURE PRODUCTï¼šåªä¿ç•™åœ–ç‰‡ï¼ˆæ¸›å°‘ä¸Šæ–¹ç©ºç™½ï¼‰
+   首頁 SIGNATURE PRODUCT：只保留圖片（減少上方空白）
    ========================================= */
 .signature-only{
   padding-top: 10px;
@@ -179,7 +179,7 @@ img {
 }
 
 /* =========================================
-   SECTION åŸºæœ¬æ¡†
+   SECTION 基本框
    ========================================= */
 .section {
   background: #fffcf9;
@@ -202,7 +202,7 @@ img {
   color: var(--color-primary-deep);
 }
 
-/* æ¨™è¨»æ€§æ–‡å­— */
+/* 標註性文字 */
 .highlight-tag {
   display: inline-block;
   padding: 4px 10px;
@@ -214,7 +214,7 @@ img {
   border-left: 3px solid var(--color-accent-gold-deep);
 }
 
-/* å°å‰¯æ¨™é¡Œ */
+/* 小副標題 */
 .section-subtitle {
   font-size: 1rem;
   margin: 14px 0 6px;
@@ -222,7 +222,7 @@ img {
   letter-spacing: 0.04em;
 }
 
-/* ä¸€å¥è©±å®šä½ / feature line */
+/* 一句話定位 / feature line */
 .product-one-liner,
 .feature-line {
   font-size: 1rem;
@@ -233,7 +233,7 @@ img {
 }
 
 /* =========================================
-   BUTTONï¼ˆå…¨ç«™çµ±ä¸€ï¼‰
+   BUTTON（全站統一）
    ========================================= */
 .btn-primary,
 .btn-soft,
@@ -261,7 +261,7 @@ img {
   margin-top: 16px;
 }
 
-/* ä¸» CTA */
+/* 主 CTA */
 .btn-primary {
   background: var(--color-accent-gold);
   color: #FFFFFF;
@@ -274,7 +274,7 @@ img {
   box-shadow: 0 16px 36px rgba(232, 110, 0, 0.45);
 }
 
-/* æ¬¡ CTA */
+/* 次 CTA */
 .btn-soft,
 .btn-outline,
 .btn-outline-gold {
@@ -298,7 +298,7 @@ img {
   background: #E8EEF6;
 }
 
-/* LINE å¼·èª¿æŒ‰éˆ• */
+/* LINE 強調按鈕 */
 .btn-line-strong {
   background: #06c755;
   color: #fff;
@@ -309,13 +309,13 @@ img {
   background: #05b34d;
 }
 
-/* æ»¿ç‰ˆæŒ‰éˆ• */
+/* 滿版按鈕 */
 .btn-full {
   width: 100%;
 }
 
 /* =========================================
-   åœ–ç‰‡å®‰å…¨é–“è·
+   圖片安全間距
    ========================================= */
 .product-image,
 .hero-image,
@@ -337,7 +337,7 @@ img {
 
 /* =========================================
    FLOATING LINE CTA
-   ï¼ˆclass="line-float" + imgï¼‰
+   （class="line-float" + img）
    ========================================= */
 .line-float {
   position: fixed;
@@ -369,12 +369,12 @@ img {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
 }
 
-/* é è¿‘ footer æ™‚ç¸®å°ä¸€é»žï¼Œé¿å…å¤ªå£“è¿« */
+/* 靠近 footer 時縮小一點，避免太壓迫 */
 .line-float.is-compact {
   transform: scale(0.86) translateY(-4px);
 }
 
-/* Toastï¼ˆç›®å‰è‹¥æœ‰æ­é… JS é¡¯ç¤ºï¼‰ */
+/* Toast（目前若有搭配 JS 顯示） */
 .line-toast {
   position: fixed;
   right: 16px;
@@ -400,7 +400,7 @@ img {
   transform: translateY(0);
 }
 
-/* æ‰‹æ©Ÿï¼šæµ®å‹•æŒ‰éˆ• & æç¤ºä½ç½®å¾®èª¿ */
+/* 手機：浮動按鈕 & 提示位置微調 */
 @media (max-width: 768px) {
   .line-float {
     right: 16px;
@@ -415,7 +415,7 @@ img {
 }
 
 /* =========================================
-   ç”¢å“å¡ç‰‡ï¼ˆå…¨ç«™çµ±ä¸€æ¡†ï¼‰
+   產品卡片（全站統一框）
    ========================================= */
 article.product-card,
 .product-card {
@@ -437,7 +437,7 @@ article.product-card:hover,
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* é¦–é  product-gridï¼ˆå…¨éƒ¨ç”¢å“ï¼‰ */
+/* 首頁 product-grid（全部產品） */
 .product-grid {
   display: grid;
   gap: 20px;
@@ -458,7 +458,7 @@ article.product-card:hover,
   }
 }
 
-/* ç”¢å“å¡ç‰‡åœ–ç‰‡æ¡† */
+/* 產品卡片圖片框 */
 .product-image-frame {
   border-radius: 12px;
   overflow: hidden;
@@ -478,7 +478,7 @@ article.product-card:hover,
   object-fit: contain;
 }
 
-/* ç”¢å“æ¨™é¡Œèˆ‡æè¿°ï¼ˆè£œä¸Šï¼Œé¿å…ä¸åŒé é¢æ¨£å¼ä¸ä¸€è‡´ï¼‰ */
+/* 產品標題與描述（補上，避免不同頁面樣式不一致） */
 .product-name {
   margin: 6px 0 6px;
   font-size: 1.02rem;
@@ -494,7 +494,7 @@ article.product-card:hover,
   line-height: 1.7;
 }
 
-/* è©³ç´°é åœ–ç‰‡å°ºå¯¸æŽ§åˆ¶ */
+/* 詳細頁圖片尺寸控制 */
 img.product-image {
   max-width: 100%;
   height: auto;
@@ -512,7 +512,7 @@ img.product-image {
   }
 }
 
-/* ç”¢å“è©³ç´°é ï¼šé›™æ¬„åœ–ç‰‡ï¼ˆé¾œé¹¿é£² å–®åŒ…ï¼‹10 åŒ…ï¼‰ */
+/* 產品詳細頁：雙欄圖片（龜鹿飲 單包＋10 包） */
 .product-image-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -528,7 +528,7 @@ img.product-image {
 }
 
 /* =========================================
-   è©³ç´°é ï¼šå…±ç”¨ã€ŒLINE è«®è©¢ãƒ»ä¸å¼·æŽ¨ã€å€å¡Š
+   詳細頁：共用「LINE 諮詢・不強推」區塊
    ========================================= */
 .consult-section .highlight-tag {
   margin-bottom: 10px;
@@ -571,11 +571,11 @@ img.product-image {
 }
 
 /* =========================================
-   NAVï¼šæ¼¢å ¡é¸å–®ï¼ˆä¸‰æ¢ç·šç‰ˆæœ¬ï¼‰
+   NAV：漢堡選單（三條線版本）
    ========================================= */
 .nav-toggle {
   display: none;
-  /* âœ… èˆ‡æ·±è‰² Header æ­é…ï¼šæ¸…æ¥šå¯è¦‹ã€ç¬¦åˆå…¨ç«™é…è‰² */
+  /* ✅ 與深色 Header 搭配：清楚可見、符合全站配色 */
   background: rgba(255, 255, 255, 0.10);
   border: 1px solid rgba(255, 255, 255, 0.28);
   border-radius: 12px;
@@ -598,7 +598,7 @@ img.product-image {
   transform: translateY(-1px);
 }
 
-/* æ‰‹æ©Ÿç‰ˆï¼šä½¿ç”¨æ¼¢å ¡é¸å–®å±•é–‹ */
+/* 手機版：使用漢堡選單展開 */
 @media (max-width: 768px) {
   .header-inner {
     flex-direction: row;
@@ -630,7 +630,7 @@ img.product-image {
     z-index: 900;
   }
 
-  /* âœ… æ‰‹æ©Ÿå±•é–‹é¸å–®ï¼šèƒŒæ™¯æ˜¯ç™½è‰²æ™‚ï¼Œæ–‡å­—éœ€æ”¹ç‚ºæ·±è‰²ï¼ˆé¿å…çœ‹ä¸æ¸…æ¥šï¼‰ */
+  /* ✅ 手機展開選單：背景是白色時，文字需改為深色（避免看不清楚） */
   .site-nav a{
     color: var(--color-primary-deep);
   }
@@ -660,7 +660,7 @@ img.product-image {
 }
 
 /* =========================================
-   å…¨ç«™æ–‡å­—å¾®èª¿
+   全站文字微調
    ========================================= */
 .section p {
   margin: 0 0 14px;
@@ -704,7 +704,7 @@ img.product-image {
   margin: 6px 0;
 }
 
-/* å¤šé¡†æŒ‰éˆ•é–“è· */
+/* 多顆按鈕間距 */
 .section a.btn-primary,
 .section a.btn-outline,
 .section a.btn-soft,
@@ -720,7 +720,7 @@ img.product-image {
   margin-left: 10px;
 }
 
-/* contact æŒ‰éˆ•åˆ— */
+/* contact 按鈕列 */
 .contact-actions {
   display: flex;
   flex-wrap: wrap;
@@ -732,7 +732,7 @@ img.product-image {
   flex: 0 0 auto;
 }
 
-/* æ‰‹æ©Ÿï¼šsection å…§è·ç¸®ã€æŒ‰éˆ•æ”¹ç›´æŽ’ã€contact æ”¹æ»¿ç‰ˆ */
+/* 手機：section 內距縮、按鈕改直排、contact 改滿版 */
 @media (max-width: 768px) {
   .section {
     padding: 26px 18px;
@@ -767,10 +767,10 @@ img.product-image {
 }
 
 /* =========================================
-   é¦–é  HERO å€å¡Š
+   首頁 HERO 區塊
    ========================================= */
 .hero.section {
-  /* å·²æœ‰ section åŸºæœ¬æ¡†ï¼Œå¯è¦–éœ€è¦å†åŠ ç‰¹åˆ¥æ•ˆæžœ */
+  /* 已有 section 基本框，可視需要再加特別效果 */
 }
 
 .hero-title {
@@ -784,14 +784,14 @@ img.product-image {
   margin-bottom: 0;
 }
 
-/* ä¸»æ‰“ç”¢å“åœ–ç‰‡å¯é»žé€£çµ */
+/* 主打產品圖片可點連結 */
 .hero-image-link {
   display: block;
   margin-top: 16px;
 }
 
 /* =========================================
-   ç”¢å“è©³ç´°ï¼šå›žåˆ°ä¸Šä¸€é 
+   產品詳細：回到上一頁
    ========================================= */
 .back-to-products {
   text-align: center;
@@ -821,7 +821,7 @@ img.product-image {
 }
 
 /* =========================================
-   FAQ / GUIDE å…±ç”¨å…ƒä»¶
+   FAQ / GUIDE 共用元件
    ========================================= */
 .faq-list {
   margin: 1.5rem 0 0;
@@ -870,7 +870,7 @@ img.product-image {
 }
 
 /* =========================================
-   æ–‡æ¡ˆè£œå……é¡žåž‹
+   文案補充類型
    ========================================= */
 .text-note {
   font-size: 0.9rem;
@@ -879,7 +879,7 @@ img.product-image {
 }
 
 /* =========================================
-   REVEAL å‹•ç•«ï¼ˆå°æ‡‰ .reveal / .reveal-upï¼‰
+   REVEAL 動畫（對應 .reveal / .reveal-up）
    ========================================= */
 .reveal,
 .reveal-up {
@@ -899,7 +899,7 @@ img.product-image {
 }
 
 /* =========================================
-   âœ… ä¿®æ­£ï¼šæ•´å¼µç”¢å“å¡ç‰‡å¯é»žï¼ˆé—œéµï¼šz-index è¦æ¯”å…§å®¹é«˜ï¼‰
+   ✅ 修正：整張產品卡片可點（關鍵：z-index 要比內容高）
    ========================================= */
 .product-card {
   position: relative;
@@ -908,7 +908,7 @@ img.product-image {
 .product-card .card-link {
   position: absolute;
   inset: 0;
-  z-index: 10; /* âœ… ä¸€å®šè¦é«˜ï¼Œæ‰ä¸æœƒè¢«å…§å®¹è“‹ä½ */
+  z-index: 10; /* ✅ 一定要高，才不會被內容蓋住 */
   border-radius: 16px;
 }
 
@@ -929,9 +929,9 @@ img.product-image {
 html.modal-open,
 body.modal-open{ overflow: hidden; }
 
-/* âœ… æ–°ç‰ˆå½ˆçª—ï¼ˆmain.js ç”Ÿæˆ .modal çµæ§‹ï¼‰
-   - èˆ‡å…¨ç«™é…è‰²ä¸€è‡´
-   - iOS å¯é †æš¢æ»‘å‹•
+/* ✅ 新版彈窗（main.js 生成 .modal 結構）
+   - 與全站配色一致
+   - iOS 可順暢滑動
 */
 .modal{
   position: fixed;
@@ -1005,7 +1005,7 @@ body.modal-open{ overflow: hidden; }
 
 .modal-toc{
   display: flex;
-  /* âœ… å–®è¡Œæ©«å‘æ»‘å‹•ï¼Œæ¸›å°‘é«˜åº¦é®æ“‹ */
+  /* ✅ 單行橫向滑動，減少高度遮擋 */
   flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -1015,7 +1015,7 @@ body.modal-open{ overflow: hidden; }
   transition: opacity .2s ease, max-height .2s ease, margin-top .2s ease;
 }
 
-/* éš±è—æ²è»¸ï¼ˆä¿ç•™å¯æ»‘å‹•ï¼‰ */
+/* 隱藏捲軸（保留可滑動） */
 .modal-toc::-webkit-scrollbar{ height: 0; }
 .modal-toc{ scrollbar-width: none; }
 
@@ -1043,7 +1043,7 @@ body.modal-open{ overflow: hidden; }
   gap: 8px;
 }
 
-/* âœ… ã€Œå…ˆèŠèŠç‹€æ³ã€CTAï¼šå°Žå‘ LINE */
+/* ✅ 「先聊聊狀況」CTA：導向 LINE */
 .modal-toc-link.modal-toc-cta{
   background: #06C755;
   border-color: rgba(0,0,0,.08);
@@ -1054,12 +1054,54 @@ body.modal-open{ overflow: hidden; }
   filter: brightness(0.95);
 }
 
-/* âœ… å…§æ–‡å¾€ä¸‹æ»‘æ™‚ï¼ŒTOC è‡ªå‹•æ·¡å‡ºï¼Œæ¸›å°‘é®æ“‹ */
+/* ✅ 內文往下滑時，TOC 自動淡出，減少遮擋 */
 .modal.is-body-scrolled .modal-toc{
   opacity: 0;
   max-height: 0;
   margin-top: 0;
   pointer-events: none;
+}
+
+
+/* ✅ TOC 淡出後保留「目錄」顯示按鈕（更像 App） */
+.modal-toc-toggle{
+  display: none;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.14);
+  background: rgba(255,255,255,.85);
+  color: var(--color-primary-deep);
+  font-size: .84rem;
+  letter-spacing: .04em;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,.10);
+  user-select: none;
+}
+
+.modal-toc-toggle:hover{
+  border-color: rgba(255,122,0,.55);
+  color: var(--color-accent-gold-deep);
+}
+
+.modal.is-body-scrolled .modal-toc-toggle{
+  display: inline-flex;
+}
+
+/* 使用者主動叫回目錄（暫時顯示） */
+.modal.is-toc-peek .modal-toc{
+  opacity: 1;
+  max-height: 180px;
+  margin-top: 6px;
+  pointer-events: auto;
+}
+
+.modal.is-toc-peek .modal-toc-toggle{
+  display: inline-flex;
+  border-color: rgba(255,122,0,.55);
+  background: rgba(255,122,0,.10);
 }
 
 .modal-close{
@@ -1121,14 +1163,14 @@ body.modal-open{ overflow: hidden; }
 .modal-page .section{ padding-left: 0; padding-right: 0; }
 .modal-page .section + .section{ margin-top: 18px; }
 
-/* é¿å…æŠŠè©³æƒ…é çš„æµ®å‹• LINE / header/footer ä¸€èµ·å¸¶é€²ä¾† */
+/* 避免把詳情頁的浮動 LINE / header/footer 一起帶進來 */
 .modal-page .line-float{ display: none !important; }
 
 @media (max-width: 768px){
   .modal-dialog{ width: calc(100% - 18px); max-height: 90vh; margin: 9px auto; }
   .modal-head{ padding: 12px 14px; }
   .modal-body{ padding: 12px 14px 16px; }
-  /* æ‰‹æ©Ÿç«¯æ›´å¤§çš„å¯é»žæ“Šå€ï¼Œé¿å…èª¤è§¸ */
+  /* 手機端更大的可點擊區，避免誤觸 */
   .modal-close{ width: 48px; height: 48px; min-width: 48px; min-height: 48px; font-size: 1.85rem; border-radius: 16px; }
 }
 
