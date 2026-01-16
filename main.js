@@ -245,8 +245,12 @@
       .map((href) => `a[href="${href}"]`)
       .join(",");
 
-    // 也支援手動指定 data-product-quickview
-    const triggers = document.querySelectorAll(`${linkSelector}, [data-product-quickview]`);
+    // 支援多種觸發方式（避免不同頁面/版型失效）：
+    // - 直接連到商品頁的 <a href="guilu.html">…</a>（相容舊寫法）
+    // - data-product-quickview="guilu|drink|soup|lurong|antler"（舊寫法）
+    // - data-product="guilu|drink|soup|lurong|antler"（新版，搭配 .js-product-modal）
+    // - .js-product-modal（新版 class）
+    const triggers = document.querySelectorAll(`${linkSelector}, [data-product-quickview], [data-product], .js-product-modal`);
     if (!triggers.length) return;
 
     const DATA = {
@@ -382,7 +386,11 @@
 
         const anchor = el.closest("a");
         const href = anchor ? anchor.getAttribute("href") : null;
-        const key = el.getAttribute("data-product-quickview") || (href ? LINK_TO_KEY[href] : null);
+        // 依優先順序取 key：data-product（新版） -> data-product-quickview（舊版） -> href 對照
+        const key =
+          el.getAttribute("data-product") ||
+          el.getAttribute("data-product-quickview") ||
+          (href ? LINK_TO_KEY[href] : null);
         if (!key) return;
 
         // 保留 href，但在快速介紹模式下阻止跳頁
