@@ -912,6 +912,9 @@ img.product-image {
 
 .product-modal-body{
   padding: 16px 18px 18px;
+  max-height: calc(90vh - 74px);
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .product-modal-body p{ margin-top: 0; }
