@@ -95,7 +95,7 @@
   <!-- MAIN -->
   <main class="site-main">
 
-    <!-- HERO（短版 2–3 行；不加 reveal） -->
+    <!-- HERO -->
     <section class="hero section">
       <div class="hero-inner">
         <div class="hero-text">
@@ -111,10 +111,14 @@
       </div>
     </section>
 
-    <!-- 主打產品：仙加味 龜鹿膏（精簡：僅保留圖片） -->
+    <!-- ✅ SIGNATURE：只保留圖片（並改為彈窗觸發） -->
     <section class="section reveal-up signature-only" aria-labelledby="signature-title">
       <h2 id="signature-title" class="sr-only">仙加味 龜鹿膏（主打產品）</h2>
-      <a href="guilu.html" class="signature-image-link" aria-label="查看仙加味 龜鹿膏詳細介紹">
+
+      <!-- 這裡改成彈窗，不換頁 -->
+      <a class="signature-image-link js-product-modal" data-product="guilu"
+         href="guilu.html"
+         aria-label="開啟 仙加味 龜鹿膏 產品介紹（不換頁）">
         <div class="product-image-frame signature-image-frame">
           <img src="images/guilu-main.jpg" alt="仙加味 龜鹿膏" class="product-image" loading="lazy">
         </div>
@@ -135,13 +139,11 @@
         <!-- 龜鹿膏 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="guilu" href="guilu.html" aria-label="開啟 仙加味 龜鹿膏 產品介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/guilu-main.jpg" alt="仙加味 龜鹿膏" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">仙加味 龜鹿膏</h3>
           <p class="product-note">適合想把補養排進每天作息、觀察一罐一段時間變化的人。</p>
         </article>
@@ -149,13 +151,11 @@
         <!-- 龜鹿飲 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="drink" href="guilu-drink.html" aria-label="開啟 仙加味 龜鹿飲 產品介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/guilu-drink.jpg" alt="仙加味 龜鹿飲" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">仙加味 龜鹿飲</h3>
           <p class="product-note">一包裝好帶，適合工作節奏快、常在外奔波或出差的族群。</p>
         </article>
@@ -163,13 +163,11 @@
         <!-- 龜鹿湯塊 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="soup" href="soup.html" aria-label="開啟 仙加味 龜鹿湯塊 產品介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/guilu-soup-block.jpg" alt="仙加味 龜鹿湯塊" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">仙加味 龜鹿湯塊</h3>
           <p class="product-note">一塊入鍋，一鍋湯全家分享，適合平常就愛煮湯的家庭。</p>
         </article>
@@ -177,13 +175,11 @@
         <!-- 鹿茸粉 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="powder" href="lurong.html" aria-label="開啟 仙加味 鹿茸粉 產品介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/product-lurong-powder.jpg" alt="仙加味 鹿茸粉" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">仙加味 鹿茸粉</h3>
           <p class="product-note">可拌入早餐、飲品或日常膳食，讓補養自然融入三餐。</p>
         </article>
@@ -191,13 +187,11 @@
         <!-- 鹿角原料 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="antler" href="antler.html" aria-label="開啟 鹿角原料 介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/antler-raw.jpg" alt="鹿角原料" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">鹿角原料</h3>
           <p class="product-note">提供中藥房、中醫診所、餐飲品牌與自煉使用的原料方案。</p>
         </article>
@@ -219,28 +213,28 @@
           <h3>我想建立固定補養節奏</h3>
           <p>願意每天留一小段時間給自己，慢慢調整狀態。</p>
           <p><strong>方向：</strong>仙加味 龜鹿膏</p>
-          <a href="guilu.html" class="btn-soft">看龜鹿膏介紹</a>
+          <a href="guilu.html" class="btn-soft js-product-modal" data-product="guilu" aria-label="開啟 龜鹿膏 介紹（不換頁）">看龜鹿膏介紹</a>
         </article>
 
         <article class="guide-card">
           <h3>我工作忙、常在外跑</h3>
           <p>希望補養方便攜帶、不必熬煮或沖泡太多步驟。</p>
           <p><strong>方向：</strong>仙加味 龜鹿飲</p>
-          <a href="guilu-drink.html" class="btn-soft">看龜鹿飲介紹</a>
+          <a href="guilu-drink.html" class="btn-soft js-product-modal" data-product="drink" aria-label="開啟 龜鹿飲 介紹（不換頁）">看龜鹿飲介紹</a>
         </article>
 
         <article class="guide-card">
           <h3>我想全家一起補</h3>
           <p>平常就會煮雞湯、排骨湯，想順便兼顧家人補養。</p>
           <p><strong>方向：</strong>仙加味 龜鹿湯塊</p>
-          <a href="soup.html" class="btn-soft">看龜鹿湯塊介紹</a>
+          <a href="soup.html" class="btn-soft js-product-modal" data-product="soup" aria-label="開啟 龜鹿湯塊 介紹（不換頁）">看龜鹿湯塊介紹</a>
         </article>
 
         <article class="guide-card">
           <h3>我想用早餐或飲品來補</h3>
           <p>習慣喝牛奶、豆漿或吃粥，希望補養直接加進去。</p>
           <p><strong>方向：</strong>仙加味 鹿茸粉</p>
-          <a href="lurong.html" class="btn-soft">看鹿茸粉介紹</a>
+          <a href="lurong.html" class="btn-soft js-product-modal" data-product="powder" aria-label="開啟 鹿茸粉 介紹（不換頁）">看鹿茸粉介紹</a>
         </article>
       </div>
 
@@ -286,7 +280,7 @@
       </div>
     </section>
 
-    <!-- 諮詢引導模組（首頁版） -->
+    <!-- 諮詢引導模組 -->
     <section class="section reveal consult-section">
       <span class="highlight-tag">不確定適不適合？可以先聊聊</span>
       <h2 class="consult-title">想補，但還不確定自己適不適合龜鹿產品？</h2>
@@ -318,7 +312,7 @@
 
   </main>
 
-  <!-- FOOTER（全站統一） -->
+  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="footer-cta">
       <p class="footer-cta-title">還在思考要選哪一款龜鹿產品？</p>
