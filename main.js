@@ -9,6 +9,9 @@
 (function () {
   "use strict";
 
+  // Progressive enhancement flag (used by CSS to avoid "blank page" if JS fails).
+  document.documentElement.classList.add("js");
+
   function setMainPaddingTop() {
     const header = document.querySelector(".site-header");
     const main = document.querySelector(".site-main");
@@ -226,11 +229,24 @@
 
   // ------------------------------
   // ✅ 產品「不換頁」快速介紹（彈窗 Quick View）
-  // - 目前先針對首頁「全部產品」區塊（index.html）
-  // - 保留原本詳細頁（SEO/完整資訊），彈窗提供快速理解與導流
+  // - 自動攔截產品詳細頁連結（guilu.html / guilu-drink.html / soup.html / lurong.html / antler.html）
+  // - 保留原本詳細頁（SEO/完整資訊）；彈窗提供快速理解，必要時可「開新分頁」看完整頁面
   // ------------------------------
   function setupProductQuickView() {
-    const triggers = document.querySelectorAll("[data-product-quickview]");
+    const LINK_TO_KEY = {
+      "guilu.html": "guilu",
+      "guilu-drink.html": "drink",
+      "soup.html": "soup",
+      "lurong.html": "lurong",
+      "antler.html": "antler"
+    };
+
+    const linkSelector = Object.keys(LINK_TO_KEY)
+      .map((href) => `a[href="${href}"]`)
+      .join(",");
+
+    // 也支援手動指定 data-product-quickview
+    const triggers = document.querySelectorAll(`${linkSelector}, [data-product-quickview]`);
     if (!triggers.length) return;
 
     const DATA = {
@@ -312,6 +328,9 @@
     function openModal(key) {
       const d = DATA[key];
       if (!d) return;
+
+      const isGuide = (window.location.pathname || "").split("/").pop() === "guide.html";
+      const closeLabel = isGuide ? "返回指南" : "關閉";
       bodyEl.innerHTML = `
         <div class="product-modal__grid">
           <div class="product-modal__media">
@@ -324,9 +343,10 @@
               ${d.bullets.map((t) => `<li>${t}</li>`).join("")}
             </ul>
             <div class="product-modal__actions">
-              <a href="${d.href}" class="btn-outline">看完整介紹</a>
-              <a href="contact.html" class="btn-soft">不確定怎麼選？先問我們</a>
+              <button type="button" class="btn-soft" data-modal-close>${closeLabel}</button>
+              <a href="${d.href}" class="btn-outline" target="_blank" rel="noopener">開新分頁看完整介紹</a>
             </div>
+            <p class="product-modal__note">提醒：本頁內容以日常補養角度做知識整理，不涉及醫療診斷或治療。</p>
           </div>
         </div>
       `;
@@ -340,6 +360,16 @@
       document.documentElement.classList.remove("modal-open");
     }
 
+    // close buttons are re-rendered inside modal body, so use event delegation.
+    modal.addEventListener("click", (e) => {
+      const target = e.target;
+      if (!(target instanceof Element)) return;
+      if (target.matches("[data-modal-close]") || target.closest("[data-modal-close]")) {
+        e.preventDefault();
+        closeModal();
+      }
+    });
+
     closeEls.forEach((el) => el.addEventListener("click", closeModal));
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
@@ -347,9 +377,16 @@
 
     triggers.forEach((el) => {
       el.addEventListener("click", (e) => {
+        // 只攔截一般點擊（避免使用者想用開新分頁/下載等行為）
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+        const anchor = el.closest("a");
+        const href = anchor ? anchor.getAttribute("href") : null;
+        const key = el.getAttribute("data-product-quickview") || (href ? LINK_TO_KEY[href] : null);
+        if (!key) return;
+
         // 保留 href，但在快速介紹模式下阻止跳頁
         e.preventDefault();
-        const key = el.getAttribute("data-product-quickview");
         openModal(key);
       });
     });
@@ -399,187 +436,3 @@
     init();
   }
 })();
-
-/* =========================
-   Full product pages in modal (no page navigation)
-   Intercepts links to product detail pages and renders the main content in a modal.
-   ========================= */
-function setupProductPageModal() {
-  const PRODUCT_PAGES = new Set([
-    'guilu.html',
-    'guilu-drink.html',
-    'soup.html',
-    'lurong.html',
-    'antler.html'
-  ]);
-
-  function normalizeHref(href) {
-    if (!href) return '';
-    // Remove query/hash for matching.
-    const noHash = href.split('#')[0].split('?')[0];
-    return noHash.trim();
-  }
-
-  function isProductPageHref(href) {
-    const clean = normalizeHref(href);
-    if (!clean) return false;
-    // Ignore external links.
-    if (/^https?:\/\//i.test(clean) || /^mailto:/i.test(clean) || /^tel:/i.test(clean)) return false;
-    // Only match exact filenames (support relative paths like ./guilu.html or pages/guilu.html).
-    const filename = clean.split('/').pop();
-    return PRODUCT_PAGES.has(filename);
-  }
-
-  function ensureModalShell() {
-    let overlay = document.querySelector('.product-modal-overlay');
-    let modal = document.querySelector('.product-modal');
-
-    if (overlay && modal) return { overlay, modal };
-
-    // Create a simple modal shell if not present.
-    overlay = document.createElement('div');
-    overlay.className = 'product-modal-overlay';
-    overlay.setAttribute('aria-hidden', 'true');
-
-    modal = document.createElement('div');
-    modal.className = 'product-modal';
-    modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-modal', 'true');
-
-    modal.innerHTML = `
-      <button class="product-modal-close" type="button" aria-label="Close">×</button>
-      <div class="product-modal-header">
-        <h3 class="product-modal-title">Loading...</h3>
-        <a class="product-modal-open" href="#" target="_blank" rel="noopener" style="display:none">Open in new tab</a>
-      </div>
-      <div class="product-modal-body"></div>
-    `;
-
-    overlay.appendChild(modal);
-    document.body.appendChild(overlay);
-
-    const closeBtn = modal.querySelector('.product-modal-close');
-    const close = () => {
-      overlay.classList.remove('is-open');
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('modal-open');
-      // Clean content to reduce memory.
-      const body = modal.querySelector('.product-modal-body');
-      if (body) body.innerHTML = '';
-    };
-
-    closeBtn.addEventListener('click', close);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) close();
-    });
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && overlay.classList.contains('is-open')) close();
-    });
-
-    return { overlay, modal };
-  }
-
-  async function openProductPageInModal(url) {
-    const { overlay, modal } = ensureModalShell();
-
-    const titleEl = modal.querySelector('.product-modal-title');
-    const bodyEl = modal.querySelector('.product-modal-body');
-    const openEl = modal.querySelector('.product-modal-open');
-
-    overlay.classList.add('is-open');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.classList.add('modal-open');
-
-    titleEl.textContent = 'Loading...';
-    bodyEl.innerHTML = '<p style="padding:12px;">Loading...</p>';
-
-    // Set open-in-new-tab fallback.
-    openEl.href = url;
-    openEl.style.display = 'inline-block';
-
-    try {
-      const res = await fetch(url, { cache: 'no-store' });
-      if (!res.ok) throw new Error('Fetch failed');
-      const html = await res.text();
-
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, 'text/html');
-
-      const pageTitle = (doc.querySelector('title') && doc.querySelector('title').textContent) ? doc.querySelector('title').textContent.trim() : '';
-      titleEl.textContent = pageTitle || 'Product details';
-
-      // Prefer the main content area.
-      const main = doc.querySelector('.site-main') || doc.querySelector('main') || doc.body;
-
-      // Clone into a container and remove site chrome elements if they exist.
-      const container = document.createElement('div');
-      container.className = 'modal-page-content';
-
-      // Use innerHTML but strip known elements first.
-      const temp = document.createElement('div');
-      temp.innerHTML = main.innerHTML;
-
-      // Remove floating buttons and scripts that can duplicate or conflict.
-      temp.querySelectorAll('script, .line-float, .site-header, .site-nav, .site-footer').forEach((el) => el.remove());
-
-      // Ensure internal links inside modal do not navigate away.
-      temp.querySelectorAll('a[href]').forEach((a) => {
-        const href = a.getAttribute('href');
-        if (isProductPageHref(href)) {
-          // Keep as-is; our global click handler will intercept.
-          return;
-        }
-        // If it links to another page of the site, open in new tab by default to avoid leaving the modal context.
-        const clean = normalizeHref(href);
-        if (clean && !clean.startsWith('#') && !/^https?:\/\//i.test(clean) && !/^mailto:/i.test(clean) && !/^tel:/i.test(clean)) {
-          a.setAttribute('target', '_blank');
-          a.setAttribute('rel', 'noopener');
-        }
-      });
-
-      container.appendChild(temp);
-      bodyEl.innerHTML = '';
-      bodyEl.appendChild(container);
-
-      // Scroll to top for each open.
-      bodyEl.scrollTop = 0;
-    } catch (err) {
-      titleEl.textContent = 'Unable to load';
-      bodyEl.innerHTML = `
-        <div style="padding:12px;">
-          <p>Unable to load this page in a popup. Please use the button below.</p>
-          <p><a class="btn-outline" href="${url}" target="_blank" rel="noopener">Open in new tab</a></p>
-        </div>
-      `;
-    }
-  }
-
-  // Intercept clicks for product page links (desktop and mobile).
-  document.addEventListener('click', (e) => {
-    const a = e.target.closest('a');
-    if (!a) return;
-
-    // Respect explicit external intent.
-    if (a.hasAttribute('download')) return;
-    const target = a.getAttribute('target');
-    if (target && target.toLowerCase() === '_blank') return;
-
-    const href = a.getAttribute('href');
-    if (!isProductPageHref(href)) return;
-
-    e.preventDefault();
-    openProductPageInModal(href);
-  });
-}
-
-// Initialize the product modal behavior.
-(function initProductPageModalOnce() {
-  if (window.__TAISHING_PRODUCT_MODAL_INIT__) return;
-  window.__TAISHING_PRODUCT_MODAL_INIT__ = true;
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupProductPageModal);
-  } else {
-    setupProductPageModal();
-  }
-})();
-

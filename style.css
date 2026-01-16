@@ -823,19 +823,30 @@ img.product-image {
 /* =========================================
    REVEAL 動畫（對應 .reveal / .reveal-up）
    ========================================= */
+/*
+  Progressive enhancement:
+  - 預設「可見」，避免 JS 失效時頁面變空白。
+  - 只有在 html.js（main.js 已加上）時才啟用淡入動畫。
+*/
 .reveal,
 .reveal-up {
+  opacity: 1;
+  transform: none;
+}
+
+html.js .reveal,
+html.js .reveal-up {
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.55s ease, transform 0.55s ease;
 }
 
-.reveal-up {
+html.js .reveal-up {
   transform: translateY(14px);
 }
 
-.reveal.is-visible,
-.reveal-up.is-visible {
+html.js .reveal.is-visible,
+html.js .reveal-up.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -912,9 +923,6 @@ img.product-image {
 
 .product-modal-body{
   padding: 16px 18px 18px;
-  max-height: calc(90vh - 74px);
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
 }
 
 .product-modal-body p{ margin-top: 0; }
