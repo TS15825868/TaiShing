@@ -1,446 +1,250 @@
-/* =========================================================
-   TaiShing Site - main.js (Final)
-   - Header padding-top auto fix
-   - Compact header on scroll
-   - Reveal animations（✅ iOS/Safari 首屏不再空白）
-   - Floating LINE button helper（用既有 .line-float，沒有才自動生成）
-   - Mobile 漢堡選單：點外面 or 捲動自動收合
-   ========================================================= */
+/* =========================
+   TaiShing - main.js
+   - Mobile nav toggle
+   - Product modal (no page change)
+   ========================= */
+
 (function () {
   "use strict";
 
-  // Progressive enhancement flag (used by CSS to avoid "blank page" if JS fails).
-  document.documentElement.classList.add("js");
+  // -------------------------
+  // 1) Mobile Nav Toggle
+  // -------------------------
+  const navToggle = document.querySelector(".nav-toggle");
+  const siteNav = document.querySelector(".site-nav");
 
-  function setMainPaddingTop() {
-    const header = document.querySelector(".site-header");
-    const main = document.querySelector(".site-main");
-    if (!header || !main) return;
-    const h = header.offsetHeight || 0;
-    main.style.paddingTop = `${h + 18}px`;
+  if (navToggle && siteNav) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = siteNav.classList.toggle("is-open");
+      navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      document.body.classList.toggle("nav-open", isOpen);
+    });
+
+    // Click outside to close (mobile)
+    document.addEventListener("click", (e) => {
+      if (!siteNav.classList.contains("is-open")) return;
+      const clickedInside = siteNav.contains(e.target) || navToggle.contains(e.target);
+      if (!clickedInside) {
+        siteNav.classList.remove("is-open");
+        navToggle.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("nav-open");
+      }
+    });
   }
 
-  function setupCompactHeader() {
-    const header = document.querySelector(".site-header");
-    if (!header) return;
-    const onScroll = () => {
-      if (window.scrollY > 24) header.classList.add("header--compact");
-      else header.classList.remove("header--compact");
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-  }
-
-  // ✅ 修正：首屏元素先顯示，避免 iOS/Safari IntersectionObserver 延遲導致空白
-  function setupReveal() {
-    const targets = document.querySelectorAll(".reveal, .reveal-up");
-    if (!targets.length) return;
-
-    function forceRevealAboveFold() {
-      const vh = window.innerHeight || 0;
-      targets.forEach((el) => {
-        const r = el.getBoundingClientRect();
-        if (r.top < vh * 0.95) el.classList.add("is-visible");
-      });
-    }
-
-    if (!("IntersectionObserver" in window)) {
-      targets.forEach((el) => el.classList.add("is-visible"));
-      return;
-    }
-
+  // -------------------------
+  // 2) Reveal animation (optional)
+  // -------------------------
+  const revealEls = document.querySelectorAll(".reveal, .reveal-up");
+  if ("IntersectionObserver" in window && revealEls.length) {
     const io = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            io.unobserve(entry.target);
+        entries.forEach((ent) => {
+          if (ent.isIntersecting) {
+            ent.target.classList.add("is-visible");
+            io.unobserve(ent.target);
           }
         });
       },
-      { threshold: 0.12, rootMargin: "80px 0px 80px 0px" }
+      { threshold: 0.12 }
     );
-
-    targets.forEach((el) => io.observe(el));
-
-    // 立刻跑一次 + 載入後再補一次（更穩）
-    forceRevealAboveFold();
-    window.addEventListener("load", forceRevealAboveFold);
-    setTimeout(forceRevealAboveFold, 250);
-  }
-
-  // 使用現有 .line-float；沒有才建立
-  function setupLineFloat() {
-    const LINE_URL = "https://lin.ee/sHZW7NkR";
-
-    // 1. 先找看頁面上有沒有 .line-float
-    let btn = document.querySelector(".line-float");
-
-    // 2. 如果沒有，就自動生成一顆 .line-float
-    if (!btn) {
-      btn = document.createElement("a");
-      btn.href = LINE_URL;
-      btn.className = "line-float";
-      btn.target = "_blank";
-      btn.rel = "noopener";
-      btn.setAttribute("aria-label", "透過 LINE 聯絡我們");
-
-      const img = document.createElement("img");
-      img.src = "images/line-float-icon.png";
-      img.alt = "LINE";
-
-      btn.appendChild(img);
-      document.body.appendChild(btn);
-    } else {
-      // 保險起見，確保屬性正確
-      if (!btn.getAttribute("href")) btn.href = LINE_URL;
-      if (!btn.getAttribute("target")) btn.target = "_blank";
-      if (!btn.getAttribute("rel")) btn.rel = "noopener";
-      if (!btn.getAttribute("aria-label")) {
-        btn.setAttribute("aria-label", "透過 LINE 聯絡我們");
-      }
-    }
-
-    // 3. toast 元件（如果沒存在就建立一個）
-    let toast = document.querySelector(".line-toast");
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.className = "line-toast";
-      toast.setAttribute("role", "status");
-      toast.setAttribute("aria-live", "polite");
-      document.body.appendChild(toast);
-    }
-
-    // 4. 夜間模式 class
-    try {
-      const h = new Date().getHours();
-      if (h >= 19 || h <= 6) btn.classList.add("is-night");
-    } catch (_) {}
-
-    // 5. 監控是否接近 footer（縮小、位移用 .is-compact）
-    const footer = document.querySelector(".site-footer");
-    const updateCompact = () => {
-      if (!footer) return;
-      const footerTop = footer.getBoundingClientRect().top + window.scrollY;
-      const viewportBottom = window.scrollY + window.innerHeight;
-      const nearFooter = viewportBottom > footerTop - 120;
-      btn.classList.toggle("is-compact", nearFooter);
-    };
-
-    updateCompact();
-    window.addEventListener("scroll", updateCompact, { passive: true });
-    window.addEventListener("resize", updateCompact);
-
-    // 6. 點擊時顯示提示文字
-    btn.addEventListener("click", () => {
-      if (!toast) return;
-      toast.textContent = "正在前往 LINE 諮詢…";
-      toast.classList.add("is-show");
-      setTimeout(() => toast.classList.remove("is-show"), 1200);
-    });
-  }
-
-  function setupNavToggle() {
-    const toggle = document.querySelector(".nav-toggle");
-    const nav = document.querySelector(".site-nav");
-    if (!toggle || !nav) return;
-
-    function closeNav() {
-      nav.classList.remove("is-open");
-    }
-
-    // 點漢堡：開 / 關
-    toggle.addEventListener("click", function (e) {
-      e.stopPropagation();
-      nav.classList.toggle("is-open");
-    });
-
-    // 點選選單項目後自動收合（含同頁錨點）
-    const links = nav.querySelectorAll(".nav-link");
-    links.forEach(function (link) {
-      link.addEventListener("click", function () {
-        if (nav.classList.contains("is-open")) closeNav();
-      });
-    });
-
-    // 點選「非 nav / 非漢堡」的地方，自動收合
-    document.addEventListener("click", function (e) {
-      const clickInsideNav = nav.contains(e.target);
-      const clickOnToggle = toggle.contains(e.target);
-      if (!clickInsideNav && !clickOnToggle) closeNav();
-    });
-
-    // 手機版：開始捲動就自動收合
-    window.addEventListener(
-      "scroll",
-      function () {
-        if (window.innerWidth <= 768 && nav.classList.contains("is-open")) {
-          closeNav();
-        }
-      },
-      { passive: true }
-    );
-  }
-
-  // ------------------------------
-  // ✅ 全站統一：漢堡選單順序 + 拿掉「LINE」項目
-  // - 以 JS 生成選單，避免每頁 HTML 都要同步修改
-  // - 仍保留各頁面 CTA / 浮動 LINE 按鈕（不影響）
-  // ------------------------------
-  function setupUnifiedNav() {
-    const navUl = document.querySelector(".site-nav ul");
-    if (!navUl) return;
-
-    // 你要的固定順序（全站一致）
-    const items = [
-      { href: "index.html", label: "首頁", key: "home" },
-      { href: "index.html#all-products", label: "產品總覽", key: "products" },
-      { href: "guide.html", label: "依需求挑選", key: "guide" },
-      { href: "doctor_tiktok.html", label: "中醫觀點", key: "tcm" },
-      { href: "about.html", label: "關於我們", key: "about" },
-      { href: "faq.html", label: "常見問題", key: "faq" },
-      { href: "contact.html", label: "聯絡我們", key: "contact" }
-      // ❌ LINE：依你的需求，從漢堡選單移除
-    ];
-
-    const path = (window.location.pathname || "").split("/").pop() || "index.html";
-    const hash = window.location.hash || "";
-
-    function isActive(key) {
-      if (key === "home") return path === "" || path === "index.html";
-      if (key === "products") return (path === "" || path === "index.html") && hash === "#all-products";
-      if (key === "guide") return path === "guide.html";
-      if (key === "tcm") return path === "doctor_tiktok.html";
-      if (key === "about") return path === "about.html";
-      if (key === "faq") return path === "faq.html";
-      if (key === "contact") return path === "contact.html";
-      return false;
-    }
-
-    // 生成 HTML
-    navUl.innerHTML = items
-      .map((it) => {
-        const active = isActive(it.key) ? " nav-link--active" : "";
-        // 站內連結一律同分頁，不加 target
-        return `<li><a href="${it.href}" class="nav-link${active}">${it.label}</a></li>`;
-      })
-      .join("");
-  }
-
-  // ------------------------------
-  // ✅ 產品「不換頁」快速介紹（彈窗 Quick View）
-  // - 自動攔截產品詳細頁連結（guilu.html / guilu-drink.html / soup.html / lurong.html / antler.html）
-  // - 保留原本詳細頁（SEO/完整資訊）；彈窗提供快速理解，必要時可「開新分頁」看完整頁面
-  // ------------------------------
-  function setupProductQuickView() {
-    const LINK_TO_KEY = {
-      "guilu.html": "guilu",
-      "guilu-drink.html": "drink",
-      "soup.html": "soup",
-      "lurong.html": "lurong",
-      "antler.html": "antler"
-    };
-
-    const linkSelector = Object.keys(LINK_TO_KEY)
-      .map((href) => `a[href="${href}"]`)
-      .join(",");
-
-    // 支援多種觸發方式（避免不同頁面/版型失效）：
-    // - 直接連到商品頁的 <a href="guilu.html">…</a>（相容舊寫法）
-    // - data-product-quickview="guilu|drink|soup|lurong|antler"（舊寫法）
-    // - data-product="guilu|drink|soup|lurong|antler"（新版，搭配 .js-product-modal）
-    // - .js-product-modal（新版 class）
-    const triggers = document.querySelectorAll(`${linkSelector}, [data-product-quickview], [data-product], .js-product-modal`);
-    if (!triggers.length) return;
-
-    const DATA = {
-      guilu: {
-        name: "仙加味 龜鹿膏",
-        desc: "適合想建立固定補養節奏、願意每天留一小段時間給自己的人。",
-        bullets: [
-          "情境：作息較固定、想用『每日一小匙』建立儀式感",
-          "節奏：穩定、可長期觀察（建議以『一罐』作為觀察期）",
-          "方式：可直接食用或溫水攪勻"
-        ],
-        href: "guilu.html",
-        img: "images/guilu-main.jpg"
-      },
-      drink: {
-        name: "仙加味 龜鹿飲",
-        desc: "適合工作節奏快、常在外奔波或出差，希望補養方便攜帶的人。",
-        bullets: [
-          "情境：通勤/外宿/出差，需要『一包就走』",
-          "節奏：以方便帶著走維持穩定度",
-          "提醒：想喝溫的可隔水微溫，不建議直接煮沸"
-        ],
-        href: "guilu-drink.html",
-        img: "images/guilu-drink.jpg"
-      },
-      soup: {
-        name: "仙加味 龜鹿湯塊",
-        desc: "適合平常就愛煮湯的家庭，用『一鍋湯』讓全家一起補。",
-        bullets: [
-          "情境：家中本來就會煮雞湯/排骨湯",
-          "節奏：一塊入鍋，最容易融入日常",
-          "用量：可先從 1–2 塊試口感與濃度，再依鍋量調整"
-        ],
-        href: "soup.html",
-        img: "images/guilu-soup-block.jpg"
-      },
-      lurong: {
-        name: "仙加味 鹿茸粉",
-        desc: "適合早餐與飲品習慣穩定的人，讓補養自然加入日常飲食。",
-        bullets: [
-          "情境：早餐固定（豆漿/牛奶/粥/飲品）",
-          "節奏：加進原本就會吃的東西，最不容易中斷",
-          "方式：可直接入口，或加入飲品/粥品中"
-        ],
-        href: "lurong.html",
-        img: "images/product-lurong-powder.jpg"
-      },
-      antler: {
-        name: "鹿角原料",
-        desc: "提供中藥房、中醫診所、餐飲品牌與家庭自煉使用的原料方案。",
-        bullets: [
-          "情境：已有配方或專業用途，需要穩定供應",
-          "可討論：等級/重量/切製方式（依鍋具與用途建議）",
-          "合作：建議先告知用途與預估用量，再提供較合適方案"
-        ],
-        href: "antler.html",
-        img: "images/antler-raw.jpg"
-      }
-    };
-
-    // 建立彈窗容器（只建一次）
-    let modal = document.querySelector(".product-modal");
-    if (!modal) {
-      modal = document.createElement("div");
-      modal.className = "product-modal";
-      modal.innerHTML = `
-        <div class="product-modal__backdrop" data-modal-close></div>
-        <div class="product-modal__panel" role="dialog" aria-modal="true" aria-label="產品快速介紹">
-          <button class="product-modal__close" type="button" aria-label="關閉" data-modal-close>×</button>
-          <div class="product-modal__body"></div>
-        </div>
-      `;
-      document.body.appendChild(modal);
-    }
-
-    const bodyEl = modal.querySelector(".product-modal__body");
-    const closeEls = modal.querySelectorAll("[data-modal-close]");
-
-    function openModal(key) {
-      const d = DATA[key];
-      if (!d) return;
-
-      const isGuide = (window.location.pathname || "").split("/").pop() === "guide.html";
-      const closeLabel = isGuide ? "返回指南" : "關閉";
-      bodyEl.innerHTML = `
-        <div class="product-modal__grid">
-          <div class="product-modal__media">
-            <img src="${d.img}" alt="${d.name}" loading="lazy">
-          </div>
-          <div class="product-modal__content">
-            <h3 class="product-modal__title">${d.name}</h3>
-            <p class="product-modal__desc">${d.desc}</p>
-            <ul class="product-modal__list">
-              ${d.bullets.map((t) => `<li>${t}</li>`).join("")}
-            </ul>
-            <div class="product-modal__actions">
-              <button type="button" class="btn-soft" data-modal-close>${closeLabel}</button>
-              <a href="${d.href}" class="btn-outline" target="_blank" rel="noopener">開新分頁看完整介紹</a>
-            </div>
-            <p class="product-modal__note">提醒：本頁內容以日常補養角度做知識整理，不涉及醫療診斷或治療。</p>
-          </div>
-        </div>
-      `;
-
-      modal.classList.add("is-open");
-      document.documentElement.classList.add("modal-open");
-    }
-
-    function closeModal() {
-      modal.classList.remove("is-open");
-      document.documentElement.classList.remove("modal-open");
-    }
-
-    // close buttons are re-rendered inside modal body, so use event delegation.
-    modal.addEventListener("click", (e) => {
-      const target = e.target;
-      if (!(target instanceof Element)) return;
-      if (target.matches("[data-modal-close]") || target.closest("[data-modal-close]")) {
-        e.preventDefault();
-        closeModal();
-      }
-    });
-
-    closeEls.forEach((el) => el.addEventListener("click", closeModal));
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
-    });
-
-    triggers.forEach((el) => {
-      el.addEventListener("click", (e) => {
-        // 只攔截一般點擊（避免使用者想用開新分頁/下載等行為）
-        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-
-        const anchor = el.closest("a");
-        const href = anchor ? anchor.getAttribute("href") : null;
-        // 依優先順序取 key：data-product（新版） -> data-product-quickview（舊版） -> href 對照
-        const key =
-          el.getAttribute("data-product") ||
-          el.getAttribute("data-product-quickview") ||
-          (href ? LINK_TO_KEY[href] : null);
-        if (!key) return;
-
-        // 保留 href，但在快速介紹模式下阻止跳頁
-        e.preventDefault();
-        openModal(key);
-      });
-    });
-  }
-
-  function setupBackLinks() {
-    const backButtons = document.querySelectorAll(".back-link");
-    if (!backButtons.length) return;
-
-    const nav = document.querySelector(".site-nav");
-
-    function closeNav() {
-      if (nav && nav.classList.contains("is-open")) {
-        nav.classList.remove("is-open");
-      }
-    }
-
-    backButtons.forEach((btn) => {
-      btn.addEventListener("click", function (event) {
-        event.preventDefault();
-        closeNav();
-        window.location.href = "index.html#all-products";
-      });
-    });
-  }
-
-  function init() {
-    setMainPaddingTop();
-    setupBackLinks();
-    setupUnifiedNav();
-    setupNavToggle();
-    setupCompactHeader();
-    setupReveal();
-    setupLineFloat();
-    setupProductQuickView();
-
-    window.addEventListener("resize", setMainPaddingTop);
-
-    // ✅ 載入完成再補跑一次，避免首屏計算因字體/圖片造成偏差
-    window.addEventListener("load", setMainPaddingTop);
-    setTimeout(setMainPaddingTop, 250);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
+    revealEls.forEach((el) => io.observe(el));
   } else {
-    init();
+    revealEls.forEach((el) => el.classList.add("is-visible"));
   }
+
+  // -------------------------
+  // 3) Product Modal
+  // -------------------------
+  const PRODUCT_MAP = {
+    guilu: {
+      title: "仙加味 龜鹿膏",
+      img: "images/guilu-main.jpg",
+      meta: [
+        "規格：100 ± 5 g／罐",
+        "型態：濃縮膏體（適合固定在家每日取用）"
+      ],
+      desc: [
+        "以「日常可持續」為出發點，適合想建立固定補養節奏、願意每天留一小段時間給自己的人。",
+        "若你作息較不穩、或晚上使用後影響入睡，可改安排在白天或下午，重點是穩定與可持續。"
+      ]
+    },
+    drink: {
+      title: "仙加味 龜鹿飲",
+      img: "images/guilu-drink.jpg",
+      meta: [
+        "包裝：單包／10 包入袋",
+        "型態：飲品（外出、出差、忙碌節奏更方便）"
+      ],
+      desc: [
+        "適合工作節奏快、常在外奔波或出差，希望「帶得走也帶得住節奏」的人。",
+        "建議先從每日 1 包為主，依生活與體感再調整頻率。"
+      ]
+    },
+    soup: {
+      title: "仙加味 龜鹿湯塊",
+      img: "images/guilu-soup-block.jpg",
+      meta: [
+        "規格：4 兩／半斤／1 斤（盒裝規格依你現行販售為準）",
+        "型態：入湯／沖泡（適合家裡本來就會煮湯）"
+      ],
+      desc: [
+        "一塊入鍋，適合用「一鍋湯」讓全家一起補養的家庭型態。",
+        "建議先從 1–2 塊測試風味與濃度，再依鍋量與人數調整。"
+      ]
+    },
+    powder: {
+      title: "仙加味 鹿茸粉",
+      img: "images/product-lurong-powder.jpg",
+      meta: [
+        "規格：75 g／罐",
+        "型態：可融入早餐、飲品或簡單膳食"
+      ],
+      desc: [
+        "適合習慣用早餐／飲品安排補養的人，讓補養自然融入日常。",
+        "若晚上使用後精神較好、影響入睡，可改到白天或下午使用。"
+      ]
+    },
+    antler: {
+      title: "鹿角原料",
+      img: "images/antler-raw.jpg",
+      meta: [
+        "用途：中藥房／中醫診所／餐飲品牌／家庭自煉",
+        "可依用途討論等級、重量、切製方式"
+      ],
+      desc: [
+        "提供專業用途的鹿角原料方案，可依配方、鍋具條件與使用情境協助評估。",
+        "建議先告訴我們用途、預估用量與期望型態，再提供較合適的方案方向。"
+      ]
+    }
+  };
+
+  function ensureModal() {
+    let modal = document.getElementById("productModal");
+    if (modal) return modal;
+
+    modal = document.createElement("div");
+    modal.id = "productModal";
+    modal.className = "modal";
+    modal.setAttribute("aria-hidden", "true");
+
+    modal.innerHTML = `
+      <div class="modal__backdrop" data-close="1"></div>
+      <div class="modal__panel" role="dialog" aria-modal="true" aria-label="產品介紹">
+        <button class="modal__close" type="button" aria-label="關閉" data-close="1">✕</button>
+        <div class="modal__body">
+          <div class="modal__media">
+            <img class="modal__img" src="" alt="">
+          </div>
+          <div class="modal__content">
+            <div class="modal__kicker">PRODUCT</div>
+            <h3 class="modal__title"></h3>
+            <ul class="modal__meta"></ul>
+            <div class="modal__desc"></div>
+
+            <div class="modal__actions">
+              <a class="btn-primary modal__line" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE 詢問</a>
+              <button class="btn-outline modal__ok" type="button" data-close="1">我知道了</button>
+            </div>
+
+            <p class="modal__note">
+              本頁資訊為日常補養選品參考，不涉及醫療診斷或治療；如有治療中或特殊狀況，建議先與專業醫師討論。
+            </p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+    return modal;
+  }
+
+  let lastActiveEl = null;
+
+  function openProductModal(key) {
+    const data = PRODUCT_MAP[key];
+    if (!data) return;
+
+    const modal = ensureModal();
+    const img = modal.querySelector(".modal__img");
+    const title = modal.querySelector(".modal__title");
+    const meta = modal.querySelector(".modal__meta");
+    const desc = modal.querySelector(".modal__desc");
+
+    img.src = data.img;
+    img.alt = data.title;
+
+    title.textContent = data.title;
+
+    meta.innerHTML = "";
+    (data.meta || []).forEach((t) => {
+      const li = document.createElement("li");
+      li.textContent = t;
+      meta.appendChild(li);
+    });
+
+    desc.innerHTML = "";
+    (data.desc || []).forEach((p) => {
+      const para = document.createElement("p");
+      para.textContent = p;
+      desc.appendChild(para);
+    });
+
+    lastActiveEl = document.activeElement;
+
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+
+    // focus close button
+    const closeBtn = modal.querySelector(".modal__close");
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    const modal = document.getElementById("productModal");
+    if (!modal) return;
+
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+
+    if (lastActiveEl && typeof lastActiveEl.focus === "function") {
+      lastActiveEl.focus();
+    }
+    lastActiveEl = null;
+  }
+
+  // Delegated click for modal triggers
+  document.addEventListener("click", (e) => {
+    const trigger = e.target.closest(".js-product-modal");
+    if (trigger) {
+      const key = trigger.getAttribute("data-product");
+      if (key) {
+        e.preventDefault();
+        openProductModal(key);
+      }
+      return;
+    }
+
+    const modal = document.getElementById("productModal");
+    if (!modal) return;
+
+    // Close actions
+    const closeHit = e.target.closest("[data-close='1']");
+    if (closeHit && modal.classList.contains("is-open")) {
+      e.preventDefault();
+      closeModal();
+    }
+  });
+
+  // ESC close
+  document.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    const modal = document.getElementById("productModal");
+    if (modal && modal.classList.contains("is-open")) {
+      e.preventDefault();
+      closeModal();
+    }
+  });
 })();
