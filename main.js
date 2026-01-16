@@ -242,8 +242,9 @@
   // - 支援：Esc/背景/按鈕關閉、頁內錨點在彈窗內滾動、快速跳轉目錄
   // ------------------------------
   function setupProductModalFromPages() {
-    const triggers = document.querySelectorAll('.js-product-modal');
-    if (!triggers.length) return;
+    // ✅ 全站都要啟用「產品連結 -> 彈窗」的統一規則：
+    // - 即使某頁面沒有 .js-product-modal，也要能攔截內容區域內指向產品詳情頁的連結
+    // - 避免 FAQ / 故事頁等頁面因為沒有 trigger class 而漏掉彈窗行為
 
     const modal = ensureProductModal();
     const overlay = modal.querySelector('.modal-overlay');
