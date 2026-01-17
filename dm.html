@@ -5,6 +5,11 @@
   <title>台興山產・仙加味｜龜鹿系列</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- ✅ DM 跳窗版：點產品直接開啟全站產品 modal（不換頁） -->
+  <link rel="stylesheet" href="theme_herbalrosegold.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="main.js" defer></script>
+
   <style>
     /* ✅ 列印最穩：留邊界，避免頁尾被印表機/瀏覽器裁掉 */
     @page { size: A4; margin: 8mm; }
@@ -136,7 +141,12 @@
       display:flex;
       flex-direction: column;
       min-height: 100%;
+      text-decoration: none;
+      color: inherit;
     }
+
+    /* DM 頁面本身不顯示浮動 LINE（避免遮擋 DM），modal 內也會自動隱藏 */
+    .line-float{ display:none !important; }
 
     .card img{
       width:100%;
@@ -381,6 +391,9 @@
 
       .btn{ min-width: 112px; padding: 9px 12px; }
     }
+
+    /* DM 頁面本身不顯示浮動 LINE（避免遮擋 DM 內容） */
+    .line-float{ display:none !important; }
   </style>
 </head>
 
@@ -407,37 +420,37 @@
 
         <!-- Products -->
         <section class="products" aria-label="產品一覽">
-          <div class="card">
+          <a class="card js-product-modal" href="guilu.html" aria-label="仙加味 龜鹿膏（跳窗）">
             <img src="images/guilu-main.jpg" alt="龜鹿膏">
             <div class="card-body">
               <h3>龜鹿膏</h3>
               <p>100 ± 5 g／罐</p>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a class="card js-product-modal" href="guilu-drink.html" aria-label="仙加味 龜鹿飲（跳窗）">
             <img src="images/guilu-drink.jpg" alt="龜鹿飲">
             <div class="card-body">
               <h3>龜鹿飲</h3>
               <p>單包／10 包入袋</p>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a class="card js-product-modal" href="soup.html" aria-label="仙加味 龜鹿湯塊（跳窗）">
             <img src="images/guilu-soup-block.jpg" alt="龜鹿湯塊">
             <div class="card-body">
               <h3>龜鹿湯塊</h3>
               <p>4 兩／半斤／1 斤</p>
             </div>
-          </div>
+          </a>
 
-          <div class="card">
+          <a class="card js-product-modal" href="lurong.html" aria-label="仙加味 鹿茸粉（跳窗）">
             <img src="images/product-lurong-powder.jpg" alt="鹿茸粉">
             <div class="card-body">
               <h3>鹿茸粉</h3>
               <p>75 g／罐</p>
             </div>
-          </div>
+          </a>
         </section>
 
         <!-- CTA -->
