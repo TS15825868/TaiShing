@@ -113,6 +113,8 @@ html.modal-open,body.modal-open{overflow:hidden}
 .modal-head-right{flex:0 0 auto;display:flex;align-items:center;gap:8px}
 .modal-title{font-size:1.05rem;letter-spacing:.04em;color:var(--color-primary-deep);font-weight:700}
 .modal-toc{display:flex;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:6px;margin-top:6px;scrollbar-width:none}
+/* ✅ 若本產品沒有可跳轉的章節，TOC 直接不顯示（避免手機看到空白框） */
+.modal-toc:empty{display:none;margin-top:0;max-height:0}
 .modal-toc::-webkit-scrollbar{height:0}
 .modal-toc-link{display:inline-flex;align-items:center;justify-content:center;padding:6px 10px;border-radius:999px;border:1px solid rgba(0,0,0,.14);color:var(--color-primary-deep);background:rgba(11,31,59,.04);font-size:.82rem;white-space:nowrap;flex:0 0 auto}
 .modal-toc-link:hover{background:rgba(11,31,59,.08)}
