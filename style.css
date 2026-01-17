@@ -198,3 +198,36 @@ html.modal-open,body.modal-open{overflow:hidden}
 @media (max-width: 640px){
   .dm-qr-grid{ grid-template-columns: 1fr; }
 }
+
+/* =========================================
+   Global: Boxed links (clear CTA styling)
+   - Applies to links inside main content sections
+   - Excludes buttons, nav links, product card overlays
+   ========================================= */
+.site-main .section a:not(.btn-primary):not(.btn-soft):not(.btn-line-strong):not(.btn-outline):not(.btn-outline-gold):not(.btn-full):not(.nav-link):not(.back-link):not(.card-link):not(.line-float){
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  padding:6px 12px;
+  border-radius:999px;
+  border:1px solid rgba(255,122,0,.50);
+  background:rgba(255,122,0,.10);
+  color:var(--color-primary-deep);
+  font-weight:700;
+  letter-spacing:.04em;
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+}
+.site-main .section a:not(.btn-primary):not(.btn-soft):not(.btn-line-strong):not(.btn-outline):not(.btn-outline-gold):not(.btn-full):not(.nav-link):not(.back-link):not(.card-link):not(.line-float):hover{
+  background:rgba(255,122,0,.16);
+  border-color:rgba(255,122,0,.70);
+  transform:translateY(-1px);
+}
+
+/* DM: QR card button under QR */
+.dm-qr-btn{
+  margin-top:10px;
+  width:100%;
+  max-width:320px;
+}
+
