@@ -1,10 +1,10 @@
 /* =========================================================
-   TaiShing Site - main.js (FINAL FULL VERSION)
+   TaiShing Site - main.js (FINAL FULL)
    ========================================================= */
 (function () {
   "use strict";
 
-  /* ================= Header spacing ================= */
+  /* ---------- layout helpers ---------- */
   function setMainPaddingTop() {
     const header = document.querySelector(".site-header");
     const main = document.querySelector(".site-main");
@@ -22,7 +22,7 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  /* ================= Reveal ================= */
+  /* ---------- reveal ---------- */
   function setupReveal() {
     const targets = document.querySelectorAll(".reveal, .reveal-up");
     if (!targets.length) return;
@@ -48,7 +48,7 @@
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0.12, rootMargin: "80px" });
 
     targets.forEach(el => io.observe(el));
     force();
@@ -56,23 +56,7 @@
     setTimeout(force, 250);
   }
 
-  /* ================= LINE Float ================= */
-  function setupLineFloat() {
-    const LINE_URL = "https://lin.ee/sHZW7NkR";
-    let btn = document.querySelector(".line-float");
-
-    if (!btn) {
-      btn = document.createElement("a");
-      btn.className = "line-float";
-      btn.href = LINE_URL;
-      btn.target = "_blank";
-      btn.rel = "noopener";
-      btn.innerHTML = `<img src="images/line-float-icon.png" alt="LINE">`;
-      document.body.appendChild(btn);
-    }
-  }
-
-  /* ================= Nav ================= */
+  /* ---------- unified nav ---------- */
   function setupUnifiedNav() {
     const ul = document.querySelector(".site-nav ul");
     if (!ul) return;
@@ -87,9 +71,17 @@
       ["contact.html", "聯絡我們"]
     ];
 
-    ul.innerHTML = items.map(([href, label]) =>
-      `<li><a class="nav-link" href="${href}">${label}</a></li>`
-    ).join("");
+    const path = location.pathname.split("/").pop() || "index.html";
+    const hash = location.hash;
+
+    ul.innerHTML = items.map(([href, label]) => {
+      let active = "";
+      if (
+        (href === path) ||
+        (href.includes("#") && path === "index.html" && hash === "#all-products")
+      ) active = " nav-link--active";
+      return `<li><a class="nav-link${active}" href="${href}">${label}</a></li>`;
+    }).join("");
   }
 
   function setupNavToggle() {
@@ -97,125 +89,138 @@
     const nav = document.querySelector(".site-nav");
     if (!toggle || !nav) return;
 
+    const close = () => {
+      nav.classList.remove("is-open");
+      toggle.classList.remove("is-open");
+      toggle.setAttribute("aria-expanded", "false");
+    };
+
     toggle.addEventListener("click", e => {
       e.stopPropagation();
-      nav.classList.toggle("is-open");
+      const open = !nav.classList.contains("is-open");
+      nav.classList.toggle("is-open", open);
+      toggle.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", open);
     });
 
-    document.addEventListener("click", () => nav.classList.remove("is-open"));
+    document.addEventListener("click", e => {
+      if (!nav.contains(e.target) && !toggle.contains(e.target)) close();
+    });
+
+    window.addEventListener("scroll", () => {
+      if (window.innerWidth <= 768) close();
+    }, { passive: true });
   }
 
-  /* ================= Product Modal ================= */
-  function setupProductModalFromPages() {
+  /* ---------- product modal ---------- */
+  function setupProductModal() {
     const modal = ensureModal();
     const body = modal.querySelector(".modal-body");
-    const title = modal.querySelector(".modal-title");
     const toc = modal.querySelector(".modal-toc");
     const openPage = modal.querySelector(".modal-openpage");
     const closeBtn = modal.querySelector(".modal-close");
 
     let scrollY = 0;
 
-    function lock() {
+    function openModal(trigger) {
       scrollY = window.scrollY;
       document.body.style.position = "fixed";
       document.body.style.top = `-${scrollY}px`;
+      modal.classList.add("is-open");
+      closeBtn.focus();
     }
 
-    function unlock() {
+    function closeModal() {
+      modal.classList.remove("is-open");
       document.body.style.position = "";
       document.body.style.top = "";
       window.scrollTo(0, scrollY);
     }
 
-    function open(trigger) {
-      modal.classList.add("is-open");
-      lock();
-      closeBtn.focus();
+    async function load(href, title) {
+      body.innerHTML = "<p>載入中…</p>";
+      openPage.href = href;
+
+      const res = await fetch(href, { cache: "no-store" });
+      const html = await res.text();
+      const doc = new DOMParser().parseFromString(html, "text/html");
+      const main = doc.querySelector("main") || doc.body;
+
+      const wrapper = document.createElement("div");
+      wrapper.className = "modal-page";
+      wrapper.innerHTML = main.innerHTML;
+
+      wrapper.querySelectorAll(".site-header,.site-footer,.line-float,script").forEach(e => e.remove());
+      wrapper.querySelectorAll(".reveal,.reveal-up").forEach(e => e.classList.add("is-visible"));
+
+      body.innerHTML = "";
+      body.appendChild(wrapper);
+
+      buildTOC(wrapper);
+      body.scrollTop = 0;
     }
 
-    function close() {
-      modal.classList.remove("is-open");
-      unlock();
-    }
-
-    function buildTOC(wrapper) {
+    function buildTOC(container) {
+      toc.classList.add("modal-toc--compact");
       toc.innerHTML = "";
-      wrapper.querySelectorAll("h2[id], h3[id]").forEach(h => {
+
+      container.querySelectorAll("h2,h3").forEach(h => {
+        if (!h.id) h.id = h.textContent.trim();
         const a = document.createElement("a");
         a.className = "modal-toc-link";
-        a.href = `#${h.id}`;
-        a.textContent = h.textContent;
+        a.textContent = h.textContent.trim();
+        a.href = "#" + h.id;
         toc.appendChild(a);
       });
     }
 
-    body.addEventListener("scroll", () => {
-      modal.classList.toggle("is-scrolled", body.scrollTop > 40);
-    }, { passive: true });
-
-    document.addEventListener("click", async e => {
+    document.addEventListener("click", e => {
       const a = e.target.closest("a.js-product-modal");
       if (!a) return;
       e.preventDefault();
-
-      openPage.href = a.href;
-      title.textContent = "載入中…";
-      body.innerHTML = "";
-
-      const html = await fetch(a.href).then(r => r.text());
-      const doc = new DOMParser().parseFromString(html, "text/html");
-      const main = doc.querySelector("main");
-
-      main.querySelectorAll(".site-header,.site-footer,.line-float").forEach(el => el.remove());
-      main.querySelectorAll(".reveal,.reveal-up").forEach(el => el.classList.add("is-visible"));
-
-      body.appendChild(main);
-      title.textContent = doc.title;
-      buildTOC(main);
-      open(a);
+      load(a.getAttribute("href"), a.textContent.trim());
+      openModal(a);
     });
 
-    closeBtn.addEventListener("click", close);
-    modal.querySelector(".modal-overlay").addEventListener("click", close);
-    document.addEventListener("keydown", e => {
-      if (e.key === "Escape") close();
+    closeBtn.addEventListener("click", closeModal);
+    modal.querySelector(".modal-overlay").addEventListener("click", closeModal);
+
+    body.addEventListener("scroll", () => {
+      modal.classList.toggle("is-scrolled", body.scrollTop > 40);
     });
   }
 
   function ensureModal() {
-    let m = document.getElementById("productModal");
-    if (m) return m;
+    let el = document.getElementById("productModal");
+    if (el) return el;
 
-    m = document.createElement("div");
-    m.id = "productModal";
-    m.className = "modal";
-    m.innerHTML = `
+    el = document.createElement("div");
+    el.id = "productModal";
+    el.className = "modal";
+    el.innerHTML = `
       <div class="modal-overlay"></div>
       <div class="modal-dialog">
         <div class="modal-head">
-          <div class="modal-title">產品介紹</div>
-          <div class="modal-toc modal-toc--compact"></div>
-          <div class="modal-actions">
+          <div class="modal-toc"></div>
+          <div class="modal-head-right">
             <a class="modal-openpage" target="_blank">開啟完整頁</a>
             <button class="modal-close">×</button>
           </div>
         </div>
         <div class="modal-body"></div>
       </div>`;
-    document.body.appendChild(m);
-    return m;
+    document.body.appendChild(el);
+    return el;
   }
 
-  /* ================= Init ================= */
   function init() {
     setMainPaddingTop();
-    setupCompactHeader();
-    setupReveal();
-    setupLineFloat();
     setupUnifiedNav();
     setupNavToggle();
-    setupProductModalFromPages();
+    setupCompactHeader();
+    setupReveal();
+    setupProductModal();
+
     window.addEventListener("resize", setMainPaddingTop);
     window.addEventListener("load", setMainPaddingTop);
   }
