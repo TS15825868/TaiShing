@@ -238,6 +238,15 @@ img {
   margin-top: 0;
 }
 
+/* ✅ 首頁主打商品圖：避免圖片載入較慢時整塊塌陷（看起來像「沒顯示」） */
+.signature-only .product-image-frame{
+  min-height: 220px;
+}
+
+@media (min-width: 768px){
+  .signature-only .product-image-frame{ min-height: 320px; }
+}
+
 /* =========================================
    SECTION 基本框
    ========================================= */
@@ -535,8 +544,24 @@ article.product-card:hover,
 
 @media (max-width: 768px) {
   .product-grid {
+    /* ✅ 需求 2：手機維持兩欄，但要更穩、更像「商品櫥窗」 */
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    gap: 12px;
+  }
+
+  /* 手機：卡片內距縮小，視覺更俐落 */
+  article.product-card,
+  .product-card {
+    padding: 14px 12px 16px !important;
+    border-radius: 14px !important;
+  }
+
+  .product-name {
+    font-size: 0.96rem;
+    letter-spacing: 0.06em;
+  }
+  .product-note {
+    font-size: 0.9rem;
   }
 }
 
@@ -563,7 +588,30 @@ article.product-card:hover,
 .product-card .product-image {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  /* ✅ 商品圖在卡片內以「裁切填滿」為主，避免留白太多看起來怪 */
+  object-fit: cover;
+}
+
+/* 產品卡片文案：限制行數，避免左右卡片高度差太大 */
+.product-card .product-note{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ✅ 產品卡片（總覽/首頁）圖片：用 cover 才不會「留大白邊」看起來怪 */
+.product-grid .product-image-frame img,
+.product-grid .product-card .product-image {
+  object-fit: cover;
+}
+
+/* ✅ 讓卡片文字不要把卡片撐得太高：最多顯示 3 行（其餘省略） */
+.product-grid .product-note {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* 產品標題與描述（補上，避免不同頁面樣式不一致） */
@@ -1405,22 +1453,4 @@ body.modal-open{ overflow: hidden; }
   .product-modal{ max-height: 90vh; }
   .product-modal-header{ padding: 12px 14px; }
   .product-modal-body{ padding: 12px 14px 16px; }
-}
-
-/* ===== Content links: boxed + high contrast (site-wide) ===== */
-.site-main .section a:not(.btn):not(.btn-soft):not(.btn-line-strong):not(.btn-outline-gold):not(.nav-link):not(.product-card):not(.dm-btn){
-  display:inline-block;
-  padding: 6px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(201,162,77,.55);
-  background: var(--brand-gold-bg);
-  color: var(--brand-dark);
-  text-decoration: none;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-}
-.site-main .section a:not(.btn):not(.btn-soft):not(.btn-line-strong):not(.btn-outline-gold):not(.nav-link):not(.product-card):not(.dm-btn):hover{
-  transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
-  background: #fff;
 }

@@ -9,53 +9,6 @@
 (function () {
   "use strict";
 
-  // ===== 全站統一導覽（由 main.js 產生） =====
-  function setupSiteNav(){
-    const nav = document.querySelector('.site-nav');
-    if (!nav) return;
-    const ul = nav.querySelector('ul') || nav.appendChild(document.createElement('ul'));
-
-    const items = [
-      { href: 'index.html', label: '首頁' },
-      { href: 'index.html#all-products', label: '產品總覽' },
-      { href: 'guide.html', label: '依需求挑選' },
-      { href: 'faq.html', label: '常見問題' },
-      { href: 'tcm.html', label: '中醫觀點' },
-      { href: 'story.html', label: '關於我們' },
-      { href: 'contact.html', label: '聯絡我們' },
-      { href: 'dm.html', label: '型錄DM' },
-    ];
-
-    // build
-    ul.innerHTML = items.map(it => (
-      `<li><a href="${it.href}" class="nav-link">${it.label}</a></li>`
-    )).join('');
-
-    // active state
-    const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
-    const hash = (location.hash || '').toLowerCase();
-    const links = ul.querySelectorAll('a.nav-link');
-    links.forEach(a => {
-      const href = (a.getAttribute('href') || '').toLowerCase();
-      const hrefPath = href.split('#')[0];
-      const hrefHash = href.includes('#') ? ('#' + href.split('#')[1]) : '';
-
-      let active = false;
-      if (hrefPath === path) {
-        active = hrefHash ? (hrefHash === hash) : (hash === '' || hrefPath !== 'index.html');
-      }
-      // index 特例：如果在首頁且無 hash，點「首頁」亮；如果有 #all-products，點「產品總覽」亮
-      if (path === 'index.html') {
-        if (!hash && href === 'index.html') active = true;
-        if (hash === '#all-products' && href === 'index.html#all-products') active = true;
-      }
-
-      if (active) a.classList.add('nav-link--active');
-      else a.classList.remove('nav-link--active');
-    });
-  }
-
-
   function setMainPaddingTop() {
     const header = document.querySelector(".site-header");
     const main = document.querySelector(".site-main");
@@ -815,8 +768,6 @@ function setupBackLinks() {
     setupUnifiedNav();
     setupNavToggle();
     setupCompactHeader();
-    setupSiteNav();
-
     setupReveal();
     setupLineFloat();
     setupProductModalFromPages();
