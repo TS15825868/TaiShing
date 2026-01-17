@@ -69,6 +69,7 @@
   // 使用現有 .line-float；沒有才建立
   function setupLineFloat() {
     const LINE_URL = "https://lin.ee/sHZW7NkR";
+    const SITE_BASE = "https://ts15825868.github.io/TaiShing/";
 
     // 1. 先找看頁面上有沒有 .line-float
     let btn = document.querySelector(".line-float");
@@ -547,7 +548,25 @@
       setLoading(fallbackTitle);
 
       try {
-        const res = await fetch(href, { cache: 'no-store' });
+        const resolvedUrl = (() => {
+          try {
+            return new URL(href, window.location.href).href;
+          } catch (_) {
+            return href;
+          }
+        })();
+
+        let res;
+        try {
+          res = await fetch(resolvedUrl, { cache: 'no-store' });
+        } catch (e) {
+          // Retry with canonical base (helps when DM is embedded or opened from a different origin)
+          const noQuery = (href || '').split('?')[0];
+          const noHash = noQuery.split('#')[0];
+          const file = noHash.replace(/^\.\//, '').split('/').pop();
+          const retryUrl = file ? (SITE_BASE + file) : resolvedUrl;
+          res = await fetch(retryUrl, { cache: 'no-store' });
+        }
         if (!res.ok) throw new Error('Fetch failed: ' + res.status);
         const html = await res.text();
         const doc = new DOMParser().parseFromString(html, 'text/html');
