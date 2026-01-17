@@ -1454,3 +1454,38 @@ body.modal-open{ overflow: hidden; }
   .product-modal-header{ padding: 12px 14px; }
   .product-modal-body{ padding: 12px 14px 16px; }
 }
+/* ===============================
+   產品橘色標示：統一改為卡片型
+   =============================== */
+
+/* 主打商品 & 一般產品共用 */
+.product-tag,
+.product-badge,
+.product-highlight,
+.product-pill {
+  display: block;                 /* 不再 inline */
+  width: 100%;                    /* 跟卡片一樣寬 */
+  box-sizing: border-box;
+
+  background: var(--action-orange-bg);
+  color: var(--action-orange);
+
+  padding: 12px 14px;
+  margin: 10px 0 0;
+
+  border: 1.5px solid var(--action-orange);
+  border-radius: 14px;            /* 與卡片一致的圓角 */
+  
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* 如果是在卡片裡，避免貼邊 */
+.product-card .product-tag,
+.product-card .product-badge,
+.product-card .product-highlight,
+.product-card .product-pill {
+  margin-top: 12px;
+}
