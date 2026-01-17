@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>產品DM｜台興山產・仙加味</title>
-  <meta name="description" content="產品DM：點選即可開啟產品跳窗。" />
+  <meta name="description" content="產品DM：點選即可查看完整介紹。" />
   <link rel="stylesheet" href="theme_herbalrosegold.css" />
   <link rel="stylesheet" href="style.css" />
   <script src="main.js" defer></script>
@@ -20,73 +20,64 @@
           <p class="brand-title">台興山產・仙加味</p>
         </div>
       </a>
-      <button class="nav-toggle" type="button" aria-label="切換主選單">☰</button>
-      <nav class="site-nav">
-        <ul>
-          <li><a href="index.html" class="nav-link">首頁</a></li>
-          <li><a href="index.html#all-products" class="nav-link">產品總覽</a></li>
-          <li><a href="guide.html" class="nav-link">依需求挑選</a></li>
-          <li><a href="doctor_tiktok.html" class="nav-link">中醫觀點</a></li>
-          <li><a href="about.html" class="nav-link">關於我們</a></li>
-          <li><a href="faq.html" class="nav-link">常見問題</a></li>
-          <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
-          <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
-        </ul>
-      </nav>
+	      <!-- DM 頁：不顯示漢堡選單 / 導覽列（避免干擾掃碼與閱讀） -->
     </div>
   </header>
 
   <main class="site-main simple-page">
     <section class="section reveal">
       <div class="section-kicker">DM</div>
-      <h1 class="page-title">產品 DM（跳窗版）</h1>
-      <p>點選任一產品，會直接以跳窗開啟完整介紹（不跳頁）。</p>
+	      <h1 class="page-title">產品 DM</h1>
+	      <p>點選產品，即可直接查看完整介紹。</p>
 
       <div class="product-grid" id="all-products">
         <article class="product-card">
           <a class="card-link js-product-modal" href="guilu.html" aria-label="仙加味 龜鹿膏"></a>
           <div class="product-image-frame"><img src="images/guilu-main.jpg" alt="龜鹿膏" loading="lazy"></div>
           <h3 class="product-name">仙加味 龜鹿膏</h3>
-          <p class="product-note">全龜板＋鹿角慢火收膏，建立固定補養節奏。</p>
-          <a class="btn-soft js-product-modal" href="guilu.html">看DM</a>
-        </article>
+          <p class="product-note">全龜板＋鹿角慢火收膏，建立固定補養節奏。</p></article>
 
         <article class="product-card">
           <a class="card-link js-product-modal" href="guilu-drink.html" aria-label="仙加味 龜鹿飲"></a>
           <div class="product-image-frame"><img src="images/guilu-drink.jpg" alt="龜鹿飲" loading="lazy"></div>
           <h3 class="product-name">仙加味 龜鹿飲</h3>
-          <p class="product-note">單包常溫可飲，忙碌也能維持補養。</p>
-          <a class="btn-soft js-product-modal" href="guilu-drink.html">看DM</a>
-        </article>
+          <p class="product-note">單包常溫可飲，忙碌也能維持補養。</p></article>
 
         <article class="product-card">
           <a class="card-link js-product-modal" href="soup.html" aria-label="仙加味 龜鹿湯塊"></a>
           <div class="product-image-frame"><img src="images/guilu-soup-block.jpg" alt="龜鹿湯塊" loading="lazy"></div>
           <h3 class="product-name">仙加味 龜鹿湯塊</h3>
-          <p class="product-note">一塊入湯，全家共享的一鍋湯補養。</p>
-          <a class="btn-soft js-product-modal" href="soup.html">看DM</a>
-        </article>
+          <p class="product-note">一塊入湯，全家共享的一鍋湯補養。</p></article>
 
         <article class="product-card">
           <a class="card-link js-product-modal" href="lurong.html" aria-label="仙加味 鹿茸粉"></a>
           <div class="product-image-frame"><img src="images/product-lurong-powder.jpg" alt="鹿茸粉" loading="lazy"></div>
           <h3 class="product-name">仙加味 鹿茸粉</h3>
-          <p class="product-note">拌入早餐、飲品、餐食，補養融入日常。</p>
-          <a class="btn-soft js-product-modal" href="lurong.html">看DM</a>
-        </article>
+          <p class="product-note">拌入早餐、飲品、餐食，補養融入日常。</p></article>
 
         <article class="product-card">
           <a class="card-link js-product-modal" href="antler.html" aria-label="鹿角原料"></a>
           <div class="product-image-frame"><img src="images/antler-raw.jpg" alt="鹿角原料" loading="lazy"></div>
           <h3 class="product-name">鹿角原料</h3>
-          <p class="product-note">四代鹿角家族嚴選分級，提供原料供應合作。</p>
-          <a class="btn-soft js-product-modal" href="antler.html">看DM</a>
-        </article>
+          <p class="product-note">四代鹿角家族嚴選分級，提供原料供應合作。</p></article>
       </div>
 
-      <p style="margin-top:14px;">
-        <a class="btn-line-strong" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">先聊聊狀況（LINE）</a>
-      </p>
+      <div class="dm-qr-wrap" style="margin-top:18px;">
+        <div class="dm-qr-grid" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:stretch;">
+          <div class="dm-qr-card" style="background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:16px; padding:14px; text-align:center; box-shadow: 0 10px 26px rgba(0,0,0,.08);">
+            <div style="font-weight:700; letter-spacing:.06em; margin-bottom:10px; color:var(--color-primary-deep);">加入官方 LINE</div>
+            <img src="images/line-qr.png" alt="官方 LINE QR" loading="lazy" style="width:100%; max-width:260px; margin:0 auto 12px; border-radius:12px;">
+            <a class="btn-line-strong btn-full" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE 一對一諮詢</a>
+          </div>
+
+          <div class="dm-qr-card" style="background:#fff; border:1px solid rgba(0,0,0,.1); border-radius:16px; padding:14px; text-align:center; box-shadow: 0 10px 26px rgba(0,0,0,.08);">
+            <div style="font-weight:700; letter-spacing:.06em; margin-bottom:10px; color:var(--color-primary-deep);">官網連結</div>
+            <img src="images/website-qr.png" alt="官網 QR" loading="lazy" style="width:100%; max-width:260px; margin:0 auto 12px; border-radius:12px;">
+            <a class="btn-primary btn-full" href="index.html" target="_blank" rel="noopener">開啟官網</a>
+          </div>
+        </div>
+        <p class="text-note" style="margin-top:12px; text-align:center;">建議：掃碼後點選產品，即可直接查看完整介紹。</p>
+      </div>
     </section>
   </main>
 
