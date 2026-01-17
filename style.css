@@ -155,11 +155,6 @@ img {
   padding: 0 20px 60px;
 }
 
-/*
-  ✅ 內容頁面寬度
-  - 先前 simple-page 720px 在桌機上過窄
-  - 這裡改為桌機與首頁一致的 1080px；手機維持自然滿版
-*/
 .site-main.simple-page {
   max-width: 1080px;
 }
@@ -337,7 +332,6 @@ img {
 
 /* =========================================
    FLOATING LINE CTA
-   （class="line-float" + img）
    ========================================= */
 .line-float {
   position: fixed;
@@ -369,12 +363,11 @@ img {
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.28);
 }
 
-/* 靠近 footer 時縮小一點，避免太壓迫 */
 .line-float.is-compact {
   transform: scale(0.86) translateY(-4px);
 }
 
-/* Toast（搭配 JS 顯示） */
+/* Toast */
 .line-toast {
   position: fixed;
   right: 16px;
@@ -400,7 +393,6 @@ img {
   transform: translateY(0);
 }
 
-/* 手機：浮動按鈕 & 提示位置微調 */
 @media (max-width: 768px) {
   .line-float {
     right: 16px;
@@ -415,7 +407,7 @@ img {
 }
 
 /* =========================================
-   產品卡片（全站統一框）
+   產品卡片
    ========================================= */
 article.product-card,
 .product-card {
@@ -437,7 +429,6 @@ article.product-card:hover,
   box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12) !important;
 }
 
-/* 首頁 product-grid（全部產品） */
 .product-grid {
   display: grid;
   gap: 20px;
@@ -458,7 +449,6 @@ article.product-card:hover,
   }
 }
 
-/* 產品卡片圖片框 */
 .product-image-frame {
   border-radius: 12px;
   overflow: hidden;
@@ -478,7 +468,6 @@ article.product-card:hover,
   object-fit: contain;
 }
 
-/* 產品標題與描述 */
 .product-name {
   margin: 6px 0 6px;
   font-size: 1.02rem;
@@ -512,7 +501,7 @@ img.product-image {
   }
 }
 
-/* 產品詳細頁：雙欄圖片（龜鹿飲 單包＋10 包） */
+/* 產品詳細頁：雙欄圖片 */
 .product-image-row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -528,7 +517,7 @@ img.product-image {
 }
 
 /* =========================================
-   詳細頁：共用「LINE 諮詢・不強推」區塊
+   詳細頁：LINE 諮詢區塊
    ========================================= */
 .consult-section .highlight-tag {
   margin-bottom: 10px;
@@ -571,7 +560,7 @@ img.product-image {
 }
 
 /* =========================================
-   NAV：漢堡選單（三條線版本）
+   NAV：漢堡選單
    ========================================= */
 .nav-toggle {
   display: none;
@@ -597,7 +586,6 @@ img.product-image {
   transform: translateY(-1px);
 }
 
-/* 手機版：使用漢堡選單展開 */
 @media (max-width: 768px) {
   .header-inner {
     flex-direction: row;
@@ -730,7 +718,6 @@ img.product-image {
   flex: 0 0 auto;
 }
 
-/* 手機：section 內距縮、按鈕改直排、contact 改滿版 */
 @media (max-width: 768px) {
   .section {
     padding: 26px 18px;
@@ -765,7 +752,7 @@ img.product-image {
 }
 
 /* =========================================
-   首頁 HERO 區塊
+   HERO
    ========================================= */
 .hero-title {
   font-size: clamp(1.7rem, 2.6vw, 2.1rem);
@@ -784,7 +771,7 @@ img.product-image {
 }
 
 /* =========================================
-   產品詳細：回到上一頁
+   詳細頁：回到產品總覽
    ========================================= */
 .back-to-products {
   text-align: center;
@@ -814,7 +801,7 @@ img.product-image {
 }
 
 /* =========================================
-   FAQ / GUIDE 共用元件
+   FAQ / GUIDE
    ========================================= */
 .faq-list {
   margin: 1.5rem 0 0;
@@ -862,9 +849,7 @@ img.product-image {
   }
 }
 
-/* =========================================
-   文案補充類型
-   ========================================= */
+/* 文案補充 */
 .text-note {
   font-size: 0.9rem;
   color: var(--color-text-muted);
@@ -872,7 +857,7 @@ img.product-image {
 }
 
 /* =========================================
-   REVEAL 動畫
+   REVEAL
    ========================================= */
 .reveal,
 .reveal-up {
@@ -891,9 +876,7 @@ img.product-image {
   transform: translateY(0);
 }
 
-/* =========================================
-   ✅ 修正：整張產品卡片可點（關鍵：z-index）
-   ========================================= */
+/* ✅ 整張產品卡片可點 */
 .product-card {
   position: relative;
 }
@@ -915,16 +898,11 @@ img.product-image {
   outline-offset: 4px;
 }
 
-/* =========================================================
-   ✅ Product Modal（FINAL：只保留新版 .modal）
-   - 對應你 main.js 產生的結構
-   - TOC 橫向滑動 / 內文滑動淡出 / 目錄 toggle
-   - iOS/Safari 安全區與順暢捲動
-   ========================================================= */
+/* ==============================
+   Product modal (no page change)
+   ============================== */
 html.modal-open,
-body.modal-open{
-  overflow: hidden;
-}
+body.modal-open{ overflow: hidden; }
 
 .modal{
   position: fixed;
@@ -992,7 +970,6 @@ body.modal-open{
   z-index: 3;
 }
 
-/* ✅ iOS/Safari：左側 TOC 必須可縮（min-width:0）才可橫滑、也不會擠掉右側 ✕ */
 .modal-head-left{
   flex: 1 1 auto;
   min-width: 0;
@@ -1047,7 +1024,6 @@ body.modal-open{
 
 .modal-toc-link:hover{ background: rgba(11,31,59,.08); }
 
-/* ✅ 「先聊聊狀況」CTA */
 .modal-toc-link.modal-toc-cta{
   background: #06C755;
   border-color: rgba(0,0,0,.08);
@@ -1056,7 +1032,6 @@ body.modal-open{
 }
 .modal-toc-link.modal-toc-cta:hover{ filter: brightness(0.95); }
 
-/* ✅ 內文往下滑時，TOC 自動淡出 */
 .modal.is-body-scrolled .modal-toc{
   opacity: 0;
   max-height: 0;
@@ -1064,7 +1039,6 @@ body.modal-open{
   pointer-events: none;
 }
 
-/* ✅ TOC 淡出後保留「目錄」按鈕 */
 .modal-toc-toggle{
   display: none;
   align-items: center;
@@ -1091,7 +1065,6 @@ body.modal-open{
   display: inline-flex;
 }
 
-/* 使用者叫回目錄（暫時顯示） */
 .modal.is-toc-peek .modal-toc{
   opacity: 1;
   max-height: 180px;
@@ -1134,10 +1107,7 @@ body.modal-open{
   -webkit-overflow-scrolling: touch;
 }
 
-/* loading */
-.modal-loading{
-  padding: 20px 6px;
-}
+.modal-loading{ padding: 20px 6px; }
 
 .modal-loading-bar{
   height: 10px;
@@ -1164,8 +1134,6 @@ body.modal-open{
 .modal-page .site-main{ padding: 0; }
 .modal-page .section{ padding-left: 0; padding-right: 0; }
 .modal-page .section + .section{ margin-top: 18px; }
-
-/* 避免把詳情頁的浮動 LINE 一起帶進來 */
 .modal-page .line-float{ display: none !important; }
 
 @media (max-width: 768px){
