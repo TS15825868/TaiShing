@@ -5,46 +5,113 @@
   <title>中醫觀點｜龜鹿補養影片整理（聚合頁）｜台興山產・仙加味</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="合作中醫師公開平台影片聚合頁：以中醫觀點整理龜鹿補養常見問法、日常節奏與選擇邏輯。僅供知識交流與選品參考，不涉及醫療診斷或治療。" />
-
-
+  <meta name="keywords" content="中醫觀點,龜鹿補養,龜鹿膏,龜鹿飲,龜鹿湯塊,鹿茸粉,日常補養節奏,台興山產,仙加味,萬華中藥">
   <meta name="robots" content="index,follow">
   <link rel="canonical" href="https://ts15825868.github.io/TaiShing/tcm.html">
 
-  <!-- Open Graph / Twitter -->
-  <meta property="og:locale" content="zh_TW">
-  <meta property="og:type" content="website">
+  <!-- Open Graph / 社群分享 -->
   <meta property="og:title" content="中醫觀點｜龜鹿補養影片整理（聚合頁）｜台興山產・仙加味">
-  <meta property="og:description" content="合作中醫師公開平台影片聚合頁：以中醫觀點整理龜鹿補養常見問法、日常節奏與選擇邏輯。僅供知識交流與選品參考，不涉及醫療診斷或治療。">
+  <meta property="og:description" content="合作中醫師公開平台影片聚合：以中醫觀點理解日常補養節奏與常見問法（不做醫療診斷／治療宣稱）。">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="https://ts15825868.github.io/TaiShing/tcm.html">
-  <meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/logo-pro.jpeg">
+  <meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/logo-pro-og.jpg">
 
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="中醫觀點｜龜鹿補養影片整理（聚合頁）｜台興山產・仙加味">
-  <meta name="twitter:description" content="合作中醫師公開平台影片聚合頁：以中醫觀點整理龜鹿補養常見問法、日常節奏與選擇邏輯。僅供知識交流與選品參考，不涉及醫療診斷或治療。">
-  <meta name="twitter:image" content="https://ts15825868.github.io/TaiShing/images/logo-pro.jpeg">
+  <!-- 聚合頁結構化資料（ItemList）：幫助搜尋引擎理解這頁是「影片集合」 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "中醫觀點｜龜鹿補養影片整理（聚合頁）",
+    "url": "https://ts15825868.github.io/TaiShing/tcm.html",
+    "inLanguage": "zh-Hant-TW",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "台興山產・仙加味",
+      "url": "https://ts15825868.github.io/TaiShing/"
+    },
+    "about": [
+      {"@type": "Thing", "name": "中醫觀點"},
+      {"@type": "Thing", "name": "日常補養節奏"}
+    ]
+  }
+  </script>
 
-  <meta name="theme-color" content="#0B1F3B">
-
-  <!-- JSON-LD: Organization + WebSite -->
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "台興山產・仙加味", "legalName": "台興山產有限公司", "url": "https://ts15825868.github.io/TaiShing/", "logo": "https://ts15825868.github.io/TaiShing/images/logo-pro.jpeg", "foundingDate": "1978", "address": {"@type": "PostalAddress", "streetAddress": "西昌街 52 號", "addressLocality": "萬華區", "addressRegion": "台北市", "addressCountry": "TW"}, "telephone": "+886-2-2381-2990", "sameAs": ["https://lin.ee/sHZW7NkR"]}</script>
-  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "台興山產・仙加味", "url": "https://ts15825868.github.io/TaiShing/", "inLanguage": "zh-Hant-TW", "potentialAction": {"@type": "SearchAction", "target": "https://ts15825868.github.io/TaiShing/products.html?q={search_term_string}", "query-input": "required name=search_term_string"}}</script>
-<meta name="keywords" content="中醫觀點,龜鹿補養,龜鹿膏,龜鹿飲,龜鹿湯塊,鹿茸粉,日常補養節奏,台興山產,仙加味,萬華中藥">
-
-
-
-
-  
-
-
+  <!-- 全站既有 CSS/JS（保持一致） -->
   <link rel="stylesheet" href="theme_herbalrosegold.css">
   <link rel="stylesheet" href="style.css">
   <script src="main.js" defer></script>
-</head>
+
+  <style>
+    .video-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 18px;
+    }
+    @media (max-width: 768px){
+      .video-grid{ grid-template-columns: 1fr; }
+    }
+    .video-card{
+      background:#fff;
+      border:1px solid rgba(0,0,0,.10);
+      border-radius:16px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+      padding: 14px 14px 16px;
+      overflow:hidden;
+    }
+    .video-card h3{
+      font-size: 1.05rem;
+      margin: 0 0 10px;
+      letter-spacing: .04em;
+      color: var(--color-primary-deep);
+    }
+    .video-fallback{
+      margin-top: 10px;
+      font-size: .95rem;
+    }
+    .video-fallback a{
+      text-decoration: underline;
+      color: var(--color-primary-deep);
+    }
+    .tiktok-embed{
+      margin: 0 !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+    }
+  </style>
+
+  <meta property="og:locale" content="zh_TW">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://ts15825868.github.io/TaiShing/tcm.html">
+  <link rel="alternate" hreflang="zh-Hant-TW" href="https://ts15825868.github.io/TaiShing/tcm.html">
+  <meta name="theme-color" content="#0B1F3B">
+  <!-- 結構化資料：BreadcrumbList -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "首頁",
+      "item": "https://ts15825868.github.io/TaiShing/index.html"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "中醫觀點",
+      "item": "https://ts15825868.github.io/TaiShing/tcm.html"
+    }
+  ]
+}
+  </script>
+
 
 <body>
 <div class="site-wrapper">
 
-  <!-- HEADER：全站統一導覽 -->
+  <!-- HEADER（全站統一順序 + 漢堡按鈕） -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="brand-block">
@@ -57,92 +124,167 @@
 
       <button class="nav-toggle" type="button" aria-label="切換主選單">☰</button>
 
-      <!-- ❗ 不手寫選單，交給 main.js -->
-      <nav class="site-nav"><ul></ul></nav>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="index.html" class="nav-link">首頁</a></li>
+          <li><a href="index.html#all-products" class="nav-link">產品總覽</a></li>
+          <li><a href="guide.html" class="nav-link">依需求挑選</a></li>
+          <li><a href="tcm.html" class="nav-link nav-link--active">中醫觀點</a></li>
+          <li><a href="about.html" class="nav-link">關於我們</a></li>
+          <li><a href="faq.html" class="nav-link">常見問題</a></li>
+          <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
+          <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
+        </ul>
+      </nav>
     </div>
   </header>
 
-  <!-- MAIN -->
-  
   <main class="site-main simple-page">
 
     <section class="section reveal">
       <div class="section-kicker">TCM VIEW</div>
-      <h1 class="page-title">中醫觀點｜龜鹿補養影片整理</h1>
+      <h1 class="page-title">中醫觀點｜龜鹿補養分享</h1>
       <p>
-        這一頁整理合作中醫師在公開平台上的觀點內容，協助你用「日常補養」角度理解：
-        什麼是補養節奏、如何看作息與體力消耗、以及常見問題的判斷方向。
-        本頁為知識交流與選品參考，<strong>不涉及醫療診斷、治療或療效宣稱</strong>。
+        本頁整理合作中醫師於公開平台分享的影片內容，  
+        以「中醫觀點 × 日常補養節奏」為主，僅作為知識交流與理解參考，
+        <strong>不涉及醫療診斷或治療</strong>。
       </p>
-      <p style="margin-top:12px;">
-        <a class="btn-outline" href="faq.html#faq-tcm">先看 FAQ：中醫觀點整理</a>
-        <a class="btn-soft" href="guide.html">看「怎麼挑龜鹿產品」</a>
-      </p>
-    </section>
 
-    <section class="section reveal-up">
-      <div class="section-kicker">QUICK GUIDE</div>
-      <h2 class="section-title">快速對照｜你想釐清的是哪一類問題？</h2>
-      <ul>
-        <li><a href="#tcm-rhythm">補養節奏與作息</a>：睡眠、體力消耗、忙碌族群如何安排。</li>
-        <li><a href="#tcm-choose">怎麼選</a>：龜鹿膏／龜鹿飲／龜鹿湯塊／鹿茸粉的使用情境。</li>
-        <li><a href="#tcm-qa">常見問法</a>：什麼時間吃、一次多少、可不可以搭配等。</li>
-      </ul>
-    </section>
+      <!-- ✅ Google Search Console 聚合頁描述（可複製貼上） -->
+      <div class="brand-card" style="margin-top:14px;">
+        <h2 class="section-title" style="margin:0 0 8px;">聚合頁描述（Search Console 用）</h2>
+        <p style="margin:0;">
+          本頁聚合合作中醫師公開影片，整理「中醫觀點」下常見的補養問法與安排邏輯，
+          以作息、體感與節奏為主軸，協助讀者理解如何在日常中建立更容易持續的補養方式。
+          內容僅供知識交流與選品參考，不提供個案診斷或治療建議；如有疾病、用藥或特殊狀況，建議先諮詢專業醫師。
+        </p>
+      </div>
 
-    <section class="section reveal-up" id="tcm-rhythm">
-      <h2 class="section-title">補養節奏與作息</h2>
-      <p>
-        中醫看「補」通常不只看品項，更看你的睡眠、飲食規律、壓力與運動量。
-        如果近期作息失衡、消化狀態不穩或正處於明顯不適，建議先以醫師評估與治療為主，
-        補養作為輔助再逐步建立節奏。
-      </p>
-    </section>
-
-    <section class="section reveal-up" id="tcm-choose">
-      <h2 class="section-title">怎麼選：四種產品的使用情境</h2>
-      <div class="product-grid" style="margin-top:10px;">
-        <article class="product-card">
-          <a class="card-link" href="guilu.html" aria-label="仙加味 龜鹿膏"></a>
-          <div class="product-image-frame"><img src="images/guilu-main.jpg" alt="龜鹿膏" loading="lazy"></div>
-          <h3 class="product-name">龜鹿膏</h3>
-          <p class="product-note">想建立固定補養節奏、偏向長期穩定使用。</p>
-        </article>
-        <article class="product-card">
-          <a class="card-link" href="guilu-drink.html" aria-label="仙加味 龜鹿飲"></a>
-          <div class="product-image-frame"><img src="images/guilu-drink.jpg" alt="龜鹿飲" loading="lazy"></div>
-          <h3 class="product-name">龜鹿飲</h3>
-          <p class="product-note">忙碌族群／外出方便，單包常溫可飲。</p>
-        </article>
-        <article class="product-card">
-          <a class="card-link" href="soup.html" aria-label="仙加味 龜鹿湯塊"></a>
-          <div class="product-image-frame"><img src="images/guilu-soup-block.jpg" alt="龜鹿湯塊" loading="lazy"></div>
-          <h3 class="product-name">龜鹿湯塊</h3>
-          <p class="product-note">一塊入湯，家常料理也能穩定補養。</p>
-        </article>
-        <article class="product-card">
-          <a class="card-link" href="lurong.html" aria-label="仙加味 鹿茸粉"></a>
-          <div class="product-image-frame"><img src="images/product-lurong-powder.jpg" alt="鹿茸粉" loading="lazy"></div>
-          <h3 class="product-name">鹿茸粉</h3>
-          <p class="product-note">拌入早餐、飲品或料理，融入日常更彈性。</p>
-        </article>
+      <!-- ✅ 中醫觀點 → 對應產品（非推銷型對照表） -->
+      <div class="brand-card" style="margin-top:14px;">
+        <h2 class="section-title" style="margin:0 0 10px;">中醫觀點 → 對應產品（以「能持續的節奏」為判斷）</h2>
+        <p style="margin:0 0 10px;">
+          下面是一張「不做療效宣稱」的對照表：把中醫常談的節奏概念（作息、體感、方便性）
+          對應到不同產品型態，幫助你先用生活情境做第一輪篩選。
+        </p>
+        <div style="overflow:auto;">
+          <table class="compare-table" style="min-width:760px; width:100%; border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(0,0,0,.12);">中醫觀點（判斷點）</th>
+                <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(0,0,0,.12);">更貼近的產品型態</th>
+                <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(0,0,0,.12);">為什麼（以節奏/情境說明）</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);">作息固定、願意每天留一段時間</td>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);"><a href="guilu.html" class="js-product-modal">龜鹿膏</a></td>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);">形式較「可固定」，利於維持同一節奏、觀察體感變化。</td>
+              </tr>
+              <tr>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);">行程變動大、常外出/出差</td>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);"><a href="guilu-drink.html" class="js-product-modal">龜鹿飲</a></td>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);">以「方便帶走」維持節奏，避免忙碌時完全中斷。</td>
+              </tr>
+              <tr>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);">家裡本來就煮湯、希望全家共享</td>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);"><a href="soup.html" class="js-product-modal">龜鹿湯塊</a></td>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);">融入既有飲食習慣，降低執行門檻；以家庭節奏為主。</td>
+              </tr>
+              <tr>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);">早餐/飲品習慣穩定、希望靈活加入</td>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);"><a href="lurong.html" class="js-product-modal">鹿茸粉</a></td>
+                <td style="padding:10px; border-bottom:1px solid rgba(0,0,0,.08);">可隨飲食調整方式，容易與日常飲品/粥品結合。</td>
+              </tr>
+              <tr>
+                <td style="padding:10px;">已有專業配方、需要穩定原料供應</td>
+                <td style="padding:10px;"><a href="antler.html" class="js-product-modal">鹿角原料</a></td>
+                <td style="padding:10px;">由使用情境與切製規格出發，便於專業端控管批次與成本。</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:10px 0 0;" class="text-note">
+          提醒：若你正在接受治療、長期用藥、孕期／備孕或重大疾病史，建議先與主治醫師討論，再安排補養會更安全。
+        </p>
+      </div>
+      <div class="contact-actions">
+        <a href="https://lin.ee/sHZW7NkR" class="btn-line-strong" target="_blank" rel="noopener">LINE 諮詢</a>
+        <a href="index.html#all-products" class="btn-outline">回到產品總覽</a>
       </div>
     </section>
 
-    <section class="section reveal-up" id="tcm-qa">
-      <h2 class="section-title">常見問法（觀點版）</h2>
-      <ul>
-        <li><strong>什麼時間吃？</strong>多以日常習慣與腸胃接受度為核心，重點是能否維持規律。</li>
-        <li><strong>一次多少？</strong>以「可持續」為第一原則，建議先從保守量開始，再依狀況調整。</li>
-        <li><strong>能不能搭配？</strong>以避免過度疊加為原則；若同時在醫師用藥，建議先詢問醫師。</li>
-      </ul>
-      <p style="margin-top:12px;">
-        <a class="btn-line-strong" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">把你的作息與需求丟給我們（LINE）</a>
+    <!-- ✅ 中醫觀點 → 對應產品（非推銷型對照表） -->
+    <section class="section reveal-up">
+      <div class="section-kicker">REFERENCE</div>
+      <h2 class="section-title">中醫觀點 → 對應產品（以「節奏」與「使用情境」對照）</h2>
+      <p>
+        以下整理的是「常見問法／情境」與「較容易融入的產品形式」對照。這是一個幫助你整理選擇邏輯的表，
+        不是療效宣稱，也不取代醫師診療。若你正接受治療、長期用藥、孕期／備孕或重大疾病史，請先諮詢主治醫師。
       </p>
+
+      <div class="table-wrap" style="margin-top:12px;">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>中醫常見關注點（觀點／問法）</th>
+              <th>比較容易「做得到」的形式</th>
+              <th>安排方式（節奏建議）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>想建立固定補養節奏：願意每天留一個時段</td>
+              <td><a href="guilu.html" class="js-product-modal">龜鹿膏</a></td>
+              <td>選你最能固定的時段；以少量、固定、觀察為原則</td>
+            </tr>
+            <tr>
+              <td>工作忙／常在外：希望「一包就走」維持節奏</td>
+              <td><a href="guilu-drink.html" class="js-product-modal">龜鹿飲</a></td>
+              <td>以外出可持續為優先；避免影響入睡時段</td>
+            </tr>
+            <tr>
+              <td>家裡本來就煮湯：想全家一起用「一鍋湯」融入</td>
+              <td><a href="soup.html" class="js-product-modal">龜鹿湯塊</a></td>
+              <td>從少量比例開始，找到家裡習慣的濃度與頻率</td>
+            </tr>
+            <tr>
+              <td>早餐／飲品固定：想把補養自然加進日常飲食</td>
+              <td><a href="lurong.html" class="js-product-modal">鹿茸粉</a></td>
+              <td>搭配原本就穩定的早餐／飲品；先穩定再調整</td>
+            </tr>
+            <tr>
+              <td>專業用途：中藥房／中醫診所／餐飲配方使用</td>
+              <td><a href="antler.html" class="js-product-modal">鹿角原料</a></td>
+              <td>以用途與鍋具條件討論規格；先確認目標與用量</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="text-note" style="margin-top:12px;">
+        提醒：中醫在意的是「人」與「節奏」，不是單看產品名稱。若你需要更快對焦，可把作息、目前用藥／保健品、想改善的重點整理好，再用 LINE 詢問。
+      </p>
+
+      <div class="contact-actions" style="margin-top:14px;">
+        <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-line-strong">用 LINE 詢問（先整理作息會更快）</a>
+        <a href="faq.html#faq-tcm" class="btn-soft">看 FAQ 的中醫觀點整理</a>
+      </div>
+    </section>
+
+    <section class="section reveal">
+      <div class="section-kicker">VIDEOS</div>
+      <h2 class="section-title">影片列表（自動排序：最新在上）</h2>
+      <p class="page-subtitle">
+        若因瀏覽器隱私設定無法顯示嵌入影片，可使用卡片下方「開啟原影片」直接觀看。
+      </p>
+
+      <!-- ✅ JS 會把卡片自動塞進這裡 -->
+      <div class="video-grid" id="videoGrid"></div>
     </section>
 
   </main>
-
 
   <footer class="site-footer">
     <p class="footer-brand">台興山產有限公司・仙加味</p>
@@ -155,7 +297,108 @@
 
 </div>
 
+<!-- TikTok 官方嵌入脚本（必须） -->
 <script async src="https://www.tiktok.com/embed.js"></script>
-<!-- 你原本的影片 JS 保持不變 -->
+
+<script>
+/**
+ * ✅ 你只要改這裡：新增/刪除影片
+ * - videoId：TikTok 影片 ID（數字字串）
+ * - url：原影片連結
+ * - title：顯示在卡片上的標題（可留空，會自動生成）
+ */
+const VIDEO_LIST = [
+  { videoId: "7440039107708914945", url: "https://www.tiktok.com/@changwuchi2023/video/7440039107708914945", title: "中醫觀點分享 01" },
+  { videoId: "7441142424518315280", url: "https://www.tiktok.com/@changwuchi2023/video/7441142424518315280", title: "中醫觀點分享 02" },
+  { videoId: "7441892944057027896", url: "https://www.tiktok.com/@changwuchi2023/video/7441892944057027896", title: "中醫觀點分享 03" },
+  { videoId: "7442637133308759352", url: "https://www.tiktok.com/@changwuchi2023/video/7442637133308759352", title: "中醫觀點分享 04" },
+  { videoId: "7443754721195691319", url: "https://www.tiktok.com/@changwuchi2023/video/7443754721195691319", title: "中醫觀點分享 05" },
+  { videoId: "7444051217757752583", url: "https://www.tiktok.com/@changwuchi2023/video/7444051217757752583", title: "中醫觀點分享 06" },
+  { videoId: "7444467481059560712", url: "https://www.tiktok.com/@changwuchi2023/video/7444467481059560712", title: "中醫觀點分享 07" },
+  { videoId: "7444622264642833671", url: "https://www.tiktok.com/@changwuchi2023/video/7444622264642833671", title: "中醫觀點分享 08" },
+  { videoId: "7445221794769898759", url: "https://www.tiktok.com/@changwuchi2023/video/7445221794769898759", title: "中醫觀點分享 09" },
+  { videoId: "7446332181263289607", url: "https://www.tiktok.com/@changwuchi2023/video/7446332181263289607", title: "中醫觀點分享 10" },
+  { videoId: "7475988696827727112", url: "https://www.tiktok.com/@changwuchi2023/video/7475988696827727112", title: "中醫觀點分享 11" },
+  { videoId: "7561374523564543249", url: "https://www.tiktok.com/@changwuchi2023/video/7561374523564543249", title: "中醫觀點分享 12" }
+];
+
+/** 依 videoId 由大到小排序（通常越新越大） */
+function sortByNewest(list){
+  return [...list].sort((a, b) => {
+    const A = BigInt(String(a.videoId || "0"));
+    const B = BigInt(String(b.videoId || "0"));
+    return B > A ? 1 : (B < A ? -1 : 0);
+  });
+}
+
+/** 生成 TikTok embed blockquote */
+function renderCard(item, index){
+  const safeTitle = (item.title && String(item.title).trim())
+    ? item.title
+    : `中醫觀點分享 ${String(index + 1).padStart(2, "0")}`;
+
+  const vid = String(item.videoId).trim();
+  const url = String(item.url).trim();
+
+  // 注意：TikTok embed.js 會讀取 class="tiktok-embed" 的 blockquote 來渲染
+  return `
+    <article class="video-card">
+      <h3>${escapeHtml(safeTitle)}</h3>
+      <blockquote class="tiktok-embed" cite="${escapeAttr(url)}" data-video-id="${escapeAttr(vid)}">
+        <section></section>
+      </blockquote>
+      <p class="video-fallback">
+        <a href="${escapeAttr(url)}" target="_blank" rel="noopener">開啟原影片</a>
+      </p>
+    </article>
+  `;
+}
+
+/** 基本字元轉義，避免標題帶入特殊字元破版 */
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+function escapeAttr(str){
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+/** 主流程：排序 → render → 重新觸發 TikTok 解析 */
+(function init(){
+  const grid = document.getElementById("videoGrid");
+  if (!grid) return;
+
+  const sorted = sortByNewest(VIDEO_LIST);
+
+  // ✅ 自動把標題改成「新 → 舊」序號：你也可保留原 title，不想改就把下面兩行拿掉
+  // sorted.forEach((it, idx) => { it.title = `中醫觀點分享 ${String(sorted.length - idx).padStart(2, "0")}`; });
+
+  grid.innerHTML = sorted.map(renderCard).join("");
+
+  // ✅ 重新讓 TikTok embed.js 解析剛塞進去的 blockquote
+  // TikTok 沒有官方公開的 refresh API；最穩做法是「移除再加回 script」，讓它重跑一次。
+  reloadTikTokEmbedScript();
+})();
+
+function reloadTikTokEmbedScript(){
+  const SRC = "https://www.tiktok.com/embed.js";
+  const old = document.querySelector(`script[src="${SRC}"]`);
+  if (old) old.remove();
+
+  const s = document.createElement("script");
+  s.src = SRC;
+  s.async = true;
+  document.body.appendChild(s);
+}
+</script>
+
 </body>
 </html>
