@@ -360,7 +360,7 @@
       // Prefer a few practical jumps: 規格 / 成分 / 吃法 / FAQ / 保存 / 注意
       const prefer = [
         { key: 'spec',  re: /(規格|容量|重量|包裝|內容量)/ },
-        { key: 'ing',   re: /(成份|成分|原料|配方|內容物)/ },
+        { key: 'ing',   re: /(成分|原料|配方|內容物)/ },
         { key: 'use',   re: /(吃法|用法|使用|怎麼吃|沖泡|料理)/ },
         { key: 'faq',   re: /(常見問題|FAQ)/i },
         { key: 'keep',  re: /(保存|存放|冷藏|保存方式)/ },
@@ -448,23 +448,17 @@
           el.classList.add('is-visible');
         });
 
-        // ✅ 彈窗內只保留「底部」關閉按鈕（避免上方出現多顆關閉）
-        const backWraps = Array.from(wrapper.querySelectorAll('.back-to-products'));
-        if (backWraps.length) {
-          backWraps.slice(0, -1).forEach((el) => el.remove());
-        }
-        const lastWrap = backWraps.length ? backWraps[backWraps.length - 1] : null;
-        const lastBack = (lastWrap && lastWrap.querySelector('.back-link')) || wrapper.querySelector('.back-link');
-        if (lastBack) {
-          lastBack.textContent = '關閉';
-          lastBack.setAttribute('href', '#');
-          lastBack.setAttribute('role', 'button');
-          lastBack.classList.add('modal-close-link');
-          lastBack.addEventListener('click', (evt) => {
+        // ✅ 將詳情頁內的「← 返回產品列表」在彈窗模式下改成「關閉」並直接關閉彈窗
+        wrapper.querySelectorAll('.back-link').forEach((a) => {
+          a.textContent = '關閉';
+          a.setAttribute('href', '#');
+          a.setAttribute('role', 'button');
+          a.classList.add('modal-close-link');
+          a.addEventListener('click', (evt) => {
             evt.preventDefault();
             closeModal();
           });
-        }
+        });
 
         // Ensure IDs exist for headings so toc/anchors work reliably
         const used = new Set();
