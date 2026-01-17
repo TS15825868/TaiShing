@@ -1406,3 +1406,21 @@ body.modal-open{ overflow: hidden; }
   .product-modal-header{ padding: 12px 14px; }
   .product-modal-body{ padding: 12px 14px 16px; }
 }
+
+/* ===== Content links: boxed + high contrast (site-wide) ===== */
+.site-main .section a:not(.btn):not(.btn-soft):not(.btn-line-strong):not(.btn-outline-gold):not(.nav-link):not(.product-card):not(.dm-btn){
+  display:inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(201,162,77,.55);
+  background: var(--brand-gold-bg);
+  color: var(--brand-dark);
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+}
+.site-main .section a:not(.btn):not(.btn-soft):not(.btn-line-strong):not(.btn-outline-gold):not(.nav-link):not(.product-card):not(.dm-btn):hover{
+  transform: translateY(-1px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.10);
+  background: #fff;
+}

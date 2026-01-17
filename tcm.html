@@ -106,13 +106,13 @@
   ]
 }
   </script>
-
+
 
 <body>
 <div class="site-wrapper">
 
   <!-- HEADER（全站統一順序 + 漢堡按鈕） -->
-  <header class="site-header">
+    <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="brand-block">
         <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo" loading="lazy">
@@ -124,20 +124,11 @@
 
       <button class="nav-toggle" type="button" aria-label="切換主選單">☰</button>
 
-      <nav class="site-nav">
-        <ul>
-          <li><a href="index.html" class="nav-link">首頁</a></li>
-          <li><a href="index.html#all-products" class="nav-link">產品總覽</a></li>
-          <li><a href="guide.html" class="nav-link">依需求挑選</a></li>
-          <li><a href="tcm.html" class="nav-link nav-link--active">中醫觀點</a></li>
-          <li><a href="about.html" class="nav-link">關於我們</a></li>
-          <li><a href="faq.html" class="nav-link">常見問題</a></li>
-          <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
-          <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
-        </ul>
-      </nav>
+      <!-- ✅ 全站統一導覽（由 main.js 產生） -->
+      <nav class="site-nav"><ul></ul></nav>
     </div>
   </header>
+
 
   <main class="site-main simple-page">
 
@@ -279,14 +270,64 @@
       <p class="page-subtitle">
         若因瀏覽器隱私設定無法顯示嵌入影片，可使用卡片下方「開啟原影片」直接觀看。
       </p>
+      <p class="text-note">若你所在的瀏覽器／網路環境阻擋 TikTok 內嵌，頁面仍會保留「開啟原影片」連結可直接觀看。</p>
 
       <!-- ✅ JS 會把卡片自動塞進這裡 -->
-      <div class="video-grid" id="videoGrid"></div>
+      <div class="video-grid" id="videoGrid">
+        <article class="video-card">
+          <h3>中醫觀點分享 01</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7440039107708914945" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 02</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7441142424518315280" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 03</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7441892944057027896" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 04</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7442637133308759352" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 05</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7443754721195691319" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 06</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7444051217757752583" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 07</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7444467481059560712" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 08</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7444622264642833671" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 09</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7445221794769898759" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 10</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7446332181263289607" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 11</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7475988696827727112" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+        <article class="video-card">
+          <h3>中醫觀點分享 12</h3>
+          <div class="video-fallback"><a href="https://www.tiktok.com/@changwuchi2023/video/7561374523564543249" target="_blank" rel="noopener">開啟原影片</a></div>
+        </article>
+      </div>
     </section>
 
   </main>
 
-  <footer class="site-footer">
+    <footer class="site-footer">
     <p class="footer-brand">台興山產有限公司・仙加味</p>
     <p class="footer-meta">
       公司地址：台北市萬華區西昌街 52 號<br>
@@ -294,6 +335,7 @@
       © 台興山產 版權所有
     </p>
   </footer>
+
 
 </div>
 
