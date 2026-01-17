@@ -103,12 +103,10 @@
           '</div>'+
           '<div class="modal-head-right">'+
             '<button type="button" class="modal-toc-toggle" aria-label="顯示目錄" aria-pressed="false">目錄</button>'+
+            '<button type="button" class="modal-close" aria-label="關閉">×</button>'+
           '</div>'+
         '</div>'+
-	      '<div class="modal-body" tabindex="0"></div>'+
-	      '<div class="modal-foot">'+
-	        '<button type="button" class="modal-close-bottom" aria-label="關閉">關閉</button>'+
-	      '</div>'+
+        '<div class="modal-body" tabindex="0"></div>'+
       '</div>';
     document.body.appendChild(modal);
     return modal;
@@ -153,16 +151,16 @@
     return null;
   }
 
+  // 判斷章節是否「足夠有內容」用於 TOC 顯示。
+  // 注意：這個判斷只用於「是否要在 TOC 出現」，不再用來刪除/略過任何內容。
   function sectionHasMeaningfulContent(section){
     if(!section) return false;
-    // If the section only has a heading and nothing else, treat as empty
     const clone=section.cloneNode(true);
-    // remove headings text
+    // 拿掉標題，避免只有標題就被當作有內容
     clone.querySelectorAll('h1,h2,h3').forEach(h=>h.remove());
-    // remove whitespace-only text nodes by reading textContent
+    // 若有圖/列表/表格/按鈕/連結/段落，就視為有內容
+    const hasMedia=!!clone.querySelector('img,ul,ol,table,button,a,p,div');
     const txt=(clone.textContent||'').replace(/\s+/g,'').trim();
-    // if has images/buttons/list, consider meaningful even if text is short
-    const hasMedia=!!clone.querySelector('img,ul,ol,table,button,a');
     return hasMedia || txt.length>0;
   }
 
@@ -192,13 +190,13 @@
     // keep hero always
     frag.appendChild(hero);
 
-    // append ordered sections, skipping empty ones
+    // append ordered sections（不略過任何章節，確保內容完整不遺漏）
     SECTION_ORDER.forEach(s=>{
       const list=keyed.get(s.key)||[];
-      list.forEach(sec=>{ if(sectionHasMeaningfulContent(sec)) frag.appendChild(sec); });
+      list.forEach(sec=>{ frag.appendChild(sec); });
     });
-    // append others (still skip empty)
-    others.forEach(sec=>{ if(sectionHasMeaningfulContent(sec)) frag.appendChild(sec); });
+    // append others
+    others.forEach(sec=>{ frag.appendChild(sec); });
 
     wrapper.appendChild(frag);
   }
@@ -238,6 +236,7 @@
       if(idx===0) return;
       const h=sec.querySelector('h2,h3');
       const key=getSectionKeyFromText(h?h.textContent:'');
+      // TOC 只放「真的有內容」的章節，避免出現空白框框
       if(key && !firstByKey[key] && sectionHasMeaningfulContent(sec)) firstByKey[key]=h;
     });
 
@@ -267,7 +266,7 @@
     const titleEl=modal.querySelector('.modal-title');
     const tocEl=modal.querySelector('.modal-toc');
     const bodyEl=modal.querySelector('.modal-body');
-    const closeBtn=modal.querySelector('.modal-close-bottom');
+    const closeBtn=modal.querySelector('.modal-close');
     const tocToggle=modal.querySelector('.modal-toc-toggle');
 
     let lastFocus=null;
@@ -385,12 +384,10 @@
         wrapper.querySelectorAll('.line-float,.site-header,.site-footer,script,noscript').forEach(el=>el.remove());
         wrapper.querySelectorAll('.reveal,.reveal-up').forEach(el=>el.classList.add('is-visible'));
 
-        // convert back button in product pages
-        wrapper.querySelectorAll('.back-link').forEach((a)=>{
-          a.textContent='關閉';
-          a.setAttribute('href','#');
-          a.addEventListener('click',(ev)=>{ev.preventDefault(); closeModal();});
-        });
+      // ✅ 需求：彈窗只保留右上角「×」關閉
+      // 移除產品頁底部「返回產品列表」區塊（避免彈窗內出現第二顆關閉/返回按鈕）
+      wrapper.querySelectorAll('.back-to-products').forEach((el)=>el.remove());
+      wrapper.querySelectorAll('.back-link').forEach((el)=>el.remove());
 
         // reorder by section blocks (prevents empty section shells)
         reorderSections(wrapper);

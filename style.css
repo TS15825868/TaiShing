@@ -59,11 +59,11 @@ a:hover{color:var(--color-link-hover)}
 }
 
 /* Buttons */
-.btn-primary,.btn-soft,.btn-line-strong{display:inline-flex;align-items:center;justify-content:center;padding:12px 26px;border-radius:999px;font-size:.95rem;letter-spacing:.08em;white-space:nowrap;transition:.25s ease;box-shadow:0 8px 18px rgba(0,0,0,.12)}
-.btn-primary{background:var(--color-accent-gold);color:#fff;box-shadow:0 12px 26px rgba(255,122,0,.35)}
+.btn-primary,.btn-soft,.btn-line-strong{display:inline-flex;align-items:center;justify-content:center;padding:12px 26px;border-radius:999px;font-size:.95rem;letter-spacing:.08em;white-space:nowrap;transition:.25s ease}
+.btn-primary{background:var(--color-accent-gold);color:#fff;box-shadow:0 10px 22px rgba(255,122,0,.35)}
 .btn-primary:hover{transform:translateY(-2px);background:var(--color-accent-gold-deep);box-shadow:0 16px 36px rgba(232,110,0,.45)}
-.btn-soft{background:#E8EEF6;color:#0B1F3B;border:1.5px solid rgba(11,31,59,.22)}
-.btn-soft:hover{background:#dbe6f5;transform:translateY(-1px)}
+.btn-soft{background:#E8EEF6;color:#0B1F3B;border:1px solid #E8EEF6}
+.btn-soft:hover{background:#dbe6f5}
 .btn-line-strong{background:#06c755;color:#fff;font-weight:700}
 .btn-line-strong:hover{filter:brightness(.95)}
 
@@ -124,9 +124,6 @@ html.modal-open,body.modal-open{overflow:hidden}
 .modal-close{border:1px solid rgba(0,0,0,.12);background:rgba(255,255,255,.85);width:44px;height:44px;min-width:44px;border-radius:14px;cursor:pointer;font-size:1.65rem;line-height:1;color:var(--color-primary-deep);display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.12)}
 
 .modal-body{padding:14px 16px 18px;overflow:auto;-webkit-overflow-scrolling:touch}
-.modal-foot{padding:12px 16px;border-top:1px solid rgba(0,0,0,.08);background:linear-gradient(180deg,transparent,rgba(11,31,59,.04))}
-.modal-close-bottom{width:100%;padding:12px 16px;border-radius:999px;border:2px solid var(--color-accent-gold-deep);background:#FFF7F5;color:var(--color-primary-deep);font-size:1rem;font-weight:800;letter-spacing:.06em;cursor:pointer;box-shadow:0 10px 22px rgba(0,0,0,.12);transition:transform .18s ease,background .18s ease,filter .18s ease}
-.modal-close-bottom:hover{background:#F7EDE4;transform:translateY(-1px)}
 .modal-page .site-main{padding:0}
 .modal-page .line-float{display:none!important}
 
