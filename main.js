@@ -9,7 +9,7 @@
    - Modal: ✕ / ESC / overlay close, scroll lock, fade out, focus restore
    - Modal TOC: horizontal scroll, fade out on scroll, "目錄" button to bring back
    - ✅ TOC order unified across all products
-   - ✅ Modal content sections reordered to match TOC order (missing sections skipped)
+   - ✅ Modal content sections reordered to match TOC order (missing skipped)
    ========================================================= */
 (function () {
   "use strict";
@@ -218,62 +218,20 @@
     const tocEl = modal.querySelector(".modal-toc");
     const bodyEl = modal.querySelector(".modal-body");
     const closeBtn = modal.querySelector(".modal-close");
-    let tocToggleBtn = modal.querySelector(".modal-toc-toggle");
-
-    if (!tocToggleBtn && closeBtn && closeBtn.parentElement) {
-      tocToggleBtn = document.createElement("button");
-      tocToggleBtn.type = "button";
-      tocToggleBtn.className = "modal-toc-toggle";
-      tocToggleBtn.setAttribute("aria-label", "顯示目錄");
-      tocToggleBtn.setAttribute("aria-pressed", "false");
-      tocToggleBtn.textContent = "目錄";
-      closeBtn.parentElement.insertBefore(tocToggleBtn, closeBtn);
-    }
+    const tocToggleBtn = modal.querySelector(".modal-toc-toggle");
 
     const LINE_URL = "https://lin.ee/sHZW7NkR";
 
-    // ✅ 你指定的固定章節順序（TOC與內容都依此排序）
+    // ✅ 你指定的固定順序（TOC與內容都依此排序；缺少就略過但順序不變）
     const SECTION_ORDER = [
-      {
-        key: "spec",
-        label: "容量／規格",
-        match: /(容量|規格|重量|包裝|內容量|ml|cc|g|公克|斤|兩|盒|罐|包|份)/
-      },
-      {
-        key: "ingredient",
-        label: "成份",
-        match: /(成份|成分|原料|配方|內容物|藥材|漢方)/
-      },
-      {
-        key: "audience",
-        label: "適合族群/適用對象",
-        match: /(適合族群|適用對象|誰適合|推薦對象|適合對象|對象)/
-      },
-      {
-        key: "usage",
-        label: "使用方式/使用方向",
-        match: /(使用方式|建議使用方式|使用方向|吃法|用法|怎麼吃|沖泡|料理|大略說明)/
-      },
-      {
-        key: "storage",
-        label: "保存方式",
-        match: /(保存方式|保存|存放|冷藏|常溫|賞味|有效期限)/
-      },
-      {
-        key: "cooperate",
-        label: "合作方式與報價",
-        match: /(合作方式|報價|合作|經銷|批發|零售|MOQ|出貨|運費|付款|條件|價格|詢價)/
-      },
-      {
-        key: "faq",
-        label: "常見問題",
-        match: /(常見問題|FAQ|Q&A)/i
-      },
-      {
-        key: "consult",
-        label: "先聊聊狀況",
-        match: /(先聊聊狀況|聊聊狀況|再評估|評估是否適用|LINE|諮詢)/
-      }
+      { key: "spec", label: "容量／規格", match: /(容量|規格|重量|包裝|內容量|ml|cc|g|公克|斤|兩|盒|罐|包|份)/ },
+      { key: "ingredient", label: "成份", match: /(成份|成分|原料|配方|內容物|藥材|漢方)/ },
+      { key: "audience", label: "適合族群\/適用對象", match: /(適合族群|適用對象|誰適合|推薦對象|適合對象|對象)/ },
+      { key: "usage", label: "使用方式\/建議使用方式\/使用方向", match: /(使用方式|建議使用方式|使用方向|吃法|用法|怎麼吃|沖泡|料理|大略說明)/ },
+      { key: "storage", label: "保存方式", match: /(保存方式|保存|存放|冷藏|常溫|賞味|有效期限)/ },
+      { key: "cooperate", label: "合作方式與報價", match: /(合作方式|報價|合作|經銷|批發|零售|MOQ|出貨|運費|付款|條件|價格|詢價)/ },
+      { key: "faq", label: "常見問題", match: /(常見問題|FAQ|Q&A)/i },
+      { key: "consult", label: "先聊聊狀況", match: /(先聊聊狀況|聊聊狀況|再評估|評估是否適用|一對一|諮詢)/ }
     ];
 
     let lastFocus = null;
@@ -354,7 +312,6 @@
         "</div>";
     }
 
-    // === Helpers for modal content ordering ===
     function getSectionKeyFromText(text) {
       const t = (text || "").trim();
       for (const s of SECTION_ORDER) {
@@ -363,100 +320,105 @@
       return null;
     }
 
-    // ✅ 把「標題 + 其下內容」做成 block，依你的順序重排（缺少略過）
-    function reorderModalContentBySections(wrapper) {
-      const root = wrapper; // wrapper is .modal-page
-      const headings = Array.from(root.querySelectorAll("h2, h3")).filter(
-        (h) => (h.textContent || "").trim().length > 0
-      );
-      if (!headings.length) return;
+    // ✅ 正確重排：以「整個 .section」為單位搬移（修正你現在看到的空白框問題）
+    function reorderModalSections(wrapper) {
+      const sections = Array.from(wrapper.querySelectorAll("section.section"));
+      if (!sections.length) return;
 
-      // block: heading + nodes until next heading
-      const blocks = [];
-      for (let i = 0; i < headings.length; i++) {
-        const h = headings[i];
-        const startNode = h;
-        const endNode = headings[i + 1] || null;
+      const sectionInfo = sections.map((sec) => {
+        const h = sec.querySelector("h2, h3");
+        const key = h ? getSectionKeyFromText(h.textContent || "") : null;
+        return { sec, key, hasHeading: !!h };
+      });
 
-        const nodes = [];
-        let cur = startNode;
-
-        while (cur && cur !== endNode) {
-          const next = cur.nextSibling;
-          nodes.push(cur);
-          cur = next;
-        }
-
-        const key = getSectionKeyFromText(h.textContent || "");
-        blocks.push({ key, heading: h, nodes });
-      }
-
-      // Determine what to treat as "preface": nodes before the first heading in DOM flow
-      // We'll keep them in place at top (e.g., hero image, intro copy)
-      const firstHeading = headings[0];
+      // Preface：放最前面（通常是產品主視覺那段，沒有 h2/h3 或不屬於 8 類）
       const preface = [];
-      let cur = firstHeading.previousSibling;
-      // collect backward then reverse
-      while (cur) {
-        const prev = cur.previousSibling;
-        preface.push(cur);
-        cur = prev;
-      }
-      preface.reverse();
+      const keyed = new Map();
+      SECTION_ORDER.forEach((s) => keyed.set(s.key, []));
 
-      // Remove preface nodes and all blocks nodes from root (detach)
-      preface.forEach((n) => n.parentNode === root && root.removeChild(n));
-      blocks.forEach((b) => b.nodes.forEach((n) => n.parentNode && n.parentNode.removeChild(n)));
-
-      // Group blocks by section key, preserve original order within each key
-      const byKey = new Map();
-      SECTION_ORDER.forEach((s) => byKey.set(s.key, []));
       const unknown = [];
 
-      blocks.forEach((b) => {
-        if (b.key && byKey.has(b.key)) byKey.get(b.key).push(b);
-        else unknown.push(b);
+      sectionInfo.forEach((it) => {
+        if (it.key && keyed.has(it.key)) {
+          keyed.get(it.key).push(it.sec);
+        } else if (!it.hasHeading) {
+          // 沒有 h2/h3 的 section（通常是第一段主視覺），保留在最上面
+          preface.push(it.sec);
+        } else {
+          unknown.push(it.sec);
+        }
       });
 
-      // Rebuild: preface + blocks in required order + unknown blocks at end (to keep completeness)
       const frag = document.createDocumentFragment();
 
-      preface.forEach((n) => frag.appendChild(n));
+      // 1) preface 原順序
+      preface.forEach((sec) => frag.appendChild(sec));
 
+      // 2) 依你指定的 8 項順序（缺少略過）
       SECTION_ORDER.forEach((s) => {
-        const list = byKey.get(s.key);
-        if (!list || !list.length) return;
-
-        // keep all blocks that belong to the section (完整呈現)
-        list.forEach((b) => b.nodes.forEach((n) => frag.appendChild(n)));
+        const list = keyed.get(s.key) || [];
+        list.forEach((sec) => frag.appendChild(sec));
       });
 
-      // Append unknown blocks (still keep content complete)
-      unknown.forEach((b) => b.nodes.forEach((n) => frag.appendChild(n)));
+      // 3) 未分類但有內容的 section 仍保留（完整性）
+      unknown.forEach((sec) => frag.appendChild(sec));
 
-      root.appendChild(frag);
+      // 重新塞回 wrapper（只針對 section；其他像 back-to-products 保留在後面）
+      const tailNodes = [];
+      Array.from(wrapper.children).forEach((child) => {
+        if (child.matches && child.matches("section.section")) return;
+        tailNodes.push(child);
+      });
+
+      wrapper.innerHTML = "";
+      wrapper.appendChild(frag);
+      tailNodes.forEach((n) => wrapper.appendChild(n));
     }
 
-    // ✅ TOC 依同一套分類與順序產生（缺少略過）
-    function buildToc(wrapper) {
-      const headings = Array.from(wrapper.querySelectorAll("h2[id], h3[id]")).filter(
-        (h) => (h.textContent || "").trim().length > 0
-      );
-      if (!headings.length) {
-        tocEl.innerHTML = "";
-        return;
-      }
+    function ensureHeadingIds(wrapper) {
+      const used = new Set();
+      const slugify = (text) => {
+        const base = (text || "")
+          .toString()
+          .trim()
+          .toLowerCase()
+          .replace(/[^\u4e00-\u9fff\w\s-]+/g, "")
+          .replace(/\s+/g, "-")
+          .replace(/-+/g, "-")
+          .replace(/^-|-$/g, "");
+        return base || "section";
+      };
 
-      // For each section key, pick the first heading occurrence (for TOC jump)
+      wrapper.querySelectorAll("h2, h3").forEach((h) => {
+        const rawId = (h.getAttribute("id") || "").trim();
+        let id = rawId || slugify(h.textContent);
+
+        let n = 1;
+        let candidate = id;
+        while (used.has(candidate) || wrapper.querySelector("#" + CSS.escape(candidate))) {
+          n += 1;
+          candidate = id + "-" + n;
+        }
+        id = candidate;
+        used.add(id);
+        h.id = id;
+      });
+    }
+
+    function buildToc(wrapper) {
       const firstHeadingByKey = {};
       SECTION_ORDER.forEach((s) => (firstHeadingByKey[s.key] = null));
 
-      headings.forEach((h) => {
-        const k = getSectionKeyFromText(h.textContent || "");
-        if (k && !firstHeadingByKey[k]) firstHeadingByKey[k] = h;
+      const sections = Array.from(wrapper.querySelectorAll("section.section"));
+      sections.forEach((sec) => {
+        const h = sec.querySelector("h2[id], h3[id]");
+        if (!h) return;
+        const key = getSectionKeyFromText(h.textContent || "");
+        if (key && !firstHeadingByKey[key]) firstHeadingByKey[key] = h;
       });
 
       tocEl.innerHTML = "";
+
       SECTION_ORDER.forEach((s) => {
         const h = firstHeadingByKey[s.key];
         if (!h) return;
@@ -519,14 +481,15 @@
         wrapper.className = "modal-page";
         wrapper.innerHTML = main.innerHTML;
 
+        // 移除不該出現在彈窗裡的元素
         wrapper
           .querySelectorAll(".line-float, .site-header, .site-footer, script, noscript")
           .forEach((el) => el.remove());
 
-        wrapper.querySelectorAll(".reveal, .reveal-up").forEach((el) => {
-          el.classList.add("is-visible");
-        });
+        // 彈窗內強制顯示 reveal（避免圖片/文字不出現）
+        wrapper.querySelectorAll(".reveal, .reveal-up").forEach((el) => el.classList.add("is-visible"));
 
+        // 詳情頁的「返回產品列表」在彈窗內改成「關閉」
         wrapper.querySelectorAll(".back-link").forEach((a) => {
           a.textContent = "關閉";
           a.setAttribute("href", "#");
@@ -538,43 +501,17 @@
           });
         });
 
-        // Ensure IDs exist + unique
-        const used = new Set();
-        const slugify = (text) => {
-          const base = (text || "")
-            .toString()
-            .trim()
-            .toLowerCase()
-            .replace(/[^\u4e00-\u9fff\w\s-]+/g, "")
-            .replace(/\s+/g, "-")
-            .replace(/-+/g, "-")
-            .replace(/^-|-$/g, "");
-          return base || "section";
-        };
+        // ✅ 1) 確保 h2/h3 都有 id
+        ensureHeadingIds(wrapper);
 
-        wrapper.querySelectorAll("h2, h3").forEach((h) => {
-          const rawId = (h.getAttribute("id") || "").trim();
-          let id = rawId || slugify(h.textContent);
-
-          let n = 1;
-          let candidate = id;
-          while (used.has(candidate) || wrapper.querySelector("#" + CSS.escape(candidate))) {
-            n += 1;
-            candidate = id + "-" + n;
-          }
-          id = candidate;
-          used.add(id);
-          h.id = id;
-        });
-
-        // ✅ 重排彈窗內容：依你指定的 8 項順序（完整、缺少略過）
-        reorderModalContentBySections(wrapper);
+        // ✅ 2) 依 8 項順序重排「整個 section」
+        reorderModalSections(wrapper);
 
         // Inject
         bodyEl.innerHTML = "";
         bodyEl.appendChild(wrapper);
 
-        // ✅ TOC 依相同順序產生
+        // ✅ 3) 依同一套順序生成 TOC（缺少略過）
         buildToc(wrapper);
 
         const hashIndex = href.indexOf("#");
@@ -665,7 +602,7 @@
       if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
     });
 
-    // Inner links
+    // 彈窗內 hash 滾動 / 站內 .html 仍在彈窗開
     bodyEl.addEventListener("click", (e) => {
       const a = e.target.closest("a");
       if (!a) return;
@@ -683,7 +620,7 @@
       }
     });
 
-    // Fade out TOC when scroll down inside modal
+    // 內文往下滑：TOC 淡出
     bodyEl.addEventListener(
       "scroll",
       () => {
@@ -693,7 +630,7 @@
       { passive: true }
     );
 
-    // "目錄" button to bring back TOC temporarily
+    // 「目錄」按鈕：叫回 TOC
     let tocPeekTimer = null;
 
     function setTocToggleState() {
@@ -719,20 +656,12 @@
             modal.classList.remove("is-toc-peek");
             setTocToggleState();
           }, 6000);
-
-          const firstLink = tocEl ? tocEl.querySelector("a") : null;
-          if (firstLink) {
-            try {
-              firstLink.focus({ preventScroll: true });
-            } catch (_) {
-              firstLink.focus();
-            }
-          }
         }
       });
       setTocToggleState();
     }
 
+    // 一滾動就關掉 peek，避免遮擋
     bodyEl.addEventListener(
       "scroll",
       () => {
