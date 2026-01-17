@@ -1224,3 +1224,36 @@ body.modal-open{ overflow: hidden; }
   .product-modal-header{ padding: 12px 14px; }
   .product-modal-body{ padding: 12px 14px 16px; }
 }
+
+/* =========================================================
+   Modal TOC Compact / Scroll Behavior
+   ========================================================= */
+
+/* TOC 單排可左右滑 */
+.modal-toc--compact {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 6px 0;
+  scrollbar-width: none;
+}
+.modal-toc--compact::-webkit-scrollbar {
+  display: none;
+}
+
+/* TOC 按鈕樣式 */
+.modal-toc-link {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.06);
+  color: #333;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+/* 下滑時隱藏「開啟完整頁」 */
+.modal.is-scrolled .modal-openpage {
+  display: none;
+}
