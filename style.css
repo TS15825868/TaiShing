@@ -1,4 +1,37 @@
 /* =========================================
+   THEME TOKENS（全站統一配色）
+   - 目標：不論各頁是否有額外 inline CSS / 舊版 theme 檔，都以此為準
+   - 若 theme_herbalrosegold.css 也有定義，這裡會以「後載入的 style.css」覆蓋
+   ========================================= */
+:root{
+  /* 字體 */
+  --font-body: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
+
+  /* 品牌主色 */
+  --color-primary-deep: #0B1F3B;   /* 深藍 */
+  --color-accent: #FF7A00;         /* 橘（行動色） */
+  --color-accent-deep: #E86E00;    /* 橘深 */
+  --color-accent-gold: #C9A24D;    /* 漢方金 */
+  --color-accent-gold-deep: #B8892E;
+
+  /* 背景 / 文字 */
+  --color-bg: linear-gradient(180deg, #F7F4ED, #FFFFFF);
+  --color-bg-solid: #F7F4ED;
+  --color-bg-soft: rgba(255,255,255,0.88);
+  --color-surface: #FFFFFF;
+  --color-text-main: #1F2937;
+  --color-text-muted: #6B7280;
+
+  /* 線條 / 陰影 */
+  --color-border-soft: rgba(11, 31, 59, 0.12);
+  --shadow-soft: 0 14px 34px rgba(60, 20, 20, .10);
+
+  /* 連結色 */
+  --color-link: var(--color-primary-deep);
+  --color-link-hover: var(--color-accent-deep);
+}
+
+/* =========================================
    GLOBAL RESET
    ========================================= */
 *,
