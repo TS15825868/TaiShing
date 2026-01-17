@@ -2,14 +2,13 @@
    TaiShing Site - main.js (Final)
    - Header padding-top auto fix
    - Compact header on scroll
-   - Reveal animations（✅ iOS/Safari 首屏不再空白）
-   - Floating LINE button helper（用既有 .line-float，沒有才自動生成）
-   - Mobile 漢堡選單：點外面 or 捲動自動收合
+   - Reveal animations（iOS/Safari 首屏不空白）
+   - Floating LINE button helper
+   - Mobile nav toggle: click outside / scroll to close
    - Product modal: load product pages into modal (no page change)
-   - Modal: ✕ / ESC / overlay close, scroll lock, fade out, focus restore
-   - Modal TOC: horizontal scroll, fade out on scroll, "目錄" button to bring back
-   - ✅ TOC order unified across all products
-   - ✅ Modal content sections reordered to match TOC order (missing skipped)
+   - Modal: close via X / ESC / overlay, scroll lock, focus restore
+   - ✅ Modal TOC: fixed order, skip empty, unify synonyms
+   - ✅ Modal sections: merge duplicates, remove empty sections, reorder by 8 keys
    ========================================================= */
 (function () {
   "use strict";
@@ -33,7 +32,6 @@
     window.addEventListener("scroll", onScroll, { passive: true });
   }
 
-  // ✅ 修正：首屏元素先顯示，避免 iOS/Safari IntersectionObserver 延遲導致空白
   function setupReveal() {
     const targets = document.querySelectorAll(".reveal, .reveal-up");
     if (!targets.length) return;
@@ -70,10 +68,8 @@
     setTimeout(forceRevealAboveFold, 250);
   }
 
-  // 使用現有 .line-float；沒有才建立
   function setupLineFloat() {
     const LINE_URL = "https://lin.ee/sHZW7NkR";
-
     let btn = document.querySelector(".line-float");
 
     if (!btn) {
@@ -87,7 +83,6 @@
       const img = document.createElement("img");
       img.src = "images/line-float-icon.png";
       img.alt = "LINE";
-
       btn.appendChild(img);
       document.body.appendChild(btn);
     } else {
@@ -105,11 +100,6 @@
       toast.setAttribute("aria-live", "polite");
       document.body.appendChild(toast);
     }
-
-    try {
-      const h = new Date().getHours();
-      if (h >= 19 || h <= 6) btn.classList.add("is-night");
-    } catch (_) {}
 
     const footer = document.querySelector(".site-footer");
     const updateCompact = () => {
@@ -173,7 +163,7 @@
     );
   }
 
-  // ✅ 全站統一：漢堡選單順序 + 拿掉「LINE」項目
+  // ✅ 全站統一：主選單順序（不放 LINE）
   function setupUnifiedNav() {
     const navUl = document.querySelector(".site-nav ul");
     if (!navUl) return;
@@ -210,6 +200,9 @@
       .join("");
   }
 
+  // =========================
+  // Product Modal
+  // =========================
   function setupProductModalFromPages() {
     const modal = ensureProductModal();
     const overlay = modal.querySelector(".modal-overlay");
@@ -222,41 +215,20 @@
 
     const LINE_URL = "https://lin.ee/sHZW7NkR";
 
-    // ✅ 你指定的固定順序（TOC與內容都依此排序；缺少就略過但順序不變）
+    // ✅ 統一 8 項（同義合併）
     const SECTION_ORDER = [
-      { key: "spec", label: "容量／規格", match: /(容量|規格|重量|包裝|內容量|ml|cc|g|公克|斤|兩|盒|罐|包|份)/ },
-      { key: "ingredient", label: "成份", match: /(成份|成分|原料|配方|內容物|藥材|漢方)/ },
-      { key: "audience", label: "適合族群\/適用對象", match: /(適合族群|適用對象|誰適合|推薦對象|適合對象|對象)/ },
-      { key: "usage", label: "使用方式\/建議使用方式\/使用方向", match: /(使用方式|建議使用方式|使用方向|吃法|用法|怎麼吃|沖泡|料理|大略說明)/ },
-      { key: "storage", label: "保存方式", match: /(保存方式|保存|存放|冷藏|常溫|賞味|有效期限)/ },
-      { key: "cooperate", label: "合作方式與報價", match: /(合作方式|報價|合作|經銷|批發|零售|MOQ|出貨|運費|付款|條件|價格|詢價)/ },
-      { key: "faq", label: "常見問題", match: /(常見問題|FAQ|Q&A)/i },
-      { key: "consult", label: "先聊聊狀況", match: /(先聊聊狀況|聊聊狀況|再評估|評估是否適用|一對一|諮詢)/ }
+      { key: "spec",      label: "容量／規格",                         match: /(容量|規格|重量|包裝|內容量|ml|cc|g|公克|斤|兩|盒|罐|包|份)/ },
+      { key: "ingredient",label: "成份",                               match: /(成份|成分|原料|配方|內容物|藥材|漢方)/ },
+      { key: "audience",  label: "適合族群／適用對象",                 match: /(適合族群|適用對象|誰適合|推薦對象|適合對象|對象)/ },
+      { key: "usage",     label: "使用方式／建議使用方式（使用方向）", match: /(使用方式|建議使用方式|使用方向|吃法|用法|怎麼吃|沖泡|料理|大略說明)/ },
+      { key: "storage",   label: "保存方式",                           match: /(保存方式|保存|存放|冷藏|常溫|賞味|有效期限)/ },
+      { key: "cooperate", label: "合作方式與報價",                     match: /(合作方式|報價|合作|經銷|批發|零售|MOQ|出貨|運費|付款|條件|價格|詢價)/ },
+      { key: "faq",       label: "常見問題",                           match: /(常見問題|FAQ|Q&A)/i },
+      { key: "consult",   label: "先聊聊狀況",                         match: /(先聊聊狀況|聊聊狀況|再評估|評估是否適用|一對一|諮詢)/ }
     ];
 
     let lastFocus = null;
     let scrollY = 0;
-
-    function focusRestore(el) {
-      if (!el || !document.contains(el) || typeof el.focus !== "function") return;
-
-      const isNaturallyFocusable =
-        el.matches("a[href], button, input, select, textarea, summary") || el.hasAttribute("tabindex");
-
-      let madeTabbable = false;
-      if (!isNaturallyFocusable) {
-        el.setAttribute("tabindex", "-1");
-        madeTabbable = true;
-      }
-
-      try {
-        el.focus({ preventScroll: true });
-      } catch (e) {
-        el.focus();
-      }
-
-      if (madeTabbable) el.removeAttribute("tabindex");
-    }
 
     function lockScroll() {
       scrollY = window.scrollY || document.documentElement.scrollTop || 0;
@@ -297,7 +269,7 @@
         modal.classList.remove("is-open", "is-closing", "is-body-scrolled", "is-toc-peek");
         modal.setAttribute("aria-hidden", "true");
         unlockScroll();
-        if (lastFocus) setTimeout(() => focusRestore(lastFocus), 0);
+        if (lastFocus && typeof lastFocus.focus === "function") setTimeout(() => lastFocus.focus(), 0);
       }, 200);
     }
 
@@ -318,61 +290,6 @@
         if (s.match.test(t)) return s.key;
       }
       return null;
-    }
-
-    // ✅ 正確重排：以「整個 .section」為單位搬移（修正你現在看到的空白框問題）
-    function reorderModalSections(wrapper) {
-      const sections = Array.from(wrapper.querySelectorAll("section.section"));
-      if (!sections.length) return;
-
-      const sectionInfo = sections.map((sec) => {
-        const h = sec.querySelector("h2, h3");
-        const key = h ? getSectionKeyFromText(h.textContent || "") : null;
-        return { sec, key, hasHeading: !!h };
-      });
-
-      // Preface：放最前面（通常是產品主視覺那段，沒有 h2/h3 或不屬於 8 類）
-      const preface = [];
-      const keyed = new Map();
-      SECTION_ORDER.forEach((s) => keyed.set(s.key, []));
-
-      const unknown = [];
-
-      sectionInfo.forEach((it) => {
-        if (it.key && keyed.has(it.key)) {
-          keyed.get(it.key).push(it.sec);
-        } else if (!it.hasHeading) {
-          // 沒有 h2/h3 的 section（通常是第一段主視覺），保留在最上面
-          preface.push(it.sec);
-        } else {
-          unknown.push(it.sec);
-        }
-      });
-
-      const frag = document.createDocumentFragment();
-
-      // 1) preface 原順序
-      preface.forEach((sec) => frag.appendChild(sec));
-
-      // 2) 依你指定的 8 項順序（缺少略過）
-      SECTION_ORDER.forEach((s) => {
-        const list = keyed.get(s.key) || [];
-        list.forEach((sec) => frag.appendChild(sec));
-      });
-
-      // 3) 未分類但有內容的 section 仍保留（完整性）
-      unknown.forEach((sec) => frag.appendChild(sec));
-
-      // 重新塞回 wrapper（只針對 section；其他像 back-to-products 保留在後面）
-      const tailNodes = [];
-      Array.from(wrapper.children).forEach((child) => {
-        if (child.matches && child.matches("section.section")) return;
-        tailNodes.push(child);
-      });
-
-      wrapper.innerHTML = "";
-      wrapper.appendChild(frag);
-      tailNodes.forEach((n) => wrapper.appendChild(n));
     }
 
     function ensureHeadingIds(wrapper) {
@@ -405,6 +322,119 @@
       });
     }
 
+    // ✅ 判斷 section 是否「真的有內文」（排除只剩標題/空白/待補）
+    function sectionHasMeaningfulContent(sec) {
+      if (!sec) return false;
+
+      // 複製一份做判斷，避免動到原本 DOM
+      const clone = sec.cloneNode(true);
+
+      // 移除標題、kicker、返回、純導覽按鈕等「不算內文」的東西
+      clone.querySelectorAll("h1,h2,h3,.section-kicker,.back-to-products,.back-link,button").forEach((el) => el.remove());
+
+      // 如果剩下有圖片/表格/列表/連結（且不是空連結），就算有內容
+      const hasMedia = !!clone.querySelector("img, table, ul, ol, .btn-primary, .btn-soft, .btn-line-strong, a[href]");
+      const txt = (clone.textContent || "").replace(/\s+/g, " ").trim();
+
+      // 常見「空內容」或佔位字
+      const isPlaceholder =
+        txt === "" ||
+        /^[-—–·•…。，、；:：()（）\s]+$/.test(txt) ||
+        /(待補|敬請期待|coming soon|TBD)/i.test(txt);
+
+      if (hasMedia && !isPlaceholder) return true;
+
+      // 純文字也要有一定長度才算（避免只有一兩個字）
+      return !isPlaceholder && txt.length >= 6;
+    }
+
+    // ✅ 合併同義/重複章節：同一 key 只留一個 section，其它內容併入
+    function mergeDuplicateSections(keyedSections) {
+      const merged = new Map(); // key -> section
+      keyedSections.forEach(({ key, sec }) => {
+        if (!merged.has(key)) {
+          merged.set(key, sec);
+          return;
+        }
+        // 將 sec 的內文併到第一個 section（保留第一個標題）
+        const target = merged.get(key);
+        const donor = sec;
+
+        const donorHeading = donor.querySelector("h2, h3");
+        // 把 donor 裡面除了標題以外的內容搬到 target 後面
+        Array.from(donor.childNodes).forEach((node) => {
+          if (donorHeading && node === donorHeading) return;
+          target.appendChild(node);
+        });
+
+        donor.remove();
+      });
+      return merged;
+    }
+
+    // ✅ 重排：先移除空章節、再合併重複、再依 8 項順序排列
+    function normalizeAndReorderSections(wrapper) {
+      const allSections = Array.from(wrapper.querySelectorAll("section.section"));
+      if (!allSections.length) return;
+
+      const preface = [];
+      const keyed = [];
+      const unknown = [];
+
+      allSections.forEach((sec) => {
+        const h = sec.querySelector("h2, h3");
+        const key = h ? getSectionKeyFromText(h.textContent || "") : null;
+
+        if (key) {
+          // 沒內文 -> 直接移除（包含 TOC 也會略過）
+          if (!sectionHasMeaningfulContent(sec)) {
+            sec.remove();
+            return;
+          }
+          keyed.push({ key, sec });
+          return;
+        }
+
+        // 沒 key：通常是產品主視覺/前言；如果也沒內容就移除
+        if (!sectionHasMeaningfulContent(sec)) {
+          sec.remove();
+          return;
+        }
+
+        // 沒 key 但有內容：保留在最上方
+        // 若有 h2/h3 但不屬於 8 類，視為 unknown（放最後避免干擾主順序）
+        if (h) unknown.push(sec);
+        else preface.push(sec);
+      });
+
+      // 合併同 key
+      const merged = mergeDuplicateSections(keyed);
+
+      // 依順序組 fragment
+      const frag = document.createDocumentFragment();
+
+      preface.forEach((sec) => frag.appendChild(sec));
+
+      SECTION_ORDER.forEach((s) => {
+        const sec = merged.get(s.key);
+        if (sec) frag.appendChild(sec);
+      });
+
+      unknown.forEach((sec) => frag.appendChild(sec));
+
+      // 保留非 section 的尾端節點（例如 back-to-products）
+      const tailNodes = [];
+      Array.from(wrapper.children).forEach((child) => {
+        if (child.matches && child.matches("section.section")) return;
+        tailNodes.push(child);
+      });
+
+      wrapper.innerHTML = "";
+      wrapper.appendChild(frag);
+      tailNodes.forEach((n) => wrapper.appendChild(n));
+    }
+
+    // ✅ TOC：只顯示「存在且有內文」的章節，並固定 8 項順序（含成份）
     function buildToc(wrapper) {
       const firstHeadingByKey = {};
       SECTION_ORDER.forEach((s) => (firstHeadingByKey[s.key] = null));
@@ -424,7 +454,6 @@
         if (!h) return;
 
         const a = document.createElement("a");
-
         if (s.key === "consult") {
           a.className = "modal-toc-link modal-toc-cta";
           a.href = LINE_URL;
@@ -436,7 +465,6 @@
           a.href = "#" + h.id;
           a.textContent = s.label;
         }
-
         tocEl.appendChild(a);
       });
     }
@@ -459,7 +487,6 @@
 
       const href = link.getAttribute("href") || "";
       if (!href.startsWith("#")) return;
-
       e.preventDefault();
       scrollToAnchor(href.slice(1));
     });
@@ -482,14 +509,12 @@
         wrapper.innerHTML = main.innerHTML;
 
         // 移除不該出現在彈窗裡的元素
-        wrapper
-          .querySelectorAll(".line-float, .site-header, .site-footer, script, noscript")
-          .forEach((el) => el.remove());
+        wrapper.querySelectorAll(".line-float, .site-header, .site-footer, script, noscript").forEach((el) => el.remove());
 
-        // 彈窗內強制顯示 reveal（避免圖片/文字不出現）
+        // reveal 在彈窗內強制顯示
         wrapper.querySelectorAll(".reveal, .reveal-up").forEach((el) => el.classList.add("is-visible"));
 
-        // 詳情頁的「返回產品列表」在彈窗內改成「關閉」
+        // 返回按鈕在彈窗內改「關閉」
         wrapper.querySelectorAll(".back-link").forEach((a) => {
           a.textContent = "關閉";
           a.setAttribute("href", "#");
@@ -501,19 +526,20 @@
           });
         });
 
-        // ✅ 1) 確保 h2/h3 都有 id
+        // 1) id
         ensureHeadingIds(wrapper);
 
-        // ✅ 2) 依 8 項順序重排「整個 section」
-        reorderModalSections(wrapper);
+        // 2) 移除空章節 + 合併同義 + 重排
+        normalizeAndReorderSections(wrapper);
 
         // Inject
         bodyEl.innerHTML = "";
         bodyEl.appendChild(wrapper);
 
-        // ✅ 3) 依同一套順序生成 TOC（缺少略過）
+        // 3) TOC（固定順序、略過空、含成份）
         buildToc(wrapper);
 
+        // 若是 html#hash
         const hashIndex = href.indexOf("#");
         if (hashIndex > -1) {
           const anchorId = href.slice(hashIndex + 1);
@@ -525,14 +551,11 @@
         console.error(err);
         titleEl.textContent = fallbackTitle || "產品介紹";
         tocEl.innerHTML = "";
-        bodyEl.innerHTML =
-          '<div class="modal-error">' +
-          "<p>目前無法載入產品內容。</p>" +
-          "</div>";
+        bodyEl.innerHTML = '<div class="modal-error"><p>目前無法載入產品內容。</p></div>';
       }
     }
 
-    // 全站攔截產品詳情頁連結 -> modal（但不動 header/nav/footer）
+    // 攔截產品頁 -> modal
     if (!document.documentElement.dataset.productModalDelegated) {
       document.documentElement.dataset.productModalDelegated = "1";
 
@@ -541,8 +564,7 @@
         "guilu-drink.html",
         "soup.html",
         "antler.html",
-        "lurong.html",
-        "guilu-line.html"
+        "lurong.html"
       ]);
 
       const isInterceptCandidate = (a) => {
@@ -566,20 +588,6 @@
         if (!a) return;
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-        if (a.classList.contains("js-product-modal")) {
-          const href = a.getAttribute("href");
-          if (!href) return;
-          e.preventDefault();
-          const title =
-            a.getAttribute("aria-label") ||
-            a.getAttribute("title") ||
-            (a.textContent || "").trim() ||
-            "產品介紹";
-          loadPageIntoModal(href, title);
-          openModal(a);
-          return;
-        }
-
         if (isInterceptCandidate(a)) {
           const href = a.getAttribute("href");
           e.preventDefault();
@@ -602,7 +610,7 @@
       if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
     });
 
-    // 彈窗內 hash 滾動 / 站內 .html 仍在彈窗開
+    // 彈窗內：#anchor 平滑跳；站內 html 仍用彈窗打開
     bodyEl.addEventListener("click", (e) => {
       const a = e.target.closest("a");
       if (!a) return;
@@ -620,7 +628,7 @@
       }
     });
 
-    // 內文往下滑：TOC 淡出
+    // TOC 往下滑淡出
     bodyEl.addEventListener(
       "scroll",
       () => {
@@ -630,7 +638,7 @@
       { passive: true }
     );
 
-    // 「目錄」按鈕：叫回 TOC
+    // 目錄按鈕
     let tocPeekTimer = null;
 
     function setTocToggleState() {
@@ -661,7 +669,6 @@
       setTocToggleState();
     }
 
-    // 一滾動就關掉 peek，避免遮擋
     bodyEl.addEventListener(
       "scroll",
       () => {
