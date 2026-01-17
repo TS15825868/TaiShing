@@ -9,6 +9,7 @@
    - Modal: ✕ / ESC / overlay close, scroll lock, fade out, focus restore
    - Modal TOC: horizontal scroll, fade out on scroll, "目錄" button to bring back
    - ✅ TOC order unified across all products
+   - ✅ Modal content sections reordered to match TOC order (missing sections skipped)
    ========================================================= */
 (function () {
   "use strict";
@@ -64,7 +65,6 @@
 
     targets.forEach((el) => io.observe(el));
 
-    // 立刻跑一次 + 載入後再補一次（更穩）
     forceRevealAboveFold();
     window.addEventListener("load", forceRevealAboveFold);
     setTimeout(forceRevealAboveFold, 250);
@@ -74,10 +74,8 @@
   function setupLineFloat() {
     const LINE_URL = "https://lin.ee/sHZW7NkR";
 
-    // 1. 先找看頁面上有沒有 .line-float
     let btn = document.querySelector(".line-float");
 
-    // 2. 如果沒有，就自動生成一顆 .line-float
     if (!btn) {
       btn = document.createElement("a");
       btn.href = LINE_URL;
@@ -93,16 +91,12 @@
       btn.appendChild(img);
       document.body.appendChild(btn);
     } else {
-      // 保險起見，確保屬性正確
       if (!btn.getAttribute("href")) btn.href = LINE_URL;
       if (!btn.getAttribute("target")) btn.target = "_blank";
       if (!btn.getAttribute("rel")) btn.rel = "noopener";
-      if (!btn.getAttribute("aria-label")) {
-        btn.setAttribute("aria-label", "透過 LINE 聯絡我們");
-      }
+      if (!btn.getAttribute("aria-label")) btn.setAttribute("aria-label", "透過 LINE 聯絡我們");
     }
 
-    // 3. toast 元件（如果沒存在就建立一個）
     let toast = document.querySelector(".line-toast");
     if (!toast) {
       toast = document.createElement("div");
@@ -112,13 +106,11 @@
       document.body.appendChild(toast);
     }
 
-    // 4. 夜間模式 class
     try {
       const h = new Date().getHours();
       if (h >= 19 || h <= 6) btn.classList.add("is-night");
     } catch (_) {}
 
-    // 5. 監控是否接近 footer（縮小、位移用 .is-compact）
     const footer = document.querySelector(".site-footer");
     const updateCompact = () => {
       if (!footer) return;
@@ -132,9 +124,7 @@
     window.addEventListener("scroll", updateCompact, { passive: true });
     window.addEventListener("resize", updateCompact);
 
-    // 6. 點擊時顯示提示文字
     btn.addEventListener("click", () => {
-      if (!toast) return;
       toast.textContent = "正在前往 LINE 諮詢…";
       toast.classList.add("is-show");
       setTimeout(() => toast.classList.remove("is-show"), 1200);
@@ -152,12 +142,8 @@
       toggle.setAttribute("aria-expanded", "false");
     }
 
-    // default state
-    if (!toggle.hasAttribute("aria-expanded")) {
-      toggle.setAttribute("aria-expanded", "false");
-    }
+    if (!toggle.hasAttribute("aria-expanded")) toggle.setAttribute("aria-expanded", "false");
 
-    // 點漢堡：開 / 關
     toggle.addEventListener("click", function (e) {
       e.stopPropagation();
       const next = !nav.classList.contains("is-open");
@@ -166,36 +152,28 @@
       toggle.setAttribute("aria-expanded", next ? "true" : "false");
     });
 
-    // 點選選單項目後自動收合（含同頁錨點）
-    const links = nav.querySelectorAll(".nav-link");
-    links.forEach(function (link) {
+    nav.querySelectorAll(".nav-link").forEach((link) => {
       link.addEventListener("click", function () {
         if (nav.classList.contains("is-open")) closeNav();
       });
     });
 
-    // 點選「非 nav / 非漢堡」的地方，自動收合
     document.addEventListener("click", function (e) {
       const clickInsideNav = nav.contains(e.target);
       const clickOnToggle = toggle.contains(e.target);
       if (!clickInsideNav && !clickOnToggle) closeNav();
     });
 
-    // 手機版：開始捲動就自動收合
     window.addEventListener(
       "scroll",
       function () {
-        if (window.innerWidth <= 768 && nav.classList.contains("is-open")) {
-          closeNav();
-        }
+        if (window.innerWidth <= 768 && nav.classList.contains("is-open")) closeNav();
       },
       { passive: true }
     );
   }
 
-  // ------------------------------
   // ✅ 全站統一：漢堡選單順序 + 拿掉「LINE」項目
-  // ------------------------------
   function setupUnifiedNav() {
     const navUl = document.querySelector(".site-nav ul");
     if (!navUl) return;
@@ -232,9 +210,6 @@
       .join("");
   }
 
-  // ------------------------------
-  // ✅ 產品彈窗：載入產品詳情頁到彈窗（不換頁）
-  // ------------------------------
   function setupProductModalFromPages() {
     const modal = ensureProductModal();
     const overlay = modal.querySelector(".modal-overlay");
@@ -245,7 +220,6 @@
     const closeBtn = modal.querySelector(".modal-close");
     let tocToggleBtn = modal.querySelector(".modal-toc-toggle");
 
-    // Back-compat: if modal existed from old build without the toggle button, inject it.
     if (!tocToggleBtn && closeBtn && closeBtn.parentElement) {
       tocToggleBtn = document.createElement("button");
       tocToggleBtn.type = "button";
@@ -257,6 +231,50 @@
     }
 
     const LINE_URL = "https://lin.ee/sHZW7NkR";
+
+    // ✅ 你指定的固定章節順序（TOC與內容都依此排序）
+    const SECTION_ORDER = [
+      {
+        key: "spec",
+        label: "容量／規格",
+        match: /(容量|規格|重量|包裝|內容量|ml|cc|g|公克|斤|兩|盒|罐|包|份)/
+      },
+      {
+        key: "ingredient",
+        label: "成份",
+        match: /(成份|成分|原料|配方|內容物|藥材|漢方)/
+      },
+      {
+        key: "audience",
+        label: "適合族群/適用對象",
+        match: /(適合族群|適用對象|誰適合|推薦對象|適合對象|對象)/
+      },
+      {
+        key: "usage",
+        label: "使用方式/使用方向",
+        match: /(使用方式|建議使用方式|使用方向|吃法|用法|怎麼吃|沖泡|料理|大略說明)/
+      },
+      {
+        key: "storage",
+        label: "保存方式",
+        match: /(保存方式|保存|存放|冷藏|常溫|賞味|有效期限)/
+      },
+      {
+        key: "cooperate",
+        label: "合作方式與報價",
+        match: /(合作方式|報價|合作|經銷|批發|零售|MOQ|出貨|運費|付款|條件|價格|詢價)/
+      },
+      {
+        key: "faq",
+        label: "常見問題",
+        match: /(常見問題|FAQ|Q&A)/i
+      },
+      {
+        key: "consult",
+        label: "先聊聊狀況",
+        match: /(先聊聊狀況|聊聊狀況|再評估|評估是否適用|LINE|諮詢)/
+      }
+    ];
 
     let lastFocus = null;
     let scrollY = 0;
@@ -279,9 +297,7 @@
         el.focus();
       }
 
-      if (madeTabbable) {
-        el.removeAttribute("tabindex");
-      }
+      if (madeTabbable) el.removeAttribute("tabindex");
     }
 
     function lockScroll() {
@@ -308,9 +324,7 @@
 
     function openModal(triggerEl) {
       lastFocus = triggerEl || document.activeElement;
-      modal.classList.remove("is-closing");
-      modal.classList.remove("is-body-scrolled");
-      modal.classList.remove("is-toc-peek");
+      modal.classList.remove("is-closing", "is-body-scrolled", "is-toc-peek");
       lockScroll();
       modal.setAttribute("aria-hidden", "false");
       modal.classList.add("is-open");
@@ -318,15 +332,11 @@
     }
 
     function closeModal() {
-      if (!modal.classList.contains("is-open")) return;
-      if (modal.classList.contains("is-closing")) return;
+      if (!modal.classList.contains("is-open") || modal.classList.contains("is-closing")) return;
 
       modal.classList.add("is-closing");
       setTimeout(() => {
-        modal.classList.remove("is-open");
-        modal.classList.remove("is-closing");
-        modal.classList.remove("is-body-scrolled");
-        modal.classList.remove("is-toc-peek");
+        modal.classList.remove("is-open", "is-closing", "is-body-scrolled", "is-toc-peek");
         modal.setAttribute("aria-hidden", "true");
         unlockScroll();
         if (lastFocus) setTimeout(() => focusRestore(lastFocus), 0);
@@ -344,53 +354,127 @@
         "</div>";
     }
 
-    // ✅ TOC 統一順序（全站一致）
-    function buildToc(container) {
-      const headings = Array.from(container.querySelectorAll("h2[id], h3[id]")).filter(
-        (h) => h.textContent.trim().length > 0
-      );
+    // === Helpers for modal content ordering ===
+    function getSectionKeyFromText(text) {
+      const t = (text || "").trim();
+      for (const s of SECTION_ORDER) {
+        if (s.match.test(t)) return s.key;
+      }
+      return null;
+    }
 
+    // ✅ 把「標題 + 其下內容」做成 block，依你的順序重排（缺少略過）
+    function reorderModalContentBySections(wrapper) {
+      const root = wrapper; // wrapper is .modal-page
+      const headings = Array.from(root.querySelectorAll("h2, h3")).filter(
+        (h) => (h.textContent || "").trim().length > 0
+      );
+      if (!headings.length) return;
+
+      // block: heading + nodes until next heading
+      const blocks = [];
+      for (let i = 0; i < headings.length; i++) {
+        const h = headings[i];
+        const startNode = h;
+        const endNode = headings[i + 1] || null;
+
+        const nodes = [];
+        let cur = startNode;
+
+        while (cur && cur !== endNode) {
+          const next = cur.nextSibling;
+          nodes.push(cur);
+          cur = next;
+        }
+
+        const key = getSectionKeyFromText(h.textContent || "");
+        blocks.push({ key, heading: h, nodes });
+      }
+
+      // Determine what to treat as "preface": nodes before the first heading in DOM flow
+      // We'll keep them in place at top (e.g., hero image, intro copy)
+      const firstHeading = headings[0];
+      const preface = [];
+      let cur = firstHeading.previousSibling;
+      // collect backward then reverse
+      while (cur) {
+        const prev = cur.previousSibling;
+        preface.push(cur);
+        cur = prev;
+      }
+      preface.reverse();
+
+      // Remove preface nodes and all blocks nodes from root (detach)
+      preface.forEach((n) => n.parentNode === root && root.removeChild(n));
+      blocks.forEach((b) => b.nodes.forEach((n) => n.parentNode && n.parentNode.removeChild(n)));
+
+      // Group blocks by section key, preserve original order within each key
+      const byKey = new Map();
+      SECTION_ORDER.forEach((s) => byKey.set(s.key, []));
+      const unknown = [];
+
+      blocks.forEach((b) => {
+        if (b.key && byKey.has(b.key)) byKey.get(b.key).push(b);
+        else unknown.push(b);
+      });
+
+      // Rebuild: preface + blocks in required order + unknown blocks at end (to keep completeness)
+      const frag = document.createDocumentFragment();
+
+      preface.forEach((n) => frag.appendChild(n));
+
+      SECTION_ORDER.forEach((s) => {
+        const list = byKey.get(s.key);
+        if (!list || !list.length) return;
+
+        // keep all blocks that belong to the section (完整呈現)
+        list.forEach((b) => b.nodes.forEach((n) => frag.appendChild(n)));
+      });
+
+      // Append unknown blocks (still keep content complete)
+      unknown.forEach((b) => b.nodes.forEach((n) => frag.appendChild(n)));
+
+      root.appendChild(frag);
+    }
+
+    // ✅ TOC 依同一套分類與順序產生（缺少略過）
+    function buildToc(wrapper) {
+      const headings = Array.from(wrapper.querySelectorAll("h2[id], h3[id]")).filter(
+        (h) => (h.textContent || "").trim().length > 0
+      );
       if (!headings.length) {
         tocEl.innerHTML = "";
         return;
       }
 
-      const ORDER = [
-        { key: "group", label: "適合族群", match: /(適合族群|適用族群|誰適合|推薦對象)/ },
-        { key: "usage", label: "使用方式", match: /(使用方式|吃法|用法|怎麼吃|沖泡|料理)/ },
-        { key: "ingredient", label: "成份", match: /(成份|成分|原料|配方|內容物)/ },
-        { key: "faq", label: "常見問題", match: /(常見問題|FAQ)/i },
-        { key: "consult", label: "先聊聊狀況", match: /(先聊聊狀況|聊聊狀況|再評估|評估是否適用|LINE|諮詢)/ }
-      ];
-
-      const found = {};
-      ORDER.forEach((o) => (found[o.key] = null));
+      // For each section key, pick the first heading occurrence (for TOC jump)
+      const firstHeadingByKey = {};
+      SECTION_ORDER.forEach((s) => (firstHeadingByKey[s.key] = null));
 
       headings.forEach((h) => {
-        const text = h.textContent.trim();
-        ORDER.forEach((o) => {
-          if (!found[o.key] && o.match.test(text)) found[o.key] = h;
-        });
+        const k = getSectionKeyFromText(h.textContent || "");
+        if (k && !firstHeadingByKey[k]) firstHeadingByKey[k] = h;
       });
 
       tocEl.innerHTML = "";
-      ORDER.forEach((o) => {
-        const h = found[o.key];
+      SECTION_ORDER.forEach((s) => {
+        const h = firstHeadingByKey[s.key];
         if (!h) return;
 
         const a = document.createElement("a");
 
-        if (o.key === "consult") {
+        if (s.key === "consult") {
           a.className = "modal-toc-link modal-toc-cta";
           a.href = LINE_URL;
           a.target = "_blank";
           a.rel = "noopener";
+          a.textContent = s.label;
         } else {
           a.className = "modal-toc-link";
-          a.href = `#${h.id}`;
+          a.href = "#" + h.id;
+          a.textContent = s.label;
         }
 
-        a.textContent = o.label;
         tocEl.appendChild(a);
       });
     }
@@ -409,12 +493,11 @@
     tocEl.addEventListener("click", (e) => {
       const link = e.target.closest("a");
       if (!link) return;
-
-      // CTA button opens LINE; do not intercept
       if (link.classList.contains("modal-toc-cta")) return;
 
       const href = link.getAttribute("href") || "";
       if (!href.startsWith("#")) return;
+
       e.preventDefault();
       scrollToAnchor(href.slice(1));
     });
@@ -436,15 +519,14 @@
         wrapper.className = "modal-page";
         wrapper.innerHTML = main.innerHTML;
 
-        // Clean
-        wrapper.querySelectorAll(".line-float, .site-header, .site-footer, script, noscript").forEach((el) => el.remove());
+        wrapper
+          .querySelectorAll(".line-float, .site-header, .site-footer, script, noscript")
+          .forEach((el) => el.remove());
 
-        // Reveal: force visible in modal
         wrapper.querySelectorAll(".reveal, .reveal-up").forEach((el) => {
           el.classList.add("is-visible");
         });
 
-        // Back link -> close modal
         wrapper.querySelectorAll(".back-link").forEach((a) => {
           a.textContent = "關閉";
           a.setAttribute("href", "#");
@@ -456,7 +538,7 @@
           });
         });
 
-        // Ensure IDs exist + unique (for toc/anchors)
+        // Ensure IDs exist + unique
         const used = new Set();
         const slugify = (text) => {
           const base = (text || "")
@@ -485,8 +567,14 @@
           h.id = id;
         });
 
+        // ✅ 重排彈窗內容：依你指定的 8 項順序（完整、缺少略過）
+        reorderModalContentBySections(wrapper);
+
+        // Inject
         bodyEl.innerHTML = "";
         bodyEl.appendChild(wrapper);
+
+        // ✅ TOC 依相同順序產生
         buildToc(wrapper);
 
         const hashIndex = href.indexOf("#");
@@ -539,10 +627,8 @@
       document.addEventListener("click", (e) => {
         const a = e.target.closest("a");
         if (!a) return;
-
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-        // Explicit triggers
         if (a.classList.contains("js-product-modal")) {
           const href = a.getAttribute("href");
           if (!href) return;
@@ -557,7 +643,6 @@
           return;
         }
 
-        // Any internal link to product detail pages inside content
         if (isInterceptCandidate(a)) {
           const href = a.getAttribute("href");
           e.preventDefault();
@@ -572,7 +657,6 @@
       });
     }
 
-    // Close handlers
     if (overlay) overlay.addEventListener("click", closeModal);
     if (closeBtn) closeBtn.addEventListener("click", closeModal);
     if (dialog) dialog.addEventListener("click", (e) => e.stopPropagation());
@@ -649,7 +733,6 @@
       setTocToggleState();
     }
 
-    // If user scrolls again, dismiss peek mode
     bodyEl.addEventListener(
       "scroll",
       () => {
@@ -698,11 +781,8 @@
     if (!backButtons.length) return;
 
     const nav = document.querySelector(".site-nav");
-
     function closeNav() {
-      if (nav && nav.classList.contains("is-open")) {
-        nav.classList.remove("is-open");
-      }
+      if (nav && nav.classList.contains("is-open")) nav.classList.remove("is-open");
     }
 
     backButtons.forEach((btn) => {
