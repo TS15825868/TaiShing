@@ -137,53 +137,8 @@
   }
 
   function normalizeUrl(href){
-    // Resolve relative href against current page; strip hash (fetch cannot request a fragment)
-    if(!href) return href;
-    try{
-      const u = new URL(href, window.location.href);
-      u.hash = "";
-      return u.toString();
-    }catch(_){
-      return href;
-    }
-  }
-
-  function buildFetchCandidates(href){
-    // Try multiple candidates to accommodate different GitHub Pages folder layouts
-    const out = [];
-    if(!href) return out;
-    const raw = String(href);
-    const file = raw.split('?')[0].split('#')[0].replace(/^\.\//,'').split('/').pop();
-    // 1) direct resolve against current URL
-    try{
-      const u = new URL(raw, window.location.href);
-      u.hash = "";
-      out.push(u.toString());
-    }catch(_){}
-    // 2) same-directory file
-    if(file){
-      try{
-        const base = new URL(window.location.href);
-        base.hash = "";
-        base.search = "";
-        base.pathname = base.pathname.replace(/[^\/]*$/, "");
-        const u2 = new URL(file, base.toString());
-        out.push(u2.toString());
-      }catch(_){}
-      // 3) origin root
-      try{
-        out.push(new URL('/' + file, window.location.origin).toString());
-      }catch(_){}
-      // 4) heuristic: repo root is first path segment (common on GitHub Pages)
-      try{
-        const seg = (window.location.pathname || '').split('/').filter(Boolean);
-        if(seg.length >= 1){
-          out.push(new URL('/' + seg[0] + '/' + file, window.location.origin).toString());
-        }
-      }catch(_){}
-    }
-    // unique
-    return Array.from(new Set(out.filter(Boolean)));
+    // Always resolve relative href to absolute (prevents modal fetch failure on nested pages)
+    try{ return new URL(href, window.location.href).toString(); }catch(_){ return href; }
   }
 
   function isFileProtocol(){
@@ -401,28 +356,19 @@
     }
 
     async function loadPage(href,fallbackTitle){
-            const resolved = normalizeUrl(href);
+      const resolved=normalizeUrl(href);
       setLoading(fallbackTitle);
 
       // file:// preview fallback (fetch will fail)
-      if (isFileProtocol()) {
+      if(isFileProtocol()){
         showFetchError(resolved);
         return;
       }
 
-      try {
-        const candidates = buildFetchCandidates(href);
-        let res = null;
-        for (const url of candidates) {
-          try {
-            res = await fetch(url, { cache: 'no-store', credentials: 'same-origin' });
-          } catch (e) {
-            res = null;
-          }
-          if (res && res.ok) break;
-        }
-        if (!res || !res.ok) throw new Error('Fetch failed');
-        const html = await res.text();
+      try{
+        const res=await fetch(resolved, { cache:'reload' });
+        if(!res.ok) throw new Error('Fetch failed: '+res.status);
+        const html=await res.text();
         const doc=new DOMParser().parseFromString(html,'text/html');
 
         const pageTitle=(doc.querySelector('title')?.textContent||'').trim();
@@ -460,7 +406,7 @@
     }
 
     const PRODUCT_DETAIL_PAGES=new Set([
-      'guilu.html','guilu-drink.html','soup.html','lurong.html','antler.html','guilu-line.html'
+      'guilu.html','guilu-drink.html','soup.html','lurong.html','antler.html','dm.html','guilu-line.html'
     ]);
 
     function isInterceptCandidate(a){
