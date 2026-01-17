@@ -30,6 +30,33 @@ a:hover{
   color: var(--color-link-hover);
 }
 
+/* =========================================
+   內容連結：全站「有框框 + 明顯配色」
+   - 僅套用在 main 內容區，避免影響導覽列/按鈕
+   ========================================= */
+.site-main .section a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail):not(.btn-full):not(.line-float),
+.site-footer a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail):not(.btn-full):not(.line-float) {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 122, 0, 0.55);
+  background: rgba(255, 122, 0, 0.10);
+  color: var(--color-primary-deep);
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.site-main .section a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail):not(.btn-full):not(.line-float):hover,
+.site-footer a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail):not(.btn-full):not(.line-float):hover {
+  background: rgba(255, 122, 0, 0.18);
+  border-color: rgba(255, 122, 0, 0.85);
+  box-shadow: 0 10px 18px rgba(255, 122, 0, 0.18);
+  transform: translateY(-1px);
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -333,6 +360,34 @@ img {
   border-top: 1px solid var(--color-border-soft);
   font-size: 0.9rem;
   color: var(--color-text-muted);
+}
+
+/* Footer CTA（FAQ / 關於我們 / 聯絡我們 等） */
+.footer-cta{
+  background: linear-gradient(135deg, rgba(255, 122, 0, 0.10), rgba(255,255,255,0.95));
+  border: 2px solid rgba(255, 122, 0, 0.35);
+  border-radius: 18px;
+  padding: 20px 18px;
+  margin-bottom: 18px;
+  box-shadow: 0 12px 24px rgba(0,0,0,0.06);
+}
+
+.footer-cta-title{
+  margin: 0 0 8px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--color-primary-deep);
+}
+
+.footer-cta-text{
+  margin: 0 0 14px;
+  color: rgba(17, 24, 39, 0.82);
+}
+
+.footer-cta-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 /* =========================================
@@ -830,16 +885,25 @@ img.product-image {
 }
 
 .faq-item {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.1rem;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: var(--color-bg-soft);
+  border: 1px solid rgba(11, 31, 59, 0.12);
+  border-left: 4px solid var(--color-accent-gold);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
 .faq-question {
-  font-weight: 600;
-  margin: 0 0 0.35rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--color-primary-deep);
+  margin: 0 0 0.5rem;
 }
 
 .faq-answer {
   margin: 0;
+  color: rgba(17, 24, 39, 0.88);
 }
 
 .guide-grid {
@@ -850,8 +914,16 @@ img.product-image {
 
 .guide-card {
   padding: 1.2rem 1.4rem;
-  border-radius: 16px;
-  background: #f7eee8;
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(247,244,237,0.95));
+  border: 1px solid rgba(201, 162, 77, 0.35);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.05);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.guide-card:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(0,0,0,0.08);
 }
 
 .guide-card h3 {
