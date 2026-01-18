@@ -29,6 +29,10 @@
   /* 連結色 */
   --color-link: var(--color-primary-deep);
   --color-link-hover: var(--color-accent-deep);
+
+  /* Header / Nav 文字色（避免顏色跑掉） */
+  --color-nav-text: rgba(243, 244, 246, 0.96);
+  --color-nav-text-muted: rgba(243, 244, 246, 0.78);
 }
 
 /* =========================================
@@ -754,6 +758,30 @@ img.product-image {
   margin: 0 0 14px;
 }
 
+/* =========================================
+   取消「淡橘色橢圓裝飾」
+   - 你截圖中的淡橘色橢圓多為 pseudo-element 或裝飾層
+   ========================================= */
+.product-card::before,
+.product-card::after,
+.featured-card::before,
+.featured-card::after,
+.hero-image-frame::before,
+.hero-image-frame::after,
+.product-image-frame::before,
+.product-image-frame::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* 若有用到「橢圓」類名裝飾，統一關掉 */
+.product-card .oval,
+.product-card .oval-decor,
+.product-card .card-oval,
+.product-card [class*="oval"] {
+  display: none !important;
+}
+
 .page-title {
   font-size: clamp(1.55rem, 2.4vw, 2.05rem);
   line-height: 1.25;
@@ -1405,4 +1433,34 @@ body.modal-open{ overflow: hidden; }
   .product-modal{ max-height: 90vh; }
   .product-modal-header{ padding: 12px 14px; }
   .product-modal-body{ padding: 12px 14px 16px; }
+}
+
+/* =========================================
+   表格：手機可左右滑動（避免擠爆版面）
+   用法：把 table 包在 <div class="table-scroll"> ... </div>
+   ========================================= */
+.table-scroll{
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 14px;
+}
+
+.table-scroll table{
+  min-width: 680px; /* 手機維持可讀性，改用滑動 */
+}
+
+.table-scroll::-webkit-scrollbar{
+  height: 8px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb{
+  background: rgba(11,31,59,.22);
+  border-radius: 999px;
+}
+
+.table-scroll-hint{
+  margin-top: 8px;
+  font-size: .88rem;
+  color: var(--color-text-muted);
 }
