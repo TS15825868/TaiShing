@@ -52,20 +52,25 @@
       .video-grid{ grid-template-columns: 1fr; }
     }
     .video-card{
-      background:#fff;
-      border:1px solid rgba(0,0,0,.10);
-      border-radius:16px;
-      box-shadow: 0 10px 26px rgba(0,0,0,0.06);
-      padding: 14px 14px 16px;
-      overflow:hidden;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      padding: 0;
+      overflow: visible;
     }
     .video-card h3{
+      padding: 0 2px;
+      line-height: 1.35;
+
       font-size: 1.05rem;
       margin: 0 0 10px;
       letter-spacing: .04em;
       color: var(--color-primary-deep);
     }
     .video-fallback{
+      padding: 0 2px;
+
       margin-top: 10px;
       font-size: .95rem;
     }
@@ -74,6 +79,10 @@
       color: var(--color-primary-deep);
     }
     .tiktok-embed{
+      background: transparent !important;
+      border: 0 !important;
+      box-shadow: none !important;
+
       margin: 0 !important;
       max-width: 100% !important;
       min-width: 0 !important;
@@ -270,13 +279,15 @@
 
 </div>
 
-<!-- ✅ TikTok 影片：點播放才載入（加速、不自動播放） -->
+<!-- TikTok 官方嵌入脚本（必须） -->
+<script async src="https://www.tiktok.com/embed.js"></script>
+
 <script>
 /**
- * ✅ 影片清單（你只要改這裡）
- * - videoId：TikTok 影片 ID
- * - url：原影片連結（提供無法嵌入時的備援）
- * - title：顯示在卡片上的標題（可先填「抖音標題」，或暫用序號）
+ * ✅ 你只要改這裡：新增/刪除影片
+ * - videoId：TikTok 影片 ID（數字字串）
+ * - url：原影片連結
+ * - title：顯示在卡片上的標題（可留空，會自動生成）
  */
 const VIDEO_LIST = [
   { videoId: "7440039107708914945", url: "https://www.tiktok.com/@changwuchi2023/video/7440039107708914945", title: "中醫觀點分享 01" },
@@ -302,7 +313,31 @@ function sortByNewest(list){
   });
 }
 
-function esc(str){
+/** 生成 TikTok embed blockquote */
+function renderCard(item, index){
+  const safeTitle = (item.title && String(item.title).trim())
+    ? item.title
+    : `中醫觀點分享 ${String(index + 1).padStart(2, "0")}`;
+
+  const vid = String(item.videoId).trim();
+  const url = String(item.url).trim();
+
+  // 注意：TikTok embed.js 會讀取 class="tiktok-embed" 的 blockquote 來渲染
+  return `
+    <article class="video-card">
+      <h3>${escapeHtml(safeTitle)}</h3>
+      <blockquote class="tiktok-embed" cite="${escapeAttr(url)}" data-video-id="${escapeAttr(vid)}">
+        <section></section>
+      </blockquote>
+      <p class="video-fallback">
+        <a href="${escapeAttr(url)}" target="_blank" rel="noopener">開啟原影片</a>
+      </p>
+    </article>
+  `;
+}
+
+/** 基本字元轉義，避免標題帶入特殊字元破版 */
+function escapeHtml(str){
   return String(str)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -310,61 +345,41 @@ function esc(str){
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
-
-function renderCard(item){
-  const title = item.title && String(item.title).trim() ? String(item.title).trim() : "中醫觀點分享";
-  const vid = String(item.videoId).trim();
-  const url = String(item.url || "").trim();
-
-  // ✅ 不預載 iframe（加速）
-  // ✅ 不自動播放（你要求）
-  // ✅ 點「播放」才建立 iframe，並自動播放
-  return `
-    <article class="video-card" data-video="${esc(vid)}">
-      <h3 class="video-title">${esc(title)}</h3>
-      <div class="video-frame">
-        <button class="video-play" type="button" aria-label="播放：${esc(title)}">
-          <span class="video-play-icon">▶</span>
-          <span class="video-play-text">點擊播放</span>
-        </button>
-      </div>
-      ${url ? `<p class="video-fallback"><a href="${esc(url)}" target="_blank" rel="noopener">開啟原影片</a></p>` : ``}
-    </article>
-  `;
+function escapeAttr(str){
+  return String(str)
+    .replaceAll("&", "&amp;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
 }
 
+/** 主流程：排序 → render → 重新觸發 TikTok 解析 */
 (function init(){
   const grid = document.getElementById("videoGrid");
   if (!grid) return;
 
   const sorted = sortByNewest(VIDEO_LIST);
+
+  // ✅ 自動把標題改成「新 → 舊」序號：你也可保留原 title，不想改就把下面兩行拿掉
+  // sorted.forEach((it, idx) => { it.title = `中醫觀點分享 ${String(sorted.length - idx).padStart(2, "0")}`; });
+
   grid.innerHTML = sorted.map(renderCard).join("");
 
-  grid.addEventListener("click", (e) => {
-    const btn = e.target.closest(".video-play");
-    if (!btn) return;
-    const card = btn.closest(".video-card");
-    if (!card) return;
-    const vid = card.getAttribute("data-video");
-    const frame = card.querySelector(".video-frame");
-    if (!frame || !vid) return;
-
-    // 已載入就不重建
-    if (frame.querySelector('iframe')) return;
-
-    // TikTok iframe embed（v2）
-    const iframe = document.createElement('iframe');
-    iframe.src = `https://www.tiktok.com/embed/v2/${vid}?autoplay=1`;
-    iframe.title = card.querySelector('.video-title')?.textContent || 'TikTok Video';
-    iframe.loading = 'lazy';
-    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
-    iframe.allowFullscreen = true;
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-
-    frame.innerHTML = '';
-    frame.appendChild(iframe);
-  });
+  // ✅ 重新讓 TikTok embed.js 解析剛塞進去的 blockquote
+  // TikTok 沒有官方公開的 refresh API；最穩做法是「移除再加回 script」，讓它重跑一次。
+  reloadTikTokEmbedScript();
 })();
+
+function reloadTikTokEmbedScript(){
+  const SRC = "https://www.tiktok.com/embed.js";
+  const old = document.querySelector(`script[src="${SRC}"]`);
+  if (old) old.remove();
+
+  const s = document.createElement("script");
+  s.src = SRC;
+  s.async = true;
+  document.body.appendChild(s);
+}
 </script>
 
 </body>

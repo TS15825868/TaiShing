@@ -1374,71 +1374,79 @@ body.modal-open{ overflow: hidden; }
   .product-modal-body{ padding: 12px 14px 16px; }
 }
 
-
-/* ====== LINK BOX STYLE (AUTO) ====== */
-
-/* 全站：文字連結要有框框與明顯配色（不影響按鈕/導覽/卡片覆蓋連結） */
-.site-main a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.card-link):not(.brand-block){
-  display: inline-flex;
+/* =========================================
+   首頁主打商品：主圖 + 文案（不刪減）
+   - 圖片一定顯示（eager + 高優先）
+   ========================================= */
+.featured-split{
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 18px;
   align-items: center;
-  gap: 6px;
-  padding: 4px 10px;
-  border: 1px solid rgba(11,31,59,0.28);
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.85);
-  color: var(--color-primary-deep);
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  text-decoration: none;
-  transition: background .18s ease, border-color .18s ease, color .18s ease, transform .18s ease;
 }
-.site-main a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.card-link):not(.brand-block):hover{
-  background: rgba(255, 122, 0, 0.10);
-  border-color: rgba(255, 122, 0, 0.55);
-  color: var(--color-accent-gold-deep);
-  transform: translateY(-1px);
+@media (max-width: 860px){
+  .featured-split{ grid-template-columns: 1fr; }
+}
+.featured-caption{
+  padding: 2px 2px 2px;
+}
+.featured-kicker{
+  margin: 0 0 6px;
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  color: var(--color-text-label);
+}
+.featured-title{
+  margin: 0 0 10px;
+  font-size: 1.55rem;
+  color: var(--color-primary-deep);
+  letter-spacing: 0.06em;
+}
+.featured-desc{
+  margin: 0 0 14px;
+  color: rgba(17, 24, 39, 0.88);
+  line-height: 1.8;
+}
+.featured-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-/* TCM/影片卡：框=影片大小，點播放才載入 iframe */
-.video-frame{
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border-radius: 14px;
-  overflow: hidden;
-  background: #0b0f1a;
-  border: 1px solid rgba(255,255,255,0.08);
+/* =========================================
+   產品卡片裝飾：強制與卡片同尺寸（避免橘色橢圓/不對齊）
+   - 若其他檔案/舊 CSS 有加裝飾 pseudo-element，這裡統一關掉
+   ========================================= */
+.product-card::before,
+.product-card::after,
+article.product-card::before,
+article.product-card::after,
+.product-image-frame::before,
+.product-image-frame::after,
+.hero-image-frame::before,
+.hero-image-frame::after,
+.product-image-link::before,
+.product-image-link::after,
+.hero-image-link::before,
+.hero-image-link::after{
+  content: none !important;
+  display: none !important;
 }
-.video-frame iframe{
-  width: 100%;
+
+/* 保險：圖片框/卡片框一致圓角，不出現額外外框 */
+.product-card,
+article.product-card{
+  border-radius: 16px !important;
+}
+.product-card .card-link{
+  border-radius: 16px !important;
+}
+
+/* iOS/Safari：避免圖片偶發不顯示或被拉伸 */
+.product-image-frame img,
+.hero-image-frame img,
+.product-card .product-image{
+  display: block;
+  max-width: 100%;
   height: 100%;
-  border: 0;
-}
-.video-play{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
-  background: radial-gradient(circle at 50% 45%, rgba(255,255,255,0.14), rgba(0,0,0,0.55));
-  color: #fff;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-.video-play-icon{
-  width: 62px;
-  height: 62px;
-  border-radius: 999px;
-  border: 2px solid rgba(255,255,255,0.7);
-  display: grid;
-  place-items: center;
-  font-size: 26px;
-  line-height: 1;
-  margin-bottom: 8px;
-}
-.video-play-text{
-  font-size: 0.95rem;
-  letter-spacing: 0.10em;
-  opacity: 0.92;
 }
