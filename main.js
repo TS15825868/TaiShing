@@ -199,16 +199,15 @@
     if (!navUl) return;
 
     // 你要的固定順序（全站一致）
-    // ✅ 對齊你目前站上實際頁面：tcm.html / story.html / contact.html
     const items = [
       { href: "index.html", label: "首頁", key: "home" },
       { href: "index.html#all-products", label: "產品總覽", key: "products" },
       { href: "guide.html", label: "依需求挑選", key: "guide" },
+      { href: "doctor_tiktok.html", label: "中醫觀點", key: "tcm" },
+      { href: "about.html", label: "關於我們", key: "about" },
       { href: "faq.html", label: "常見問題", key: "faq" },
-      { href: "tcm.html", label: "中醫觀點", key: "tcm" },
-      { href: "story.html", label: "品牌故事", key: "story" },
       { href: "contact.html", label: "聯絡我們", key: "contact" }
-      // ❌ LINE：依你的需求，從漢堡選單移除（改由浮動 LINE / CTA 入口）
+      // ❌ LINE：依你的需求，從漢堡選單移除
     ];
 
     const path = (window.location.pathname || "").split("/").pop() || "index.html";
@@ -218,9 +217,9 @@
       if (key === "home") return path === "" || path === "index.html";
       if (key === "products") return (path === "" || path === "index.html") && hash === "#all-products";
       if (key === "guide") return path === "guide.html";
+      if (key === "tcm") return path === "doctor_tiktok.html";
+      if (key === "about") return path === "about.html";
       if (key === "faq") return path === "faq.html";
-      if (key === "tcm") return path === "tcm.html";
-      if (key === "story") return path === "story.html";
       if (key === "contact") return path === "contact.html";
       return false;
     }
