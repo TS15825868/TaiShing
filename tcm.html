@@ -10,14 +10,12 @@
   <link rel="canonical" href="https://ts15825868.github.io/TaiShing/tcm.html" />
   <meta name="robots" content="index,follow" />
 
-  <!-- 社群分享 -->
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="zh_TW" />
   <meta property="og:title" content="中醫觀點｜龜鹿補養影片整理｜台興山產・仙加味" />
   <meta property="og:description" content="整理合作中醫師公開分享影片，以「中醫觀點 × 日常補養節奏」為主，幫你用生活情境理解如何更容易持續補養。" />
   <meta property="og:url" content="https://ts15825868.github.io/TaiShing/tcm.html" />
   <meta name="twitter:card" content="summary" />
-
   <meta name="theme-color" content="#0B1F3B" />
 
   <link rel="stylesheet" href="theme_herbalrosegold.css" />
@@ -37,7 +35,7 @@
     .table-scroll table {
       width: 100%;
       border-collapse: collapse;
-      min-width: 760px; /* 讓手機一定會變可滑動 */
+      min-width: 760px;
     }
     .table-scroll th, .table-scroll td {
       padding: 14px 12px;
@@ -46,8 +44,8 @@
       text-align: left;
     }
     .table-scroll th {
-      color: var(--brand-dark, #0B1F3B);
-      font-weight: 700;
+      color: #0B1F3B;
+      font-weight: 800;
       background: rgba(11,31,59,0.04);
     }
     .scroll-hint {
@@ -56,7 +54,7 @@
       font-size: 0.92rem;
     }
 
-    /* 影片：最快且不自動播放（點了才載 iframe） */
+    /* 影片：未播放前就要有清楚標題（避免變成灰框） */
     .video-grid {
       display: grid;
       grid-template-columns: 1fr;
@@ -69,21 +67,61 @@
     .video-card {
       background: #fff;
       border-radius: 16px;
-      border: 1px solid rgba(0,0,0,0.08);
+      border: 1px solid rgba(0,0,0,0.10);
       box-shadow: 0 10px 24px rgba(0,0,0,0.06);
       padding: 16px;
     }
+
+    /* ✅ 強制標題可見（避免 theme 覆蓋） */
     .video-title {
-      margin: 0 0 10px;
-      color: var(--brand-dark, #0B1F3B);
-      font-weight: 700;
-      font-size: 1.05rem;
+      margin: 0 0 6px !important;
+      color: #0B1F3B !important;
+      font-weight: 800 !important;
+      font-size: 1.08rem !important;
+      letter-spacing: 0.02em;
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
     }
+    .video-subtitle {
+      margin: 0 0 10px !important;
+      color: #6B7280 !important;
+      font-size: 0.92rem !important;
+      display: block !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    .video-embed {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(11,31,59,0.04);
+      border: 1px dashed rgba(11,31,59,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px;
+      text-align: center;
+    }
+    .video-embed .placeholder {
+      color: #334155;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+    .video-embed .placeholder strong {
+      display: block;
+      color: #0B1F3B;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
     .video-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin-top: 10px;
+      margin-top: 12px;
     }
     .btn-soft {
       display: inline-flex;
@@ -93,36 +131,25 @@
       border-radius: 999px;
       border: 1.5px solid rgba(0,0,0,0.12);
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 800;
       background: #fff;
-      color: var(--brand-dark, #0B1F3B);
+      color: #0B1F3B;
     }
     .btn-play {
-      border-color: var(--action-orange, #FF7A00);
-      background: var(--action-orange-bg, #FFF1E6);
-      color: var(--action-orange, #FF7A00);
+      border-color: #FF7A00;
+      background: #FFF1E6;
+      color: #FF7A00;
     }
-    .video-embed {
-      width: 100%;
-      aspect-ratio: 16 / 9;
-      border-radius: 14px;
-      overflow: hidden;
-      background: rgba(11,31,59,0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #6B7280;
-      font-size: 0.95rem;
-    }
+
     .video-embed iframe {
       width: 100%;
       height: 100%;
       border: 0;
       display: block;
+      background: #fff;
     }
   </style>
 
-  <!-- Breadcrumb（簡版） -->
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
@@ -138,7 +165,6 @@
 <body>
 <div class="site-wrapper">
 
-  <!-- HEADER -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="brand-block">
@@ -167,13 +193,12 @@
       <div class="footer-cta-actions" style="display:flex; gap:12px; flex-wrap:wrap;">
         <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-line-strong">用 LINE 詢問</a>
         <a href="index.html#all-products" class="btn-outline-gold">回到產品總覽</a>
-        <a href="faq.html" class="btn-outline-gold">看 FAQ 中醫觀點整理</a>
+        <a href="faq.html" class="btn-outline-gold">看 FAQ</a>
       </div>
     </section>
 
     <section class="section">
       <h2>中醫觀點 → 對應產品（以「能持續的節奏」為判斷）</h2>
-      <p>下面是一張「不做療效宣稱」的對照表：把中醫常談的節奏概念（作息、體感、方便性）對應到不同產品型態，幫助你先用生活情境做第一輪篩選。</p>
       <p class="scroll-hint">提示：手機可左右滑動查看完整表格</p>
 
       <div class="table-scroll">
@@ -217,12 +242,10 @@
     </section>
 
     <section class="section">
-      <h2>影片列表（點了才載入播放器：更快、也不會自動播放）</h2>
+      <h2>影片列表（點「播放」才載入：更快、也不會自動播放）</h2>
       <p class="scroll-hint">
-        為了速度與穩定性，本頁預設不載入 TikTok 播放器。你點「播放」才會載入該支影片 iframe，因此開頁更快、也能避免自動播放。
+        為了速度，本頁預設不載入 TikTok 播放器。你點「播放」才會載入該支影片，所以不會一進頁就卡、也能避免自動播放。
       </p>
-
-      <p><a class="btn-soft" href="https://www.tiktok.com/@changwuchi2023" target="_blank" rel="noopener">前往 TikTok 帳號</a></p>
 
       <div class="video-grid" id="videoGrid"></div>
     </section>
@@ -238,7 +261,6 @@
     </p>
   </footer>
 
-  <!-- 浮動 LINE -->
   <a href="https://lin.ee/sHZW7NkR"
      class="line-float"
      target="_blank"
@@ -250,7 +272,6 @@
 </div>
 
 <script>
-  // 你的 12 支影片（你提供的）
   const TIKTOK_URLS = [
     "https://www.tiktok.com/@changwuchi2023/video/7440039107708914945",
     "https://www.tiktok.com/@changwuchi2023/video/7441142424518315280",
@@ -266,7 +287,6 @@
     "https://www.tiktok.com/@changwuchi2023/video/7561374523564543249"
   ];
 
-  // 最新在上
   const urls = [...TIKTOK_URLS].reverse();
 
   function getVideoId(url) {
@@ -276,15 +296,22 @@
 
   function renderCard(idx, url) {
     const id = getVideoId(url);
-    const title = `中醫觀點分享 ${String(idx + 1).padStart(2, "0")}`;
+    const no = String(idx + 1).padStart(2, "0");
+    const title = `中醫觀點分享 ${no}`;
 
     const card = document.createElement("div");
     card.className = "video-card";
     card.innerHTML = `
       <div class="video-title">${title}</div>
+      <div class="video-subtitle">點「播放」才載入播放器（更快、也不會自動播放）</div>
+
       <div class="video-embed" data-vid="${id}">
-        尚未載入播放器（點下方「播放」）
+        <div class="placeholder">
+          <strong>${title}</strong>
+          尚未載入播放器。<br>需要觀看請按下方「播放」。
+        </div>
       </div>
+
       <div class="video-actions">
         <button class="btn-soft btn-play" type="button" data-play="${id}">播放</button>
         <a class="btn-soft" href="${url}" target="_blank" rel="noopener">開啟原影片</a>
@@ -304,12 +331,9 @@
       const vid = btn.getAttribute("data-play");
       const embed = grid.querySelector(`.video-embed[data-vid="${vid}"]`);
       if (!embed) return;
-
-      // 已載入就不重載
       if (embed.querySelector("iframe")) return;
 
-      // TikTok embed v2：用戶點擊後才載入 → 更快、也避免一進頁就自動播
-      // 參數 autoplay=0 以防平台支援；即使平台忽略，仍是「點了才載」所以不會自動播放。
+      // 點了才載入 → 不會自動播放
       const src = `https://www.tiktok.com/embed/v2/${vid}?autoplay=0`;
 
       embed.innerHTML = `
@@ -322,7 +346,6 @@
         </iframe>
       `;
 
-      // 點播放後，按鈕文字改成「已載入」
       btn.textContent = "已載入";
       btn.disabled = true;
     });
