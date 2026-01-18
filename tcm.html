@@ -294,20 +294,31 @@
     return m ? m[1] : "";
   }
 
+  async function fetchTikTokTitle(url) {
+    // 盡量使用 TikTok oEmbed 取得原影片標題（description）。
+    // 若遇到 CORS/網路限制，會自動退回預設標題。
+    const endpoint = `https://www.tiktok.com/oembed?url=${encodeURIComponent(url)}`;
+    const res = await fetch(endpoint, { cache: "force-cache" });
+    if (!res.ok) throw new Error(`oembed ${res.status}`);
+    const data = await res.json();
+    // title 可能包含 hashtag；這裡保留原樣。
+    return (data && data.title) ? String(data.title).trim() : "";
+  }
+
   function renderCard(idx, url) {
     const id = getVideoId(url);
     const no = String(idx + 1).padStart(2, "0");
-    const title = `中醫觀點分享 ${no}`;
+    const fallbackTitle = `中醫觀點分享 ${no}`;
 
     const card = document.createElement("div");
     card.className = "video-card";
     card.innerHTML = `
-      <div class="video-title">${title}</div>
+      <div class="video-title" data-title-for="${id}">${fallbackTitle}</div>
       <div class="video-subtitle">點「播放」才載入播放器（更快、也不會自動播放）</div>
 
       <div class="video-embed" data-vid="${id}">
-        <div class="placeholder">
-          <strong>${title}</strong>
+        <div class="placeholder" data-ph-for="${id}">
+          <strong>${fallbackTitle}</strong>
           尚未載入播放器。<br>需要觀看請按下方「播放」。
         </div>
       </div>
@@ -320,9 +331,30 @@
     return card;
   }
 
+  async function hydrateTitles(grid) {
+    // 逐一載入標題（避免同時大量請求）
+    for (let i = 0; i < urls.length; i++) {
+      const url = urls[i];
+      const vid = getVideoId(url);
+      try {
+        const title = await fetchTikTokTitle(url);
+        if (!title) continue;
+        const titleEl = grid.querySelector(`[data-title-for="${vid}"]`);
+        const ph = grid.querySelector(`[data-ph-for="${vid}"] strong`);
+        if (titleEl) titleEl.textContent = title;
+        if (ph) ph.textContent = title;
+      } catch (err) {
+        // 靜默失敗：保留預設標題，避免阻斷載入
+      }
+    }
+  }
+
   function mount() {
     const grid = document.getElementById("videoGrid");
     urls.forEach((u, i) => grid.appendChild(renderCard(i, u)));
+
+    // 嘗試把標題換成原 TikTok 影片標題
+    hydrateTitles(grid);
 
     grid.addEventListener("click", (e) => {
       const btn = e.target.closest("[data-play]");
