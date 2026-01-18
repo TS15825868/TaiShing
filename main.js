@@ -372,38 +372,39 @@
         return;
       }
 
-      // Prefer a few practical jumps: 規格 / 成分 / 吃法 / FAQ / 保存 / 注意
-      const prefer = [
-        { key: 'aud',   re: /(適合|族群|對象|誰適合|推薦對象)/ },
-        { key: 'spec',  re: /(規格|容量|重量|包裝|內容量)/ },
-        { key: 'ing',   re: /(成分|原料|配方|內容物)/ },
-        { key: 'use',   re: /(吃法|用法|使用|怎麼吃|沖泡|料理)/ },
-        { key: 'faq',   re: /(常見問題|FAQ)/i },
-        { key: 'keep',  re: /(保存|存放|冷藏|保存方式)/ },
-        { key: 'note',  re: /(注意|提醒|不建議|不適合|禁忌)/ },
-        // Optional CTA-like heading; will be transformed into LINE consultation button
-        { key: 'chat',  re: /(先聊聊狀況|再評估|評估是否適用|聊聊狀況)/ }
+      // ✅ TOC「固定順序」：每個產品彈窗都一致
+      // 適合族群 → 規格 → 成分 → 使用方式 → 常見問題 → 保存 → 注意 → 先聊聊狀況
+      // - 先依固定順序找出對應標題
+      // - 若某個頁面缺該段，會自動略過
+      // - 最後再補少量「其他標題」以避免 TOC 過短
+      const preferOrder = [
+        { key: 'aud',  re: /(適合|族群|對象|誰適合|推薦對象)/ },
+        { key: 'spec', re: /(規格|容量|重量|包裝|內容量)/ },
+        { key: 'ing',  re: /(成分|原料|配方|內容物)/ },
+        { key: 'use',  re: /(吃法|用法|使用|怎麼吃|沖泡|料理)/ },
+        { key: 'faq',  re: /(常見問題|FAQ)/i },
+        { key: 'keep', re: /(保存|存放|冷藏|保存方式)/ },
+        { key: 'note', re: /(注意|提醒|不建議|不適合|禁忌)/ },
+        { key: 'chat', re: /(先聊聊狀況|再評估|評估是否適用|聊聊狀況)/ }
       ];
 
       const picked = [];
-      const usedKeys = new Set();
+      const used = new Set();
 
-      for (const h of all) {
-        const t = (h.textContent || '').trim();
-        for (const p of prefer) {
-          if (usedKeys.has(p.key)) continue;
-          if (p.re.test(t)) {
-            picked.push(h);
-            usedKeys.add(p.key);
-            break;
-          }
+      // 先照固定順序抓第一個命中的標題
+      for (const p of preferOrder) {
+        const hit = all.find(h => p.re.test(((h.textContent || '').trim())));
+        if (hit && !used.has(hit)) {
+          picked.push(hit);
+          used.add(hit);
         }
       }
 
-      // Fill remaining slots with the first few headings (keep overall order)
+      // 再補前幾個其他標題（保留原順序），讓 TOC 不至於太短
       for (const h of all) {
-        if (picked.includes(h)) continue;
+        if (used.has(h)) continue;
         picked.push(h);
+        used.add(h);
         if (picked.length >= 8) break;
       }
 

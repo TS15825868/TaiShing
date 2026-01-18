@@ -42,6 +42,16 @@
   <script src="main.js" defer></script>
 
   <style>
+    /* ✅ 表格：手機可左右滑動（兩張表都適用） */
+    .table-wrap{
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-wrap table{
+      min-width: 760px;
+      width: 100%;
+    }
+
     .video-grid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -51,6 +61,10 @@
     @media (max-width: 768px){
       .video-grid{ grid-template-columns: 1fr; }
     }
+    /* ✅ 影片：預設「不先載入」TikTok（加速開頁）
+       - 先用輕量卡片 + 按鈕
+       - 點「載入並播放」才插入 iframe
+    */
     .video-card{
       background: transparent;
       border: 0;
@@ -60,17 +74,53 @@
       overflow: visible;
     }
     .video-card h3{
-      padding: 0 2px;
-      line-height: 1.35;
-
       font-size: 1.05rem;
       margin: 0 0 10px;
       letter-spacing: .04em;
       color: var(--color-primary-deep);
     }
-    .video-fallback{
-      padding: 0 2px;
 
+    .video-shell{
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 16px;
+      box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+      overflow: hidden;
+    }
+    .video-shell-inner{
+      padding: 12px 12px 14px;
+    }
+    .video-placeholder{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background: linear-gradient(180deg, rgba(11,31,59,.06), rgba(11,31,59,.02));
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .video-load-btn{
+      appearance: none;
+      border: 0;
+      border-radius: 999px;
+      background: var(--color-primary-deep);
+      color: #fff;
+      font-weight: 800;
+      letter-spacing: .06em;
+      padding: 10px 16px;
+      cursor: pointer;
+    }
+    .video-load-btn:hover{ opacity: .92; }
+    .video-iframe{
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border: 0;
+      display: block;
+      background: #000;
+    }
+    .video-fallback{
       margin-top: 10px;
       font-size: .95rem;
     }
@@ -78,15 +128,7 @@
       text-decoration: underline;
       color: var(--color-primary-deep);
     }
-    .tiktok-embed{
-      background: transparent !important;
-      border: 0 !important;
-      box-shadow: none !important;
-
-      margin: 0 !important;
-      max-width: 100% !important;
-      min-width: 0 !important;
-    }
+    /* 不使用 TikTok embed.js，因此不需要 .tiktok-embed */
   </style>
 </head>
 
@@ -279,9 +321,6 @@
 
 </div>
 
-<!-- TikTok 官方嵌入脚本（必须） -->
-<script async src="https://www.tiktok.com/embed.js"></script>
-
 <script>
 /**
  * ✅ 你只要改這裡：新增/刪除影片
@@ -313,7 +352,7 @@ function sortByNewest(list){
   });
 }
 
-/** 生成 TikTok embed blockquote */
+/** 生成「輕量」影片卡：不預先載入 TikTok（加速開頁） */
 function renderCard(item, index){
   const safeTitle = (item.title && String(item.title).trim())
     ? item.title
@@ -322,16 +361,19 @@ function renderCard(item, index){
   const vid = String(item.videoId).trim();
   const url = String(item.url).trim();
 
-  // 注意：TikTok embed.js 會讀取 class="tiktok-embed" 的 blockquote 來渲染
   return `
     <article class="video-card">
-      <h3>${escapeHtml(safeTitle)}</h3>
-      <blockquote class="tiktok-embed" cite="${escapeAttr(url)}" data-video-id="${escapeAttr(vid)}">
-        <section></section>
-      </blockquote>
-      <p class="video-fallback">
-        <a href="${escapeAttr(url)}" target="_blank" rel="noopener">開啟原影片</a>
-      </p>
+      <div class="video-shell">
+        <div class="video-shell-inner">
+          <h3>${escapeHtml(safeTitle)}</h3>
+          <div class="video-placeholder" data-video-id="${escapeAttr(vid)}" data-url="${escapeAttr(url)}">
+            <button type="button" class="video-load-btn" aria-label="載入並播放：${escapeAttr(safeTitle)}">載入並播放</button>
+          </div>
+          <p class="video-fallback">
+            <a href="${escapeAttr(url)}" target="_blank" rel="noopener">開啟原影片</a>
+          </p>
+        </div>
+      </div>
     </article>
   `;
 }
@@ -365,21 +407,43 @@ function escapeAttr(str){
 
   grid.innerHTML = sorted.map(renderCard).join("");
 
-  // ✅ 重新讓 TikTok embed.js 解析剛塞進去的 blockquote
-  // TikTok 沒有官方公開的 refresh API；最穩做法是「移除再加回 script」，讓它重跑一次。
-  reloadTikTokEmbedScript();
+  // ✅ 點「載入並播放」才真正插入 iframe（避免一進頁面就卡住）
+  grid.addEventListener('click', (e) => {
+    const btn = e.target.closest('.video-load-btn');
+    if (!btn) return;
+    const holder = btn.closest('.video-placeholder');
+    if (!holder) return;
+
+    // 已載入就不重複建 iframe
+    if (holder.dataset.loaded === '1') return;
+    holder.dataset.loaded = '1';
+
+    const vid = (holder.dataset.videoId || '').trim();
+    const url = (holder.dataset.url || '').trim();
+
+    // TikTok 的輕量嵌入：使用 iframe，不依賴 embed.js
+    // 備註：autoplay 受瀏覽器策略限制；這裡僅在「使用者點擊」後嘗試 autoplay
+    const iframe = document.createElement('iframe');
+    iframe.className = 'video-iframe';
+    iframe.loading = 'lazy';
+    iframe.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+
+    // 優先使用 videoId，避免 URL 變動
+    const src = vid
+      ? `https://www.tiktok.com/embed/v2/${encodeURIComponent(vid)}?autoplay=1`
+      : (url ? `${url}${url.includes('?') ? '&' : '?'}is_from_webapp=1` : '');
+
+    if (!src) {
+      holder.innerHTML = `<a href="${escapeAttr(url)}" target="_blank" rel="noopener">開啟原影片</a>`;
+      return;
+    }
+
+    iframe.src = src;
+    holder.innerHTML = '';
+    holder.appendChild(iframe);
+  });
 })();
-
-function reloadTikTokEmbedScript(){
-  const SRC = "https://www.tiktok.com/embed.js";
-  const old = document.querySelector(`script[src="${SRC}"]`);
-  if (old) old.remove();
-
-  const s = document.createElement("script");
-  s.src = SRC;
-  s.async = true;
-  document.body.appendChild(s);
-}
 </script>
 
 </body>
