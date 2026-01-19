@@ -846,27 +846,6 @@ img.product-image {
 }
 
 /* =========================================
-   ✅ 首頁主打商品：裝飾/框框一致（與產品卡片同圓角與同視覺語言）
-   - 避免主打區的圖片框看起來跟產品卡片不一致
-   ========================================= */
-.signature-only .product-image-frame.hero-image-frame{
-  border-radius: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.10);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
-}
-
-/* 若曾有任何「橘色橢圓裝飾」殘留，強制關掉（避免不等尺寸） */
-.product-card::before,
-.product-card::after,
-.hero-image-link::before,
-.hero-image-link::after,
-.product-image-frame::before,
-.product-image-frame::after{
-  content: none !important;
-  display: none !important;
-}
-
-/* =========================================
    產品詳細：回到上一頁
    ========================================= */
 .back-to-products {
