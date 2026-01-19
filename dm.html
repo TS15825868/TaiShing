@@ -1,368 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-Hant-TW">
 <head>
-  <meta charset="UTF-8" />
-  <title>台興山產・仙加味｜龜鹿系列 DM</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>產品 DM｜台興山產・仙加味</title>
+  <meta name="description" content="台興山產・仙加味產品 DM：產品一覽、包裝形式與容量重量，點選可開啟完整介紹。" />
+  <meta name="robots" content="index,follow" />
 
-  <!-- SEO（DM 頁多半不主打收錄，但仍保留基本資訊） -->
-  <meta name="description" content="台興山產・仙加味龜鹿系列 DM：龜鹿膏、龜鹿飲、龜鹿湯塊、鹿茸粉與鹿角原料。可掃描 LINE QR 一對一詢問，或掃描官網 QR 查看完整介紹。" />
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://ts15825868.github.io/TaiShing/dm.html">
+  <link rel="canonical" href="https://ts15825868.github.io/TaiShing/dm.html" />
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="台興山產・仙加味｜龜鹿系列 DM">
-  <meta property="og:description" content="龜鹿系列 DM：掃描 LINE QR 一對一詢問，或掃描官網 QR 查看完整介紹。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ts15825868.github.io/TaiShing/dm.html">
-  <meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/logo-pro-og.jpg">
-
-  <!-- 與官網一致的配色/字體 -->
   <link rel="stylesheet" href="theme_herbalrosegold.css" />
   <link rel="stylesheet" href="style.css" />
-
-  <style>
-    /* DM 頁：獨立版面（不動到全站 style.css） */
-    .dm-wrap{
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 18px 14px 28px;
-    }
-
-    .dm-top{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 14px;
-      padding: 14px 0 8px;
-      border-bottom: 1px solid rgba(0,0,0,.08);
-      margin-bottom: 14px;
-    }
-    .dm-brand{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      text-decoration:none;
-      color: inherit;
-    }
-    .dm-logo{
-      width: 56px;
-      height: 56px;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.10);
-      background: #fff;
-    }
-    .dm-brand p{ margin:0; }
-    .dm-since{
-      font-size: .9rem;
-      letter-spacing: .08em;
-      opacity: .85;
-    }
-    .dm-title{
-      font-weight: 900;
-      letter-spacing: .06em;
-      font-size: 1.05rem;
-      color: var(--color-primary-deep);
-    }
-
-    .dm-actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .dm-hero{
-      margin-top: 14px;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,.10);
-      border-radius: 18px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.06);
-      overflow: hidden;
-    }
-    .dm-hero-inner{
-      padding: 18px 16px 16px;
-    }
-    .dm-kicker{
-      font-weight: 900;
-      letter-spacing: .12em;
-      color: var(--color-primary-deep);
-      opacity: .9;
-      font-size: .9rem;
-      margin: 0 0 8px;
-    }
-    .dm-h1{
-      margin: 0 0 10px;
-      font-size: 1.55rem;
-      line-height: 1.25;
-      letter-spacing: .04em;
-      color: var(--color-primary-deep);
-    }
-    .dm-lead{
-      margin: 0;
-      color: rgba(0,0,0,.78);
-      line-height: 1.7;
-    }
-
-    .dm-grid{
-      margin-top: 14px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-    @media (max-width: 860px){
-      .dm-grid{ grid-template-columns: 1fr; }
-    }
-
-    .dm-card{
-      background:#fff;
-      border: 1px solid rgba(0,0,0,.10);
-      border-radius: 18px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.06);
-      overflow:hidden;
-    }
-    .dm-card-inner{
-      padding: 16px;
-    }
-    .dm-card h2{
-      margin: 0 0 10px;
-      font-size: 1.2rem;
-      letter-spacing: .04em;
-      color: var(--color-primary-deep);
-    }
-    .dm-card p{
-      margin: 0 0 10px;
-      line-height: 1.75;
-      color: rgba(0,0,0,.78);
-    }
-    .dm-list{
-      margin: 0;
-      padding-left: 18px;
-      color: rgba(0,0,0,.78);
-      line-height: 1.75;
-    }
-
-    .dm-note{
-      margin-top: 14px;
-      background: rgba(11,31,59,.04);
-      border: 1px dashed rgba(11,31,59,.22);
-      border-radius: 16px;
-      padding: 12px 14px;
-      color: rgba(0,0,0,.78);
-      line-height: 1.75;
-    }
-
-    /* QR 區 */
-    .qr-panel{
-      margin-top: 16px;
-      background:#fff;
-      border: 1px solid rgba(0,0,0,.10);
-      border-radius: 18px;
-      box-shadow: 0 10px 26px rgba(0,0,0,.06);
-      overflow:hidden;
-    }
-    .qr-panel-inner{
-      padding: 16px;
-    }
-    .qr-grid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      align-items: stretch;
-    }
-    @media (max-width: 860px){
-      .qr-grid{ grid-template-columns: 1fr; }
-    }
-    .qr-card{
-      border: 1px solid rgba(0,0,0,.10);
-      border-radius: 16px;
-      overflow: hidden;
-      background: rgba(11,31,59,.02);
-    }
-    .qr-card-inner{
-      padding: 14px;
-      display:flex;
-      gap: 12px;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .qr-img{
-      width: 116px;
-      height: 116px;
-      object-fit: contain;
-      border-radius: 12px;
-      background: #fff;
-      border: 1px solid rgba(0,0,0,.10);
-    }
-    .qr-meta{
-      flex: 1 1 220px;
-      min-width: 220px;
-    }
-    .qr-title{
-      margin: 0 0 6px;
-      font-weight: 900;
-      letter-spacing: .06em;
-      color: var(--color-primary-deep);
-      font-size: 1.05rem;
-    }
-    .qr-desc{
-      margin: 0 0 10px;
-      color: rgba(0,0,0,.78);
-      line-height: 1.7;
-      font-size: .98rem;
-    }
-    .qr-actions{
-      display:flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    /* 讓按鈕看起來跟官網一致：沿用你 style.css 的 class */
-    /* 若你 style.css 已有 btn-line-strong / btn-outline / btn-soft，這裡不重複定義 */
-
-    .dm-footer{
-      margin-top: 16px;
-      text-align: center;
-      color: rgba(0,0,0,.72);
-      line-height: 1.75;
-      font-size: .95rem;
-      padding: 8px 0 4px;
-    }
-  </style>
+  <script src="main.js" defer></script>
 </head>
 
 <body>
-  <div class="dm-wrap">
+<div class="site-wrapper">
 
-    <!-- 獨立頁頂部：不使用全站 nav，但視覺一致 -->
-    <div class="dm-top">
-      <a class="dm-brand" href="index.html" aria-label="回到台興山產・仙加味官網首頁">
-        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="dm-logo" loading="lazy">
-        <div>
-          <p class="dm-since">SINCE 1978</p>
-          <p class="dm-title">台興山產・仙加味</p>
+  <!-- HEADER（導覽由 main.js 統一生成；DM 頁仍保留 Header） -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="brand-block" aria-label="回首頁">
+        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="site-logo" loading="lazy" />
+        <div class="brand-text">
+          <p class="brand-since">SINCE 1978</p>
+          <p class="brand-title">台興山產・仙加味</p>
         </div>
       </a>
 
-      <div class="dm-actions">
-        <a href="index.html#all-products" class="btn-soft">看全部產品</a>
-        <a href="guide.html" class="btn-outline">依需求挑選</a>
-        <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-line-strong">LINE 諮詢</a>
-      </div>
+      <button class="nav-toggle" type="button" aria-label="切換主選單">☰</button>
+      <nav class="site-nav"><ul></ul></nav>
     </div>
+  </header>
 
-    <!-- DM 主文 -->
-    <section class="dm-hero">
-      <div class="dm-hero-inner">
-        <p class="dm-kicker">DM / ONE-PAGE</p>
-        <h1 class="dm-h1">龜鹿系列｜日常補養的「節奏」與「選擇」</h1>
-        <p class="dm-lead">
-          我們把龜鹿補養做成膏、飲、湯塊與粉，目的不是讓你一次買齊，
-          而是讓你能依生活型態先選一種最容易持續的方式開始。
-          若你正在接受治療、長期用藥、孕期／備孕或重大疾病史，建議先諮詢專業醫師再安排補養會更安全。
-        </p>
-      </div>
-    </section>
+  <main class="site-main simple-page">
 
-    <section class="dm-grid">
-      <article class="dm-card">
-        <div class="dm-card-inner">
-          <h2>產品方向（依生活情境）</h2>
-          <p>用「做得到」來當第一個判斷點，通常會更快對焦。</p>
-          <ul class="dm-list">
-            <li><strong>龜鹿膏：</strong>作息固定、願意每天留一段時間、希望觀察一罐一段時間變化。</li>
-            <li><strong>龜鹿飲：</strong>工作忙、常外出/出差，希望「一包就走」維持節奏。</li>
-            <li><strong>龜鹿湯塊：</strong>家裡本來就煮湯，想用「一鍋湯」融入家庭飲食。</li>
-            <li><strong>鹿茸粉：</strong>早餐/飲品習慣穩定，想直接加進日常飲食。</li>
-            <li><strong>鹿角原料：</strong>中藥房/中醫診所/餐飲品牌或自煉用途，需穩定原料供應。</li>
-          </ul>
-        </div>
-      </article>
+    <!-- DM：產品一覽（含包裝形式與容量／重量） -->
+    <section class="section reveal" id="dm-products">
+      <div class="section-kicker">DM</div>
+      <h1 class="page-title">產品一覽</h1>
+      <p>點選產品卡片，即可查看完整介紹。</p>
 
-      <article class="dm-card">
-        <div class="dm-card-inner">
-          <h2>諮詢時建議提供的資訊</h2>
-          <p>你不需要一次講很完整；但若能先整理，會更快給出可行方向。</p>
-          <ul class="dm-list">
-            <li>工作型態與作息（例：輪班、久站、久坐、常出差）</li>
-            <li>目前是否有固定服用中藥/西藥或其他保健品</li>
-            <li>你最在意的面向（體力、精神、睡眠或其他）</li>
-            <li>你偏好哪一種形式（膏/飲/湯/粉）或最能做到的情境</li>
-          </ul>
-        </div>
-      </article>
-    </section>
+      <div class="product-grid" id="all-products">
 
-    <div class="dm-note">
-      <strong>提醒：</strong>
-      本頁內容以「日常補養」角度整理，僅供知識交流與選擇參考，不涉及醫療診斷或治療宣稱。
-      若你的狀況屬於醫療判斷範圍，我們也會建議以專業醫師意見為主。
-    </div>
-
-    <!-- QR 區：LINE QR + 官網 QR（你指定的「按鈕／按鈕」形式） -->
-    <section class="qr-panel" aria-label="LINE QR 與官網 QR">
-      <div class="qr-panel-inner">
-        <h2 class="section-title" style="margin:0 0 10px;">掃描 QR｜快速到 LINE 或官網</h2>
-
-        <div class="qr-grid">
-          <!-- LINE QR -->
-          <div class="qr-card">
-            <div class="qr-card-inner">
-              <!-- 若你的檔案不是放在 images/line_qr.png，請把檔名改成你實際的 -->
-              <img src="images/line_qr.png" alt="LINE 官方帳號 QR Code" class="qr-img" loading="lazy">
-              <div class="qr-meta">
-                <p class="qr-title">LINE QR</p>
-                <p class="qr-desc">加入官方 LINE，一對一詢問作息、節奏與選擇方向。</p>
-                <div class="qr-actions">
-                  <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-line-strong">加入 LINE</a>
-                  <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-soft">立即諮詢</a>
-                </div>
-              </div>
-            </div>
+        <!-- 龜鹿膏 -->
+        <article class="product-card">
+          <a class="card-link js-product-modal" href="guilu.html" aria-label="仙加味 龜鹿膏"></a>
+          <div class="product-image-frame">
+            <img src="images/guilu-main.jpg" alt="仙加味 龜鹿膏" loading="lazy">
           </div>
+          <div class="product-name">仙加味 龜鹿膏</div>
+          <p class="product-note">包裝形式：玻璃罐（膏體）</p>
+          <p class="product-note">規格：100 g／罐</p>
+        </article>
 
-          <!-- 官網 QR -->
-          <div class="qr-card">
-            <div class="qr-card-inner">
-              <!-- 官網 QR 圖檔檔名可依你實際檔案調整 -->
-              <img src="images/website_qr.png" alt="官網 QR Code" class="qr-img" loading="lazy">
-              <div class="qr-meta">
-                <p class="qr-title">官網 QR</p>
-                <p class="qr-desc">掃描查看完整產品介紹、FAQ 與挑選指南。</p>
-                <div class="qr-actions">
-                  <a href="index.html" class="btn-outline">前往官網</a>
-                  <a href="index.html#all-products" class="btn-soft">看產品總覽</a>
-                </div>
-              </div>
-            </div>
+        <!-- 龜鹿飲 -->
+        <article class="product-card">
+          <a class="card-link js-product-modal" href="guilu-drink.html" aria-label="仙加味 龜鹿飲"></a>
+          <div class="product-image-frame">
+            <img src="images/guilu-drink.jpg" alt="仙加味 龜鹿飲" loading="lazy">
           </div>
-        </div>
+          <div class="product-name">仙加味 龜鹿飲</div>
+          <p class="product-note">包裝形式：單包即飲（常溫）</p>
+          <p class="product-note">規格：180 cc／包</p>
+        </article>
 
-        <p class="text-note" style="margin:12px 0 0;">
-          若 QR 圖檔未顯示：請確認檔案是否存在於 <strong>images/line_qr.png</strong> 與 <strong>images/website_qr.png</strong>，
-          或將上方 img 的檔名改成你實際放置的名稱。
-        </p>
+        <!-- 龜鹿湯塊 -->
+        <article class="product-card">
+          <a class="card-link js-product-modal" href="soup.html" aria-label="仙加味 龜鹿湯塊"></a>
+          <div class="product-image-frame">
+            <img src="images/guilu-soup-block.jpg" alt="仙加味 龜鹿湯塊" loading="lazy">
+          </div>
+          <div class="product-name">仙加味 龜鹿湯塊</div>
+          <p class="product-note">包裝形式：盒裝湯塊</p>
+          <p class="product-note">規格：半斤／一斤／4 兩</p>
+        </article>
+
+        <!-- 鹿茸粉 -->
+        <article class="product-card">
+          <a class="card-link js-product-modal" href="lurong.html" aria-label="仙加味 鹿茸粉"></a>
+          <div class="product-image-frame">
+            <img src="images/product-lurong-powder.jpg" alt="仙加味 鹿茸粉" loading="lazy">
+          </div>
+          <div class="product-name">仙加味 鹿茸粉</div>
+          <p class="product-note">包裝形式：罐裝粉末</p>
+          <p class="product-note">規格：75 g／罐</p>
+        </article>
+
+        <!-- 鹿角原料 -->
+        <article class="product-card">
+          <a class="card-link js-product-modal" href="antler.html" aria-label="鹿角原料"></a>
+          <div class="product-image-frame">
+            <img src="images/antler-raw.jpg" alt="鹿角原料" loading="lazy">
+          </div>
+          <div class="product-name">鹿角原料</div>
+          <p class="product-note">包裝形式：原料供應（分級／切製）</p>
+          <p class="product-note">規格：依用途、重量與等級報價</p>
+        </article>
+
       </div>
     </section>
 
-    <div class="dm-footer">
-      <p style="margin:0;">
-        台興山產有限公司・仙加味<br>
-        地址：台北市萬華區西昌街 52 號｜
-        電話：<a href="tel:+886223812990">(02) 2381-2990</a>
-      </p>
-    </div>
+    <!-- DM：QR ＋ 按鈕（固定兩組） -->
+    <section class="section reveal" id="dm-contact">
+      <div class="section-kicker">CONTACT</div>
+      <h2 class="section-title">加入官方 LINE／前往官網</h2>
 
-    <!-- 浮動 LINE 按鈕（與全站一致） -->
-    <a href="https://lin.ee/sHZW7NkR"
-       class="line-float"
-       target="_blank"
-       rel="noopener"
-       aria-label="透過 LINE 聯絡我們">
-      <img src="images/line-float-icon.png" alt="LINE" loading="lazy">
-    </a>
+      <div class="dm-qr-grid">
+        <div class="dm-qr">
+          <img src="images/line-qr.jpg" alt="官方 LINE QR Code" loading="lazy" />
+          <div class="dm-qr-caption">官方 LINE</div>
+        </div>
+        <div class="dm-qr">
+          <img src="images/website-qr.jpg" alt="官網 QR Code" loading="lazy" />
+          <div class="dm-qr-caption">官方網站</div>
+        </div>
+      </div>
 
-  </div>
+      <div class="contact-actions">
+        <a class="btn-line-strong btn-full" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">
+          加入官方 LINE 諮詢
+        </a>
+        <a class="btn-outline btn-full" href="index.html" target="_blank" rel="noopener">
+          前往台興山產・仙加味官網
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">台興山產有限公司・仙加味</p>
+    <p class="footer-meta">
+      公司地址：台北市萬華區西昌街 52 號<br>
+      電話：<a href="tel:+886223812990">(02) 2381-2990</a><br>
+      © 台興山產 版權所有
+    </p>
+  </footer>
+
+  <!-- 浮動 LINE -->
+  <a href="https://lin.ee/sHZW7NkR"
+     class="line-float"
+     target="_blank"
+     rel="noopener"
+     aria-label="透過 LINE 聯絡我們">
+    <img src="images/line-float-icon.png" alt="LINE" loading="lazy">
+  </a>
+
+</div>
 </body>
 </html>
