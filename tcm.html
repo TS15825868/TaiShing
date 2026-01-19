@@ -8,7 +8,7 @@
   <meta name="keywords" content="中醫觀點,龜鹿補養,龜鹿膏,龜鹿飲,龜鹿湯塊,鹿茸粉,日常補養節奏,台興山產,仙加味,萬華中藥" />
   <meta name="robots" content="index,follow" />
 
-  <!-- Canonical：已整合為 tcm.html -->
+  <!-- Canonical：tcm.html -->
   <link rel="canonical" href="https://ts15825868.github.io/TaiShing/tcm.html" />
 
   <!-- Open Graph / 社群分享 -->
@@ -125,7 +125,7 @@
     }
     .video-load-btn:hover{ opacity:.92; }
 
-    /* ✅ iframe：只在「點擊」後插入，並嘗試 autoplay=1（使用者互動後允許） */
+    /* ✅ iframe */
     .video-iframe{
       width:100%;
       height:100%;
@@ -159,7 +159,7 @@
 <body>
 <div class="site-wrapper">
 
-  <!-- HEADER（全站統一順序） -->
+  <!-- HEADER（✅ 導覽列交給 main.js 統一生成） -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="brand-block">
@@ -172,17 +172,9 @@
 
       <button class="nav-toggle" type="button" aria-label="切換主選單">☰</button>
 
+      <!-- ✅ 讓 main.js setupUnifiedNav() 生成全站一致順序 -->
       <nav class="site-nav">
-        <ul>
-          <li><a href="index.html" class="nav-link">首頁</a></li>
-          <li><a href="index.html#all-products" class="nav-link">產品總覽</a></li>
-          <li><a href="guide.html" class="nav-link">依需求挑選</a></li>
-          <li><a href="faq.html" class="nav-link">常見問題</a></li>
-          <li><a href="tcm.html" class="nav-link nav-link--active">中醫觀點</a></li>
-          <li><a href="about.html" class="nav-link">關於我們</a></li>
-          <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
-          <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
-        </ul>
+        <ul></ul>
       </nav>
     </div>
   </header>
@@ -198,7 +190,7 @@
         <strong>不涉及醫療診斷或治療</strong>。
       </p>
 
-      <!-- ✅ 聚合頁描述（保留你原本那段） -->
+      <!-- ✅ 聚合頁描述（保留） -->
       <div class="brand-card" style="margin-top:14px;">
         <h2 class="section-title" style="margin:0 0 8px;">聚合頁描述（Search Console 用）</h2>
         <p style="margin:0;">
@@ -208,7 +200,7 @@
         </p>
       </div>
 
-      <!-- ✅ 對照表（第 1 張：你原本的「品牌卡表」版本，保留但用 table-wrap 讓手機可滑） -->
+      <!-- ✅ 對照表（第 1 張） -->
       <div class="brand-card" style="margin-top:14px;">
         <h2 class="section-title" style="margin:0 0 10px;">中醫觀點 → 對應產品（以「能持續的節奏」為判斷）</h2>
         <p style="margin:0 0 10px;">
@@ -266,7 +258,7 @@
       </div>
     </section>
 
-    <!-- ✅ 對照表（第 2 張：你原本「REFERENCE 表」版本，保留且可滑） -->
+    <!-- ✅ 對照表（第 2 張） -->
     <section class="section reveal-up">
       <div class="section-kicker">REFERENCE</div>
       <h2 class="section-title">中醫觀點 → 對應產品（以「節奏」與「使用情境」對照）</h2>
@@ -324,7 +316,7 @@
       </div>
     </section>
 
-    <!-- ✅ 影片區（這裡開始會由 JS 生成卡片） -->
+    <!-- ✅ 影片區 -->
     <section class="section reveal">
       <div class="section-kicker">VIDEOS</div>
       <h2 class="section-title">影片列表（最新在上）</h2>
@@ -335,7 +327,7 @@
       <div class="video-grid" id="videoGrid"></div>
 
       <p class="video-note">
-        補充：影片標題會自動抓取 TikTok 原影片標題（透過 oEmbed），不需要手動輸入。
+        補充：影片標題會嘗試透過 TikTok oEmbed 自動抓取。若 TikTok 端限制跨網域存取，標題會回退為通用標題（不影響觀看）。
       </p>
     </section>
 
@@ -351,11 +343,18 @@
     </p>
   </footer>
 
+  <!-- 浮動 LINE（全站一致） -->
+  <a href="https://lin.ee/sHZW7NkR"
+     class="line-float"
+     target="_blank"
+     rel="noopener"
+     aria-label="透過 LINE 聯絡我們">
+    <img src="images/line-float-icon.png" alt="LINE" loading="lazy">
+  </a>
+
 </div>
 
-<!-- ✅ 第 2/2 批會從這裡接續：VIDEO_LIST + 自動抓標題 + 點擊載入播放 -->
-
-  <script>
+<script>
 /* ===============================
    TikTok 影片清單（只要在這裡加）
    最新的放最上面
@@ -376,12 +375,23 @@ const VIDEO_LIST = [
 ];
 
 /* ===============================
+   工具：擷取 TikTok video id
+   - 支援 https://www.tiktok.com/@xx/video/123...
+================================ */
+function getTikTokVideoId(url){
+  const m = String(url).match(/\/video\/(\d+)/);
+  return m ? m[1] : "";
+}
+
+/* ===============================
    工具：用 oEmbed 抓影片標題
+   - 若被 CORS / 限制則回退通用標題
 ================================ */
 async function fetchTikTokTitle(url) {
   try {
     const api = "https://www.tiktok.com/oembed?url=" + encodeURIComponent(url);
     const res = await fetch(api);
+    if (!res.ok) throw new Error("oEmbed failed: " + res.status);
     const data = await res.json();
     return data.title || "中醫觀點影片";
   } catch (e) {
@@ -390,13 +400,16 @@ async function fetchTikTokTitle(url) {
 }
 
 /* ===============================
-   產生影片卡片
+   產生影片卡片（點擊才載入）
 ================================ */
 async function renderVideos() {
   const grid = document.getElementById("videoGrid");
   if (!grid) return;
 
   for (const url of VIDEO_LIST) {
+    const id = getTikTokVideoId(url);
+    if (!id) continue;
+
     const title = await fetchTikTokTitle(url);
 
     const card = document.createElement("article");
@@ -404,13 +417,13 @@ async function renderVideos() {
 
     card.innerHTML = `
       <h3 class="video-title">
-        ${title}
+        ${escapeHtml(title)}
         <small>合作中醫師公開影片｜僅供觀點參考</small>
       </h3>
 
-      <div class="video-frame">
+      <div class="video-frame" data-video-id="${id}">
         <div class="video-placeholder">
-          <button class="video-load-btn">載入並播放</button>
+          <button class="video-load-btn" type="button">載入並播放</button>
         </div>
       </div>
 
@@ -423,12 +436,15 @@ async function renderVideos() {
     const btn = card.querySelector(".video-load-btn");
 
     btn.addEventListener("click", () => {
+      const vid = frame.getAttribute("data-video-id");
       frame.innerHTML = `
         <iframe
           class="video-iframe"
-          src="https://www.tiktok.com/embed/v2/${url.split("/video/")[1]}?autoplay=1"
+          src="https://www.tiktok.com/embed/v2/${vid}?autoplay=1"
           allow="autoplay; encrypted-media"
           allowfullscreen
+          loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
         ></iframe>
       `;
     });
@@ -438,8 +454,17 @@ async function renderVideos() {
 }
 
 /* ===============================
-   初始化
+   小工具：避免標題插入 HTML
 ================================ */
+function escapeHtml(str){
+  return String(str)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+
 document.addEventListener("DOMContentLoaded", renderVideos);
 </script>
 
