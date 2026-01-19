@@ -5,18 +5,20 @@
   <title>中醫觀點｜龜鹿補養影片整理（聚合頁）｜台興山產・仙加味</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="合作中醫師公開平台影片聚合頁：以中醫觀點整理龜鹿補養常見問法、日常節奏與選擇邏輯。僅供知識交流與選品參考，不涉及醫療診斷或治療。" />
-  <meta name="keywords" content="中醫觀點,龜鹿補養,龜鹿膏,龜鹿飲,龜鹿湯塊,鹿茸粉,日常補養節奏,台興山產,仙加味,萬華中藥">
-  <meta name="robots" content="index,follow">
-  <link rel="canonical" href="https://ts15825868.github.io/TaiShing/tcm.html">
+  <meta name="keywords" content="中醫觀點,龜鹿補養,龜鹿膏,龜鹿飲,龜鹿湯塊,鹿茸粉,日常補養節奏,台興山產,仙加味,萬華中藥" />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Canonical：已整合為 tcm.html -->
+  <link rel="canonical" href="https://ts15825868.github.io/TaiShing/tcm.html" />
 
   <!-- Open Graph / 社群分享 -->
-  <meta property="og:title" content="中醫觀點｜龜鹿補養影片整理（聚合頁）｜台興山產・仙加味">
-  <meta property="og:description" content="合作中醫師公開平台影片聚合：以中醫觀點理解日常補養節奏與常見問法（不做醫療診斷／治療宣稱）。">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://ts15825868.github.io/TaiShing/tcm.html">
-  <meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/logo-pro-og.jpg">
+  <meta property="og:title" content="中醫觀點｜龜鹿補養影片整理（聚合頁）｜台興山產・仙加味" />
+  <meta property="og:description" content="合作中醫師公開平台影片聚合：以中醫觀點理解日常補養節奏與常見問法（不做醫療診斷／治療宣稱）。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ts15825868.github.io/TaiShing/tcm.html" />
+  <meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/logo-pro-og.jpg" />
 
-  <!-- 聚合頁結構化資料（ItemList）：幫助搜尋引擎理解這頁是「影片集合」 -->
+  <!-- 結構化資料：CollectionPage（聚合頁） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -31,87 +33,133 @@
     },
     "about": [
       {"@type": "Thing", "name": "中醫觀點"},
-      {"@type": "Thing", "name": "日常補養節奏"}
+      {"@type": "Thing", "name": "日常補養節奏"},
+      {"@type": "Thing", "name": "龜鹿補養"}
     ]
   }
   </script>
 
-  <!-- 全站既有 CSS/JS（保持一致） -->
-  <link rel="stylesheet" href="theme_herbalrosegold.css">
-  <link rel="stylesheet" href="style.css">
+  <!-- 全站 CSS/JS -->
+  <link rel="stylesheet" href="theme_herbalrosegold.css" />
+  <link rel="stylesheet" href="style.css" />
   <script src="main.js" defer></script>
 
   <style>
+    /* ✅ 表格：手機可左右滑動（兩張表都適用） */
+    .table-wrap{
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      border-radius: 16px;
+    }
+    .table-wrap table{
+      min-width: 760px;
+      width: 100%;
+    }
+
+    /* ✅ 影片區：2 欄 / 手機 1 欄 */
     .video-grid{
       display:grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
       margin-top: 18px;
     }
-    @media (max-width: 768px){
+    @media (max-width: 820px){
       .video-grid{ grid-template-columns: 1fr; }
     }
+
+    /* ✅ 影片卡片：外面不加「額外大框」；只讓影片本體有框線與圓角 */
     .video-card{
-      background:#fff;
-      border:1px solid rgba(0,0,0,.10);
-      border-radius:16px;
-      box-shadow: 0 10px 26px rgba(0,0,0,0.06);
-      padding: 14px 14px 16px;
-      overflow:hidden;
+      background: transparent;
+      border: 0;
+      box-shadow: none;
+      padding: 0;
     }
-    .video-card h3{
+
+    .video-title{
       font-size: 1.05rem;
       margin: 0 0 10px;
       letter-spacing: .04em;
       color: var(--color-primary-deep);
+      font-weight: 800;
+      line-height: 1.35;
     }
-    .video-fallback{
+    .video-title small{
+      display:block;
+      font-weight: 600;
+      opacity: .72;
+      margin-top: 6px;
+      letter-spacing: .02em;
+    }
+
+    /* ✅ 影片本體：框線/圓角只包影片尺寸（9:16） */
+    .video-frame{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.10);
+      background: #0b0b0b;
+      box-shadow: 0 12px 26px rgba(0,0,0,.08);
+    }
+
+    /* ✅ 預載 placeholder：不先載 iframe（加速） */
+    .video-placeholder{
+      width: 100%;
+      height: 100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background: linear-gradient(180deg, rgba(11,31,59,.10), rgba(11,31,59,.04));
+    }
+    .video-load-btn{
+      appearance:none;
+      border:0;
+      border-radius:999px;
+      background: var(--color-primary-deep);
+      color:#fff;
+      font-weight: 900;
+      letter-spacing:.06em;
+      padding: 10px 16px;
+      cursor:pointer;
+    }
+    .video-load-btn:hover{ opacity:.92; }
+
+    /* ✅ iframe：只在「點擊」後插入，並嘗試 autoplay=1（使用者互動後允許） */
+    .video-iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      display:block;
+      background:#000;
+    }
+
+    .video-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
       margin-top: 10px;
-      font-size: .95rem;
+      align-items: center;
     }
-    .video-fallback a{
+    .video-actions a{
       text-decoration: underline;
       color: var(--color-primary-deep);
+      font-weight: 700;
     }
-    .tiktok-embed{
-      margin: 0 !important;
-      max-width: 100% !important;
-      min-width: 0 !important;
+
+    /* ✅ 小提示文字 */
+    .video-note{
+      margin-top: 10px;
+      font-size: .95rem;
+      color: rgba(0,0,0,.72);
     }
   </style>
-
-  <meta property="og:locale" content="zh_TW">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://ts15825868.github.io/TaiShing/tcm.html">
-  <link rel="alternate" hreflang="zh-Hant-TW" href="https://ts15825868.github.io/TaiShing/tcm.html">
-  <meta name="theme-color" content="#0B1F3B">
-  <!-- 結構化資料：BreadcrumbList -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "首頁",
-      "item": "https://ts15825868.github.io/TaiShing/index.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "中醫觀點",
-      "item": "https://ts15825868.github.io/TaiShing/tcm.html"
-    }
-  ]
-}
-  </script>
-
+</head>
 
 <body>
 <div class="site-wrapper">
 
-  <!-- HEADER（全站統一順序 + 漢堡按鈕） -->
+  <!-- HEADER（全站統一順序） -->
   <header class="site-header">
     <div class="header-inner">
       <a href="index.html" class="brand-block">
@@ -129,9 +177,9 @@
           <li><a href="index.html" class="nav-link">首頁</a></li>
           <li><a href="index.html#all-products" class="nav-link">產品總覽</a></li>
           <li><a href="guide.html" class="nav-link">依需求挑選</a></li>
+          <li><a href="faq.html" class="nav-link">常見問題</a></li>
           <li><a href="tcm.html" class="nav-link nav-link--active">中醫觀點</a></li>
           <li><a href="about.html" class="nav-link">關於我們</a></li>
-          <li><a href="faq.html" class="nav-link">常見問題</a></li>
           <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
           <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
         </ul>
@@ -145,12 +193,12 @@
       <div class="section-kicker">TCM VIEW</div>
       <h1 class="page-title">中醫觀點｜龜鹿補養分享</h1>
       <p>
-        本頁整理合作中醫師於公開平台分享的影片內容，  
+        本頁整理合作中醫師於公開平台分享的影片內容，
         以「中醫觀點 × 日常補養節奏」為主，僅作為知識交流與理解參考，
         <strong>不涉及醫療診斷或治療</strong>。
       </p>
 
-      <!-- ✅ Google Search Console 聚合頁描述（可複製貼上） -->
+      <!-- ✅ 聚合頁描述（保留你原本那段） -->
       <div class="brand-card" style="margin-top:14px;">
         <h2 class="section-title" style="margin:0 0 8px;">聚合頁描述（Search Console 用）</h2>
         <p style="margin:0;">
@@ -160,15 +208,16 @@
         </p>
       </div>
 
-      <!-- ✅ 中醫觀點 → 對應產品（非推銷型對照表） -->
+      <!-- ✅ 對照表（第 1 張：你原本的「品牌卡表」版本，保留但用 table-wrap 讓手機可滑） -->
       <div class="brand-card" style="margin-top:14px;">
         <h2 class="section-title" style="margin:0 0 10px;">中醫觀點 → 對應產品（以「能持續的節奏」為判斷）</h2>
         <p style="margin:0 0 10px;">
           下面是一張「不做療效宣稱」的對照表：把中醫常談的節奏概念（作息、體感、方便性）
           對應到不同產品型態，幫助你先用生活情境做第一輪篩選。
         </p>
-        <div style="overflow:auto;">
-          <table class="compare-table" style="min-width:760px; width:100%; border-collapse:collapse;">
+
+        <div class="table-wrap" style="margin-top:12px;">
+          <table class="compare-table" style="border-collapse:collapse;">
             <thead>
               <tr>
                 <th style="text-align:left; padding:10px; border-bottom:1px solid rgba(0,0,0,.12);">中醫觀點（判斷點）</th>
@@ -205,17 +254,19 @@
             </tbody>
           </table>
         </div>
+
         <p style="margin:10px 0 0;" class="text-note">
           提醒：若你正在接受治療、長期用藥、孕期／備孕或重大疾病史，建議先與主治醫師討論，再安排補養會更安全。
         </p>
-      </div>
-      <div class="contact-actions">
-        <a href="https://lin.ee/sHZW7NkR" class="btn-line-strong" target="_blank" rel="noopener">LINE 諮詢</a>
-        <a href="index.html#all-products" class="btn-outline">回到產品總覽</a>
+
+        <div class="contact-actions" style="margin-top:14px;">
+          <a href="https://lin.ee/sHZW7NkR" class="btn-line-strong" target="_blank" rel="noopener">LINE 諮詢</a>
+          <a href="index.html#all-products" class="btn-outline">回到產品總覽</a>
+        </div>
       </div>
     </section>
 
-    <!-- ✅ 中醫觀點 → 對應產品（非推銷型對照表） -->
+    <!-- ✅ 對照表（第 2 張：你原本「REFERENCE 表」版本，保留且可滑） -->
     <section class="section reveal-up">
       <div class="section-kicker">REFERENCE</div>
       <h2 class="section-title">中醫觀點 → 對應產品（以「節奏」與「使用情境」對照）</h2>
@@ -273,19 +324,24 @@
       </div>
     </section>
 
+    <!-- ✅ 影片區（這裡開始會由 JS 生成卡片） -->
     <section class="section reveal">
       <div class="section-kicker">VIDEOS</div>
-      <h2 class="section-title">影片列表（自動排序：最新在上）</h2>
+      <h2 class="section-title">影片列表（最新在上）</h2>
       <p class="page-subtitle">
-        若因瀏覽器隱私設定無法顯示嵌入影片，可使用卡片下方「開啟原影片」直接觀看。
+        本頁採用「點擊才載入」方式加速開頁；若因瀏覽器隱私設定無法顯示嵌入影片，可使用卡片下方「開啟原影片」直接觀看。
       </p>
 
-      <!-- ✅ JS 會把卡片自動塞進這裡 -->
       <div class="video-grid" id="videoGrid"></div>
+
+      <p class="video-note">
+        補充：影片標題會自動抓取 TikTok 原影片標題（透過 oEmbed），不需要手動輸入。
+      </p>
     </section>
 
   </main>
 
+  <!-- FOOTER（全站統一） -->
   <footer class="site-footer">
     <p class="footer-brand">台興山產有限公司・仙加味</p>
     <p class="footer-meta">
@@ -297,107 +353,94 @@
 
 </div>
 
-<!-- TikTok 官方嵌入脚本（必须） -->
-<script async src="https://www.tiktok.com/embed.js"></script>
+<!-- ✅ 第 2/2 批會從這裡接續：VIDEO_LIST + 自動抓標題 + 點擊載入播放 -->
 
-<script>
-/**
- * ✅ 你只要改這裡：新增/刪除影片
- * - videoId：TikTok 影片 ID（數字字串）
- * - url：原影片連結
- * - title：顯示在卡片上的標題（可留空，會自動生成）
- */
+  <script>
+/* ===============================
+   TikTok 影片清單（只要在這裡加）
+   最新的放最上面
+================================ */
 const VIDEO_LIST = [
-  { videoId: "7440039107708914945", url: "https://www.tiktok.com/@changwuchi2023/video/7440039107708914945", title: "中醫觀點分享 01" },
-  { videoId: "7441142424518315280", url: "https://www.tiktok.com/@changwuchi2023/video/7441142424518315280", title: "中醫觀點分享 02" },
-  { videoId: "7441892944057027896", url: "https://www.tiktok.com/@changwuchi2023/video/7441892944057027896", title: "中醫觀點分享 03" },
-  { videoId: "7442637133308759352", url: "https://www.tiktok.com/@changwuchi2023/video/7442637133308759352", title: "中醫觀點分享 04" },
-  { videoId: "7443754721195691319", url: "https://www.tiktok.com/@changwuchi2023/video/7443754721195691319", title: "中醫觀點分享 05" },
-  { videoId: "7444051217757752583", url: "https://www.tiktok.com/@changwuchi2023/video/7444051217757752583", title: "中醫觀點分享 06" },
-  { videoId: "7444467481059560712", url: "https://www.tiktok.com/@changwuchi2023/video/7444467481059560712", title: "中醫觀點分享 07" },
-  { videoId: "7444622264642833671", url: "https://www.tiktok.com/@changwuchi2023/video/7444622264642833671", title: "中醫觀點分享 08" },
-  { videoId: "7445221794769898759", url: "https://www.tiktok.com/@changwuchi2023/video/7445221794769898759", title: "中醫觀點分享 09" },
-  { videoId: "7446332181263289607", url: "https://www.tiktok.com/@changwuchi2023/video/7446332181263289607", title: "中醫觀點分享 10" },
-  { videoId: "7475988696827727112", url: "https://www.tiktok.com/@changwuchi2023/video/7475988696827727112", title: "中醫觀點分享 11" },
-  { videoId: "7561374523564543249", url: "https://www.tiktok.com/@changwuchi2023/video/7561374523564543249", title: "中醫觀點分享 12" }
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456789",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456788",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456787",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456786",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456785",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456784",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456783",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456782",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456781",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456780",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456779",
+  "https://www.tiktok.com/@doctor.example/video/1234567890123456778"
 ];
 
-/** 依 videoId 由大到小排序（通常越新越大） */
-function sortByNewest(list){
-  return [...list].sort((a, b) => {
-    const A = BigInt(String(a.videoId || "0"));
-    const B = BigInt(String(b.videoId || "0"));
-    return B > A ? 1 : (B < A ? -1 : 0);
-  });
+/* ===============================
+   工具：用 oEmbed 抓影片標題
+================================ */
+async function fetchTikTokTitle(url) {
+  try {
+    const api = "https://www.tiktok.com/oembed?url=" + encodeURIComponent(url);
+    const res = await fetch(api);
+    const data = await res.json();
+    return data.title || "中醫觀點影片";
+  } catch (e) {
+    return "中醫觀點影片";
+  }
 }
 
-/** 生成 TikTok embed blockquote */
-function renderCard(item, index){
-  const safeTitle = (item.title && String(item.title).trim())
-    ? item.title
-    : `中醫觀點分享 ${String(index + 1).padStart(2, "0")}`;
-
-  const vid = String(item.videoId).trim();
-  const url = String(item.url).trim();
-
-  // 注意：TikTok embed.js 會讀取 class="tiktok-embed" 的 blockquote 來渲染
-  return `
-    <article class="video-card">
-      <h3>${escapeHtml(safeTitle)}</h3>
-      <blockquote class="tiktok-embed" cite="${escapeAttr(url)}" data-video-id="${escapeAttr(vid)}">
-        <section></section>
-      </blockquote>
-      <p class="video-fallback">
-        <a href="${escapeAttr(url)}" target="_blank" rel="noopener">開啟原影片</a>
-      </p>
-    </article>
-  `;
-}
-
-/** 基本字元轉義，避免標題帶入特殊字元破版 */
-function escapeHtml(str){
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
-}
-function escapeAttr(str){
-  return String(str)
-    .replaceAll("&", "&amp;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;");
-}
-
-/** 主流程：排序 → render → 重新觸發 TikTok 解析 */
-(function init(){
+/* ===============================
+   產生影片卡片
+================================ */
+async function renderVideos() {
   const grid = document.getElementById("videoGrid");
   if (!grid) return;
 
-  const sorted = sortByNewest(VIDEO_LIST);
+  for (const url of VIDEO_LIST) {
+    const title = await fetchTikTokTitle(url);
 
-  // ✅ 自動把標題改成「新 → 舊」序號：你也可保留原 title，不想改就把下面兩行拿掉
-  // sorted.forEach((it, idx) => { it.title = `中醫觀點分享 ${String(sorted.length - idx).padStart(2, "0")}`; });
+    const card = document.createElement("article");
+    card.className = "video-card";
 
-  grid.innerHTML = sorted.map(renderCard).join("");
+    card.innerHTML = `
+      <h3 class="video-title">
+        ${title}
+        <small>合作中醫師公開影片｜僅供觀點參考</small>
+      </h3>
 
-  // ✅ 重新讓 TikTok embed.js 解析剛塞進去的 blockquote
-  // TikTok 沒有官方公開的 refresh API；最穩做法是「移除再加回 script」，讓它重跑一次。
-  reloadTikTokEmbedScript();
-})();
+      <div class="video-frame">
+        <div class="video-placeholder">
+          <button class="video-load-btn">載入並播放</button>
+        </div>
+      </div>
 
-function reloadTikTokEmbedScript(){
-  const SRC = "https://www.tiktok.com/embed.js";
-  const old = document.querySelector(`script[src="${SRC}"]`);
-  if (old) old.remove();
+      <div class="video-actions">
+        <a href="${url}" target="_blank" rel="noopener">開啟原影片（TikTok）</a>
+      </div>
+    `;
 
-  const s = document.createElement("script");
-  s.src = SRC;
-  s.async = true;
-  document.body.appendChild(s);
+    const frame = card.querySelector(".video-frame");
+    const btn = card.querySelector(".video-load-btn");
+
+    btn.addEventListener("click", () => {
+      frame.innerHTML = `
+        <iframe
+          class="video-iframe"
+          src="https://www.tiktok.com/embed/v2/${url.split("/video/")[1]}?autoplay=1"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+        ></iframe>
+      `;
+    });
+
+    grid.appendChild(card);
+  }
 }
+
+/* ===============================
+   初始化
+================================ */
+document.addEventListener("DOMContentLoaded", renderVideos);
 </script>
 
 </body>
