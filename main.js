@@ -5,8 +5,6 @@
    - Reveal animations（✅ iOS/Safari 首屏不再空白）
    - Floating LINE button helper（用既有 .line-float，沒有才自動生成）
    - Mobile 漢堡選單：點外面 or 捲動自動收合
-   - ✅ Unified NAV (JS generated) + remove LINE item
-   - ✅ Product modal loads product detail pages into modal
    ========================================================= */
 (function () {
   "use strict";
@@ -200,17 +198,17 @@
     const navUl = document.querySelector(".site-nav ul");
     if (!navUl) return;
 
-    // ✅ 全站一致順序（依你要求）
-    // ✅ 中醫觀點：統一改成 tcm.html
+    // 你要的固定順序（全站一致）
+    // ✅ 對齊你目前站上實際頁面：tcm.html / story.html / contact.html
     const items = [
       { href: "index.html", label: "首頁", key: "home" },
       { href: "index.html#all-products", label: "產品總覽", key: "products" },
       { href: "guide.html", label: "依需求挑選", key: "guide" },
-      { href: "tcm.html", label: "中醫觀點", key: "tcm" },
-      { href: "about.html", label: "關於我們", key: "about" },
       { href: "faq.html", label: "常見問題", key: "faq" },
+      { href: "tcm.html", label: "中醫觀點", key: "tcm" },
+      { href: "story.html", label: "品牌故事", key: "story" },
       { href: "contact.html", label: "聯絡我們", key: "contact" }
-      // ❌ LINE：依你的需求，從漢堡選單移除
+      // ❌ LINE：依你的需求，從漢堡選單移除（改由浮動 LINE / CTA 入口）
     ];
 
     const path = (window.location.pathname || "").split("/").pop() || "index.html";
@@ -220,224 +218,250 @@
       if (key === "home") return path === "" || path === "index.html";
       if (key === "products") return (path === "" || path === "index.html") && hash === "#all-products";
       if (key === "guide") return path === "guide.html";
-      if (key === "tcm") return path === "tcm.html";
-      if (key === "about") return path === "about.html";
       if (key === "faq") return path === "faq.html";
+      if (key === "tcm") return path === "tcm.html";
+      if (key === "story") return path === "story.html";
       if (key === "contact") return path === "contact.html";
       return false;
     }
 
+    // 生成 HTML
     navUl.innerHTML = items
       .map((it) => {
         const active = isActive(it.key) ? " nav-link--active" : "";
+        // 站內連結一律同分頁，不加 target
         return `<li><a href="${it.href}" class="nav-link${active}">${it.label}</a></li>`;
       })
       .join("");
   }
 
+  
   // ------------------------------
   // ✅ 產品「不換頁」彈窗：載入「原本詳細頁」內容（不換頁）
+  // - 觸發：.js-product-modal（連結 href 保留原詳情頁，利於 SEO/分享）
+  // - 內容：抓取 href 頁面中的 <main>（或 .site-main）塞進彈窗
+  // - 支援：Esc/背景/按鈕關閉、頁內錨點在彈窗內滾動、快速跳轉目錄
   // ------------------------------
   function setupProductModalFromPages() {
-    const modal = ensureProductModal();
-    const overlay = modal.querySelector(".modal-overlay");
-    const dialog = modal.querySelector(".modal-dialog");
-    const titleEl = modal.querySelector(".modal-title");
-    const tocEl = modal.querySelector(".modal-toc");
-    const bodyEl = modal.querySelector(".modal-body");
-    const closeBtn = modal.querySelector(".modal-close");
-    let tocToggleBtn = modal.querySelector(".modal-toc-toggle");
+    // ✅ 全站都要啟用「產品連結 -> 彈窗」的統一規則：
+    // - 即使某頁面沒有 .js-product-modal，也要能攔截內容區域內指向產品詳情頁的連結
+    // - 避免 FAQ / 故事頁等頁面因為沒有 trigger class 而漏掉彈窗行為
 
+    const modal = ensureProductModal();
+    const overlay = modal.querySelector('.modal-overlay');
+    const dialog = modal.querySelector('.modal-dialog');
+    const titleEl = modal.querySelector('.modal-title');
+    const tocEl = modal.querySelector('.modal-toc');
+    const bodyEl = modal.querySelector('.modal-body');
+    const closeBtn = modal.querySelector('.modal-close');
+    let tocToggleBtn = modal.querySelector('.modal-toc-toggle');
+    // Back-compat: if modal existed from old build without the toggle button, inject it.
     if (!tocToggleBtn && closeBtn && closeBtn.parentElement) {
-      tocToggleBtn = document.createElement("button");
-      tocToggleBtn.type = "button";
-      tocToggleBtn.className = "modal-toc-toggle";
-      tocToggleBtn.setAttribute("aria-label", "顯示目錄");
-      tocToggleBtn.setAttribute("aria-pressed", "false");
-      tocToggleBtn.textContent = "目錄";
+      tocToggleBtn = document.createElement('button');
+      tocToggleBtn.type = 'button';
+      tocToggleBtn.className = 'modal-toc-toggle';
+      tocToggleBtn.setAttribute('aria-label', '顯示目錄');
+      tocToggleBtn.setAttribute('aria-pressed', 'false');
+      tocToggleBtn.textContent = '目錄';
       closeBtn.parentElement.insertBefore(tocToggleBtn, closeBtn);
     }
 
-    const LINE_URL = "https://lin.ee/sHZW7NkR";
-    let lastFocus = null;
+    // CTA link for "先聊聊狀況" button inside the TOC
+    const LINE_URL = 'https://lin.ee/sHZW7NkR';
+
+    let lastFocus = null; // element to restore focus to when modal closes
     let scrollY = 0;
 
     function focusRestore(el) {
-      if (!el || !document.contains(el) || typeof el.focus !== "function") return;
+      if (!el || !document.contains(el) || typeof el.focus !== 'function') return;
 
-      const isNaturallyFocusable =
-        el.matches("a[href], button, input, select, textarea, summary") || el.hasAttribute("tabindex");
+      const isNaturallyFocusable = (
+        el.matches('a[href], button, input, select, textarea, summary') ||
+        el.hasAttribute('tabindex')
+      );
 
       let madeTabbable = false;
       if (!isNaturallyFocusable) {
-        el.setAttribute("tabindex", "-1");
+        el.setAttribute('tabindex', '-1');
         madeTabbable = true;
       }
 
       try {
+        // Avoid scroll jumps when possible
         el.focus({ preventScroll: true });
       } catch (e) {
         el.focus();
       }
 
-      if (madeTabbable) el.removeAttribute("tabindex");
+      if (madeTabbable) {
+        // Keep DOM clean
+        el.removeAttribute('tabindex');
+      }
     }
 
     function lockScroll() {
+      // Robust scroll lock (esp. iOS/Safari): freeze body at current scroll position
       scrollY = window.scrollY || document.documentElement.scrollTop || 0;
-      document.documentElement.classList.add("modal-open");
-      document.body.classList.add("modal-open");
-      document.body.style.position = "fixed";
+      document.documentElement.classList.add('modal-open');
+      document.body.classList.add('modal-open');
+      document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
-      document.body.style.left = "0";
-      document.body.style.right = "0";
-      document.body.style.width = "100%";
+      document.body.style.left = '0';
+      document.body.style.right = '0';
+      document.body.style.width = '100%';
     }
 
     function unlockScroll() {
-      document.documentElement.classList.remove("modal-open");
-      document.body.classList.remove("modal-open");
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.left = "";
-      document.body.style.right = "";
-      document.body.style.width = "";
+      document.documentElement.classList.remove('modal-open');
+      document.body.classList.remove('modal-open');
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
+      document.body.style.right = '';
+      document.body.style.width = '';
       window.scrollTo(0, scrollY);
     }
 
     function openModal(triggerEl) {
+      // Prefer the actual click trigger (link/card) over document.activeElement
       lastFocus = triggerEl || document.activeElement;
-      modal.classList.remove("is-closing");
-      modal.classList.remove("is-body-scrolled");
+      modal.classList.remove('is-closing');
+      modal.classList.remove('is-body-scrolled');
       lockScroll();
-      modal.setAttribute("aria-hidden", "false");
-      modal.classList.add("is-open");
+      modal.setAttribute('aria-hidden', 'false');
+      modal.classList.add('is-open');
+      // focus close for accessibility
       setTimeout(() => closeBtn && closeBtn.focus(), 0);
     }
 
     function closeModal() {
-      if (!modal.classList.contains("is-open")) return;
-      if (modal.classList.contains("is-closing")) return;
+      if (!modal.classList.contains('is-open')) return;
+      if (modal.classList.contains('is-closing')) return;
 
-      modal.classList.add("is-closing");
+      // Fade-out animation
+      modal.classList.add('is-closing');
       setTimeout(() => {
-        modal.classList.remove("is-open");
-        modal.classList.remove("is-closing");
-        modal.classList.remove("is-body-scrolled");
-        modal.classList.remove("is-toc-peek");
-        modal.setAttribute("aria-hidden", "true");
+        modal.classList.remove('is-open');
+        modal.classList.remove('is-closing');
+        modal.classList.remove('is-body-scrolled');
+        modal.setAttribute('aria-hidden', 'true');
         unlockScroll();
+
+        // restore focus back to the trigger element
         if (lastFocus) setTimeout(() => focusRestore(lastFocus), 0);
       }, 200);
     }
 
     function setLoading(titleText) {
-      titleEl.textContent = titleText || "產品介紹";
-      tocEl.innerHTML = "";
-      bodyEl.innerHTML =
-        '<div class="modal-loading">' +
-        '<div class="modal-loading-bar"></div>' +
-        '<div class="modal-loading-bar"></div>' +
-        '<div class="modal-loading-bar"></div>' +
-        "</div>";
+      titleEl.textContent = titleText || '產品介紹';
+      tocEl.innerHTML = '';
+      bodyEl.innerHTML = (
+        '<div class="modal-loading">'
+        + '<div class="modal-loading-bar"></div>'
+        + '<div class="modal-loading-bar"></div>'
+        + '<div class="modal-loading-bar"></div>'
+        + '</div>'
+      );
     }
 
     function buildToc(container) {
-      const all = Array.from(container.querySelectorAll("h2[id], h3[id]")).filter(
-        (h) => (h.textContent || "").trim().length > 0
-      );
+      const all = Array.from(container.querySelectorAll('h2[id], h3[id]'))
+        .filter(h => (h.textContent || '').trim().length > 0);
 
       if (!all.length) {
-        tocEl.innerHTML = "";
+        tocEl.innerHTML = '';
         return;
       }
 
-      // ✅ TOC 固定順序
-      const preferOrder = [
-        { key: "aud", re: /(適合|族群|對象|誰適合|推薦對象)/ },
-        { key: "spec", re: /(規格|容量|重量|包裝|內容量)/ },
-        { key: "ing", re: /(成分|原料|配方|內容物)/ },
-        { key: "use", re: /(吃法|用法|使用|怎麼吃|沖泡|料理)/ },
-        { key: "faq", re: /(常見問題|FAQ)/i },
-        { key: "keep", re: /(保存|存放|冷藏|保存方式)/ },
-        { key: "note", re: /(注意|提醒|不建議|不適合|禁忌)/ },
-        { key: "chat", re: /(先聊聊狀況|再評估|評估是否適用|聊聊狀況)/ }
+      // Prefer a few practical jumps: 規格 / 成分 / 吃法 / FAQ / 保存 / 注意
+      const prefer = [
+        { key: 'aud',   re: /(適合|族群|對象|誰適合|推薦對象)/ },
+        { key: 'spec',  re: /(規格|容量|重量|包裝|內容量)/ },
+        { key: 'ing',   re: /(成分|原料|配方|內容物)/ },
+        { key: 'use',   re: /(吃法|用法|使用|怎麼吃|沖泡|料理)/ },
+        { key: 'faq',   re: /(常見問題|FAQ)/i },
+        { key: 'keep',  re: /(保存|存放|冷藏|保存方式)/ },
+        { key: 'note',  re: /(注意|提醒|不建議|不適合|禁忌)/ },
+        // Optional CTA-like heading; will be transformed into LINE consultation button
+        { key: 'chat',  re: /(先聊聊狀況|再評估|評估是否適用|聊聊狀況)/ }
       ];
 
       const picked = [];
-      const used = new Set();
+      const usedKeys = new Set();
 
-      for (const p of preferOrder) {
-        const hit = all.find((h) => p.re.test(((h.textContent || "").trim())));
-        if (hit && !used.has(hit)) {
-          picked.push(hit);
-          used.add(hit);
+      for (const h of all) {
+        const t = (h.textContent || '').trim();
+        for (const p of prefer) {
+          if (usedKeys.has(p.key)) continue;
+          if (p.re.test(t)) {
+            picked.push(h);
+            usedKeys.add(p.key);
+            break;
+          }
         }
       }
 
+      // Fill remaining slots with the first few headings (keep overall order)
       for (const h of all) {
-        if (used.has(h)) continue;
+        if (picked.includes(h)) continue;
         picked.push(h);
-        used.add(h);
         if (picked.length >= 8) break;
       }
 
       const labelFor = (text) => {
-        const t = (text || "").trim();
-        if (/(先聊聊狀況|聊聊狀況|再評估|評估是否適用)/.test(t)) return "先聊聊狀況";
-        if (/(適合|族群|對象|誰適合|推薦對象)/.test(t)) return "適合族群";
-        if (/(吃法|用法|使用|怎麼吃|沖泡|料理)/.test(t)) return "使用方式";
-        if (/(常見問題|FAQ)/i.test(t)) return "常見問題";
-        if (/(成分|原料|配方|內容物)/.test(t)) return "成份";
-        if (/(規格|容量|重量|包裝|內容量)/.test(t)) return "規格";
-        if (/(保存|存放|冷藏|保存方式)/.test(t)) return "保存";
-        if (/(注意|提醒|不建議|不適合|禁忌)/.test(t)) return "注意";
+        const t = (text || '').trim();
+        if (/(先聊聊狀況|聊聊狀況|再評估|評估是否適用)/.test(t)) return '先聊聊狀況';
+        if (/(適合|族群|對象|誰適合|推薦對象)/.test(t)) return '適合族群';
+        if (/(吃法|用法|使用|怎麼吃|沖泡|料理)/.test(t)) return '使用方式';
+        if (/(常見問題|FAQ)/i.test(t)) return '常見問題';
+        if (/(成分|原料|配方|內容物)/.test(t)) return '成份';
+        if (/(規格|容量|重量|包裝|內容量)/.test(t)) return '規格';
+        if (/(保存|存放|冷藏|保存方式)/.test(t)) return '保存';
+        if (/(注意|提醒|不建議|不適合|禁忌)/.test(t)) return '注意';
         return t;
       };
 
       const frag = document.createDocumentFragment();
-      picked.slice(0, 8).forEach((h) => {
-        const raw = (h.textContent || "").trim();
+      picked.slice(0, 8).forEach(h => {
+        const raw = (h.textContent || '').trim();
         const label = labelFor(raw);
 
-        const a = document.createElement("a");
-        a.className = "modal-toc-link";
+        const a = document.createElement('a');
+        a.className = 'modal-toc-link';
 
-        if (label === "先聊聊狀況") {
-          a.classList.add("modal-toc-cta");
+        // Transform specific heading into LINE CTA button
+        if (label === '先聊聊狀況') {
+          a.classList.add('modal-toc-cta');
           a.href = LINE_URL;
-          a.target = "_blank";
-          a.rel = "noopener";
+          a.target = '_blank';
+          a.rel = 'noopener';
         } else {
-          a.href = "#" + h.id;
+          a.href = '#' + h.id;
         }
 
         a.textContent = label;
         frag.appendChild(a);
       });
 
-      tocEl.innerHTML = "";
+      tocEl.innerHTML = '';
       tocEl.appendChild(frag);
     }
 
     function scrollToAnchor(anchorId) {
-      const target = bodyEl.querySelector("#" + CSS.escape(anchorId));
+      const target = bodyEl.querySelector('#' + CSS.escape(anchorId));
       if (!target) return;
-      const top =
-        target.getBoundingClientRect().top -
-        bodyEl.getBoundingClientRect().top +
-        bodyEl.scrollTop -
-        8;
-      bodyEl.scrollTo({ top, behavior: "smooth" });
+      const top = target.getBoundingClientRect().top - bodyEl.getBoundingClientRect().top + bodyEl.scrollTop - 8;
+      bodyEl.scrollTo({ top, behavior: 'smooth' });
     }
 
-    tocEl.addEventListener("click", (e) => {
-      const link = e.target.closest("a");
+    // TOC quick-jump inside modal (避免只改 hash、不滾動)
+    tocEl.addEventListener('click', (e) => {
+      const link = e.target.closest('a');
       if (!link) return;
-      if (link.classList.contains("modal-toc-cta")) return;
-
-      const href = link.getAttribute("href") || "";
-      if (!href.startsWith("#")) return;
+      // CTA button opens LINE; do not intercept
+      if (link.classList.contains('modal-toc-cta')) return;
+      const href = link.getAttribute('href') || '';
+      if (!href.startsWith('#')) return;
       e.preventDefault();
       scrollToAnchor(href.slice(1));
     });
@@ -446,70 +470,79 @@
       setLoading(fallbackTitle);
 
       try {
-        const res = await fetch(href, { cache: "no-store" });
-        if (!res.ok) throw new Error("Fetch failed: " + res.status);
+        const res = await fetch(href, { cache: 'no-store' });
+        if (!res.ok) throw new Error('Fetch failed: ' + res.status);
         const html = await res.text();
-        const doc = new DOMParser().parseFromString(html, "text/html");
+        const doc = new DOMParser().parseFromString(html, 'text/html');
 
-        const pageTitle = (doc.querySelector("title")?.textContent || "").trim();
-        titleEl.textContent = pageTitle || fallbackTitle || "產品介紹";
+        // Title
+        const pageTitle = (doc.querySelector('title')?.textContent || '').trim();
+        titleEl.textContent = pageTitle || fallbackTitle || '產品介紹';
 
-        const main = doc.querySelector("main") || doc.querySelector(".site-main") || doc.body;
-        const wrapper = document.createElement("div");
-        wrapper.className = "modal-page";
+        // Main
+        const main = doc.querySelector('main') || doc.querySelector('.site-main') || doc.body;
+        const wrapper = document.createElement('div');
+        wrapper.className = 'modal-page';
         wrapper.innerHTML = main.innerHTML;
 
-        wrapper
-          .querySelectorAll(".line-float, .site-header, .site-footer, script, noscript")
-          .forEach((el) => el.remove());
+        // Remove nested floating LINE buttons or duplicate wrappers if any
+        wrapper.querySelectorAll('.line-float, .site-header, .site-footer, script, noscript').forEach(el => el.remove());
 
-        wrapper.querySelectorAll(".reveal, .reveal-up").forEach((el) => {
-          el.classList.add("is-visible");
+        // ✅ 詳情頁多數區塊使用 .reveal 動畫；在彈窗內沒有 IntersectionObserver 觸發，
+        //    會導致「圖片/文字看不到」。在彈窗中直接強制顯示。
+        wrapper.querySelectorAll('.reveal, .reveal-up').forEach(el => {
+          el.classList.add('is-visible');
         });
 
-        wrapper.querySelectorAll(".back-link").forEach((a) => {
-          a.textContent = "關閉";
-          a.setAttribute("href", "#");
-          a.setAttribute("role", "button");
-          a.classList.add("modal-close-link");
-          a.addEventListener("click", (evt) => {
+        // ✅ 將詳情頁內的「← 返回產品列表」在彈窗模式下改成「關閉」並直接關閉彈窗
+        wrapper.querySelectorAll('.back-link').forEach((a) => {
+          a.textContent = '關閉';
+          a.setAttribute('href', '#');
+          a.setAttribute('role', 'button');
+          a.classList.add('modal-close-link');
+          a.addEventListener('click', (evt) => {
             evt.preventDefault();
             closeModal();
           });
         });
 
+        // Ensure IDs exist for headings so toc/anchors work reliably
         const used = new Set();
         const slugify = (text) => {
-          const base = (text || "")
+          const base = (text || '')
             .toString()
             .trim()
             .toLowerCase()
-            .replace(/[^\u4e00-\u9fff\w\s-]+/g, "")
-            .replace(/\s+/g, "-")
-            .replace(/-+/g, "-")
-            .replace(/^-|-$/g, "");
-          return base || "section";
+            // keep chinese/english/nums, collapse others into '-'
+            .replace(/[^\u4e00-\u9fff\w\s-]+/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+          return base || 'section';
         };
 
-        wrapper.querySelectorAll("h2, h3").forEach((h) => {
-          const rawId = (h.getAttribute("id") || "").trim();
+        wrapper.querySelectorAll('h2, h3').forEach((h, idx) => {
+          const rawId = (h.getAttribute('id') || '').trim();
           let id = rawId || slugify(h.textContent);
+          // Guarantee uniqueness
           let n = 1;
           let candidate = id;
-          while (used.has(candidate) || wrapper.querySelector("#" + CSS.escape(candidate))) {
+          while (used.has(candidate) || wrapper.querySelector('#' + CSS.escape(candidate))) {
             n += 1;
-            candidate = id + "-" + n;
+            candidate = id + '-' + n;
           }
           id = candidate;
           used.add(id);
           h.id = id;
         });
 
-        bodyEl.innerHTML = "";
+        // Inject
+        bodyEl.innerHTML = '';
         bodyEl.appendChild(wrapper);
         buildToc(wrapper);
 
-        const hashIndex = href.indexOf("#");
+        // If URL already has hash, scroll to it
+        const hashIndex = href.indexOf('#');
         if (hashIndex > -1) {
           const anchorId = href.slice(hashIndex + 1);
           setTimeout(() => scrollToAnchor(anchorId), 60);
@@ -518,194 +551,197 @@
         }
       } catch (err) {
         console.error(err);
-        titleEl.textContent = fallbackTitle || "產品介紹";
-        tocEl.innerHTML = "";
-        bodyEl.innerHTML =
-          '<div class="modal-error"><p>目前無法載入產品內容。你可以改用「開啟完整頁」查看。</p></div>';
+        titleEl.textContent = fallbackTitle || '產品介紹';
+        tocEl.innerHTML = '';
+        bodyEl.innerHTML = (
+          '<div class="modal-error">'
+          + '<p>目前無法載入產品內容。你可以改用「開啟完整頁」查看。</p>'
+          + '</div>'
+        );
       }
     }
 
+    // Trigger click (event delegation)
+    // ✅ 全站「產品詳情頁」連結一律彈窗（但不動 header/nav/footer 的必要導頁）
     if (!document.documentElement.dataset.productModalDelegated) {
-      document.documentElement.dataset.productModalDelegated = "1";
+      document.documentElement.dataset.productModalDelegated = '1';
 
+      // Product detail pages that should open in modal when clicked within page content
       const PRODUCT_DETAIL_PAGES = new Set([
-        "guilu.html",
-        "guilu-drink.html",
-        "soup.html",
-        "antler.html",
-        "lurong.html",
-        "guilu-line.html"
+        'guilu.html',
+        'guilu-drink.html',
+        'soup.html',
+        'antler.html',
+        'lurong.html',
+        'guilu-line.html'
       ]);
 
       const isInterceptCandidate = (a) => {
         if (!a) return false;
 
-        if (a.closest(".site-header, .site-nav, .site-footer")) return false;
-        if (a.classList.contains("nav-link")) return false;
+        // Exclude navigation + footer (必要導頁行為不改)
+        if (a.closest('.site-header, .site-nav, .site-footer')) return false;
+        if (a.classList.contains('nav-link')) return false;
 
-        const href = (a.getAttribute("href") || "").trim();
+        const href = (a.getAttribute('href') || '').trim();
         if (!href) return false;
-        if (href.startsWith("http") || href.startsWith("mailto:") || href.startsWith("tel:")) return false;
-        if (href.startsWith("#")) return false;
+        if (href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) return false;
+        if (href.startsWith('#')) return false; // same-page anchors remain as-is
 
-        const noQuery = href.split("?")[0];
-        const noHash = noQuery.split("#")[0];
-        const file = noHash.replace(/^\.\//, "").split("/").pop();
+        // Normalize to filename (remove query/hash, leading ./)
+        const noQuery = href.split('?')[0];
+        const noHash = noQuery.split('#')[0];
+        const file = noHash.replace(/^\.\//, '').split('/').pop();
 
         return PRODUCT_DETAIL_PAGES.has(file);
       };
 
-      document.addEventListener("click", (e) => {
-        const a = e.target.closest("a");
+      document.addEventListener('click', (e) => {
+        const a = e.target.closest('a');
         if (!a) return;
 
+        // Allow Cmd/Ctrl/Shift/Alt click to keep default behavior (new tab / select)
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
 
-        if (a.classList.contains("js-product-modal")) {
-          const href = a.getAttribute("href");
+        // 1) Explicit triggers keep working
+        if (a.classList.contains('js-product-modal')) {
+          const href = a.getAttribute('href');
           if (!href) return;
           e.preventDefault();
-          const title =
-            a.getAttribute("aria-label") ||
-            a.getAttribute("title") ||
-            (a.textContent || "").trim() ||
-            "產品介紹";
+          const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
           loadPageIntoModal(href, title);
           openModal(a);
           return;
         }
 
+        // 2) Any internal link pointing to product detail pages inside content -> modal
         if (isInterceptCandidate(a)) {
-          const href = a.getAttribute("href");
+          const href = a.getAttribute('href');
           e.preventDefault();
-          const title =
-            a.getAttribute("aria-label") ||
-            a.getAttribute("title") ||
-            (a.textContent || "").trim() ||
-            "產品介紹";
+          const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
           loadPageIntoModal(href, title);
           openModal(a);
         }
       });
     }
 
-    if (overlay) overlay.addEventListener("click", closeModal);
-    if (closeBtn) closeBtn.addEventListener("click", closeModal);
-    if (dialog) dialog.addEventListener("click", (e) => e.stopPropagation());
+    // Close handlers
+    if (overlay) overlay.addEventListener('click', closeModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+    // Stop click bubbling inside dialog
+    if (dialog) dialog.addEventListener('click', (e) => e.stopPropagation());
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
     });
 
-    bodyEl.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
+    // Inner links: for hash links, scroll inside modal; external links open new tab
+    bodyEl.addEventListener('click', (e) => {
+      const a = e.target.closest('a');
       if (!a) return;
-      const href = a.getAttribute("href") || "";
+      const href = a.getAttribute('href') || '';
 
-      if (href.startsWith("#")) {
+      if (href.startsWith('#')) {
         e.preventDefault();
         scrollToAnchor(href.slice(1));
         return;
       }
 
-      if (!href.startsWith("http") && (href.endsWith(".html") || href.includes(".html#"))) {
+      // If link points to another product/detail page on same site, open in modal
+      if (!href.startsWith('http') && (href.endsWith('.html') || href.includes('.html#'))) {
         e.preventDefault();
-        loadPageIntoModal(href, (a.textContent || "").trim() || "內容");
+        loadPageIntoModal(href, a.textContent.trim() || '內容');
       }
     });
 
-    bodyEl.addEventListener(
-      "scroll",
-      () => {
-        const y = bodyEl.scrollTop || 0;
-        modal.classList.toggle("is-body-scrolled", y > 56);
-      },
-      { passive: true }
-    );
+    // Fade out TOC when user scrolls down inside the modal (reduces top obstruction on mobile)
+    bodyEl.addEventListener('scroll', () => {
+      const y = bodyEl.scrollTop || 0;
+      modal.classList.toggle('is-body-scrolled', y > 56);
+    }, { passive: true });
 
+    // When TOC is faded out (is-body-scrolled), provide a small "目錄" button to bring it back on-demand.
     let tocPeekTimer = null;
 
     function setTocToggleState() {
       if (!tocToggleBtn) return;
-      const peek = modal.classList.contains("is-toc-peek");
-      tocToggleBtn.setAttribute("aria-pressed", peek ? "true" : "false");
-      tocToggleBtn.setAttribute("aria-label", peek ? "收起目錄" : "顯示目錄");
-      tocToggleBtn.textContent = peek ? "收起" : "目錄";
+      const peek = modal.classList.contains('is-toc-peek');
+      tocToggleBtn.setAttribute('aria-pressed', peek ? 'true' : 'false');
+      tocToggleBtn.setAttribute('aria-label', peek ? '收起目錄' : '顯示目錄');
+      tocToggleBtn.textContent = peek ? '收起' : '目錄';
     }
 
     if (tocToggleBtn) {
-      tocToggleBtn.addEventListener("click", (e) => {
+      tocToggleBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
 
-        const next = !modal.classList.contains("is-toc-peek");
-        modal.classList.toggle("is-toc-peek", next);
+        // Toggle "peek" mode: show TOC temporarily without forcing scroll-to-top.
+        const next = !modal.classList.contains('is-toc-peek');
+        modal.classList.toggle('is-toc-peek', next);
         setTocToggleState();
 
         if (tocPeekTimer) clearTimeout(tocPeekTimer);
         if (next) {
+          // Auto-hide after a short duration to avoid blocking content.
           tocPeekTimer = setTimeout(() => {
-            modal.classList.remove("is-toc-peek");
+            modal.classList.remove('is-toc-peek');
             setTocToggleState();
           }, 6000);
 
-          const firstLink = tocEl ? tocEl.querySelector("a") : null;
+          // Focus the first TOC link if available (accessibility + fast navigation)
+          const firstLink = tocEl ? tocEl.querySelector('a') : null;
           if (firstLink) {
-            try {
-              firstLink.focus({ preventScroll: true });
-            } catch (_) {
-              firstLink.focus();
-            }
+            try { firstLink.focus({ preventScroll: true }); } catch (_) { firstLink.focus(); }
           }
         }
       });
       setTocToggleState();
     }
 
-    bodyEl.addEventListener(
-      "scroll",
-      () => {
-        if (modal.classList.contains("is-toc-peek")) {
-          modal.classList.remove("is-toc-peek");
-          setTocToggleState();
-        }
-      },
-      { passive: true }
-    );
+    // If user scrolls again, dismiss peek mode (so it doesn't keep covering content).
+    bodyEl.addEventListener('scroll', () => {
+      if (modal.classList.contains('is-toc-peek')) {
+        modal.classList.remove('is-toc-peek');
+        setTocToggleState();
+      }
+    }, { passive: true });
 
     function ensureProductModal() {
-      let existing = document.getElementById("productModal");
+      let existing = document.getElementById('productModal');
       if (existing) return existing;
 
-      const modalEl = document.createElement("div");
-      modalEl.id = "productModal";
-      modalEl.className = "modal";
-      modalEl.setAttribute("role", "dialog");
-      modalEl.setAttribute("aria-modal", "true");
-      modalEl.setAttribute("aria-hidden", "true");
+      const modalEl = document.createElement('div');
+      modalEl.id = 'productModal';
+      modalEl.className = 'modal';
+      modalEl.setAttribute('role', 'dialog');
+      modalEl.setAttribute('aria-modal', 'true');
+      modalEl.setAttribute('aria-hidden', 'true');
 
-      modalEl.innerHTML =
-        '<div class="modal-overlay" aria-hidden="true"></div>' +
-        '<div class="modal-dialog" role="document">' +
-        '<div class="modal-head">' +
-        '<div class="modal-head-left">' +
-        '<div class="modal-title">產品介紹</div>' +
-        '<div class="modal-toc" aria-label="快速跳轉"></div>' +
-        "</div>" +
-        '<div class="modal-head-right">' +
-        '<button type="button" class="modal-toc-toggle" aria-label="顯示目錄" aria-pressed="false">目錄</button>' +
-        '<button type="button" class="modal-close" aria-label="關閉">×</button>' +
-        "</div>" +
-        "</div>" +
-        '<div class="modal-body" tabindex="0"></div>' +
-        "</div>";
+      modalEl.innerHTML = (
+        '<div class="modal-overlay" aria-hidden="true"></div>'
+        + '<div class="modal-dialog" role="document">'
+          + '<div class="modal-head">'
+            + '<div class="modal-head-left">'
+              + '<div class="modal-title">產品介紹</div>'
+              + '<div class="modal-toc" aria-label="快速跳轉"></div>'
+            + '</div>'
+            + '<div class="modal-head-right">'
+              + '<button type="button" class="modal-toc-toggle" aria-label="顯示目錄" aria-pressed="false">目錄</button>'
+              + '<button type="button" class="modal-close" aria-label="關閉">×</button>'
+            + '</div>'
+          + '</div>'
+          + '<div class="modal-body" tabindex="0"></div>'
+        + '</div>'
+      );
 
       document.body.appendChild(modalEl);
       return modalEl;
     }
   }
 
-  function setupBackLinks() {
+function setupBackLinks() {
     const backButtons = document.querySelectorAll(".back-link");
     if (!backButtons.length) return;
 
