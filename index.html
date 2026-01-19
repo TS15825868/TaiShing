@@ -1,4 +1,3 @@
-<!-- index.html（第 1/2 批） -->
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
@@ -63,7 +62,7 @@
   }
   </script>
 
-  <!-- 結構化資料：BreadcrumbList（修正：避免重複「首頁」） -->
+  <!-- 結構化資料：BreadcrumbList（避免重複「首頁」） -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -100,18 +99,9 @@
 
       <button class="nav-toggle" type="button" aria-label="切換主選單">☰</button>
 
-      <!-- ✅ 導覽列順序：全站統一版 -->
+      <!-- ✅ 導覽列：交給 main.js setupUnifiedNav() 統一生成（全站一致、移除 LINE 項目） -->
       <nav class="site-nav">
-        <ul>
-          <li><a href="index.html" class="nav-link nav-link--active">首頁</a></li>
-          <li><a href="#all-products" class="nav-link">產品總覽</a></li>
-          <li><a href="guide.html" class="nav-link">依需求挑選</a></li>
-          <li><a href="faq.html" class="nav-link">常見問題</a></li>
-          <li><a href="tcm.html" class="nav-link">中醫觀點</a></li>
-          <li><a href="about.html" class="nav-link">關於我們</a></li>
-          <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
-          <li><a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a></li>
-        </ul>
+        <ul></ul>
       </nav>
     </div>
   </header>
@@ -129,13 +119,13 @@
 
           <div class="contact-actions">
             <a href="guide.html" class="btn-primary">依需求挑選龜鹿產品</a>
-            <a href="#all-products" class="btn-soft">先看全部產品</a>
+            <a href="index.html#all-products" class="btn-soft">先看全部產品</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 主打產品：主圖 + 文案（主打層級拉高；不刪任何內容） -->
+    <!-- 主打產品：主圖 + 文案 -->
     <section class="section reveal-up signature-only">
 
       <a href="guilu.html" class="hero-image-link js-product-modal" aria-label="開啟 仙加味 龜鹿膏 產品介紹（不換頁）">
@@ -173,13 +163,11 @@
         <!-- 龜鹿膏 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="guilu" href="guilu.html" aria-label="開啟 仙加味 龜鹿膏 產品介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/guilu-main.jpg" alt="仙加味 龜鹿膏" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">仙加味 龜鹿膏</h3>
           <p class="product-note">適合想把補養排進每天作息、觀察一罐一段時間變化的人。</p>
         </article>
@@ -187,13 +175,11 @@
         <!-- 龜鹿飲 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="drink" href="guilu-drink.html" aria-label="開啟 仙加味 龜鹿飲 產品介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/guilu-drink.jpg" alt="仙加味 龜鹿飲" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">仙加味 龜鹿飲</h3>
           <p class="product-note">一包裝好帶，適合工作節奏快、常在外奔波或出差的族群。</p>
         </article>
@@ -201,13 +187,11 @@
         <!-- 龜鹿湯塊 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="soup" href="soup.html" aria-label="開啟 仙加味 龜鹿湯塊 產品介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/guilu-soup-block.jpg" alt="仙加味 龜鹿湯塊" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">仙加味 龜鹿湯塊</h3>
           <p class="product-note">一塊入鍋，一鍋湯全家分享，適合平常就愛煮湯的家庭。</p>
         </article>
@@ -215,13 +199,11 @@
         <!-- 鹿茸粉 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="powder" href="lurong.html" aria-label="開啟 仙加味 鹿茸粉 產品介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/product-lurong-powder.jpg" alt="仙加味 鹿茸粉" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">仙加味 鹿茸粉</h3>
           <p class="product-note">可拌入早餐、飲品或日常膳食，讓補養自然融入三餐。</p>
         </article>
@@ -229,13 +211,11 @@
         <!-- 鹿角原料 -->
         <article class="product-card">
           <a class="card-link js-product-modal" data-product="antler" href="antler.html" aria-label="開啟 鹿角原料 介紹（不換頁）"></a>
-
           <div class="product-image-link">
             <div class="product-image-frame">
               <img src="images/antler-raw.jpg" alt="鹿角原料" class="product-image" loading="lazy">
             </div>
           </div>
-
           <h3 class="product-name">鹿角原料</h3>
           <p class="product-note">提供中藥房、中醫診所、餐飲品牌與自煉使用的原料方案。</p>
         </article>
@@ -355,8 +335,8 @@
     </section>
 
   </main>
-  
-    <!-- FOOTER（全站統一） -->
+
+  <!-- FOOTER（全站統一） -->
   <footer class="site-footer">
     <div class="footer-cta">
       <p class="footer-cta-title">還在思考要選哪一款龜鹿產品？</p>
@@ -385,7 +365,7 @@
     </p>
   </footer>
 
-  <!-- 浮動 LINE 按鈕（全站一致） -->
+  <!-- 浮動 LINE 按鈕（全站一致；main.js 會優先使用既有 .line-float） -->
   <a href="https://lin.ee/sHZW7NkR"
      class="line-float"
      target="_blank"
