@@ -91,7 +91,7 @@
 <body>
   <div class="site-wrapper">
 
-    <!-- HEADER（✅ 漢堡順序全站統一） -->
+    <!-- HEADER（✅ 漢堡順序全站統一：實際以 main.js 生成為準） -->
     <header class="site-header">
       <div class="header-inner">
         <a href="index.html" class="brand-block">
@@ -106,17 +106,14 @@
 
         <nav class="site-nav">
           <ul>
-            <!-- ✅ 全站統一順序 -->
+            <!-- ✅（備援）若 JS 未載入：仍保持全站一致、且移除 LINE、並改 tcm.html -->
             <li><a href="index.html" class="nav-link">首頁</a></li>
             <li><a href="index.html#all-products" class="nav-link">產品總覽</a></li>
             <li><a href="guide.html" class="nav-link">依需求挑選</a></li>
-            <li><a href="doctor_tiktok.html" class="nav-link">中醫觀點</a></li>
+            <li><a href="tcm.html" class="nav-link">中醫觀點</a></li>
             <li><a href="about.html" class="nav-link">關於我們</a></li>
             <li><a href="faq.html" class="nav-link">常見問題</a></li>
             <li><a href="contact.html" class="nav-link">聯絡我們</a></li>
-            <li>
-              <a href="https://lin.ee/sHZW7NkR" class="nav-link" target="_blank" rel="noopener">LINE</a>
-            </li>
           </ul>
         </nav>
       </div>
@@ -219,6 +216,15 @@
         © 台興山產 版權所有
       </p>
     </footer>
+
+    <!-- 浮動 LINE 按鈕（若頁面沒放，main.js 會自動補；放了也不衝突） -->
+    <a href="https://lin.ee/sHZW7NkR"
+       class="line-float"
+       target="_blank"
+       rel="noopener"
+       aria-label="透過 LINE 聯絡我們">
+      <img src="images/line-float-icon.png" alt="LINE" loading="lazy">
+    </a>
 
   </div>
 </body>
