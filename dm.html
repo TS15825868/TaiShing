@@ -2,487 +2,367 @@
 <html lang="zh-Hant-TW">
 <head>
   <meta charset="UTF-8" />
-  <title>台興山產・仙加味｜龜鹿系列</title>
+  <title>台興山產・仙加味｜龜鹿系列 DM</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- SEO（DM 頁多半不主打收錄，但仍保留基本資訊） -->
+  <meta name="description" content="台興山產・仙加味龜鹿系列 DM：龜鹿膏、龜鹿飲、龜鹿湯塊、鹿茸粉與鹿角原料。可掃描 LINE QR 一對一詢問，或掃描官網 QR 查看完整介紹。" />
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://ts15825868.github.io/TaiShing/dm.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="台興山產・仙加味｜龜鹿系列 DM">
+  <meta property="og:description" content="龜鹿系列 DM：掃描 LINE QR 一對一詢問，或掃描官網 QR 查看完整介紹。">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ts15825868.github.io/TaiShing/dm.html">
+  <meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/logo-pro-og.jpg">
+
+  <!-- 與官網一致的配色/字體 -->
+  <link rel="stylesheet" href="theme_herbalrosegold.css" />
+  <link rel="stylesheet" href="style.css" />
+
   <style>
-    /* ✅ 列印最穩：留邊界，避免頁尾被印表機/瀏覽器裁掉 */
-    @page { size: A4; margin: 8mm; }
-
-    :root{
-      --ink:#1f1a18;
-      --muted:#6f625d;
-
-      /* ✅ 與全站一致（theme_herbalrosegold.css 的核心色系） */
-      --brand:#0B1F3B;   /* 主色：深藍 */
-      --accent:#FF7A00;  /* 行動色：橘 */
-      --accent2:#E86E00; /* 行動色深 */
-      --gold:#C9A24D;    /* 輔色：漢方金 */
-
-      --line: rgba(0,0,0,.10);
-      --soft:#fbf6f2;
-      --shadow: 0 14px 34px rgba(60, 20, 20, .10);
-    }
-
-    *{ box-sizing:border-box; }
-    html,body{ margin:0; padding:0; }
-    body{
-      font-family:-apple-system, BlinkMacSystemFont, "PingFang TC","Microsoft JhengHei", system-ui, sans-serif;
-      color:var(--ink);
-      background: linear-gradient(180deg, #F7F4ED, #FFFFFF);
-      -webkit-font-smoothing: antialiased;
-      line-height: 1.6;
-    }
-
-    /* 螢幕預覽容器 */
-    .wrap{
-      max-width: 1100px;
+    /* DM 頁：獨立版面（不動到全站 style.css） */
+    .dm-wrap{
+      max-width: 980px;
       margin: 0 auto;
-      padding: 22px 16px 42px;
+      padding: 18px 14px 28px;
     }
 
-    .sheet{
-      background: radial-gradient(1200px 500px at 20% 0%, rgba(201,162,122,.16), transparent 60%),
-                  linear-gradient(180deg, #ffffff, #fffaf6);
-      border: 1px solid rgba(201,162,122,.35);
-      border-radius: 22px;
-      box-shadow: var(--shadow);
+    .dm-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      padding: 14px 0 8px;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      margin-bottom: 14px;
+    }
+    .dm-brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      text-decoration:none;
+      color: inherit;
+    }
+    .dm-logo{
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.10);
+      background: #fff;
+    }
+    .dm-brand p{ margin:0; }
+    .dm-since{
+      font-size: .9rem;
+      letter-spacing: .08em;
+      opacity: .85;
+    }
+    .dm-title{
+      font-weight: 900;
+      letter-spacing: .06em;
+      font-size: 1.05rem;
+      color: var(--color-primary-deep);
+    }
+
+    .dm-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .dm-hero{
+      margin-top: 14px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 18px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.06);
       overflow: hidden;
     }
-
-    /* ✅ footer 可能做列印置底，所以外層要 relative */
-    .sheet-inner{
-      padding: 18px 18px 16px;
-      position: relative;
+    .dm-hero-inner{
+      padding: 18px 16px 16px;
     }
-
-    /* ===== Header ===== */
-    .header{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      padding: 14px 14px 12px;
-      border-bottom: 1px solid rgba(201,162,122,.28);
-      background: linear-gradient(135deg, rgba(201,162,122,.10), rgba(140,60,72,.05));
-    }
-
-    .logo{
-      width:64px;
-      height:64px;
-      border-radius:16px;
-      object-fit:cover;
-      border:1px solid rgba(201,162,122,.55);
-      background:#fff;
-      display:block;
-    }
-
-    .brand-text small{
-      display:block;
-      font-size: 12px;
-      letter-spacing: .24em;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-    .brand-text h1{
-      margin:0;
-      font-size: 20px;
-      letter-spacing: .18em;
+    .dm-kicker{
       font-weight: 900;
-      color: var(--ink);
-    }
-
-    /* ===== Intro ===== */
-    .intro{ padding: 16px 14px 8px; }
-
-    .kicker{
-      display:inline-block;
-      font-size: 12px;
-      letter-spacing: .26em;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    .intro h2{
-      margin:0 0 8px;
-      font-size: 22px;
-      letter-spacing: .16em;
-      color: var(--brand);
-      font-weight: 900;
-    }
-
-    .intro p{
-      margin:0;
-      font-size: 15px;
-      color:#3a2f2b;
-    }
-
-    /* ===== Products ===== */
-    .products{
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      padding: 14px;
-    }
-
-    @media (max-width: 980px){
-      .products{ grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .card{
-      border: 1px solid rgba(201,162,122,.35);
-      border-radius: 16px;
-      overflow:hidden;
-      background: #fff;
-      box-shadow: 0 10px 26px rgba(0,0,0,.06);
-      display:flex;
-      flex-direction: column;
-      min-height: 100%;
-    }
-
-    .card img{
-      width:100%;
-      height: 180px;
-      object-fit: cover; /* 螢幕好看 */
-      display:block;
-      background: var(--soft);
-    }
-
-    .card-body{
-      padding: 12px 12px 14px;
-      text-align:center;
-    }
-
-    .card-body h3{
-      margin:0 0 4px;
-      font-size: 16px;
-      letter-spacing: .14em;
-      font-weight: 900;
-      color: #2a201d;
-    }
-
-    .card-body p{
-      margin:0;
-      font-size: 13px;
-      color:#4a3f3b;
-      letter-spacing:.06em;
-    }
-
-    /* ===== CTA / QR ===== */
-    .cta{
-      margin: 10px 14px 14px;
-      border-top: 1px solid rgba(201,162,122,.35);
-      padding-top: 14px;
-      text-align:center;
-    }
-
-    .cta h3{
+      letter-spacing: .12em;
+      color: var(--color-primary-deep);
+      opacity: .9;
+      font-size: .9rem;
       margin: 0 0 8px;
-      font-size: 16px;
-      letter-spacing: .14em;
-      font-weight: 900;
-      color: #2a201d;
     }
-
-    .cta p{
+    .dm-h1{
       margin: 0 0 10px;
-      font-size: 13px;
-      color: var(--muted);
-      letter-spacing:.06em;
+      font-size: 1.55rem;
+      line-height: 1.25;
+      letter-spacing: .04em;
+      color: var(--color-primary-deep);
     }
-
-    /* ✅ 手機也固定兩欄並排 */
-    .qr-row{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-top: 10px;
-      justify-items: stretch;
-      align-items: start;
-    }
-
-    .qr-item{
-      border: 1px solid rgba(201,162,122,.35);
-      border-radius: 16px;
-      padding: 12px 10px 12px;
-      background: #fff;
-      box-shadow: 0 10px 22px rgba(0,0,0,.05);
-      min-width: 0;
-    }
-
-    .qr-item img{
-      width: 108px;
-      height: 108px;
-      object-fit: contain;
-      border: 1px solid rgba(0,0,0,.10);
-      border-radius: 12px;
-      background:#fff;
-      display:block;
-      margin: 0 auto;
-    }
-
-    .qr-item .qr-label{
-      margin: 10px 0 10px;
-      font-size: 13px;
-      letter-spacing: .10em;
-      color:#2a201d;
-      font-weight: 800;
-      text-align:center;
-    }
-
-    /* QR 下方按鈕：僅螢幕顯示，列印隱藏 */
-    .qr-actions{
-      display:block;
-      margin-top: 8px;
-    }
-
-    .btn{
-      appearance:none;
-      border: 1px solid rgba(201,162,122,.55);
-      background: linear-gradient(180deg, #ffffff, #fff6ef);
-      color:#2a201d;
-      padding: 10px 14px;
-      border-radius: 999px;
-      font-size: 13px;
-      letter-spacing: .08em;
-      font-weight: 800;
-      text-decoration:none;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width: 100%;
-      max-width: 220px;
-      margin: 0 auto;
-      transition: transform .15s ease, box-shadow .15s ease;
-      box-shadow: 0 10px 18px rgba(0,0,0,.06);
-    }
-
-    .btn--line{
-      border-color: rgba(6,199,85,.45);
-      background: linear-gradient(180deg, rgba(6,199,85,.12), rgba(6,199,85,.06));
-    }
-
-    .btn:hover{ transform: translateY(-1px); }
-
-    /* ===== Footer ===== */
-    .footer{
-      margin: 10px 14px 16px;
-      padding-top: 12px;
-      border-top: 1px solid rgba(0,0,0,.10);
-      text-align:center;
-      font-size: 13px;
-      color:#3b312d;
-      letter-spacing:.04em;
+    .dm-lead{
+      margin: 0;
+      color: rgba(0,0,0,.78);
       line-height: 1.7;
     }
 
-    /* =========================
-       PRINT: A4 單頁 + 頁尾不消失
-       ========================= */
-    @media print{
-      body{ background:#fff !important; }
-      .wrap{ padding:0; max-width:none; }
-
-      /* ✅ 不要硬卡 height:297mm；改用留白與 footer 置底確保不爆頁 */
-      .sheet{
-        width: 100%;
-        border: none;
-        border-radius: 0;
-        box-shadow: none;
-        overflow: hidden;
-        page-break-after: avoid;
-      }
-
-      /* ✅ 預留底部空間給 footer（避免蓋到內容） */
-      .sheet-inner{
-        padding: 0;
-        padding-bottom: 16mm; /* footer 專用空間 */
-      }
-
-      .header{ padding: 8mm 8mm 5mm; }
-      .logo{ width: 18mm; height: 18mm; border-radius: 4mm; }
-
-      .brand-text small{ font-size: 10.5pt; }
-      .brand-text h1{ font-size: 14pt; }
-
-      .intro{ padding: 5mm 8mm 3mm; }
-      .intro h2{ font-size: 16pt; margin-bottom: 2mm; }
-      .intro p{ font-size: 11.2pt; }
-
-      .products{
-        padding: 3mm 8mm 3mm;
-        grid-template-columns: 1fr 1fr;
-        gap: 6mm;
-      }
-
-      .card{
-        box-shadow: none;
-        border-radius: 5mm;
-      }
-
-      /* ✅ 列印時圖片完整顯示 */
-      .card img{
-        height: 38mm;
-        object-fit: contain;
-        background: #fff;
-      }
-
-      .card-body{ padding: 3.2mm 4mm 3.6mm; }
-      .card-body h3{ font-size: 12pt; }
-      .card-body p{ font-size: 10.6pt; }
-
-      .cta{
-        margin: 2mm 8mm 0;
-        padding-top: 3mm;
-      }
-      .cta h3{ font-size: 12pt; margin-bottom: 1.5mm; }
-      .cta p{ font-size: 10.5pt; margin-bottom: 2.5mm; }
-
-      .qr-row{ gap: 8mm; margin-top: 2mm; }
-      .qr-item{
-        box-shadow: none;
-        border-radius: 5mm;
-        padding: 4mm;
-      }
-
-      .qr-item img{
-        width: 26mm;
-        height: 26mm;
-        border-radius: 3mm;
-      }
-
-      .qr-item .qr-label{
-        font-size: 10.8pt;
-        margin: 2mm 0 0;
-      }
-
-      /* ✅ 列印/PDF 隱藏按鈕 */
-      .qr-actions{ display:none !important; }
-
-      /* ✅ 頁尾固定在最底，不會「消失」也不會被內容推走 */
-      .footer{
-        position: absolute;
-        left: 8mm;
-        right: 8mm;
-        bottom: 6mm;
-        margin: 0;
-        padding-top: 3mm;
-        font-size: 10.5pt;
-        background: transparent;
-      }
+    .dm-grid{
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 860px){
+      .dm-grid{ grid-template-columns: 1fr; }
     }
 
-    /* 手機：維持兩欄並排，縮小內容避免太擠 */
-    @media (max-width: 480px){
-      .wrap{ padding: 16px 12px 28px; }
-      .sheet-inner{ padding: 14px 14px 12px; }
-      .card img{ height: 160px; }
+    .dm-card{
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 18px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.06);
+      overflow:hidden;
+    }
+    .dm-card-inner{
+      padding: 16px;
+    }
+    .dm-card h2{
+      margin: 0 0 10px;
+      font-size: 1.2rem;
+      letter-spacing: .04em;
+      color: var(--color-primary-deep);
+    }
+    .dm-card p{
+      margin: 0 0 10px;
+      line-height: 1.75;
+      color: rgba(0,0,0,.78);
+    }
+    .dm-list{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(0,0,0,.78);
+      line-height: 1.75;
+    }
 
-      .qr-item img{ width: 92px; height: 92px; }
-      .qr-item .qr-label{ font-size: 12.5px; }
+    .dm-note{
+      margin-top: 14px;
+      background: rgba(11,31,59,.04);
+      border: 1px dashed rgba(11,31,59,.22);
+      border-radius: 16px;
+      padding: 12px 14px;
+      color: rgba(0,0,0,.78);
+      line-height: 1.75;
+    }
 
-      .btn{ min-width: 112px; padding: 9px 12px; }
+    /* QR 區 */
+    .qr-panel{
+      margin-top: 16px;
+      background:#fff;
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 18px;
+      box-shadow: 0 10px 26px rgba(0,0,0,.06);
+      overflow:hidden;
+    }
+    .qr-panel-inner{
+      padding: 16px;
+    }
+    .qr-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+    @media (max-width: 860px){
+      .qr-grid{ grid-template-columns: 1fr; }
+    }
+    .qr-card{
+      border: 1px solid rgba(0,0,0,.10);
+      border-radius: 16px;
+      overflow: hidden;
+      background: rgba(11,31,59,.02);
+    }
+    .qr-card-inner{
+      padding: 14px;
+      display:flex;
+      gap: 12px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .qr-img{
+      width: 116px;
+      height: 116px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.10);
+    }
+    .qr-meta{
+      flex: 1 1 220px;
+      min-width: 220px;
+    }
+    .qr-title{
+      margin: 0 0 6px;
+      font-weight: 900;
+      letter-spacing: .06em;
+      color: var(--color-primary-deep);
+      font-size: 1.05rem;
+    }
+    .qr-desc{
+      margin: 0 0 10px;
+      color: rgba(0,0,0,.78);
+      line-height: 1.7;
+      font-size: .98rem;
+    }
+    .qr-actions{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* 讓按鈕看起來跟官網一致：沿用你 style.css 的 class */
+    /* 若你 style.css 已有 btn-line-strong / btn-outline / btn-soft，這裡不重複定義 */
+
+    .dm-footer{
+      margin-top: 16px;
+      text-align: center;
+      color: rgba(0,0,0,.72);
+      line-height: 1.75;
+      font-size: .95rem;
+      padding: 8px 0 4px;
     }
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <div class="sheet">
-      <div class="sheet-inner">
+  <div class="dm-wrap">
 
-        <!-- Header -->
-        <div class="header">
-          <img src="images/logo-pro.jpeg" alt="台興山產・仙加味" class="logo">
-          <div class="brand-text">
-            <small>SINCE 1978</small>
-            <h1>台興山產・仙加味</h1>
-          </div>
+    <!-- 獨立頁頂部：不使用全站 nav，但視覺一致 -->
+    <div class="dm-top">
+      <a class="dm-brand" href="index.html" aria-label="回到台興山產・仙加味官網首頁">
+        <img src="images/logo-pro.jpeg" alt="台興山產 Logo" class="dm-logo" loading="lazy">
+        <div>
+          <p class="dm-since">SINCE 1978</p>
+          <p class="dm-title">台興山產・仙加味</p>
         </div>
+      </a>
 
-        <!-- Intro -->
-        <div class="intro">
-          <span class="kicker">GUILU SERIES</span>
-          <h2>龜鹿系列</h2>
-          <p>以日常節奏為出發點，提供龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉，方便依生活型態選擇。</p>
-        </div>
-
-        <!-- Products -->
-        <section class="products" aria-label="產品一覽">
-          <div class="card">
-            <img src="images/guilu-main.jpg" alt="龜鹿膏">
-            <div class="card-body">
-              <h3>龜鹿膏</h3>
-              <p>100 ± 5 g／罐</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <img src="images/guilu-drink.jpg" alt="龜鹿飲">
-            <div class="card-body">
-              <h3>龜鹿飲</h3>
-              <p>單包／10 包入袋</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <img src="images/guilu-soup-block.jpg" alt="龜鹿湯塊">
-            <div class="card-body">
-              <h3>龜鹿湯塊</h3>
-              <p>4 兩／半斤／1 斤</p>
-            </div>
-          </div>
-
-          <div class="card">
-            <img src="images/product-lurong-powder.jpg" alt="鹿茸粉">
-            <div class="card-body">
-              <h3>鹿茸粉</h3>
-              <p>75 g／罐</p>
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <div class="cta">
-          <h3>了解更多資訊</h3>
-          <p>掃描 QR 前往官方網站或加入 LINE 諮詢。</p>
-
-          <div class="qr-row">
-            <div class="qr-item">
-              <img src="images/line_qr.png" alt="LINE 官方帳號 QR Code">
-              <div class="qr-label">LINE 官方帳號</div>
-              <div class="qr-actions">
-                <a class="btn btn--line" id="btnLine" href="#" target="_blank" rel="noopener">前往 LINE</a>
-              </div>
-            </div>
-
-            <div class="qr-item">
-              <img src="images/qr-site.png" alt="官方網站 QR Code">
-              <div class="qr-label">官方網站</div>
-              <div class="qr-actions">
-                <a class="btn" id="btnSite" href="#" target="_blank" rel="noopener">前往官網</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-          台興山產・仙加味｜台北市萬華區西昌街52號｜電話：(02) 2381-2990
-        </div>
-
+      <div class="dm-actions">
+        <a href="index.html#all-products" class="btn-soft">看全部產品</a>
+        <a href="guide.html" class="btn-outline">依需求挑選</a>
+        <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-line-strong">LINE 諮詢</a>
       </div>
     </div>
+
+    <!-- DM 主文 -->
+    <section class="dm-hero">
+      <div class="dm-hero-inner">
+        <p class="dm-kicker">DM / ONE-PAGE</p>
+        <h1 class="dm-h1">龜鹿系列｜日常補養的「節奏」與「選擇」</h1>
+        <p class="dm-lead">
+          我們把龜鹿補養做成膏、飲、湯塊與粉，目的不是讓你一次買齊，
+          而是讓你能依生活型態先選一種最容易持續的方式開始。
+          若你正在接受治療、長期用藥、孕期／備孕或重大疾病史，建議先諮詢專業醫師再安排補養會更安全。
+        </p>
+      </div>
+    </section>
+
+    <section class="dm-grid">
+      <article class="dm-card">
+        <div class="dm-card-inner">
+          <h2>產品方向（依生活情境）</h2>
+          <p>用「做得到」來當第一個判斷點，通常會更快對焦。</p>
+          <ul class="dm-list">
+            <li><strong>龜鹿膏：</strong>作息固定、願意每天留一段時間、希望觀察一罐一段時間變化。</li>
+            <li><strong>龜鹿飲：</strong>工作忙、常外出/出差，希望「一包就走」維持節奏。</li>
+            <li><strong>龜鹿湯塊：</strong>家裡本來就煮湯，想用「一鍋湯」融入家庭飲食。</li>
+            <li><strong>鹿茸粉：</strong>早餐/飲品習慣穩定，想直接加進日常飲食。</li>
+            <li><strong>鹿角原料：</strong>中藥房/中醫診所/餐飲品牌或自煉用途，需穩定原料供應。</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="dm-card">
+        <div class="dm-card-inner">
+          <h2>諮詢時建議提供的資訊</h2>
+          <p>你不需要一次講很完整；但若能先整理，會更快給出可行方向。</p>
+          <ul class="dm-list">
+            <li>工作型態與作息（例：輪班、久站、久坐、常出差）</li>
+            <li>目前是否有固定服用中藥/西藥或其他保健品</li>
+            <li>你最在意的面向（體力、精神、睡眠或其他）</li>
+            <li>你偏好哪一種形式（膏/飲/湯/粉）或最能做到的情境</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <div class="dm-note">
+      <strong>提醒：</strong>
+      本頁內容以「日常補養」角度整理，僅供知識交流與選擇參考，不涉及醫療診斷或治療宣稱。
+      若你的狀況屬於醫療判斷範圍，我們也會建議以專業醫師意見為主。
+    </div>
+
+    <!-- QR 區：LINE QR + 官網 QR（你指定的「按鈕／按鈕」形式） -->
+    <section class="qr-panel" aria-label="LINE QR 與官網 QR">
+      <div class="qr-panel-inner">
+        <h2 class="section-title" style="margin:0 0 10px;">掃描 QR｜快速到 LINE 或官網</h2>
+
+        <div class="qr-grid">
+          <!-- LINE QR -->
+          <div class="qr-card">
+            <div class="qr-card-inner">
+              <!-- 若你的檔案不是放在 images/line_qr.png，請把檔名改成你實際的 -->
+              <img src="images/line_qr.png" alt="LINE 官方帳號 QR Code" class="qr-img" loading="lazy">
+              <div class="qr-meta">
+                <p class="qr-title">LINE QR</p>
+                <p class="qr-desc">加入官方 LINE，一對一詢問作息、節奏與選擇方向。</p>
+                <div class="qr-actions">
+                  <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-line-strong">加入 LINE</a>
+                  <a href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener" class="btn-soft">立即諮詢</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 官網 QR -->
+          <div class="qr-card">
+            <div class="qr-card-inner">
+              <!-- 官網 QR 圖檔檔名可依你實際檔案調整 -->
+              <img src="images/website_qr.png" alt="官網 QR Code" class="qr-img" loading="lazy">
+              <div class="qr-meta">
+                <p class="qr-title">官網 QR</p>
+                <p class="qr-desc">掃描查看完整產品介紹、FAQ 與挑選指南。</p>
+                <div class="qr-actions">
+                  <a href="index.html" class="btn-outline">前往官網</a>
+                  <a href="index.html#all-products" class="btn-soft">看產品總覽</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-note" style="margin:12px 0 0;">
+          若 QR 圖檔未顯示：請確認檔案是否存在於 <strong>images/line_qr.png</strong> 與 <strong>images/website_qr.png</strong>，
+          或將上方 img 的檔名改成你實際放置的名稱。
+        </p>
+      </div>
+    </section>
+
+    <div class="dm-footer">
+      <p style="margin:0;">
+        台興山產有限公司・仙加味<br>
+        地址：台北市萬華區西昌街 52 號｜
+        電話：<a href="tel:+886223812990">(02) 2381-2990</a>
+      </p>
+    </div>
+
+    <!-- 浮動 LINE 按鈕（與全站一致） -->
+    <a href="https://lin.ee/sHZW7NkR"
+       class="line-float"
+       target="_blank"
+       rel="noopener"
+       aria-label="透過 LINE 聯絡我們">
+      <img src="images/line-float-icon.png" alt="LINE" loading="lazy">
+    </a>
+
   </div>
-
-  <script>
-    const LINE_URL = "https://lin.ee/sHZW7NkR";
-    const SITE_URL = "https://ts15825868.github.io/TaiShing/index.html";
-
-    const btnLine = document.getElementById("btnLine");
-    const btnSite = document.getElementById("btnSite");
-
-    if (btnLine) btnLine.href = LINE_URL;
-    if (btnSite) btnSite.href = SITE_URL;
-  </script>
 </body>
 </html>
