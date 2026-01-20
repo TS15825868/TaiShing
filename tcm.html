@@ -129,8 +129,8 @@
 </div>
 
 <script>
-  // 影片標題：優先嘗試用 TikTok oEmbed 自動抓取原標題；若失敗則保留你在清單中的 title。
-  //（注意：若瀏覽器/網路環境阻擋第三方請求，可能會抓取失敗，但不會影響播放。）
+  // 影片標題：目前因平台限制無法自動抓取「抖音原標題」。
+  // 你可以把 title 改成抖音影片原本的標題，我這裡保留可直接替換的欄位。
   const VIDEOS = [
     { id: "7440039107708914945", url: "https://www.tiktok.com/@changwuchi2023/video/7440039107708914945", title: "抖音影片標題 01" },
     { id: "7441142424518315280", url: "https://www.tiktok.com/@changwuchi2023/video/7441142424518315280", title: "抖音影片標題 02" },
@@ -146,25 +146,12 @@
     { id: "7561374523564543249", url: "https://www.tiktok.com/@changwuchi2023/video/7561374523564543249", title: "抖音影片標題 12" }
   ];
 
-  async function fetchTikTokTitle(url){
-    try{
-      const api = "https://www.tiktok.com/oembed?url=" + encodeURIComponent(url);
-      const res = await fetch(api, { cache: "force-cache" });
-      if(!res.ok) throw new Error("oEmbed not ok");
-      const data = await res.json();
-      return (data && data.title) ? String(data.title) : "";
-    }catch(e){
-      return "";
-    }
-  }
-
   function createCard(v){
     const card = document.createElement('article');
     card.className = 'video-card';
 
     const title = document.createElement('h3');
     title.textContent = v.title;
-    title.className = 'video-title';
 
     const frame = document.createElement('div');
     frame.className = 'video-frame';
@@ -196,15 +183,6 @@
     card.appendChild(title);
     card.appendChild(frame);
     card.appendChild(fallback);
-
-    // ✅ 嘗試自動更新標題（不影響原有內容）
-    (async () => {
-      const needsAuto = !v.title || /^抖音影片標題\s*\d+/i.test(v.title);
-      if(!needsAuto) return;
-      const t = await fetchTikTokTitle(v.url);
-      if(t){ title.textContent = t; }
-    })();
-
     return card;
   }
 
