@@ -1,65 +1,6 @@
 /* =========================================
-   THEME TOKENS（全站統一配色）
-   - 目標：不論各頁是否有額外 inline CSS / 舊版 theme 檔，都以此為準
-   - 若 theme_herbalrosegold.css 也有定義，這裡會以「後載入的 style.css」覆蓋
-   ========================================= */
-:root{
-  /* 字體 */
-  --font-body: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
-
-  /* 品牌主色 */
-  --color-primary-deep: #0B1F3B;   /* 深藍 */
-  --color-accent: #FF7A00;         /* 橘（行動色） */
-  --color-accent-deep: #E86E00;    /* 橘深 */
-  --color-accent-gold: #C9A24D;    /* 漢方金 */
-  --color-accent-gold-deep: #B8892E;
-
-  /* 背景 / 文字 */
-  --color-bg: linear-gradient(180deg, #F7F4ED, #FFFFFF);
-  --color-bg-solid: #F7F4ED;
-  --color-bg-soft: rgba(255,255,255,0.88);
-  --color-surface: #FFFFFF;
-  --color-text-main: #1F2937;
-  --color-text-muted: #6B7280;
-
-  /* 線條 / 陰影 */
-  --color-border-soft: rgba(11, 31, 59, 0.12);
-  --shadow-soft: 0 14px 34px rgba(60, 20, 20, .10);
-
-  /* 連結色 */
-  --color-link: var(--color-primary-deep);
-  --color-link-hover: var(--color-accent-deep);
-}
-
-/* =========================================
    GLOBAL RESET
    ========================================= */
-/*
-  ✅ 保險用（重要）：
-  若 theme_herbalrosegold.css 因快取/檔名大小寫/上傳缺漏而未載入，
-  var() 會回到「未定義」導致 Header 變透明、文字變預設黑色。
-  這裡先提供關鍵變數的 fallback，讓任何頁面都不會跑版。
-  theme 檔正常載入時，會覆蓋這些值。
-*/
-:root{
-  --font-body: -apple-system, BlinkMacSystemFont, "PingFang TC", "Microsoft JhengHei", system-ui, sans-serif;
-
-  --color-bg: #F7F4ED;
-  --color-bg-soft: #FFFDFC;
-  --color-primary-deep: #0B1F3B;
-  --color-nav-text: #F3F4F6;
-  --color-text-main: #111827;
-  --color-text-muted: #6B7280;
-  --color-text-label: rgba(17,24,39,0.58);
-  --color-border-soft: rgba(17,24,39,0.12);
-
-  --color-accent-gold: #FF7A00;
-  --color-accent-gold-deep: #E66E00;
-  --color-link: #0B1F3B;
-  --color-link-hover: #E66E00;
-
-  --shadow-soft: 0 10px 26px rgba(0,0,0,0.08);
-}
 *,
 *::before,
 *::after {
@@ -87,33 +28,6 @@ a {
 
 a:hover{
   color: var(--color-link-hover);
-}
-
-/* =========================================
-   內容連結：全站「有框框 + 明顯配色」
-   - 僅套用在 main 內容區，避免影響導覽列/按鈕
-   ========================================= */
-.site-main .section a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail):not(.btn-full):not(.line-float),
-.site-footer a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail):not(.btn-full):not(.line-float) {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 2px 10px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 122, 0, 0.55);
-  background: rgba(255, 122, 0, 0.10);
-  color: var(--color-primary-deep);
-  font-weight: 600;
-  text-decoration: none;
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-}
-
-.site-main .section a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail):not(.btn-full):not(.line-float):hover,
-.site-footer a:not(.nav-link):not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail):not(.btn-full):not(.line-float):hover {
-  background: rgba(255, 122, 0, 0.18);
-  border-color: rgba(255, 122, 0, 0.85);
-  box-shadow: 0 10px 18px rgba(255, 122, 0, 0.18);
-  transform: translateY(-1px);
 }
 
 img {
@@ -150,6 +64,8 @@ img {
   align-items: center;
   justify-content: space-between;
   transition: padding 0.25s ease;
+  /* ✅ 讓手機版漢堡展開選單以 header 為定位基準（避免看起來「沒東西」） */
+  position: relative;
 }
 
 .header--compact .header-inner {
@@ -262,6 +178,45 @@ img {
 }
 .signature-only .hero-image-frame{
   margin-top: 0;
+}
+
+/* =========================================
+   首頁 FEATURED 文案（主打商品）
+   ========================================= */
+.featured-caption{
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.featured-kicker{
+  margin: 0 0 6px;
+  font-size: .78rem;
+  letter-spacing: .26em;
+  color: var(--color-text-label);
+}
+
+.featured-title{
+  margin: 0 0 8px;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  letter-spacing: .06em;
+  color: var(--color-primary-deep);
+}
+
+.featured-desc{
+  margin: 0 0 10px;
+  color: var(--color-text-muted);
+}
+
+.featured-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px){
+  .featured-actions a{ width: 100%; }
 }
 
 /* =========================================
@@ -421,34 +376,6 @@ img {
   color: var(--color-text-muted);
 }
 
-/* Footer CTA（FAQ / 關於我們 / 聯絡我們 等） */
-.footer-cta{
-  background: linear-gradient(135deg, rgba(255, 122, 0, 0.10), rgba(255,255,255,0.95));
-  border: 2px solid rgba(255, 122, 0, 0.35);
-  border-radius: 18px;
-  padding: 20px 18px;
-  margin-bottom: 18px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.06);
-}
-
-.footer-cta-title{
-  margin: 0 0 8px;
-  font-weight: 800;
-  letter-spacing: 0.06em;
-  color: var(--color-primary-deep);
-}
-
-.footer-cta-text{
-  margin: 0 0 14px;
-  color: rgba(17, 24, 39, 0.82);
-}
-
-.footer-cta-actions{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
 /* =========================================
    FLOATING LINE CTA
    （class="line-float" + img）
@@ -606,6 +533,106 @@ article.product-card:hover,
   color: var(--color-text-muted);
   font-size: 0.95rem;
   line-height: 1.7;
+}
+
+/* =========================================
+   內容區域連結：有框框＋明顯配色（不影響按鈕/導覽）
+   ========================================= */
+.site-main a:not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.nav-link):not(.line-float):not(.card-link) {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 122, 0, 0.35);
+  background: rgba(255, 122, 0, 0.08);
+  color: var(--color-primary-deep);
+  text-decoration: none;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.site-main a:not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.nav-link):not(.line-float):not(.card-link):hover {
+  background: rgba(255, 122, 0, 0.12);
+  border-color: rgba(255, 122, 0, 0.55);
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   TCM 影片：框＝影片大小；點播放才載入（加速）
+   ========================================= */
+.video-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
+}
+@media (max-width: 768px){
+  .video-grid{ grid-template-columns: 1fr; }
+}
+
+.video-card{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 16px;
+  box-shadow: 0 10px 26px rgba(0,0,0,0.06);
+  padding: 14px 14px 16px;
+  overflow: hidden;
+}
+
+.video-card h3{
+  font-size: 1.05rem;
+  margin: 0 0 10px;
+  letter-spacing: .04em;
+  color: var(--color-primary-deep);
+}
+
+.video-frame{
+  position: relative;
+  width: 100%;
+  /* TikTok 多為直式：讓外框與影片比例一致 */
+  aspect-ratio: 9 / 16;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(11,31,59,.06);
+}
+
+.video-frame iframe{
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-play-btn{
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  border: 0;
+  background: rgba(0,0,0,.10);
+  color: var(--color-primary-deep);
+}
+
+.video-play-btn span{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(0,0,0,.10);
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+
+.video-fallback{
+  margin-top: 10px;
+  font-size: .95rem;
+}
+
+.video-fallback a{
+  text-decoration: underline;
+  color: var(--color-primary-deep);
+  border: 1px solid rgba(255, 122, 0, 0.25);
+  background: rgba(255, 122, 0, 0.06);
 }
 
 /* 詳細頁圖片尺寸控制 */
@@ -944,25 +971,16 @@ img.product-image {
 }
 
 .faq-item {
-  margin-bottom: 1.1rem;
-  padding: 18px 20px;
-  border-radius: 14px;
-  background: var(--color-bg-soft);
-  border: 1px solid rgba(11, 31, 59, 0.12);
-  border-left: 4px solid var(--color-accent-gold);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  margin-bottom: 1.5rem;
 }
 
 .faq-question {
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  color: var(--color-primary-deep);
-  margin: 0 0 0.5rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
 }
 
 .faq-answer {
   margin: 0;
-  color: rgba(17, 24, 39, 0.88);
 }
 
 .guide-grid {
@@ -973,16 +991,8 @@ img.product-image {
 
 .guide-card {
   padding: 1.2rem 1.4rem;
-  border-radius: 18px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(247,244,237,0.95));
-  border: 1px solid rgba(201, 162, 77, 0.35);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.05);
-  transition: transform 0.18s ease, box-shadow 0.18s ease;
-}
-
-.guide-card:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 16px 30px rgba(0,0,0,0.08);
+  border-radius: 16px;
+  background: #f7eee8;
 }
 
 .guide-card h3 {
@@ -1039,6 +1049,7 @@ img.product-image {
 .product-card .card-link {
   position: absolute;
   inset: 0;
+  display: block;
   z-index: 10; /* ✅ 一定要高，才不會被內容蓋住 */
   border-radius: 16px;
 }
