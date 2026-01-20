@@ -199,15 +199,16 @@
     if (!navUl) return;
 
     // 你要的固定順序（全站一致）
+    // ✅ 對齊你目前站上實際頁面：tcm.html / story.html / contact.html
     const items = [
       { href: "index.html", label: "首頁", key: "home" },
       { href: "index.html#all-products", label: "產品總覽", key: "products" },
       { href: "guide.html", label: "依需求挑選", key: "guide" },
-      { href: "tcm.html", label: "中醫觀點", key: "tcm" },
-      { href: "about.html", label: "關於我們", key: "about" },
       { href: "faq.html", label: "常見問題", key: "faq" },
+      { href: "tcm.html", label: "中醫觀點", key: "tcm" },
+      { href: "story.html", label: "品牌故事", key: "story" },
       { href: "contact.html", label: "聯絡我們", key: "contact" }
-      // ❌ LINE：依你的需求，從漢堡選單移除
+      // ❌ LINE：依你的需求，從漢堡選單移除（改由浮動 LINE / CTA 入口）
     ];
 
     const path = (window.location.pathname || "").split("/").pop() || "index.html";
@@ -217,9 +218,9 @@
       if (key === "home") return path === "" || path === "index.html";
       if (key === "products") return (path === "" || path === "index.html") && hash === "#all-products";
       if (key === "guide") return path === "guide.html";
-      if (key === "tcm") return path === "tcm.html";
-      if (key === "about") return path === "about.html";
       if (key === "faq") return path === "faq.html";
+      if (key === "tcm") return path === "tcm.html";
+      if (key === "story") return path === "story.html";
       if (key === "contact") return path === "contact.html";
       return false;
     }
@@ -469,13 +470,6 @@
       setLoading(fallbackTitle);
 
       try {
-        // ✅ 若使用者以本機檔案（file://）直接開啟，瀏覽器多半會阻擋 fetch。
-        //    這會造成「彈窗開了但沒有產品內容」。此情境直接跳頁，避免空白。
-        if (location.protocol === 'file:') {
-          location.href = href;
-          return;
-        }
-
         const res = await fetch(href, { cache: 'no-store' });
         if (!res.ok) throw new Error('Fetch failed: ' + res.status);
         const html = await res.text();
@@ -562,9 +556,6 @@
         bodyEl.innerHTML = (
           '<div class="modal-error">'
           + '<p>目前無法載入產品內容。你可以改用「開啟完整頁」查看。</p>'
-          + '<p style="margin-top:12px;">'
-          +   '<a class="btn-outline-gold" href="' + href + '">開啟完整頁</a>'
-          + '</p>'
           + '</div>'
         );
       }

@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <title>台興山產・仙加味｜龜鹿系列</title>
-  
-  <link rel=\"canonical\" href=\"https://ts15825868.github.io/TaiShing/dm.html">
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ✅ 與全站一致：共用主題 + 全站樣式（內含統一配色 tokens / 連結框框） -->
+  <link rel="stylesheet" href="theme_herbalrosegold.css">
+  <link rel="stylesheet" href="style.css">
 
   <style>
     /* ✅ 列印最穩：留邊界，避免頁尾被印表機/瀏覽器裁掉 */
@@ -17,8 +19,9 @@
 
       /* ✅ 與全站一致（theme_herbalrosegold.css 的核心色系） */
       --brand:#0B1F3B;   /* 主色：深藍 */
-      --gold:#FF7A00;    /* 強調：橘金 */
-      --gold2:#E86E00;   /* 強調深色 */
+      --accent:#FF7A00;  /* 行動色：橘 */
+      --accent2:#E86E00; /* 行動色深 */
+      --gold:#C9A24D;    /* 輔色：漢方金 */
 
       --line: rgba(0,0,0,.10);
       --soft:#fbf6f2;
@@ -30,7 +33,8 @@
     body{
       font-family:-apple-system, BlinkMacSystemFont, "PingFang TC","Microsoft JhengHei", system-ui, sans-serif;
       color:var(--ink);
-      background: linear-gradient(180deg, #fff, #fbf5f1);
+      /* 與全站一致（若已載入 style.css，優先採用其 --color-bg） */
+      background: var(--color-bg, linear-gradient(180deg, #F7F4ED, #FFFFFF));
       -webkit-font-smoothing: antialiased;
       line-height: 1.6;
     }
@@ -221,6 +225,19 @@
       margin: 0 auto;
     }
 
+    /* QR 圖片找不到時的替代提示 */
+    .qr-missing-tip{
+      margin-top: 10px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px dashed rgba(11,31,59,.25);
+      background: rgba(255, 122, 0, 0.08);
+      color: #0B1F3B;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-align: center;
+    }
+
     .qr-item .qr-label{
       margin: 10px 0 10px;
       font-size: 13px;
@@ -232,10 +249,8 @@
 
     /* QR 下方按鈕：僅螢幕顯示，列印隱藏 */
     .qr-actions{
-      display:flex;
-      gap:10px;
-      justify-content:center;
-      flex-wrap:wrap;
+      display:block;
+      margin-top: 8px;
     }
 
     .btn{
@@ -252,7 +267,9 @@
       display:inline-flex;
       align-items:center;
       justify-content:center;
-      min-width: 120px;
+      width: 100%;
+      max-width: 220px;
+      margin: 0 auto;
       transition: transform .15s ease, box-shadow .15s ease;
       box-shadow: 0 10px 18px rgba(0,0,0,.06);
     }
@@ -384,32 +401,6 @@
       .btn{ min-width: 112px; padding: 9px 12px; }
     }
   </style>
-
-  <meta property="og:locale" content="zh_TW">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#0B1F3B">
-  <!-- 結構化資料：BreadcrumbList -->
-  <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "首頁",
-      "item": "https://ts15825868.github.io/TaiShing/index.html"
-    },
-    {
-      "@type": "ListItem",
-      "position": 2,
-      "name": "產品 DM",
-      "item": "https://ts15825868.github.io/TaiShing/dm.html"
-    }
-  ]
-}
-  </script>
-
 </head>
 
 <body>
@@ -475,7 +466,8 @@
 
           <div class="qr-row">
             <div class="qr-item">
-              <img src="images/line_qr.png" alt="LINE 官方帳號 QR Code">
+              <img src="images/line_qr.png" alt="LINE 官方帳號 QR Code"
+                   data-fallback="images/line_qr.png,images/line-qr.png,images/line_qrcode.png,images/lineqr.png,images/LINE_QR.png">
               <div class="qr-label">LINE 官方帳號</div>
               <div class="qr-actions">
                 <a class="btn btn--line" id="btnLine" href="#" target="_blank" rel="noopener">前往 LINE</a>
@@ -483,7 +475,8 @@
             </div>
 
             <div class="qr-item">
-              <img src="images/qr-site.png" alt="官方網站 QR Code">
+              <img src="images/qr-site.png" alt="官方網站 QR Code"
+                   data-fallback="images/qr-site.png,images/site-qr.png,images/qr_site.png,images/website-qr.png,images/qrcode-site.png,images/QR-SITE.png">
               <div class="qr-label">官方網站</div>
               <div class="qr-actions">
                 <a class="btn" id="btnSite" href="#" target="_blank" rel="noopener">前往官網</a>
@@ -510,6 +503,34 @@
 
     if (btnLine) btnLine.href = LINE_URL;
     if (btnSite) btnSite.href = SITE_URL;
+
+    // ✅ QR 圖片容錯：GitHub Pages 若檔名大小寫或底線不同，仍可自動補上
+    // - 依 data-fallback 列表逐一嘗試，成功即停
+    (function setupQrImageFallback(){
+      const imgs = document.querySelectorAll('img[data-fallback]');
+      imgs.forEach((img) => {
+        const list = (img.getAttribute('data-fallback') || '')
+          .split(',')
+          .map(s => s.trim())
+          .filter(Boolean);
+        if (!list.length) return;
+        let i = 0;
+        const tryNext = () => {
+          i += 1;
+          if (i >= list.length) {
+            // 全部失敗：顯示可讀提示（避免空白）
+            img.style.display = 'none';
+            const tip = document.createElement('div');
+            tip.className = 'qr-missing-tip';
+            tip.textContent = 'QR 圖片未找到（請確認 images/ 內檔名）';
+            img.parentElement && img.parentElement.insertBefore(tip, img.nextSibling);
+            return;
+          }
+          img.src = list[i];
+        };
+        img.addEventListener('error', tryNext);
+      });
+    })();
   </script>
 </body>
 </html>
