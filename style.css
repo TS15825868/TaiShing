@@ -538,7 +538,7 @@ article.product-card:hover,
 /* =========================================
    內容區域連結：有框框＋明顯配色（不影響按鈕/導覽）
    ========================================= */
-.site-main a:not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.nav-link):not(.line-float):not(.card-link) {
+.site-main a:not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.nav-link):not(.line-float):not(.card-link):not(.hero-image-link):not(.js-product-modal) {
   display: inline-block;
   padding: 2px 10px;
   border-radius: 10px;
@@ -549,7 +549,7 @@ article.product-card:hover,
   transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
 }
 
-.site-main a:not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.nav-link):not(.line-float):not(.card-link):hover {
+.site-main a:not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.nav-link):not(.line-float):not(.card-link):not(.hero-image-link):not(.js-product-modal):hover {
   background: rgba(255, 122, 0, 0.12);
   border-color: rgba(255, 122, 0, 0.55);
   transform: translateY(-1px);
