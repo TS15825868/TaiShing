@@ -181,6 +181,27 @@ img {
 }
 
 /* =========================================
+   首頁 FEATURED 主打商品圖片（可點擊）
+   - 修正：主打商品圖片不見（容器無樣式/路徑錯誤時仍保有可見框）
+   ========================================= */
+.featured-media{
+  display: block;
+  margin: 0;
+  border: 2px solid rgba(11, 31, 59, 0.35);
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.featured-media img{
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* =========================================
    首頁 FEATURED 文案（主打商品）
    ========================================= */
 .featured-caption{
@@ -291,6 +312,8 @@ img {
   letter-spacing: 0.08em;
   white-space: nowrap;
   transition: 0.25s ease;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 
 .section .btn-primary,
@@ -319,7 +342,7 @@ img {
 .btn-soft,
 .btn-outline,
 .btn-outline-gold {
-  border: 1.5px solid #0B1F3B;
+  border: 2px solid #0B1F3B;
   color: #0B1F3B;
 }
 
@@ -1451,8 +1474,8 @@ body.modal-open{ overflow: hidden; }
      會被誤判成一般連結，導致出現多餘裝飾與間距
    ========================================================= */
 .site-main a.hero-image-link,
-.site-main a.js-product-modal,
-.site-main a.card-link{
+.site-main a.card-link,
+.site-main a.js-product-modal:not(.btn-primary):not(.btn-soft):not(.btn-outline):not(.btn-outline-gold):not(.btn-line-strong):not(.btn-detail){
   /* 讓圖片/整卡片點擊區保持「純內容」外觀 */
   display: block;
   padding: 0 !important;
