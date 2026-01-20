@@ -64,6 +64,8 @@ img {
   align-items: center;
   justify-content: space-between;
   transition: padding 0.25s ease;
+  /* ✅ 讓手機版漢堡展開選單以 header 為定位基準（避免看起來「沒東西」） */
+  position: relative;
 }
 
 .header--compact .header-inner {
@@ -152,12 +154,7 @@ img {
 .site-main {
   max-width: 1080px;
   margin: 0 auto;
-  /*
-    ✅ 保險：即使 JS 尚未執行（或被瀏覽器阻擋），
-    內容也不會被 fixed header 蓋住。
-    main.js 仍會在執行後以實際 header 高度做精準微調。
-  */
-  padding: 110px 20px 60px;
+  padding: 0 20px 60px;
 }
 
 /*
@@ -181,6 +178,45 @@ img {
 }
 .signature-only .hero-image-frame{
   margin-top: 0;
+}
+
+/* =========================================
+   首頁 FEATURED 文案（主打商品）
+   ========================================= */
+.featured-caption{
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(0,0,0,.08);
+}
+
+.featured-kicker{
+  margin: 0 0 6px;
+  font-size: .78rem;
+  letter-spacing: .26em;
+  color: var(--color-text-label);
+}
+
+.featured-title{
+  margin: 0 0 8px;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  letter-spacing: .06em;
+  color: var(--color-primary-deep);
+}
+
+.featured-desc{
+  margin: 0 0 10px;
+  color: var(--color-text-muted);
+}
+
+.featured-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+@media (max-width: 768px){
+  .featured-actions a{ width: 100%; }
 }
 
 /* =========================================
@@ -551,7 +587,8 @@ article.product-card:hover,
 .video-frame{
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  /* TikTok 多為直式：讓外框與影片比例一致 */
+  aspect-ratio: 9 / 16;
   border-radius: 12px;
   overflow: hidden;
   background: rgba(11,31,59,.06);
@@ -1012,6 +1049,7 @@ img.product-image {
 .product-card .card-link {
   position: absolute;
   inset: 0;
+  display: block;
   z-index: 10; /* ✅ 一定要高，才不會被內容蓋住 */
   border-radius: 16px;
 }
@@ -1399,33 +1437,6 @@ body.modal-open{ overflow: hidden; }
 
 /* Avoid nested fixed elements inside modal */
 .product-modal-content .line-float{ display: none !important; }
-
-/* =========================================
-   TCM 影片聚合頁：避免連結被「膠囊框」套用
-   - 全站內容連結有框框的設計很漂亮，但影片區希望連結像「一般超連結」
-   ========================================= */
-.video-actions a{
-  display: inline !important;
-  align-items: initial !important;
-  gap: 0 !important;
-  padding: 0 !important;
-  border: 0 !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-  color: var(--color-primary-deep) !important;
-  font-weight: 700 !important;
-  text-decoration: underline !important;
-  box-shadow: none !important;
-  transform: none !important;
-}
-
-.video-actions a:hover{
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  transform: none !important;
-  opacity: .88;
-}
 
 @media (max-width: 768px){
   .product-modal{ max-height: 90vh; }
