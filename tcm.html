@@ -139,22 +139,30 @@
 </div>
 
 <script>
-  // 影片標題：目前因平台限制無法自動抓取「抖音原標題」。
-  // 你可以把 title 改成抖音影片原本的標題，我這裡保留可直接替換的欄位。
+  // TikTok 影片資料
+  // 規則：id 數字越大 = 越新 → 自動排在最上
   const VIDEOS = [
-    { id: "7440039107708914945", url: "https://www.tiktok.com/@changwuchi2023/video/7440039107708914945", title: "抖音影片標題 01" },
-    { id: "7441142424518315280", url: "https://www.tiktok.com/@changwuchi2023/video/7441142424518315280", title: "抖音影片標題 02" },
-    { id: "7441892944057027896", url: "https://www.tiktok.com/@changwuchi2023/video/7441892944057027896", title: "抖音影片標題 03" },
-    { id: "7442637133308759352", url: "https://www.tiktok.com/@changwuchi2023/video/7442637133308759352", title: "抖音影片標題 04" },
-    { id: "7443754721195691319", url: "https://www.tiktok.com/@changwuchi2023/video/7443754721195691319", title: "抖音影片標題 05" },
-    { id: "7444051217757752583", url: "https://www.tiktok.com/@changwuchi2023/video/7444051217757752583", title: "抖音影片標題 06" },
-    { id: "7444467481059560712", url: "https://www.tiktok.com/@changwuchi2023/video/7444467481059560712", title: "抖音影片標題 07" },
-    { id: "7444622264642833671", url: "https://www.tiktok.com/@changwuchi2023/video/7444622264642833671", title: "抖音影片標題 08" },
-    { id: "7445221794769898759", url: "https://www.tiktok.com/@changwuchi2023/video/7445221794769898759", title: "抖音影片標題 09" },
-    { id: "7446332181263289607", url: "https://www.tiktok.com/@changwuchi2023/video/7446332181263289607", title: "抖音影片標題 10" },
-    { id: "7475988696827727112", url: "https://www.tiktok.com/@changwuchi2023/video/7475988696827727112", title: "抖音影片標題 11" },
-    { id: "7561374523564543249", url: "https://www.tiktok.com/@changwuchi2023/video/7561374523564543249", title: "抖音影片標題 12" }
+    { id: "7600388782180945172", url: "https://www.tiktok.com/@changwuchi2023/video/7600388782180945172", title: "中醫觀點分享（最新）" },
+    { id: "7599984981527530772", url: "https://www.tiktok.com/@changwuchi2023/video/7599984981527530772", title: "中醫觀點分享（最新）" },
+    { id: "7599654150523079957", url: "https://www.tiktok.com/@changwuchi2023/video/7599654150523079957", title: "中醫觀點分享（最新）" },
+    { id: "7597798718720576789", url: "https://www.tiktok.com/@changwuchi2023/video/7597798718720576789", title: "中醫觀點分享（最新）" },
+
+    { id: "7561374523564543249", url: "https://www.tiktok.com/@changwuchi2023/video/7561374523564543249", title: "中醫觀點分享" },
+    { id: "7475988696827727112", url: "https://www.tiktok.com/@changwuchi2023/video/7475988696827727112", title: "中醫觀點分享" },
+    { id: "7446332181263289607", url: "https://www.tiktok.com/@changwuchi2023/video/7446332181263289607", title: "中醫觀點分享" },
+    { id: "7445221794769898759", url: "https://www.tiktok.com/@changwuchi2023/video/7445221794769898759", title: "中醫觀點分享" },
+    { id: "7444622264642833671", url: "https://www.tiktok.com/@changwuchi2023/video/7444622264642833671", title: "中醫觀點分享" },
+    { id: "7444467481059560712", url: "https://www.tiktok.com/@changwuchi2023/video/7444467481059560712", title: "中醫觀點分享" },
+    { id: "7444051217757752583", url: "https://www.tiktok.com/@changwuchi2023/video/7444051217757752583", title: "中醫觀點分享" },
+    { id: "7443754721195691319", url: "https://www.tiktok.com/@changwuchi2023/video/7443754721195691319", title: "中醫觀點分享" },
+    { id: "7442637133308759352", url: "https://www.tiktok.com/@changwuchi2023/video/7442637133308759352", title: "中醫觀點分享" },
+    { id: "7441892944057027896", url: "https://www.tiktok.com/@changwuchi2023/video/7441892944057027896", title: "中醫觀點分享" },
+    { id: "7441142424518315280", url: "https://www.tiktok.com/@changwuchi2023/video/7441142424518315280", title: "中醫觀點分享" },
+    { id: "7440039107708914945", url: "https://www.tiktok.com/@changwuchi2023/video/7440039107708914945", title: "中醫觀點分享" }
   ];
+
+  // 👉 核心：依 id 數字由大到小排序（最新在最上）
+  VIDEOS.sort((a, b) => BigInt(b.id) - BigInt(a.id));
 
   function createCard(v){
     const card = document.createElement('article');
@@ -173,7 +181,6 @@
     btn.innerHTML = '<span>▶ 播放</span>';
 
     btn.addEventListener('click', () => {
-      // 點播放才載入，並自動播放
       frame.innerHTML = `
         <iframe
           src="https://www.tiktok.com/embed/v2/${v.id}?autoplay=1"
@@ -188,7 +195,7 @@
 
     const fallback = document.createElement('div');
     fallback.className = 'video-fallback';
-    fallback.innerHTML = `看不到影片？可直接開啟： <a href="${v.url}" target="_blank" rel="noopener">${v.url}</a>`;
+    fallback.innerHTML = `看不到影片？可直接開啟： <a href="${v.url}" target="_blank" rel="noopener">TikTok 原影片</a>`;
 
     card.appendChild(title);
     card.appendChild(frame);
