@@ -1,1 +1,91 @@
-.xjw-weight{font-size:26px;font-weight:650;letter-spacing:.5px;margin:6px 0 10px;color:#0B1F3B;}
+.xjw-weight{font-size:26px;font-weight:650;letter-spacing:.5px;margin:6px 0 10px;color:#0B1F3B;}/* 高端收尾 CTA */
+.xjw-cta-refined {
+  background: #0B1F3B;
+  color: #ffffff;
+  padding: 60px 20px;
+  text-align: center;
+}
+.xjw-cta-refined h2 {
+  margin-bottom: 16px;
+}
+.xjw-cta-refined p {
+  opacity: 0.9;
+  line-height: 1.8;
+  margin-bottom: 24px;
+}
+/* 首頁 Hero 高端優化 */
+.hero h1 {
+  letter-spacing: 2px;
+  line-height: 1.25;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.hero .btn {
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+/* 全站排版微優化（字距、行距、氣場） */
+:root{
+  --xjw-max: 1040px;
+}
+body{
+  letter-spacing: .3px;
+  line-height: 1.85;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+h1,h2,h3{
+  letter-spacing: 1.5px;
+  line-height: 1.25;
+}
+p,li{
+  letter-spacing: .4px;
+  line-height: 1.95;
+}
+.container{
+  max-width: var(--xjw-max);
+}
+.section{
+  padding: 64px 20px;
+}
+.section-title{
+  margin-bottom: 18px;
+}
+.card, .product-card{
+  border-radius: 18px;
+}
+/* 讓段落更「有呼吸」 */
+p{
+  margin: 0 0 14px;
+}
+/* 手機版更舒適 */
+@media (max-width: 520px){
+  body{ line-height: 1.95; }
+  h1{ letter-spacing: 1.2px; }
+  .section{ padding: 56px 18px; }
+}
+/* tcm.html 影片響應式容器 */
+.video-wrap{
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 18px auto 0;
+  padding-top: 56.25%;
+  border-radius: 18px;
+  overflow: hidden;
+  background: rgba(0,0,0,.06);
+}
+.video-wrap iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
