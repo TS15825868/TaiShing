@@ -10,16 +10,22 @@
       return "https://www.youtube.com/embed/" + id;
     }catch(e){ return null; }
   }
+
   const listEl = document.getElementById("tcm-video-list");
   const emptyEl = document.getElementById("tcm-empty");
   const jumpEl = document.getElementById("tcmJump");
   const videos = (window.TCM_VIDEOS || []).slice().reverse();
 
   if(!listEl || !emptyEl || !jumpEl) return;
-  if(!videos.length){ emptyEl.style.display="block"; return; }
+
+  if(!videos.length){
+    emptyEl.style.display = "block";
+    return;
+  }
 
   videos.forEach((v, idx)=>{
     const cardId = "tcm-video-" + idx;
+
     const card = document.createElement("article");
     card.className = "tcm-card";
     card.id = cardId;
@@ -47,7 +53,8 @@
       media.classList.add("video-wrap--link");
       const a = document.createElement("a");
       a.href = v.url || "#";
-      a.target = "_blank"; a.rel = "noopener";
+      a.target = "_blank";
+      a.rel = "noopener";
       a.className = "btn btn-primary";
       a.textContent = "開啟原影片";
       media.appendChild(a);
@@ -60,8 +67,11 @@
     }
 
     const open = document.createElement("a");
-    open.href = v.url || "#"; open.target="_blank"; open.rel="noopener";
-    open.className="tcm-open"; open.textContent="開啟原影片";
+    open.href = v.url || "#";
+    open.target = "_blank";
+    open.rel = "noopener";
+    open.className = "tcm-open";
+    open.textContent = "開啟原影片";
 
     card.appendChild(h);
     if(meta.textContent) card.appendChild(meta);
