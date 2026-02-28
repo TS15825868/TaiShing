@@ -6,3 +6,10 @@
 .xjw-btn{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-size:14px;letter-spacing:.4px;}
 .xjw-btn-primary{background:#fff;color:#0B1F3B;font-weight:650;}
 .xjw-btn-ghost{border:1px solid rgba(255,255,255,.7);color:#fff;}
+/* 規格系統一致化 */
+.xjw-spec{ background:#F7F4ED; border-radius:14px; padding:18px 16px; max-width:980px; margin:18px auto; }
+.xjw-spec .section-title{ margin-top:0; }
+.xjw-spec-list{ list-style:none; padding:0; margin:0; }
+.xjw-spec-list li{ padding:10px 0; border-bottom:1px solid rgba(0,0,0,0.08); letter-spacing:0.4px; }
+.xjw-spec-list li:last-child{ border-bottom:none; }
+.xjw-muted{ color:#666; font-size:14px; margin-top:12px; line-height:1.7; }
