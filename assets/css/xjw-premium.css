@@ -1,43 +1,17 @@
-/* tcm 影片頁 */
-.video-wrap{
-  position: relative;
-  width: 100%;
-  max-width: 980px;
-  margin: 12px auto 0;
-  padding-top: 56.25%;
-  border-radius: 18px;
-  overflow: hidden;
-  background: rgba(0,0,0,.06);
+.xjw-weight{font-size:26px;font-weight:650;letter-spacing:.5px;margin:6px 0 10px;color:#0B1F3B;}/* 微調字距/行距（高端氣場） */
+:root{
+  --xjw-letter: .02em;
+  --xjw-leading: 1.78;
 }
-.video-wrap iframe{
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  border: 0;
+body{
+  letter-spacing: var(--xjw-letter);
+  line-height: var(--xjw-leading);
+  text-rendering: geometricPrecision;
 }
-.video-wrap--link{
-  padding-top: 0 !important;
-  height: 220px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+h1,h2,h3{
+  letter-spacing: .01em;
+  line-height: 1.25;
 }
-.tcm-video-list{ display: grid; gap: 18px; }
-.tcm-card{
-  background:#fff;
-  border:1px solid rgba(0,0,0,.06);
-  border-radius:18px;
-  padding:18px 16px;
+p,li{
+  letter-spacing: .02em;
 }
-.tcm-select{
-  width:100%;
-  max-width:520px;
-  padding:12px 14px;
-  border-radius:14px;
-  border:1px solid rgba(0,0,0,.12);
-  background:#fff;
-  margin-top:8px;
-}
-.tcm-open{ display:inline-block; margin-top:12px; text-decoration: underline; }
-.tcm-empty{ text-align:center; padding: 18px 0; }
