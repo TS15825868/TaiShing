@@ -1496,3 +1496,13 @@ body.modal-open{ overflow: hidden; }
   object-fit: contain;
   object-position: center;
 }
+
+
+/* Modal hero image (product image in popup) */
+.modal-hero{margin:0 0 14px 0;border-radius:18px;overflow:hidden;background:#f5f0e6;}
+.modal-hero img{display:block;width:100%;height:auto;}
+
+
+/* PATCH: 產品跳窗圖片 */
+.xjw-modal-img{width:100%;margin:0 0 12px 0;border-radius:14px;overflow:hidden;background:rgba(0,0,0,.04);} 
+.xjw-modal-img img{width:100%;height:auto;display:block;}

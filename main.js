@@ -9,7 +9,37 @@
 (function () {
   "use strict";
 
-  function setMainPaddingTop() {
+  
+
+/* ==== PATCH: 產品跳窗補回圖片（從點擊卡片抓圖） ==== */
+function xjwSetModalImage(modalEl, imgSrc, altText){
+  try{
+    if(!modalEl) return;
+    let wrap = modalEl.querySelector(".xjw-modal-img");
+    if(!wrap){
+      wrap = document.createElement("div");
+      wrap.className = "xjw-modal-img";
+      const img = document.createElement("img");
+      img.alt = altText || "";
+      img.loading = "lazy";
+      wrap.appendChild(img);
+      const body = modalEl.querySelector(".modal-content") || modalEl.querySelector(".modal-body") || modalEl;
+      // 插在標題前（最上）
+      const first = body.firstElementChild;
+      if(first) body.insertBefore(wrap, first);
+      else body.appendChild(wrap);
+    }
+    const img = wrap.querySelector("img");
+    if(img && imgSrc){
+      img.src = imgSrc;
+      img.alt = altText || img.alt || "";
+      wrap.style.display = "block";
+    }else if(wrap){
+      wrap.style.display = "none";
+    }
+  }catch(e){}
+}
+function setMainPaddingTop() {
     const header = document.querySelector(".site-header");
     const main = document.querySelector(".site-main");
     if (!header || !main) return;
@@ -465,7 +495,7 @@
       scrollToAnchor(href.slice(1));
     });
 
-    async function loadPageIntoModal(href, fallbackTitle) {
+    async function loadPageIntoModal(href, fallbackTitle, heroImgSrc) {
       setLoading(fallbackTitle);
 
       try {
@@ -490,6 +520,19 @@
         const wrapper = document.createElement('div');
         wrapper.className = 'modal-page';
         wrapper.innerHTML = main.innerHTML;
+
+        // ✅ 彈窗補回「產品圖片」：優先使用觸發卡片/圖片來源（heroImgSrc）
+        if (heroImgSrc) {
+          const fig = document.createElement('figure');
+          fig.className = 'modal-hero';
+          const img = document.createElement('img');
+          img.src = heroImgSrc;
+          img.alt = (titleEl.textContent || '產品圖片');
+          img.loading = 'lazy';
+          fig.appendChild(img);
+          wrapper.insertBefore(fig, wrapper.firstChild);
+        }
+
 
         // Remove nested floating LINE buttons or duplicate wrappers if any
         wrapper.querySelectorAll('.line-float, .site-header, .site-footer, script, noscript').forEach(el => el.remove());
@@ -618,7 +661,14 @@
           if (!href) return;
           e.preventDefault();
           const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
-          loadPageIntoModal(href, title);
+          const heroImg = (function(el){
+            try{
+              const img = el && el.querySelector && el.querySelector('img');
+              if (img && img.getAttribute('src')) return img.getAttribute('src');
+              return null;
+            }catch(e){ return null; }
+          })(a);
+          loadPageIntoModal(href, title, heroImg);
           openModal(a);
           return;
         }
@@ -628,7 +678,14 @@
           const href = a.getAttribute('href');
           e.preventDefault();
           const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
-          loadPageIntoModal(href, title);
+          const heroImg = (function(el){
+            try{
+              const img = el && el.querySelector && el.querySelector('img');
+              if (img && img.getAttribute('src')) return img.getAttribute('src');
+              return null;
+            }catch(e){ return null; }
+          })(a);
+          loadPageIntoModal(href, title, heroImg);
           openModal(a);
         }
       });
@@ -793,4 +850,39 @@ function setupBackLinks() {
   } else {
     init();
   }
+})();
+
+
+/* ==== PATCH: 點卡片時記住圖片，彈窗打開時帶入 ==== */
+let xjwLastClickedImgSrc = null;
+let xjwLastClickedImgAlt = null;
+function xjwRememberClickedImage(ev){
+  const card = ev.target && (ev.target.closest(".product-card") || ev.target.closest("[data-product]") || ev.target.closest(".product-item"));
+  if(!card) return;
+  const img = card.querySelector("img");
+  if(img && img.getAttribute("src")){
+    xjwLastClickedImgSrc = img.getAttribute("src");
+    xjwLastClickedImgAlt = img.getAttribute("alt") || "";
+  }
+}
+document.addEventListener("click", xjwRememberClickedImage, true);
+window.xjwModalImageHookInstalled = true;
+
+/* 嘗試在常見的開啟函式後補圖（不破壞原流程） */
+(function(){
+  const tryPatch = (fnName) => {
+    const fn = window[fnName];
+    if(typeof fn !== "function") return;
+    if(fn.__xjw_patched) return;
+    window[fnName] = function(){
+      const ret = fn.apply(this, arguments);
+      setTimeout(()=>{
+        const modalEl = document.querySelector(".modal.is-open, .modal.open, .product-modal.is-open, #productModal, #modal");
+        if(modalEl) xjwSetModalImage(modalEl, xjwLastClickedImgSrc, xjwLastClickedImgAlt);
+      }, 0);
+      return ret;
+    };
+    window[fnName].__xjw_patched = true;
+  };
+  ["openModal","openProductModal","showProductModal","openProductDetail"].forEach(tryPatch);
 })();
