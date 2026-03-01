@@ -663,8 +663,20 @@ function setMainPaddingTop() {
           const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
           const heroImg = (function(el){
             try{
-              const img = el && el.querySelector && el.querySelector('img');
-              if (img && img.getAttribute('src')) return img.getAttribute('src');
+              // 1) if the <a> contains an <img>, use it
+              const direct = (el && el.querySelector) ? el.querySelector('img') : null;
+              if (direct && direct.getAttribute('src')) return direct.getAttribute('src');
+
+              // 2) common pattern: image sits on the product card, link is separate
+              const card = (el && el.closest) ? el.closest('.product-card,.product-item,.product,.card,.product-grid-item,.products-card,.card-product') : null;
+              const img2 = (card && card.querySelector) ? card.querySelector('img') : null;
+              if (img2 && img2.getAttribute('src')) return img2.getAttribute('src');
+
+              // 3) fallback: parent wrapper
+              const wrap = el && el.parentElement ? el.parentElement : null;
+              const img3 = (wrap && wrap.querySelector) ? wrap.querySelector('img') : null;
+              if (img3 && img3.getAttribute('src')) return img3.getAttribute('src');
+
               return null;
             }catch(e){ return null; }
           })(a);
@@ -680,8 +692,20 @@ function setMainPaddingTop() {
           const title = a.getAttribute('aria-label') || a.getAttribute('title') || (a.textContent || '').trim() || '產品介紹';
           const heroImg = (function(el){
             try{
-              const img = el && el.querySelector && el.querySelector('img');
-              if (img && img.getAttribute('src')) return img.getAttribute('src');
+              // 1) if the <a> contains an <img>, use it
+              const direct = (el && el.querySelector) ? el.querySelector('img') : null;
+              if (direct && direct.getAttribute('src')) return direct.getAttribute('src');
+
+              // 2) common pattern: image sits on the product card, link is separate
+              const card = (el && el.closest) ? el.closest('.product-card,.product-item,.product,.card,.product-grid-item,.products-card,.card-product') : null;
+              const img2 = (card && card.querySelector) ? card.querySelector('img') : null;
+              if (img2 && img2.getAttribute('src')) return img2.getAttribute('src');
+
+              // 3) fallback: parent wrapper
+              const wrap = el && el.parentElement ? el.parentElement : null;
+              const img3 = (wrap && wrap.querySelector) ? wrap.querySelector('img') : null;
+              if (img3 && img3.getAttribute('src')) return img3.getAttribute('src');
+
               return null;
             }catch(e){ return null; }
           })(a);
