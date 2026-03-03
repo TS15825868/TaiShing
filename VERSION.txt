@@ -1,2 +1,2 @@
-TaiShing Website - Web v8.8 Add new pages to hamburger + keep v8.7 layout
+TaiShing Website - Web v7.2 Enterprise Stable + SEO Clean Schema
 Updated: 2026-03-03
