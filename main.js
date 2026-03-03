@@ -838,12 +838,14 @@ function setupBackLinks() {
 
   // Toggle behavior (robust)
   function open(){
+    document.body.classList.add('xjw-menu-open');
     document.body.style.overflow = 'hidden';
     navWrap.classList.add('is-open');
     toggle.setAttribute('aria-expanded','true');
     document.body.classList.add('nav-open');
   }
   function close(){
+    document.body.classList.remove('xjw-menu-open');
     document.body.style.overflow = '';
     navWrap.classList.remove('is-open');
     toggle.setAttribute('aria-expanded','false');
