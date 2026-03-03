@@ -1,25 +1,3 @@
 /* Web v7.6 — Single CSS (root) | Updated 2026-03-04
    規則：全站只維護這一支；保留 v7.2 原視覺（不改配色/配置）。
 */
-
-/* ===== Web v7.7 Premium Home/Product Overview (keep palette) ===== */
-.hero{padding:18px 0 10px;}
-.hero-card{max-width:1100px;margin:0 auto;background:#fff;border-radius:18px;box-shadow:0 18px 55px rgba(0,0,0,.12);padding:18px 16px;}
-.kicker{letter-spacing:.18em;font-size:.82rem;opacity:.72;margin:0 0 8px;}
-.lead{font-size:1.03rem;line-height:1.75;opacity:.92;margin:0 0 14px;}
-.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:10px 14px;border-radius:14px;text-decoration:none;box-shadow:0 10px 26px rgba(0,0,0,.10);}
-.btn.primary{font-weight:800;}
-.card.compact{padding:16px 16px 14px;}
-.bullets{margin:10px 0 0;padding-left:18px;line-height:1.85;}
-.pgrid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:0 16px 18px;}
-@media (max-width:900px){.pgrid{grid-template-columns:1fr;}}
-.pitem{display:block;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 18px 55px rgba(0,0,0,.12);text-decoration:none;color:inherit;transition:transform .16s ease, box-shadow .16s ease;}
-.pitem:hover{transform:translateY(-2px);box-shadow:0 26px 75px rgba(0,0,0,.16);}
-.pmedia{aspect-ratio:4/3;background:rgba(0,0,0,.03);display:flex;align-items:center;justify-content:center;}
-.pmedia img{width:100%;height:100%;object-fit:cover;display:block;}
-.pbody{padding:12px 14px 14px;}
-.pbody h2{margin:0 0 6px;font-size:1.15rem;}
-.pdesc{margin:0;opacity:.9;line-height:1.7;}
-.ptags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;opacity:.85;font-size:.85rem;}
-.tag{padding:4px 8px;border-radius:999px;background:rgba(0,0,0,.05);}
