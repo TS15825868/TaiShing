@@ -838,11 +838,13 @@ function setupBackLinks() {
 
   // Toggle behavior (robust)
   function open(){
+    document.body.style.overflow = 'hidden';
     navWrap.classList.add('is-open');
     toggle.setAttribute('aria-expanded','true');
     document.body.classList.add('nav-open');
   }
   function close(){
+    document.body.style.overflow = '';
     navWrap.classList.remove('is-open');
     toggle.setAttribute('aria-expanded','false');
     document.body.classList.remove('nav-open');
@@ -871,4 +873,9 @@ function setupBackLinks() {
     const a = e.target.closest('a');
     if(a) close();
   });
+
+  // ✅ 滾動就自動收合：避免擋住視線（品牌官網常用）
+  window.addEventListener('scroll', ()=>{
+    if(isOpen()) close();
+  }, { passive: true });
 })();
