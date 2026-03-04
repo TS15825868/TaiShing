@@ -1,43 +1,29 @@
 "use strict";
-/* Web v8.0.3 — Original hamburger hand feel (dropdown under header) */
+/* Web v10.0 — Single JS at root */
 (function(){
-  const toggle = document.querySelector(".nav-toggle");
-  const nav = document.querySelector(".site-nav");
-  if(!toggle || !nav) return;
+  const btn = document.querySelector('.menu-toggle, .hamburger, .nav-toggle, button[aria-label*="選單"], button[aria-label*="menu"]');
+  const panel = document.querySelector('.mobile-menu, .nav-panel, .site-nav, .menu, nav ul');
+  const overlay = document.querySelector('.menu-overlay, .nav-overlay, .overlay');
 
-  function closeNav(){
-    nav.classList.remove("is-open");
-    toggle.classList.remove("is-open");
-    toggle.setAttribute("aria-expanded","false");
-  }
+  if(!btn || !panel) return;
 
-  if(!toggle.hasAttribute("aria-expanded")) toggle.setAttribute("aria-expanded","false");
+  const lock = (on) => document.documentElement.style.overflow = on ? 'hidden' : '';
 
-  toggle.addEventListener("click", function(e){
-    e.stopPropagation();
-    const next = !nav.classList.contains("is-open");
-    nav.classList.toggle("is-open", next);
-    toggle.classList.toggle("is-open", next);
-    toggle.setAttribute("aria-expanded", next ? "true" : "false");
-  });
+  const open = () => {
+    panel.classList.add('open');
+    if(overlay) overlay.classList.add('open');
+    btn.setAttribute('aria-expanded','true');
+    lock(true);
+  };
+  const close = () => {
+    panel.classList.remove('open');
+    if(overlay) overlay.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    lock(false);
+  };
 
-  // click outside closes (original feel)
-  document.addEventListener("click", function(e){
-    const insideNav = nav.contains(e.target);
-    const onToggle = toggle.contains(e.target);
-    if(!insideNav && !onToggle) closeNav();
-  });
-
-  // mobile: scroll closes
-  window.addEventListener("scroll", function(){
-    if(window.innerWidth <= 768 && nav.classList.contains("is-open")) closeNav();
-  }, {passive:true});
-
-  // set active link
-  const path = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-  nav.querySelectorAll("a.nav-link").forEach(a => {
-    const href=(a.getAttribute("href")||"").toLowerCase();
-    if(href===path) a.classList.add("nav-link--active");
-  });
-
+  btn.addEventListener('click',(e)=>{e.preventDefault(); panel.classList.contains('open')?close():open();});
+  if(overlay) overlay.addEventListener('click', close);
+  panel.addEventListener('click',(e)=>{ if(e.target.closest('a')) close(); });
+  window.addEventListener('keydown',(e)=>{ if(e.key==='Escape') close(); });
 })();
