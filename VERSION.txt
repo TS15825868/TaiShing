@@ -1,3 +1,3 @@
-Web v10.0
+Web v12.0
 2026-03-04
-Root site.css/site.js; products in products.html; pages independent.
+Premium UI; hamburger A; home quick entry 4; products 2-col mobile / 4-col desktop; brand voice unified.
