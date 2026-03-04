@@ -15,16 +15,20 @@ function toggleMenu(open){
   }
 }
 
-// ESC 關閉
+/* ESC 關閉 */
 document.addEventListener('keydown', (e)=>{
   if(e.key === 'Escape') toggleMenu(false);
 });
 
-// 點選選單項目後自動關閉（保留體驗）
+/* 點選選單項目後自動關閉 */
 document.addEventListener('click', (e)=>{
   const drawer = document.getElementById('drawer');
   if(!drawer) return;
-  if(drawer.classList.contains('open') && e.target.tagName === 'A' && drawer.contains(e.target)){
-    toggleMenu(false);
+
+  if(drawer.classList.contains('open')){
+    const link = e.target.closest('a');
+    if(link && drawer.contains(link)){
+      toggleMenu(false);
+    }
   }
 });
