@@ -1,92 +1,239 @@
+:root{
+  --bg:#f6f4ef;
+  --text:#222;
+  --muted:#666;
+  --card:#ffffff;
+  --line:#e8e3d9;
+  --shadow: 0 10px 30px rgba(0,0,0,.08);
+  --radius: 20px;
+  --navH: 72px;
+  --footerH: 110px; /* 讓內容不會被固定頁尾蓋住 */
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
 body{
   font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;
   margin:0;
-  background:#f6f4ef;
-  color:#222;
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-/* ✅ 打開抽屜時鎖住背景滾動 */
-body.drawer-open{
-  overflow:hidden;
-  height:100vh;
-  touch-action:none;
-}
-
+/* Header 固定上方 */
 .header{
+  position:fixed;
+  top:0; left:0; right:0;
+  height:var(--navH);
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:14px 20px;
+  padding:14px 18px;
   background:#fff;
-  position:sticky;
-  top:0;
-  z-index:1000;
+  border-bottom:1px solid var(--line);
+  z-index:10000;
 }
 
-.logo{
-  text-decoration:none;
-  color:#222;
-  line-height:1.05;
-  display:inline-block;
-}
-
-.brand{font-size:20px;font-weight:900;letter-spacing:.5px;}
-.sub{font-size:16px;font-weight:800;margin-top:2px;}
-.xjw{font-size:12px;color:#777;margin-top:4px;letter-spacing:2px;}
+.logo{cursor:pointer;line-height:1}
+.brand{font-size:20px;font-weight:800;letter-spacing:.5px}
+.sub{font-size:16px;font-weight:800;margin-top:4px}
+.xjw{font-size:12px;color:#777;margin-top:6px}
 
 .hamburger{
-  font-size:24px;
+  font-size:26px;
   background:none;
-  border:1px solid #ddd;
-  width:44px;
-  height:44px;
-  border-radius:12px;
+  border:1px solid var(--line);
+  width:46px;
+  height:46px;
+  border-radius:14px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
 }
 
-/* ✅ Overlay 遮罩 */
-.drawer-overlay{
+/* 主內容：上下避開固定 header/footer，置中 */
+.main{
+  min-height:calc(100vh - var(--navH) - var(--footerH));
+  padding-top:calc(var(--navH) + 18px);
+  padding-bottom:calc(var(--footerH) + 18px);
+  max-width:960px;
+  margin:0 auto;
+  padding-left:18px;
+  padding-right:18px;
+}
+
+/* Hero */
+.hero{
+  background:rgba(255,255,255,.65);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:30px 22px;
+  box-shadow:var(--shadow);
+}
+
+.hero-title{
+  margin:0 0 12px;
+  font-size:38px;
+  letter-spacing:.5px;
+}
+
+.hero-desc{
+  margin:0;
+  color:#333;
+  font-size:18px;
+  line-height:1.75;
+}
+
+.hero-actions{
+  margin-top:18px;
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 16px;
+  border-radius:14px;
+  text-decoration:none;
+  font-weight:800;
+  border:1px solid var(--line);
+  min-width:140px;
+}
+
+.btn.primary{
+  background:#d88945;
+  color:#fff;
+  border-color:#d88945;
+}
+
+.btn.ghost{
+  background:#fff;
+  color:#222;
+}
+
+/* 三點特色 */
+.features{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.feature-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px 16px;
+  box-shadow:var(--shadow);
+}
+
+.feature-title{
+  font-weight:900;
+  margin-bottom:8px;
+  font-size:16px;
+}
+
+.feature-text{
+  color:#333;
+  line-height:1.7;
+  font-size:14px;
+}
+
+/* 快速連結 */
+.quicklinks{
+  margin-top:14px;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.ql{
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:10px 14px;
+  text-decoration:none;
+  color:#222;
+  font-weight:800;
+}
+
+/* Footer 固定下面 */
+.footer{
+  position:fixed;
+  left:0; right:0; bottom:0;
+  height:var(--footerH);
+  background:#fff;
+  border-top:1px solid var(--line);
+  z-index:9999;
+}
+
+.footer-inner{
+  max-width:960px;
+  margin:0 auto;
+  padding:14px 18px;
+  display:grid;
+  gap:8px;
+}
+
+.footer-line{
+  display:flex;
+  gap:10px;
+  align-items:baseline;
+  justify-content:center;
+  flex-wrap:wrap;
+  text-align:center;
+}
+
+.footer-label{color:var(--muted); font-weight:800}
+.footer-value{font-weight:900}
+
+/* Overlay + Drawer */
+.overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.35);
+  background:rgba(0,0,0,.25);
   opacity:0;
   pointer-events:none;
-  transition:.2s;
+  transition:.25s;
   z-index:9998;
 }
-.drawer-overlay.open{
+
+.overlay.open{
   opacity:1;
   pointer-events:auto;
 }
 
-/* ✅ Drawer：用 transform 比 right 更穩（iOS 不抖） */
 .drawer{
   position:fixed;
   top:0;
-  right:0;
+  right:-86%;
   width:86%;
-  max-width:420px;
-  height:100vh;
+  height:100%;
   background:#fff;
   overflow:auto;
   -webkit-overflow-scrolling:touch;
-  transform:translateX(100%);
-  transition:transform .25s ease;
-  padding:16px 20px 24px;
+  transition:.3s;
+  padding:16px 18px 20px;
   z-index:9999;
-  box-shadow:-18px 0 40px rgba(0,0,0,.15);
+  border-left:1px solid var(--line);
 }
-.drawer.open{ transform:translateX(0); }
+
+.drawer.open{right:0}
 
 .drawer-top{
   position:sticky;
   top:0;
   background:#fff;
-  padding:10px 0 12px;
+  padding:8px 0 10px;
   display:flex;
-  justify-content:space-between;
   align-items:center;
-  z-index:1;
-  border-bottom:1px solid #eee;
+  justify-content:space-between;
+  border-bottom:1px solid var(--line);
+  z-index:2;
 }
 
 .drawer-title{
@@ -95,38 +242,59 @@ body.drawer-open{
 }
 
 .drawer-close{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  border:1px solid var(--line);
   background:#fff;
-  border:1px solid #ddd;
-  width:40px;
-  height:40px;
-  border-radius:12px;
+  cursor:pointer;
   font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .drawer a{
   display:block;
-  padding:12px 0;
+  padding:12px 2px;
   color:#222;
   text-decoration:none;
-  border-bottom:1px solid #f1f1f1;
+  font-weight:800;
+  border-bottom:1px dashed rgba(0,0,0,.06);
 }
 
 .menu-group{
-  margin-top:16px;
+  margin-top:14px;
   font-weight:900;
   color:#111;
-  padding:10px 0 6px;
+  padding:10px 2px 6px;
 }
 
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:40px 20px;
+.drawer-bottom{
+  margin-top:14px;
+  padding-top:10px;
 }
 
-.footer{
-  text-align:center;
-  padding:30px 18px;
-  background:#fff;
-  margin-top:40px;
+.drawer-cta{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  padding:12px 14px;
+  background:#0b1f3b;
+  color:#fff !important;
+  text-decoration:none;
+  font-weight:900;
+  border:1px solid #0b1f3b;
+}
+
+body.menu-open{
+  overflow:hidden;
+}
+
+/* 手機版調整 */
+@media (max-width: 860px){
+  .hero-title{font-size:34px}
+  .features{grid-template-columns:1fr}
+  :root{ --footerH: 120px; }
 }
