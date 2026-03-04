@@ -74,3 +74,23 @@ footer{background:#0B1F3B;color:white;padding:30px;text-align:center;margin-top:
 .faq summary{cursor:pointer;font-weight:800}
 .season-card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .season-hint{font-size:12px;opacity:.8;margin-top:10px}
+
+
+/* --- Brand header clickable --- */
+.logo-link{display:inline-block;text-decoration:none;color:inherit;line-height:1.05}
+.logo-link:hover{opacity:.92}
+.logo-link:active{transform:translateY(1px)}
+.brand{font-size:18px;letter-spacing:.5px}
+.brand-sub{font-size:14px;letter-spacing:2px;margin-top:2px}
+.brand-tag{font-size:12px;letter-spacing:3px;opacity:.75;margin-top:2px}
+
+/* --- Footer --- */
+footer{background:#0B1F3B;color:#fff;padding:26px 20px;margin-top:30px}
+.footer-inner{max-width:1000px;margin:0 auto}
+.footer-brand{font-weight:700;font-size:16px;letter-spacing:1px}
+.footer-en{opacity:.75;font-size:12px;letter-spacing:3px;margin-top:4px}
+.footer-info{opacity:.9;font-size:12px;line-height:1.6;margin-top:10px}
+
+/* --- Small helpers --- */
+.muted{opacity:.75}
+.nav-sep{height:1px;background:rgba(255,255,255,.18);margin:10px 18px;border-radius:2px}
