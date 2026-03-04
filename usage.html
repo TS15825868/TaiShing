@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="site.css">
-<title>產品總覽</title>
+<title>使用方式</title>
 </head>
 <body>
 
@@ -28,15 +28,15 @@
 <main>
 
 <div class="card">
-<h1>產品總覽</h1>
-<p>精選四款主力產品</p>
+<h1>使用方式</h1>
+<p>點擊卡片查看詳細使用方法</p>
 </div>
 
 <div class="grid">
-<div class="card-btn">龜鹿膏</div>
-<div class="card-btn">龜鹿飲</div>
-<div class="card-btn">龜鹿湯塊</div>
-<div class="card-btn">鹿茸粉</div>
+<div class="card-btn" onclick="openModal('gao')">龜鹿膏</div>
+<div class="card-btn" onclick="openModal('drink')">龜鹿飲</div>
+<div class="card-btn" onclick="openModal('soup')">龜鹿湯塊</div>
+<div class="card-btn" onclick="openModal('powder')">鹿茸粉</div>
 </div>
 
 </main>
@@ -46,6 +46,23 @@
 台興山產有限公司<br><br>
 LINE：@762jybnm
 </footer>
+
+
+<div class="modal" id="gao">
+<div class="modal-content">
+<div class="close" onclick="closeModal('gao')">✕ 關閉</div>
+<h2>龜鹿膏</h2>
+<p>每日食用，可搭配溫水。適合做為日常補養的一部分。</p>
+</div>
+</div>
+
+<div class="modal" id="soup">
+<div class="modal-content">
+<div class="close" onclick="closeModal('soup')">✕ 關閉</div>
+<h2>龜鹿湯塊燉煮方式</h2>
+<p>雞肉或排骨燉煮40分鐘，可加入枸杞與紅棗。</p>
+</div>
+</div>
 
 <script src="site.js"></script>
 </body>
