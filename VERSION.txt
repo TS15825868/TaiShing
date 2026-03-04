@@ -1,3 +1,1 @@
-Web v12.0
-2026-03-04
-Premium UI; hamburger A; home quick entry 4; products 2-col mobile / 4-col desktop; brand voice unified.
+Web v6.1.1 (image renamed: guilu-gao-100g-jar.png)
