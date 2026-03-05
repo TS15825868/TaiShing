@@ -876,3 +876,91 @@ section[id], h2[id], h3[id]{scroll-margin-top:calc(var(--headerH) + 16px)}
 .footer .col h4{margin:0 0 8px;font-size:13px;font-weight:900}
 .footer .col a{display:block;color:#333;text-decoration:none;font-size:12px;margin:6px 0}
 .footer .col a:hover{text-decoration:underline}
+
+
+/* ===== Series page: clickable cards (no inner buttons) ===== */
+.card[data-series]{
+  cursor:pointer;
+}
+.card[data-series]:focus{
+  outline: 3px solid rgba(176,141,87,.35);
+  outline-offset: 3px;
+}
+.card-hint{
+  margin-top: 14px;
+  font-weight: 600;
+  color: var(--brand);
+  opacity: .85;
+}
+
+
+
+/* ===== Modal content layout helpers (used in series/products) ===== */
+.modal-grid{
+  display:grid;
+  grid-template-columns: 360px 1fr;
+  gap: 22px;
+}
+@media (max-width: 860px){
+  .modal-grid{ grid-template-columns: 1fr; }
+}
+.modal-media img{
+  width:100%;
+  height:auto;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,.08);
+  background: #fff;
+}
+.modal-section{ margin-top: 16px; }
+.modal-label{
+  font-size: 13px;
+  letter-spacing: .02em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.bullets{
+  margin:0;
+  padding-left: 18px;
+  color: var(--text);
+}
+.bullets li{ margin: 6px 0; }
+.chips{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+.chip{
+  border: var(--border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: transparent;
+  cursor:pointer;
+  font-weight: 600;
+}
+.chip.is-active{
+  background: var(--brand);
+  color: #fff;
+}
+.spec-table{
+  width:100%;
+  border-collapse: collapse;
+  border: 1px solid rgba(0,0,0,.10);
+  border-radius: 14px;
+  overflow:hidden;
+}
+.spec-table th, .spec-table td{
+  text-align:left;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(0,0,0,.08);
+  vertical-align: top;
+}
+.spec-table tr:last-child th, .spec-table tr:last-child td{
+  border-bottom:none;
+}
+.spec-table th{
+  width: 140px;
+  color: var(--muted);
+  font-weight: 700;
+  background: rgba(0,0,0,.02);
+}
+
