@@ -11,7 +11,7 @@
   --border:1.5px solid rgba(0,0,0,.25);
 
   --headerH:72px;
-  --footerH:110px;
+  --footerH:90px;
 
   /* 抽屜維持右側 86% */
   --drawerW:86vw;
@@ -20,6 +20,7 @@
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
+  padding-bottom: env(safe-area-inset-bottom);
   font-family:-apple-system,BlinkMacSystemFont,'Noto Sans TC',sans-serif;
   margin:0;
   background:var(--bg);
@@ -81,7 +82,7 @@ body{
   padding:26px 18px;
   margin:10px auto 18px;
 }
-.hero h1{margin:0 0 10px;font-size:34px;letter-spacing:.5px}
+.hero h1{margin:0 0 10px;font-size:28px;letter-spacing:.5px}
 .hero p{margin:0;color:#333;font-size:16px;line-height:1.6}
 
 /* 全站按鈕：都有框框 */
@@ -227,7 +228,7 @@ body.menu-open{overflow:hidden}
   overflow:auto;
   -webkit-overflow-scrolling:touch;
   padding:10px 14px 28px;
-  padding-bottom: calc(28px + env(safe-area-inset-bottom));
+  padding-bottom: calc(var(--footerH) + 28px + env(safe-area-inset-bottom));
 }
 
 .drawer a{
@@ -253,3 +254,21 @@ body.menu-open{overflow:hidden}
 .drawer-end{
   height:24px;
 }
+/* ===== v8 文字/版面小工具 ===== */
+.page-title{margin:14px 0 10px;font-size:22px;font-weight:900}
+.lead{margin:0 auto 14px;max-width:760px;color:#444;line-height:1.7;font-size:15px}
+.section{margin-top:18px}
+.kicker{font-weight:900;margin-bottom:8px}
+.muted-text{color:var(--muted);line-height:1.6;margin:0 0 10px}
+.info-cards{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:12px;margin-top:12px}
+@media (min-width:760px){.info-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.info-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:22px;padding:14px;text-align:left}
+.bullets{margin:0;padding-left:18px;color:#333;line-height:1.7}
+.bullets li{margin:6px 0}
+
+.season-grid{display:grid;grid-template-columns:repeat(1,minmax(0,1fr));gap:12px;margin-top:12px}
+@media (min-width:760px){.season-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.season-card{background:#fff;border:1px solid rgba(0,0,0,.06);border-radius:22px;padding:14px;text-align:left}
+.season-title{font-weight:900;font-size:18px;margin-bottom:6px}
+.season-sub{color:#333;line-height:1.6;margin-bottom:8px}
+.season-hint{color:#555;font-weight:900}

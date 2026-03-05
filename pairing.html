@@ -1,137 +1,121 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/pairing.html b/pairing.html
-index 6a54918fc095e73df2664454cb637520489785fc..ecd4f9883f26d37179de680d2d79db59be08b0b5 100644
---- a/pairing.html
-+++ b/pairing.html
-@@ -1,61 +1,97 @@
--
- <!DOCTYPE html>
- <html lang="zh-Hant">
- <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width,initial-scale=1">
- <title>怎麼搭配</title>
- <link rel="stylesheet" href="site.css">
- <script src="site.js"></script>
- </head>
- <body>
- 
- <header class="header">
-   <div class="logo" onclick="location.href='index.html'">
-     <div class="brand">仙加味</div>
-     <div class="sub">・龜鹿</div>
-     <div class="xjw">XJW</div>
-   </div>
-   <button class="hamburger" onclick="toggleMenu()">☰</button>
- </header>
- 
-+<div id="overlay" class="overlay"></div>
-+
- <nav id="drawer" class="drawer">
--<a href="index.html">首頁</a>
--<a href="guilu-series.html">龜鹿系列</a>
--<a href="choose.html">怎麼選擇</a>
--
--<div class="menu-group">龜鹿知識</div>
--<a href="what-is-guilu.html">龜鹿是什麼</a>
--<a href="ingredients.html">食材介紹</a>
--<a href="usage.html">使用方式</a>
--<a href="pairing.html">怎麼搭配</a>
--<a href="seasonal.html">四季建議</a>
--
--<div class="menu-group">料理食譜</div>
--<a href="guilu-eat.html">龜鹿怎麼吃</a>
--<a href="guilu-recipes.html">龜鹿食譜</a>
--
--<div class="menu-group">品牌</div>
--<a href="brand-story.html">品牌故事</a>
--<a href="brand-origin.html">品牌由來</a>
--<a href="founder.html">創始人故事</a>
--<a href="videos.html">知識影片</a>
--
--<div class="menu-group">客服</div>
--<a href="faq.html">常見問題</a>
--<a href="contact.html">聯絡我們</a>
-+  <div class="drawer-top">
-+    <div class="drawer-title">選單</div>
-+    <button class="drawer-close" onclick="toggleMenu(false)">✕</button>
-+  </div>
-+
-+  <div class="drawer-scroll">
-+    <a href="index.html">首頁</a>
-+    <a href="guilu-series.html">龜鹿系列</a>
-+    <a href="choose.html">怎麼選擇</a>
-+
-+    <div class="menu-group">龜鹿知識</div>
-+    <a href="what-is-guilu.html">龜鹿是什麼</a>
-+    <a href="ingredients.html">食材介紹</a>
-+    <a href="usage.html">使用方式</a>
-+    <a href="pairing.html">怎麼搭配</a>
-+    <a href="seasonal.html">四季建議</a>
-+
-+    <div class="menu-group">料理食譜</div>
-+    <a href="guilu-eat.html">龜鹿怎麼吃</a>
-+    <a href="guilu-recipes.html">龜鹿食譜</a>
-+
-+    <div class="menu-group">品牌</div>
-+    <a href="brand-story.html">品牌故事</a>
-+    <a href="brand-origin.html">品牌由來</a>
-+    <a href="founder.html">創始人故事</a>
-+    <a href="videos.html">知識影片</a>
-+
-+    <div class="menu-group">客服</div>
-+    <a href="faq.html">常見問題</a>
-+    <a href="contact.html">聯絡我們</a>
-+
-+    <div class="drawer-end"></div>
-+  </div>
- </nav>
- 
--<main class="container">
--<h1>怎麼搭配</h1>
--<p>可與雞湯、排骨湯等料理搭配。</p>
-+<main class="main">
-+  <section class="hero">
-+    <h1>怎麼搭配</h1>
-+    <p>龜鹿相關產品可依日常飲食習慣搭配，讓風味更順口、食用更有彈性。</p>
-+  </section>
-+
-+  <section class="grid" aria-label="搭配建議">
-+    <article class="card">
-+      <h3>燉湯類</h3>
-+      <p>可加入雞湯、排骨湯或藥膳湯中，小火慢煮讓香氣融合。</p>
-+    </article>
-+
-+    <article class="card">
-+      <h3>溫熱飲</h3>
-+      <p>可與溫開水、豆漿或牛奶沖調，早晚飲用都方便。</p>
-+    </article>
-+
-+    <article class="card">
-+      <h3>日常料理</h3>
-+      <p>可加入粥品、燉飯或麵線，讓家常餐點更有層次。</p>
-+    </article>
-+
-+    <article class="card">
-+      <h3>點心搭配</h3>
-+      <p>可搭配黑芝麻糊、紅棗飲等溫補點心，口感更溫潤。</p>
-+    </article>
-+  </section>
- </main>
- 
- <footer class="footer">
--<p>LINE詢問：@762jybnm</p>
--<p>營業時間 週一至週五 09:30–18:30</p>
--<p>週六至週日 09:30–21:30（自取）</p>
-+  <div class="inner">
-+    <div class="small">LINE詢問：@762jybnm</div>
-+    <div class="muted">營業時間 週一至週五 09:30–18:30</div>
-+    <div class="muted">週六至週日 09:30–21:30（自取）</div>
-+  </div>
- </footer>
- 
- </body>
- </html>
- 
-EOF
-)
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>怎麼搭配</title>
+  <meta name="description" content="怎麼搭配：龜鹿膏、龜鹿飲、龜鹿湯塊、鹿茸粉的日常搭配建議。">
+  <link rel="canonical" href="https://ts15825868.github.io/TaiShing/pairing.html">
+  <meta property="og:title" content="怎麼搭配">
+  <meta property="og:description" content="怎麼搭配：龜鹿膏、龜鹿飲、龜鹿湯塊、鹿茸粉的日常搭配建議。">
+  <meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/guilu-gao-100g-jar.png">
+  <meta property="og:type" content="website">
+<link rel="stylesheet" href="site.css">
+<script src="site.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "仙加味",
+  "url": "https://ts15825868.github.io/TaiShing/",
+  "logo": "https://ts15825868.github.io/TaiShing/images/logo-pro.jpeg"
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "仙加味・龜鹿",
+  "url": "https://ts15825868.github.io/TaiShing/"
+}
+  </script>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo" onclick="location.href='index.html'">
+    <div class="brand">仙加味</div>
+    <div class="sub">・龜鹿</div>
+    <div class="xjw">XJW</div>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()">☰</button>
+</header>
+
+<div id="overlay" class="overlay"></div>
+
+<nav id="drawer" class="drawer">
+  <div class="drawer-top">
+    <div class="drawer-title">選單</div>
+    <button class="drawer-close" onclick="toggleMenu(false)">✕</button>
+  </div>
+
+  <div class="drawer-scroll">
+    <a href="index.html">首頁</a>
+    <a href="guilu-series.html">龜鹿系列</a>
+    <a href="choose.html">怎麼選擇</a>
+
+    <div class="menu-group">龜鹿知識</div>
+    <a href="what-is-guilu.html">龜鹿是什麼</a>
+    <a href="ingredients.html">食材介紹</a>
+    <a href="usage.html">使用方式</a>
+    <a href="pairing.html">怎麼搭配</a>
+    <a href="seasonal.html">四季建議</a>
+
+    <div class="menu-group">料理食譜</div>
+    <a href="guilu-eat.html">龜鹿怎麼吃</a>
+    <a href="guilu-recipes.html">龜鹿食譜</a>
+
+    <div class="menu-group">品牌</div>
+    <a href="brand-story.html">品牌故事</a>
+    <a href="brand-origin.html">品牌由來</a>
+    <a href="founder.html">創始人故事</a>
+    <a href="videos.html">知識影片</a>
+
+    <div class="menu-group">客服</div>
+    <a href="faq.html">常見問題</a>
+    <a href="contact.html">聯絡我們</a>
+
+    <div class="drawer-end"></div>
+  </div>
+</nav>
+
+<main class="main">
+  <section class="hero">
+    <h1>怎麼搭配</h1>
+    <p>龜鹿相關產品可依日常飲食習慣搭配，讓風味更順口、食用更有彈性。</p>
+  </section>
+
+  <section class="grid" aria-label="搭配建議">
+    <article class="card">
+      <h3>燉湯類</h3>
+      <p>可加入雞湯、排骨湯或藥膳湯中，小火慢煮讓香氣融合。</p>
+    </article>
+
+    <article class="card">
+      <h3>溫熱飲</h3>
+      <p>可與溫開水、豆漿或牛奶沖調，早晚飲用都方便。</p>
+    </article>
+
+    <article class="card">
+      <h3>日常料理</h3>
+      <p>可加入粥品、燉飯或麵線，讓家常餐點更有層次。</p>
+    </article>
+
+    <article class="card">
+      <h3>點心搭配</h3>
+      <p>可搭配黑芝麻糊、紅棗飲等溫補點心，口感更溫潤。</p>
+    </article>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="small">LINE詢問：@762jybnm</div>
+    <div class="muted">營業時間 週一至週五 09:30–18:30</div>
+    <div class="muted">週六至週日 09:30–21:30（自取）</div>
+  </div>
+</footer>
+
+</body>
+</html>
+

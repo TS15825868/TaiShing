@@ -1,63 +1,142 @@
- (cd "$(git rev-parse --show-toplevel)" && git apply --3way <<'EOF' 
-diff --git a/sharing.html b/sharing.html
-index ce1c1e1916199d9287a281e85e8fa0a71343ed79..d67605eb864e3b6494b54d05802da2fdf6cbdc71 100644
---- a/sharing.html
-+++ b/sharing.html
-@@ -30,35 +30,52 @@
-   },
-   {
-     "@context": "https://schema.org",
-     "@type": "WebPage",
-     "name": "合作分享｜仙加味・龜鹿",
-     "url": "https://ts15825868.github.io/TaiShing/sharing.html",
-     "description": "仙加味・龜鹿｜品牌官網。延續傳統熬製工序，重視原料與製程，將補養融入日常飲食搭配。",
-     "isPartOf": {
-       "@type": "WebSite",
-       "url": "https://ts15825868.github.io/TaiShing/"
-     }
-   }
- ]</script></head>
- <body>
- <header>
- <div class="logo">
- <a aria-label="回首頁" class="logo-link" href="index.html"><div class="brand">仙加味</div><div class="brand-sub">・龜鹿</div><div class="brand-tag">X J W</div></a></div>
- <button aria-label="開啟選單" class="hamburger" onclick="toggleMenu()" type="button">☰</button>
- </header>
- <nav id="nav"><a href="index.html">首頁</a><a href="products.html">龜鹿系列</a><a href="choose.html">怎麼選擇</a><a href="pairing.html">怎麼搭配</a><a href="usage.html">使用方式</a><a href="guilu-what.html">龜鹿是什麼</a><a href="guilu-howto-eat.html">龜鹿怎麼吃</a><a href="recipes.html">龜鹿食譜</a><a href="ingredients.html">食材介紹</a><a href="seasons.html">四季建議</a><a href="sharing.html">合作分享</a><a href="faq.html">常見問題</a><a href="about.html">關於我們</a><a href="brand-story.html">品牌故事</a><a href="founder.html">創始人故事</a><a href="contact.html">聯絡我們</a><a href="line.html">LINE詢問</a></nav>
- <main>
- <section class="card">
- <h1 class="h1">合作分享｜日常飲食與生活觀點</h1>
- <p class="lead">本頁內容為合作專業人士分享的日常飲食與生活觀點，僅供一般資訊參考。</p>
- <div class="card mini">
-+<h2 class="h2">合作內容方向</h2>
-+<ul>
-+<li>以「日常飲食、作息、保養」為主題。</li>
-+<li>分享「如何把龜鹿融入日常餐點」的簡單方法。</li>
-+<li>提供溫和、可執行的生活建議（如喝水、運動、睡眠節律）。</li>
-+</ul>
-+</div>
-+<div class="card mini">
- <h2 class="h2">影片專區</h2>
--<p>可將合作中醫師的抖音影片嵌入於此（逐支影片以卡片呈現）。</p>
--<div class="note">提醒：文字描述以「飲食／生活」為主，避免醫療宣稱用語。</div>
-+<p>以下為合作影片示意區塊，可替換為實際短影音連結：</p>
-+<ul>
-+<li><a href="https://www.tiktok.com" rel="noopener" target="_blank">影片 01｜早晨暖身與早餐搭配</a></li>
-+<li><a href="https://www.tiktok.com" rel="noopener" target="_blank">影片 02｜午後提振的飲食選擇</a></li>
-+<li><a href="https://www.tiktok.com" rel="noopener" target="_blank">影片 03｜晚間放鬆與日常補養節奏</a></li>
-+</ul>
-+</div>
-+<div class="card mini">
-+<h2 class="h2">內容範例</h2>
-+<p>「這週工作較忙，建議午晚餐以清爽湯品搭配主食，晚上 11 點前就寢，並保持每天 20 分鐘伸展，讓身體維持穩定節奏。」</p>
-+<div class="note">提醒：本頁資訊不作為醫療診斷或治療用途；如有不適請洽專業醫療人員。</div>
- </div>
- </section>
- </main>
- <footer><div class="footer-inner"><div class="footer-brand">仙加味・龜鹿</div><div class="footer-en">XIAN JIA WEI</div><div class="footer-info">台北市萬華區西昌街52號<br/>週一至週五 09:30–18:30｜週六至週日 09:30–21:30（自取）<br/>LINE：@762jybnm</div></div></footer>
- <script defer="" src="site.js"></script>
- <a aria-label="LINE 詢問" class="line-float" href="https://lin.ee/sHZW7NkR" rel="noopener" target="_blank">LINE</a></body>
- </html>
- 
-EOF
-)
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>合作分享｜仙加味・龜鹿</title>
+  <meta name="description" content="仙加味・龜鹿合作分享：團購、通路合作、內容分享邀約與合作方式說明。">
+  <link rel="canonical" href="https://ts15825868.github.io/TaiShing/sharing.html">
+  <meta property="og:title" content="合作分享｜仙加味・龜鹿">
+  <meta property="og:description" content="仙加味・龜鹿合作分享：團購、通路合作、內容分享邀約與合作方式說明。">
+  <meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/guilu-gao-100g-jar.png">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="site.css">
+  <script defer src="site.js"></script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "仙加味",
+  "url": "https://ts15825868.github.io/TaiShing/",
+  "logo": "https://ts15825868.github.io/TaiShing/images/logo-pro.jpeg",
+  "sameAs": []
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "仙加味・龜鹿",
+  "url": "https://ts15825868.github.io/TaiShing/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://ts15825868.github.io/TaiShing/products.html?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+  </script>
+
+</head>
+<body>
+
+<header class="header">
+  <div class="logo" onclick="location.href='index.html'">
+    <div class="brand">仙加味</div>
+    <div class="sub">・龜鹿</div>
+    <div class="xjw">XJW</div>
+  </div>
+  <button class="hamburger" onclick="toggleMenu(true)" aria-label="開啟選單">☰</button>
+</header>
+
+<div id="overlay" class="overlay"></div>
+
+<nav id="drawer" class="drawer" aria-label="網站選單">
+  <div class="drawer-top">
+    <div class="drawer-title">選單</div>
+    <button class="drawer-close" onclick="toggleMenu(false)" aria-label="關閉選單">×</button>
+  </div>
+
+  <div class="drawer-scroll">
+    <a href="index.html">首頁</a>
+
+    <div class="menu-group">產品</div>
+    <a href="guilu-series.html">龜鹿系列</a>
+    <a href="choose.html">怎麼選擇</a>
+
+    <div class="menu-group">龜鹿知識</div>
+    <a href="what-is-guilu.html">龜鹿是什麼</a>
+    <a href="ingredients.html">食材介紹</a>
+    <a href="usage.html">使用方式</a>
+    <a href="pairing.html">怎麼搭配</a>
+    <a href="seasonal.html">四季建議</a>
+
+    <div class="menu-group">料理食譜</div>
+    <a href="guilu-eat.html">龜鹿怎麼吃</a>
+    <a href="guilu-recipes.html">龜鹿食譜</a>
+
+    <div class="menu-group">品牌</div>
+    <a href="about.html">關於我們</a>
+    <a href="brand-story.html">品牌故事</a>
+    <a href="brand-origin.html">品牌由來</a>
+    <a href="founder.html">創始人故事</a>
+    <a href="videos.html">知識影片</a>
+
+    <div class="menu-group">客服</div>
+    <a href="faq.html">常見問題</a>
+    <a href="contact.html">聯絡我們</a>
+
+    <div class="drawer-end"></div>
+  </div>
+</nav>
+
+<main class="main">
+<section class="hero">
+    <h1>合作分享</h1>
+    <p>如需團購、門市合作、餐飲/通路合作或內容分享，歡迎透過 LINE 聯絡，我們會提供合適的合作方式。</p>
+
+    <div style="margin-top:14px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <a class="btn primary" href="contact.html">立即聯絡</a>
+      <a class="btn" href="line.html">LINE 指引</a>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 class="page-title">合作項目</h2>
+    <div class="info-cards">
+      <div class="info-card">
+        <div class="kicker">團購／客製組合</div>
+        <ul class="bullets">
+          <li>依需求規劃：膏／飲／湯塊／粉組合</li>
+          <li>可提供建議的食用節奏與搭配方向</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="kicker">門市／通路合作</div>
+        <ul class="bullets">
+          <li>供貨方式與陳列素材支援</li>
+          <li>產品知識頁/說明卡協助</li>
+        </ul>
+      </div>
+      <div class="info-card">
+        <div class="kicker">內容分享／合作邀約</div>
+        <ul class="bullets">
+          <li>可提供品牌素材與產品圖片</li>
+          <li>以「日常飲食搭配」為主軸合作</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="inner">
+    <div class="small"><strong>LINE詢問：</strong>@762jybnm</div>
+    <div class="muted">營業時間｜週一至週五 09:30–18:30｜週六至週日 09:30–21:30（自取）</div>
+    <div style="margin-top:8px;">
+      <a class="btn" href="contact.html">立即聯絡</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
