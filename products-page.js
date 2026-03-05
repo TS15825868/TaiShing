@@ -249,6 +249,13 @@
     qEl.addEventListener('input', () => {
       query = qEl.value || '';
       apply();
+
+      // URL 直接開啟指定產品規格：?open=<id> 或 #<id>
+      const openId = getOpenIdFromUrl();
+      if(openId){
+        const hit = flat.find(x => x.id === openId);
+        if(hit) openModal(hit);
+      }
     });
 
     clearBtn.addEventListener('click', () => {
@@ -259,7 +266,19 @@
     });
   }
 
-  async function boot() {
+  
+  function getOpenIdFromUrl(){
+    try{
+      const sp = new URLSearchParams(location.search);
+      const fromQuery = sp.get('open');
+      const fromHash = (location.hash || '').replace('#','');
+      return (fromQuery || fromHash || '').trim();
+    }catch(_){
+      return '';
+    }
+  }
+
+async function boot() {
     try {
       const res = await fetch('products.json', { cache: 'no-store' });
       raw = await res.json();
