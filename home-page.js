@@ -7,8 +7,9 @@
  */
 
 (function () {
-  const openBtn = document.querySelector('[data-home-open]');
-  if (!openBtn) return;
+  // Bind to any clickable element on the home page.
+  const triggers = () => Array.from(document.querySelectorAll('[data-home-open]'));
+  if (triggers().length === 0) return;
 
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
@@ -134,9 +135,12 @@
       raw = await res.json();
       flat = flatten(raw);
 
-      document.querySelectorAll('[data-home-open]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const id = btn.getAttribute('data-home-open');
+      triggers().forEach(el => {
+        el.addEventListener('click', (e) => {
+          // allow inner links/buttons to work normally
+          const a = e.target && e.target.closest ? e.target.closest('a') : null;
+          if (a) return;
+          const id = el.getAttribute('data-home-open');
           const item = flat.find(x => x.id === id);
           if (item) openModal(item);
         });

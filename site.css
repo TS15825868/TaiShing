@@ -90,6 +90,24 @@ body{
   padding:42px 28px;
   margin:14px auto 22px;
 }
+
+/* Home hero: vertical CTA buttons */
+.hero-actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  align-items:flex-start;
+  max-width:260px;
+  margin-top:18px;
+}
+
+.hero-actions .btn{
+  width:100%;
+}
+
+/* Clickable featured card */
+.hero-card[role="button"]{cursor:pointer;}
+.hero-card[role="button"]:focus{outline:2px solid rgba(0,0,0,.18); outline-offset:4px;}
 .hero h1{margin:0 0 10px;font-size:28px;letter-spacing:.5px}
 .hero p{margin:0;color:#333;font-size:16px;line-height:1.6}
 
