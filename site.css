@@ -51,11 +51,15 @@ body{
 
 .logo{
   cursor:pointer;
-  line-height:1.1;
   user-select:none;
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
-.brand{font-size:20px;font-weight:900;color:var(--brand)}
-.sub{font-size:16px;font-weight:900}
+.logo .seal{height:38px;width:auto;display:block}
+.logo .wordmark{display:flex;flex-direction:column;align-items:center;line-height:1.05}
+.brand{font-size:20px;font-weight:900;color:var(--brand);letter-spacing:2px}
+.sub{font-size:16px;font-weight:900;letter-spacing:6px}
 .xjw{font-size:12px;color:#777;margin-top:2px}
 
 .hamburger{
@@ -986,3 +990,9 @@ section[id], h2[id], h3[id]{scroll-margin-top:calc(var(--headerH) + 16px)}
 /* --- v17 nav & products entry layout --- */
 .grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;}
 @media(max-width:860px){.grid-2{grid-template-columns:1fr;}}
+
+
+@media (max-width:520px){
+  .logo .seal{height:30px}
+  .sub{letter-spacing:5px}
+}
