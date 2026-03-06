@@ -90,12 +90,11 @@
       <div class="drop" role="menu">
         <a href="guilu-what.html" role="menuitem">龜鹿是什麼</a>
         <a href="ingredients.html" role="menuitem">食材介紹</a>
-        <a href="usage.html" role="menuitem">使用方式</a>
-        <a href="guilu-howto-eat.html" role="menuitem">怎麼搭配</a>
+        <a href="guilu-what.html" role="menuitem">龜鹿是什麼</a>
+        <a href="ingredients.html" role="menuitem">食材介紹</a>
+        <a href="guilu-eat.html" role="menuitem">龜鹿怎麼吃</a>
         <a href="seasons.html" role="menuitem">四季建議</a>
         <a href="guilu-recipes.html" role="menuitem">料理食譜</a>
-        <a href="guilu-eat.html" role="menuitem">龜鹿怎麼吃</a>
-      
         <a href="videos.html" role="menuitem">知識影片</a></div>
     </li>
     <li class="nav-item has-drop"><a href="brand-story.html">品牌</a>
@@ -139,12 +138,11 @@
     <div class="drawer-links">
       <a href="guilu-what.html">龜鹿是什麼</a>
       <a href="ingredients.html">食材介紹</a>
-      <a href="usage.html">使用方式</a>
-      <a href="guilu-howto-eat.html">怎麼搭配</a>
+      <a href="guilu-what.html">龜鹿是什麼</a>
+      <a href="ingredients.html">食材介紹</a>
+      <a href="guilu-eat.html">龜鹿怎麼吃</a>
       <a href="seasons.html">四季建議</a>
       <a href="guilu-recipes.html">料理食譜</a>
-      <a href="guilu-eat.html">龜鹿怎麼吃</a>
-    
       <a href="videos.html">知識影片</a></div>
   </details>
 
@@ -516,88 +514,5 @@
     </div>
   </section>
 
-  <script async src="https://www.tiktok.com/embed.js"></script>
-  <script>
-  (function(){
-    const grid = document.getElementById('videoGrid');
-    const chips = document.getElementById('videoChips');
-
-    // filter
-    chips && chips.addEventListener('click', function(e){
-      const btn = e.target.closest('.chip');
-      if(!btn) return;
-      chips.querySelectorAll('.chip').forEach(function(b){ b.classList.remove('is-active'); });
-      btn.classList.add('is-active');
-      const f = btn.dataset.filter;
-      grid.querySelectorAll('.video-card').forEach(function(card){
-        card.style.display = (f==='all' || card.dataset.tag===f) ? '' : 'none';
-      });
-    });
-
-    // lazy load embeds
-    grid && grid.addEventListener('click', function(e){
-      const loadBtn = e.target.closest('.video-load');
-      if(!loadBtn) return;
-      const wrap = loadBtn.closest('.video-embed');
-      if(!wrap) return;
-      const url = wrap.dataset.url;
-      const vid = wrap.dataset.videoId;
-      wrap.innerHTML = '
-' +
-        '<blockquote class="tiktok-embed" cite="' + url + '" data-video-id="' + vid + '" style="max-width: 605px;min-width: 325px;">' +
-          '<section><a target="_blank" rel="noopener" href="' + url + '">觀看影片</a></section>' +
-        '</blockquote>';
-
-      // ask tiktok to process newly inserted blockquote
-      if (window.tiktokEmbed && typeof window.tiktokEmbed.load === 'function') {
-        window.tiktokEmbed.load();
-      } else {
-        if(!document.getElementById('tt-embed-loader')){
-          const s=document.createElement('script');
-          s.id='tt-embed-loader';
-          s.src='https://www.tiktok.com/embed.js';
-          s.async=true;
-          document.body.appendChild(s);
-        }
-      }
-    });
-  })();
-  </script>
-</main></main>
-<footer class="site-footer compact">
-  <div class="container footer-grid2">
-    <div class="footer-brand2">
-      <div class="footer-mark"><img class="footer-seal" src="images/logo-xjw.png" alt="仙加味"><div class="footer-name">仙加味・龜鹿</div>
-      </div>
-      <p class="footer-desc">以日常食用方式與料理搭配為主。<br/>提供型態分流、規格比較與選購建議。</p>
-    </div>
-
-    <div class="footer-entry">
-      <div class="footer-title2">快速入口</div>
-      <div class="footer-cardgrid">
-        <a class="footer-card" href="guilu-series.html"><div class="t">龜鹿系列</div><div class="m">型態與規格</div></a>
-        <a class="footer-card" href="choose.html"><div class="t">怎麼選擇</div><div class="m">三步驟挑選</div></a>
-        <a class="footer-card" href="guilu-howto-eat.html"><div class="t">使用方式</div><div class="m">日常吃法</div></a>
-        <a class="footer-card" href="guilu-recipes.html"><div class="t">料理食譜</div><div class="m">燉煮與湯品</div></a>
-        <a class="footer-card" href="faq.html"><div class="t">常見問題</div><div class="m">快速解答</div></a>
-        <a class="footer-card" href="contact.html"><div class="t">聯絡我們</div><div class="m">地址與資訊</div></a>
-      </div>
-    </div>
-
-    <div class="footer-contact2">
-      <div class="footer-title2">聯絡</div>
-      <div class="footer-actions">
-        <a class="btn line small" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
-      </div>
-      <div class="footer-lines">
-        <div><strong>LINE：</strong>@762jybnm</div>
-        <div><strong>地址：</strong>台北市萬華區西昌街52號</div>
-        <div class="muted">週一至週五 09:30–18:30<br/>週六至週日 09:30–21:30（自取）</div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container footer-bottom2">© 仙加味・龜鹿</div>
-</footer>
-<script defer="True" src="site.js"></script></body>
+  
 </html>
