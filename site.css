@@ -10,8 +10,8 @@
   --radius:18px;
   --border:1.5px solid rgba(0,0,0,.25);
 
-  --headerH:72px;
-  --footerH:90px;
+  --headerH:88px;
+  --footerH:110px;
 
   /* 抽屜維持右側 86% */
   --drawerW:86vw;
@@ -56,7 +56,7 @@ body{
   align-items:center;
   gap:10px;
 }
-.logo .seal{height:64px;width:auto;display:block}
+.logo .seal{height:72px;width:auto;display:block}
 /* 改用新版「仙加味」紅章 Logo，先隱藏原本的文字字標，避免把漢堡推歪 */
 .logo .wordmark{display:inline-block;font-weight:700;font-size:18px;letter-spacing:2px}
 .brand{font-size:20px;font-weight:900;color:var(--brand);letter-spacing:2px}
@@ -123,7 +123,8 @@ body{
     width:100%;
     min-width:0;
   }
-  .logo .seal{height:48px;}
+  :root{ --headerH:80px; --footerH:118px; }
+  .logo .seal{height:60px;}
 }
 
 
@@ -1036,7 +1037,7 @@ section[id], h2[id], h3[id]{scroll-margin-top:calc(var(--headerH) + 16px)}
 
 
 @media (max-width:520px){
-  .logo .seal{height:30px}
+  .logo .seal{height:56px}
   .sub{letter-spacing:5px}
 }
 
@@ -1146,7 +1147,7 @@ section[id], h2[id], h3[id]{scroll-margin-top:calc(var(--headerH) + 16px)}
   gap:10px;
   margin-bottom:10px;
 }
-.footer-seal{height:44px;width:auto;display:block}
+.footer-seal{height:56px;width:auto;display:block}
 .footer-name{font-weight:650; letter-spacing:.5px}
 .footer-desc{margin:0; color:var(--muted); line-height:1.8}
 .footer-title2{font-weight:650; margin:2px 0 10px}
@@ -1184,7 +1185,7 @@ section[id], h2[id], h3[id]{scroll-margin-top:calc(var(--headerH) + 16px)}
 @media (max-width:980px){
   .footer-grid2{grid-template-columns:1fr; gap:16px}
   .footer-cardgrid{grid-template-columns: repeat(2, minmax(0,1fr));}
-  .footer-seal{height:40px;}
+  .footer-seal{height:50px;}
 }
 @media (max-width:520px){
   .footer-cardgrid{grid-template-columns:1fr;}
