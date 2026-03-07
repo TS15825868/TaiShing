@@ -157,7 +157,7 @@
   function closeModal() {
     if (!modal) return;
     modal.classList.remove('is-open');
-    modal.setAttribute('aria-hidden', 'true');
+    modal.setAttribute('aria-hidden','true');
     document.documentElement.classList.remove('modal-open');
   }
 
@@ -222,7 +222,7 @@
     if (modalBottom) {
       modalBottom.innerHTML = `
         <a class="btn-outline" href="choose.html">了解更多 →</a>
-        <a class="btn-outline" href="line.html">LINE詢問</a>
+        <a class="btn-outline" href="line.html">LINE 詢問</a>
         <button class="btn-outline" type="button" id="pModalClose2">關閉</button>
       `;
       const c2 = document.getElementById('pModalClose2');
@@ -243,7 +243,7 @@
     });
 
     modal.classList.add('is-open');
-    modal.setAttribute('aria-hidden', 'false');
+    modal.setAttribute('aria-hidden','false');
     document.documentElement.classList.add('modal-open');
   }
 
