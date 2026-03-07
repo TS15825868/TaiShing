@@ -1,7 +1,14 @@
 function toggleMenu(open){
   const d = document.getElementById('drawer');
   const o = document.getElementById('overlay');
+const toggle = document.querySelector(".menu-toggle");
+const menu = document.querySelector(".menu-panel");
 
+toggle.onclick = () => {
+
+menu.classList.toggle("open");
+
+};
   if(!d || !o) return;
 
   const willOpen = (typeof open === 'boolean') ? open : !d.classList.contains('open');
