@@ -159,6 +159,7 @@
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
   }
 
   function renderVariantContent(v) {
@@ -220,16 +221,9 @@
     `;
 
     if (modalBottom) {
-      const moreMap = {
-        gel: 'guilu-howto-eat.html',
-        drink: 'guilu-howto-eat.html',
-        block: 'guilu-recipes.html',
-        powder: 'guilu-howto-eat.html'
-      };
       modalBottom.innerHTML = `
-        <a class="btn-outline" href="${moreMap[g.catId] || 'products.html'}">相關內容</a>
-        <a class="btn-outline" href="line.html">LINE 詢問</a>
-        <button class="btn-outline" type="button" id="pModalClose2">關閉</button>
+        <button class="btn-outline" type="button" id="pModalClose2">返回上一頁</button>
+        <a class="btn-outline" href="line.html">LINE詢問</a>
       `;
       const c2 = document.getElementById('pModalClose2');
       if (c2) c2.addEventListener('click', closeModal);
@@ -251,6 +245,7 @@
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden', 'false');
     document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
   }
 
   if (modalOverlay) modalOverlay.addEventListener('click', closeModal);

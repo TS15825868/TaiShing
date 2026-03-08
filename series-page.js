@@ -28,11 +28,13 @@
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden','false');
     document.documentElement.classList.add('modal-open');
+    document.body.classList.add('modal-open');
   }
   function closeModal(){
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden','true');
     document.documentElement.classList.remove('modal-open');
+    document.body.classList.remove('modal-open');
   }
 
   function findCategory(catId){
@@ -112,17 +114,19 @@
   function buildBottom(catId){
     // keep CTAs minimal (no forcing)
     const primaryMap = {
-      gel: {label:'了解更多 →', href:'guilu-howto-eat.html'},
-      drink:{label:'了解更多 →', href:'guilu-howto-eat.html'},
-      block:{label:'了解更多 →', href:'guilu-recipes.html'},
-      powder:{label:'了解更多 →', href:'choose.html'}
+      gel: {label:'食用方式', href:'guilu-howto-eat.html'},
+      drink:{label:'食用方式', href:'guilu-howto-eat.html'},
+      block:{label:'料理搭配', href:'guilu-recipes.html'},
+      powder:{label:'怎麼挑龜鹿', href:'choose.html'}
     };
     const p = primaryMap[catId] || {label:'查看內容', href:'products.html'};
     bottom.innerHTML = `
-      <a class="btn ghost" href="${esc(p.href)}">${esc(p.label)}</a>
-      <a class="btn" href="products.html?cat=${esc(catId)}">了解更多 →</a>
-      <a class="btn line" href="line.html" >LINE詢問</a>
+      <button class="btn ghost" type="button" id="sModalBack">返回上一頁</button>
+      <a class="btn" href="${esc(p.href)}">${esc(p.label)}</a>
+      <a class="btn line" href="line.html">LINE詢問</a>
     `;
+    const backBtn = document.getElementById('sModalBack');
+    if(backBtn) backBtn.addEventListener('click', closeModal);
   }
 
   async function ensureData(){
