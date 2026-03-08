@@ -1,18 +1,62 @@
 
-body{font-family:-apple-system,BlinkMacSystemFont,"PingFang TC",sans-serif;margin:0;background:#F7F4ED;color:#222}
-header{position:fixed;top:0;left:0;right:0;height:70px;background:#fff;border-bottom:1px solid #eee;display:flex;align-items:center;justify-content:space-between;padding:0 20px;z-index:1000}
-.logo{font-weight:700}
-.hamburger{font-size:24px;cursor:pointer}
-.menu{position:fixed;top:0;right:-320px;width:320px;height:100%;background:#fff;box-shadow:-5px 0 20px rgba(0,0,0,0.15);padding:30px;transition:.3s}
-.menu.open{right:0}
-.menu h3{margin-top:20px}
-.menu a{display:block;margin:6px 0;text-decoration:none;color:#333}
-main{max-width:1100px;margin:auto;padding:110px 20px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:30px}
-.card{background:#fff;border-radius:16px;padding:20px;text-align:center;border:1px solid #eee;box-shadow:0 10px 25px rgba(0,0,0,0.05)}
-.card img{width:100%;border-radius:12px}
-.recipe-card{background:#fff;border-radius:16px;padding:24px;margin-bottom:20px;box-shadow:0 10px 25px rgba(0,0,0,0.05)}
-.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);align-items:center;justify-content:center}
-.modal-content{background:#fff;padding:30px;border-radius:16px;max-width:600px;width:90%}
-.close{float:right;font-size:22px;cursor:pointer}
-.line{position:fixed;bottom:20px;right:20px;background:#06C755;color:#fff;padding:14px 18px;border-radius:30px;text-decoration:none}
+:root{
+  --bg:#f7f4ed; --card:#fff; --text:#1f1f1f; --muted:#666; --line:#e8e2d7;
+  --accent:#8c1d1d; --shadow:0 12px 30px rgba(0,0,0,.08); --radius:18px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC",sans-serif;background:var(--bg);color:var(--text);}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+.site-header{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:saturate(180%) blur(12px);border-bottom:1px solid var(--line)}
+.site-header__inner{max-width:1160px;margin:auto;height:76px;padding:0 18px;display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}
+.brand img{width:38px;height:38px;object-fit:contain}
+.menu-btn{width:44px;height:44px;border:1px solid var(--line);border-radius:14px;background:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer}
+.drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;visibility:hidden;transition:.25s;z-index:40}
+.drawer{position:fixed;top:0;right:-360px;width:min(360px,88vw);height:100%;background:#fff;z-index:50;transition:.25s;box-shadow:-12px 0 30px rgba(0,0,0,.12);padding:18px 18px 30px;overflow:auto}
+.drawer.open{right:0}
+.drawer-overlay.open{opacity:1;visibility:visible}
+.drawer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.drawer-close{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:20px;cursor:pointer}
+.drawer h3{margin:18px 0 10px;font-size:14px;color:var(--muted)}
+.drawer a{display:block;padding:12px 10px;border-radius:12px}
+.drawer a:hover,.drawer a.active{background:#f7f4ed}
+.container{max-width:1160px;margin:auto;padding:28px 18px 60px}
+.hero{padding:28px 0 12px;text-align:center}
+.hero h1{font-size:clamp(32px,5vw,56px);margin:12px 0}
+.hero p{max-width:720px;margin:0 auto;color:var(--muted);line-height:1.8}
+.section{margin-top:34px}
+.section__title{font-size:28px;margin:0 0 16px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.product-card{cursor:pointer}
+.product-card__img{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:#faf7f1;margin-bottom:14px}
+.product-card__img img{width:100%;height:100%;object-fit:cover}
+.card h3{margin:0 0 8px;font-size:22px}
+.card p{margin:0;color:var(--muted);line-height:1.7}
+.tag{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:13px;margin:4px 6px 0 0;background:#fff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:14px;border:1px solid var(--text);background:#fff;font-weight:700;cursor:pointer}
+.btn:hover{background:var(--text);color:#fff}
+.kicker{color:var(--accent);font-weight:700;font-size:14px;letter-spacing:.08em}
+.info-list{padding-left:18px;line-height:1.9}
+.compare-table{width:100%;border-collapse:collapse;background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
+.compare-table th,.compare-table td{padding:14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.search{width:100%;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:#fff}
+.recipe-card,.pair-card,.faq-card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:18px}
+.recipe-card h3,.pair-card h3,.faq-card h3{margin-top:0}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:14px}
+.meta-box{padding:14px;border:1px solid var(--line);border-radius:14px;background:#faf7f1}
+.footer{padding:36px 18px;text-align:center;color:var(--muted)}
+.line-float{position:fixed;right:18px;bottom:18px;z-index:20;background:#06C755;color:#fff;padding:14px 18px;border-radius:999px;font-weight:700;box-shadow:var(--shadow)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.55);display:none;align-items:center;justify-content:center;padding:18px;z-index:60}
+.modal.open{display:flex}
+.modal__panel{width:min(920px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:22px;padding:20px;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+.modal__close{float:right;width:42px;height:42px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:22px;cursor:pointer}
+.modal-grid{display:grid;grid-template-columns:minmax(280px,360px) 1fr;gap:22px;clear:both}
+.modal-grid img{width:100%;border-radius:16px}
+.small{font-size:14px;color:var(--muted)}
+@media (max-width:780px){
+  .modal-grid{grid-template-columns:1fr}
+  .section__title{font-size:24px}
+}
