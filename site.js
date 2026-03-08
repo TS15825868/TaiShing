@@ -1,5 +1,4 @@
 
 function toggleMenu(){
- const d=document.getElementById("drawer");
- d.classList.toggle("open");
+ document.getElementById("drawer").classList.toggle("open");
 }
