@@ -1,12 +1,12 @@
 
 function toggleMenu(){
-document.getElementById("menu").classList.toggle("open");
+document.getElementById('menu').classList.toggle('open')
 }
 
 function openModal(id){
-document.getElementById(id).style.display="flex";
+document.getElementById(id).style.display='flex'
 }
 
 function closeModal(id){
-document.getElementById(id).style.display="none";
+document.getElementById(id).style.display='none'
 }

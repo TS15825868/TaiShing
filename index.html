@@ -9,13 +9,15 @@
 </head>
 <body>
 
-
 <header>
-<div class="logo">仙加味・龜鹿</div>
+<div class="logo">
+<img src="images/logo.png">
+<span>仙加味・龜鹿</span>
+</div>
 <div class="hamburger" onclick="toggleMenu()">☰</div>
 </header>
 
-<div id="menu" class="menu">
+<nav id="menu" class="menu">
 <h3>產品</h3>
 <a href="#products">龜鹿系列</a>
 
@@ -29,34 +31,34 @@
 <a href="ingredients.html">原料介紹</a>
 <a href="faq.html">常見問題</a>
 <a href="contact.html">聯絡我們</a>
-</div>
-
+</nav>
 
 <main>
 
-<h1>仙加味・龜鹿</h1>
-<p>龜鹿相關食材常見於燉湯與日常飲食搭配。</p>
-
-<h2 id="products">龜鹿系列</h2>
+<h1>龜鹿系列</h1>
 
 <div class="grid">
 
 <div class="card" onclick="openModal('gao')">
+<img src="images/guilu-gao-100g.jpg">
 <h3>龜鹿膏</h3>
 <p>100 g</p>
 </div>
 
 <div class="card" onclick="openModal('drink')">
+<img src="images/guilu-drink-180cc.jpg">
 <h3>龜鹿飲</h3>
 <p>180 cc</p>
 </div>
 
 <div class="card" onclick="openModal('block')">
+<img src="images/guilu-block-300g.jpg">
 <h3>龜鹿湯塊</h3>
 <p>75 / 300 / 600 g</p>
 </div>
 
 <div class="card" onclick="openModal('powder')">
+<img src="images/lurong-powder-75g.jpg">
 <h3>鹿茸粉</h3>
 <p>75 g</p>
 </div>
@@ -65,41 +67,15 @@
 
 </main>
 
-<a class="line" href="contact.html">LINE詢問</a>
-
-<script src="site.js"></script>
-
-<div id="gao" class="modal"><div class="modal-content">
-<span class="close" onclick="closeModal('gao')">×</span>
-<h2>龜鹿膏</h2>
-<p>內容量：100 g</p>
-<p>主要原料：龜板萃取物、鹿角萃取物、粉光蔘、枸杞、紅棗、黃耆</p>
-<p>食用方式：可直接食用或加入溫水沖泡</p>
-</div></div>
-
-<div id="drink" class="modal"><div class="modal-content">
-<span class="close" onclick="closeModal('drink')">×</span>
-<h2>龜鹿飲</h2>
-<p>內容量：180 cc</p>
-<p>主要原料：水、鹿角萃取物、龜板萃取物、粉光蔘、枸杞、紅棗、黃耆</p>
-<p>食用方式：開封即可飲用</p>
-</div></div>
-
 <div id="block" class="modal"><div class="modal-content">
-<span class="close" onclick="closeModal('block')">×</span>
+<span onclick="closeModal('block')" class="close">×</span>
 <h2>龜鹿湯塊</h2>
-<p>75 g / 盒（8塊，每塊9.375 g）</p>
-<p>300 g / 盒（16塊，每塊18.75 g）</p>
-<p>600 g / 盒（32塊，每塊18.75 g）</p>
+<p>75 g / 盒（8塊，每塊 9.375 g）</p>
+<p>300 g / 盒（16塊，每塊 18.75 g）</p>
+<p>600 g / 盒（32塊，每塊 18.75 g）</p>
 <p>主要原料：龜板萃取物、鹿角萃取物</p>
 </div></div>
 
-<div id="powder" class="modal"><div class="modal-content">
-<span class="close" onclick="closeModal('powder')">×</span>
-<h2>鹿茸粉</h2>
-<p>內容量：75 g</p>
-<p>原料：鹿茸</p>
-</div></div>
-
+<script src="site.js"></script>
 </body>
 </html>
