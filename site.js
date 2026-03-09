@@ -5,3 +5,6 @@ document.addEventListener('click',e=>{
  if(e.target.matches('#drawer a'))drawer.classList.remove('open');
  if(!e.target.closest('#drawer')&&!e.target.closest('.menu'))drawer.classList.remove('open');
 });
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape')drawer.classList.remove('open');
+});
