@@ -1,137 +1,77 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
-
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>仙加味・龜鹿｜仙加味</title>
-
 <link rel="stylesheet" href="site.css">
-
 </head>
-
 <body>
 
-
-
 <header>
-
-<div class="nav">
-
-<a class="logo" href="index.html">
-仙加味
-</a>
-
-<div class="menu">
-
-<a href="guilu-series.html">仙加味・龜鹿</a>
-<a href="qixuan-tea.html">柒玄茶</a>
-<a href="guide.html">食用指南</a>
-<a href="recipes.html">料理搭配</a>
-<a href="brand.html">品牌</a>
-
-</div>
-
-</div>
-
+  <div class="nav">
+    <a class="logo" href="index.html">仙加味</a>
+    <div class="menu">
+      <a href="guilu-series.html">仙加味・龜鹿</a>
+      <a href="qixuan-tea.html">柒玄茶</a>
+      <a href="guide.html">食用指南</a>
+      <a href="recipes.html">料理搭配</a>
+      <a href="brand.html">品牌</a>
+    </div>
+  </div>
 </header>
 
-
-
 <section class="hero">
-
-<h1>仙加味・龜鹿</h1>
-
-<p>
-龜鹿系列產品
-</p>
-
+  <h1>仙加味・龜鹿</h1>
+  <p>點選產品卡片可直接查看完整詳細介紹</p>
 </section>
-
-
 
 <section class="section">
+  <h2 class="section-title">產品總覽</h2>
 
+  <div class="grid">
 
-<div class="grid">
+    <div class="card product-card" data-product="gao">
+      <img src="images/guilu-gao-100g.jpg" alt="龜鹿膏">
+      <h3>龜鹿膏</h3>
+      <p>傳統熬製濃縮</p>
+    </div>
 
+    <div class="card product-card" data-product="drink">
+      <img src="images/guilu-drink-30cc.jpg" alt="龜鹿飲">
+      <h3>龜鹿飲</h3>
+      <p>30cc / 180cc 即飲</p>
+    </div>
 
-<a class="card" href="guilu-gao.html">
+    <div class="card product-card" data-product="block">
+      <img src="images/guilu-block-piece.jpg" alt="龜鹿湯塊">
+      <h3>龜鹿湯塊</h3>
+      <p>75g / 300g / 600g</p>
+    </div>
 
-<img src="images/guilu-gao-100g.jpg">
+    <div class="card product-card" data-product="lurong">
+      <img src="images/lurong-powder.jpg" alt="鹿茸粉">
+      <h3>鹿茸粉</h3>
+      <p>日常補養</p>
+    </div>
 
-<h3>龜鹿膏</h3>
-
-<p>傳統熬製濃縮</p>
-
-</a>
-
-
-
-<a class="card" href="guilu-drink.html">
-
-<img src="images/guilu-drink-30cc.jpg">
-
-<h3>龜鹿飲</h3>
-
-<p>30cc / 180cc 即飲</p>
-
-</a>
-
-
-
-<a class="card" href="guilu-block.html">
-
-<img src="images/guilu-block-piece.jpg">
-
-<h3>龜鹿湯塊</h3>
-
-<p>燉湯料理使用</p>
-
-</a>
-
-
-
-<a class="card" href="lurong.html">
-
-<img src="images/lurong-powder.jpg">
-
-<h3>鹿茸粉</h3>
-
-<p>日常補養</p>
-
-</a>
-
-
-
-</div>
-
+  </div>
 </section>
 
-
-
 <div class="footer">
-
-仙加味<br>
-© 2026
-
+  仙加味<br>
+  © 2026
 </div>
 
+<a class="line-btn" href="https://lin.ee/" target="_blank">LINE詢問</a>
 
-
-<a class="line-btn"
-href="https://lin.ee/"
-target="_blank">
-
-LINE詢問
-
-</a>
-
+<div class="modal" id="productModal">
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose">關閉</button>
+    <div id="modalBody"></div>
+  </div>
+</div>
 
 <script src="site.js"></script>
-
 </body>
-
 </html>
