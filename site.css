@@ -28,7 +28,7 @@ img{
 header{
   position:sticky;
   top:0;
-  background:rgba(255,255,255,.95);
+  background:rgba(255,255,255,.96);
   backdrop-filter:blur(12px);
   border-bottom:1px solid #eee;
   z-index:1000;
@@ -42,6 +42,7 @@ header{
   justify-content:space-between;
   gap:20px;
   padding:14px 20px;
+  position:relative;
 }
 
 .logo{
@@ -64,7 +65,7 @@ header{
 .menu{
   display:flex;
   align-items:center;
-  gap:18px;
+  gap:14px;
   flex-wrap:wrap;
   justify-content:flex-end;
 }
@@ -209,6 +210,42 @@ header{
   color:#666;
 }
 
+.content-wrap{
+  max-width:860px;
+  margin:auto;
+}
+
+.content-wrap p{
+  text-align:center;
+  color:#333;
+  margin-bottom:22px;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:22px;
+  margin-top:24px;
+}
+
+.info-box{
+  border:1px solid #ececec;
+  border-radius:24px;
+  padding:24px;
+  background:#fafafa;
+}
+
+.info-box h3{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.info-box p{
+  text-align:left;
+  color:#555;
+  margin-bottom:0;
+}
+
 .footer{
   border-top:1px solid #eee;
   text-align:center;
@@ -340,6 +377,45 @@ header{
   background:#fff;
 }
 
+.faq{
+  max-width:860px;
+  margin:auto;
+}
+
+.faq-item{
+  border-bottom:1px solid #eee;
+  padding:20px 0;
+  cursor:pointer;
+}
+
+.faq-question{
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.faq-answer{
+  display:none;
+  color:#555;
+}
+
+.contact-actions{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+  margin-top:24px;
+}
+
+.contact-btn{
+  border:1px solid #ddd;
+  border-radius:999px;
+  padding:12px 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+}
+
 @media (max-width:960px){
   .entry-grid{
     grid-template-columns:1fr;
@@ -347,6 +423,10 @@ header{
 
   .grid{
     grid-template-columns:repeat(2,1fr);
+  }
+
+  .info-grid{
+    grid-template-columns:1fr;
   }
 
   .modal-top{
