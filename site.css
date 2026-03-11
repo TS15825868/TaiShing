@@ -23,7 +23,7 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdro
 .drawer h4{font-size:13px;color:var(--muted);margin:18px 0 8px}
 .drawer a{display:block;padding:10px 0;border-bottom:1px solid #f2eee7}
 .hero{min-height:72vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;position:relative;overflow:hidden;background:#111}
-.hero::before{content:"";position:absolute;inset:0;background:url('images/guilu-block-300g-traditional.jpg') center/cover fixed;opacity:.46;transform:scale(1.06)}
+.hero::before{content:"";position:absolute;inset:0;background:url('images/guilu-gao-texture.jpg') center/cover fixed;opacity:.46;transform:scale(1.06)}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.25), rgba(0,0,0,.62))}
 .hero-inner{position:relative;z-index:1;padding:20px}
 .hero-kicker{font-size:14px;letter-spacing:.18em;text-transform:uppercase;opacity:.85}
@@ -94,3 +94,5 @@ footer{text-align:center;color:var(--muted);padding:30px 20px 110px}
   .section h2{font-size:28px}
   .gallery-grid{grid-template-columns:1fr}
 }
+
+.hero-visual{max-width:980px;margin:-70px auto 0;position:relative;z-index:2;padding:0 20px}.hero-visual img{width:100%;border-radius:22px;box-shadow:var(--shadow);aspect-ratio:16/9;object-fit:cover;background:#f1eee7}@media (max-width:760px){.hero-visual{margin:-34px auto 0;padding:0 16px}.hero-visual img{aspect-ratio:4/3}}
