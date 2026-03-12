@@ -65,25 +65,17 @@ html += `<p>${p.ingredients.join("、")}</p>`
 
 }
 
-if(p.price){
+html += `
 
-html += `<h3>優惠</h3>`
+<div style="margin-top:24px">
 
-html += `<p>單罐 $${p.price.single}</p>`
+<a class="btn" href="https://lin.ee/sHZW7NkR" target="_blank">
+LINE詢問
+</a>
 
-if(p.price.two){
+</div>
 
-html += `<p>2罐 $${p.price.two}</p>`
-
-}
-
-if(p.price.three_avg){
-
-html += `<p>3罐以上平均 $${p.price.three_avg}</p>`
-
-}
-
-}
+`
 
 body.innerHTML = html
 
