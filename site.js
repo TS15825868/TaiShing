@@ -1,82 +1,72 @@
-function toggleMenu() {
-  const drawer = document.getElementById("drawer");
-  if (!drawer) return;
-  drawer.classList.toggle("open");
+async function loadProducts(){
+
+const res = await fetch("products.json")
+const data = await res.json()
+
+const grid = document.getElementById("productGrid")
+
+data.products.forEach(p=>{
+
+const card = document.createElement("div")
+card.className="card"
+
+card.innerHTML=`
+
+<h3>${p.name}</h3>
+
+<p>${p.description}</p>
+
+<button class="btn" onclick="openProduct('${p.id}')">
+查看
+</button>
+
+`
+
+grid.appendChild(card)
+
+})
+
 }
 
-function closeMenu() {
-  const drawer = document.getElementById("drawer");
-  if (!drawer) return;
-  drawer.classList.remove("open");
+
+
+function openProduct(id){
+
+fetch("products.json")
+
+.then(res=>res.json())
+
+.then(data=>{
+
+const p = data.products.find(x=>x.id===id)
+
+alert(
+
+p.name + "\n\n" +
+p.description + "\n\n" +
+"規格：" + (p.size||"")
+
+)
+
+})
+
 }
 
-function openModal(id) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-  modal.classList.add("open");
-  document.body.style.overflow = "hidden";
+
+document.addEventListener("DOMContentLoaded",loadProducts)
+
+
+
+function toggleMenu(){
+
+document.getElementById("drawer")
+.classList.toggle("open")
+
 }
 
-function closeModal(id) {
-  const modal = document.getElementById(id);
-  if (!modal) return;
-  modal.classList.remove("open");
-  document.body.style.overflow = "";
+function closeMenu(){
+
+document.getElementById("drawer")
+.classList.remove("open")
+
 }
-
-function closeAllModals() {
-  document.querySelectorAll(".modal.open").forEach(modal => {
-    modal.classList.remove("open");
-  });
-  document.body.style.overflow = "";
-}
-
-function switchCompare(id) {
-  const panels = document.querySelectorAll(".compare-panel");
-  const tabs = document.querySelectorAll(".tab-btn");
-
-  panels.forEach(panel => panel.classList.remove("active"));
-  tabs.forEach(tab => tab.classList.remove("active"));
-
-  const targetPanel = document.getElementById(id);
-  const targetTab = document.querySelector(`.tab-btn[data-tab="${id}"]`);
-
-  if (targetPanel) targetPanel.classList.add("active");
-  if (targetTab) targetTab.classList.add("active");
-}
-
-document.addEventListener("click", function (e) {
-  const drawer = document.getElementById("drawer");
-  const menuBtn = document.querySelector(".menu-btn");
-
-  if (
-    drawer &&
-    drawer.classList.contains("open") &&
-    !drawer.contains(e.target) &&
-    menuBtn &&
-    !menuBtn.contains(e.target)
-  ) {
-    closeMenu();
-  }
-
-  if (e.target.classList.contains("modal")) {
-    e.target.classList.remove("open");
-    document.body.style.overflow = "";
-  }
-});
-
-document.addEventListener("keydown", function (e) {
-  if (e.key === "Escape") {
-    closeAllModals();
-    closeMenu();
-  }
-});
-
-document.querySelectorAll(".acc-item").forEach(item => {
-  const q = item.querySelector(".acc-q");
-  if (!q) return;
-
-  q.addEventListener("click", function () {
-    item.classList.toggle("open");
-  });
-});
