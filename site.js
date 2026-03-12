@@ -3,7 +3,6 @@ function toggleMenu(){
 }
 
 
-/* 讀取產品 */
 
 async function loadProducts(){
 
@@ -41,8 +40,6 @@ async function loadProducts(){
 
 
 
-/* 打開產品 */
-
 async function openProduct(id){
 
   const res = await fetch("products.json")
@@ -54,6 +51,8 @@ async function openProduct(id){
   const body = document.getElementById("modalBody")
 
   body.innerHTML = `
+
+    <img src="${p.image}" alt="${p.name}">
 
     <h2>${p.name}</h2>
 
@@ -78,25 +77,10 @@ async function openProduct(id){
 }
 
 
-/* 關閉 modal */
 
 function closeModal(){
   document.getElementById("productModal").classList.remove("show")
 }
-
-
-
-/* 點背景關閉 */
-
-document.addEventListener("click",function(e){
-
-  const modal = document.getElementById("productModal")
-
-  if(e.target === modal){
-    closeModal()
-  }
-
-})
 
 
 
