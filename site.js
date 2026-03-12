@@ -5,6 +5,8 @@ const data = await res.json()
 
 const grid = document.getElementById("productGrid")
 
+if(!grid) return
+
 data.products.forEach(p=>{
 
 const card = document.createElement("div")
@@ -30,30 +32,44 @@ grid.appendChild(card)
 
 
 
-function openProduct(id){
+async function openProduct(id){
 
-fetch("products.json")
-
-.then(res=>res.json())
-
-.then(data=>{
+const res = await fetch("products.json")
+const data = await res.json()
 
 const p = data.products.find(x=>x.id===id)
 
-alert(
+let text = p.name + "\n\n"
 
-p.name + "\n\n" +
-p.description + "\n\n" +
-"規格：" + (p.size||"")
+text += p.description + "\n\n"
 
-)
+if(p.size){
+text += "規格：" + p.size + "\n"
+}
 
-})
+if(p.ingredients){
+text += "\n成分：\n" + p.ingredients.join("、")
+}
+
+if(p.price){
+
+text += "\n\n優惠：\n"
+
+text += "單罐 $" + p.price.single + "\n"
+
+if(p.price.two){
+text += "2罐 $" + p.price.two + "\n"
+}
+
+if(p.price.three_avg){
+text += "3罐以上平均 $" + p.price.three_avg
+}
 
 }
 
+alert(text)
 
-document.addEventListener("DOMContentLoaded",loadProducts)
+}
 
 
 
@@ -70,3 +86,7 @@ document.getElementById("drawer")
 .classList.remove("open")
 
 }
+
+
+
+document.addEventListener("DOMContentLoaded",loadProducts)
