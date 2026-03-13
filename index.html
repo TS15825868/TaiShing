@@ -1,129 +1,53 @@
+
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>仙加味｜龜鹿文化的日常飲食整理</title>
-  <meta name="description" content="仙加味整理龜鹿膏、龜鹿飲、龜鹿膠湯塊與鹿茸粉等不同型態，讓龜鹿文化更容易融入日常生活。">
-  <link rel="canonical" href="https://ts15825868.github.io/TaiShing/index.html">
-  <meta property="og:title" content="仙加味">
-  <meta property="og:description" content="龜鹿文化的日常飲食整理">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="images/hero-guilu-gao.jpg">
-  <link rel="stylesheet" href="site.css">
-  <script defer src="site.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>仙加味｜龜鹿文化</title>
+<link rel="stylesheet" href="site.css">
+<script defer src="site.js"></script>
 </head>
 <body>
+
 <header>
-  <div class="header-inner">
-    <a href="index.html" class="brand-link">
-      <img src="images/logo-seal.png" alt="仙加味">
-      <span>仙加味</span>
-    </a>
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="開啟選單" aria-controls="drawer" aria-expanded="false">☰</button>
-  </div>
+<div class="brand"><img src="images/logo-seal.png">仙加味</div>
+<nav>
+<a href="videos.html">影片</a> |
+<a href="articles/guilu.html">龜鹿知識</a> |
+<a href="contact.html">LINE</a>
+</nav>
 </header>
 
-<nav id="drawer" class="drawer">
-  <a href="index.html">首頁</a>
-  <h4>產品</h4>
-  <a href="guilu-series.html">仙加味・龜鹿</a>
-  <a href="qixuan-tea.html">柒玄茶</a>
-  <a href="compare.html">產品比較</a>
-  <a href="dm.html">產品總覽</a>
-  <h4>使用指南</h4>
-  <a href="guide.html">食用指南</a>
-  <a href="ingredients.html">成分介紹</a>
-  <a href="recipes.html">料理搭配</a>
-  <h4>知識中心</h4>
-  <a href="knowledge.html">龜鹿知識</a>
-  <a href="videos.html">中醫觀點</a>
-  <a href="faq.html">常見問題</a>
-  <h4>品牌</h4>
-  <a href="brand.html">品牌介紹</a>
-  <a href="contact.html">聯絡我們</a>
-</nav>
+<div class="container">
 
 <section class="hero">
-  <div class="hero-card hero-inner">
-    <div class="hero-copy">
-      <div class="hero-kicker">台興山產・仙加味</div>
-      <h1>把龜鹿文化，整理成更容易進入日常的方式。</h1>
-      <p class="hero-sub">龜鹿膏、龜鹿飲、龜鹿膠湯塊與鹿茸粉，依型態與使用情境清楚整理。</p>
-      <p>仙加味以較清楚的產品結構與頁面資訊，整理不同型態的龜鹿系列，讓日常挑選、料理搭配與規格比較更直覺。</p>
-      <div class="btn-row">
-        <a class="btn primary" href="#products">看產品</a>
-        <a class="btn" href="videos.html">看影片</a>
-      </div>
-    </div>
-    <div class="hero-media">
-      <img src="images/hero-guilu-gao.jpg" alt="仙加味龜鹿主視覺">
-    </div>
-  </div>
+<div>
+<h1>把龜鹿文化整理成日常</h1>
+<p>仙加味整理龜鹿膏、龜鹿飲、龜鹿膠湯塊與鹿茸粉。</p>
+</div>
+<img src="images/hero-guilu-gao.jpg">
 </section>
 
-<main class="container">
-  <section class="section">
-    <h2 class="section-title">快速入口</h2>
-    <p class="section-sub">先依你的需求進入適合的內容頁面。</p>
-    <div class="quick-grid">
-      <a class="quick-card" href="compare.html"><h3>產品比較</h3><p>用型態、規格與使用情境快速比對。</p></a>
-      <a class="quick-card" href="guide.html"><h3>食用指南</h3><p>整理膏、飲、湯塊與粉末型態的使用方式。</p></a>
-      <a class="quick-card" href="videos.html"><h3>影片中心</h3><p>把 TikTok 內容集中整理，方便直接觀看。</p></a>
-    </div>
-  </section>
+<h2>產品系列</h2>
+<div id="products" class="grid"></div>
 
-  <section id="products" class="section product-section">
-    <h2 class="section-title">仙加味・龜鹿系列</h2>
-    <p class="section-sub">整理不同龜鹿型態，依日常習慣選擇。</p>
-    <div id="productGrid" class="product-grid"></div>
-  </section>
-
-  <section class="section">
-    <div class="recommender">
-      <h2 class="section-title" style="margin-top:0">龜鹿怎麼選</h2>
-      <p class="section-sub" style="margin-bottom:0">依你想要的使用方式，先看較接近的型態。</p>
-      <div class="choice-row">
-        <button class="choice-btn" data-mode="quick" onclick="chooseMode('quick')">快速方便</button>
-        <button class="choice-btn" data-mode="daily" onclick="chooseMode('daily')">日常安排</button>
-        <button class="choice-btn" data-mode="cooking" onclick="chooseMode('cooking')">料理燉湯</button>
-      </div>
-      <div id="recommendResult"></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <h2 class="section-title">影片中心</h2>
-    <p class="section-sub">把近期內容整理成影片牆，方便直接看重點。</p>
-    <div class="video-grid">
-      <article class="video-card">
-        <iframe src="https://www.tiktok.com/embed/v2/7599984981527530772" allowfullscreen loading="lazy"></iframe>
-        <h3>中💊版蝦味先，泡製鹿便！</h3>
-        <p>以輕鬆口吻帶出鹿相關原料與製作話題。</p>
-      </article>
-      <article class="video-card">
-        <iframe src="https://www.tiktok.com/embed/v2/7599654150523079957" allowfullscreen loading="lazy"></iframe>
-        <h3>泡製不是泡在水裡！？</h3>
-        <p>用短影音方式整理製作觀念與常見誤解。</p>
-      </article>
-      <article class="video-card">
-        <iframe src="https://www.tiktok.com/embed/v2/7600388782180945172" allowfullscreen loading="lazy"></iframe>
-        <h3>他摸過上千支鹿🐦🐦！</h3>
-        <p>用更生活化的內容帶出鹿茸相關話題。</p>
-      </article>
-    </div>
-  </section>
-</main>
-
-<div id="productModal" class="modal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div id="modalBody"></div>
-  </div>
+<h2>龜鹿知識</h2>
+<div class="article-list">
+<a class="card" href="articles/guilu.html"><h3>龜鹿是什麼？</h3><p>介紹龜鹿相關文化與來源。</p></a>
+<a class="card" href="articles/deer-antler.html"><h3>鹿茸怎麼來</h3><p>鹿茸的來源與基本概念。</p></a>
 </div>
 
-<a class="line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
+<h2>影片中心</h2>
+<div class="grid">
+<div class="card"><iframe class="video" src="https://www.tiktok.com/embed/v2/7599984981527530772"></iframe></div>
+<div class="card"><iframe class="video" src="https://www.tiktok.com/embed/v2/7599654150523079957"></iframe></div>
+<div class="card"><iframe class="video" src="https://www.tiktok.com/embed/v2/7600388782180945172"></iframe></div>
+</div>
 
-<footer><div class="footer-inner">© 仙加味</div></footer>
+</div>
+
+<footer>© 仙加味</footer>
+
 </body>
 </html>
