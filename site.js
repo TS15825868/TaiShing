@@ -1,1 +1,6 @@
-const menuBtn=document.getElementById('menuBtn');const menu=document.getElementById('menu');menuBtn.onclick=()=>menu.classList.toggle('open');document.addEventListener('click',e=>{if(!menu.contains(e.target)&&!menuBtn.contains(e.target)){menu.classList.remove('open')}});window.addEventListener('scroll',()=>menu.classList.remove('open'));document.addEventListener('keydown',e=>{if(e.key==='Escape')menu.classList.remove('open')});
+
+const btn=document.getElementById('menuBtn');
+const menu=document.getElementById('mobileMenu');
+btn.onclick=()=>{
+menu.style.display=menu.style.display==='block'?'none':'block';
+};

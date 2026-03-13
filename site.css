@@ -1,1 +1,12 @@
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'PingFang TC','Microsoft JhengHei',sans-serif;background:#F7F4ED;color:#3A2A1F}header{position:sticky;top:0;background:#F7F4ED;border-bottom:1px solid #e5ded2;display:flex;align-items:center;justify-content:space-between;padding:14px 18px}.logo{display:flex;align-items:center;gap:10px;font-weight:700}.logo img{width:36px}.menu{position:fixed;right:20px;top:70px;background:white;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.12);padding:10px;display:none;flex-direction:column}.menu a{padding:10px 14px;text-decoration:none;color:#3A2A1F}.menu.open{display:flex}.hero{height:70vh;background:url('images/hero-guilu-gao.jpg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:white;text-align:center}.hero h1{font-size:52px;margin:0}.hero p{font-size:20px}.btn{display:inline-block;margin:10px;padding:14px 20px;border-radius:30px;background:#8B1E1E;color:white;text-decoration:none}.section{padding:70px 20px;max-width:1100px;margin:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}.card{background:white;border-radius:18px;box-shadow:0 10px 25px rgba(0,0,0,.08);overflow:hidden}.card img{width:100%;aspect-ratio:1/1;object-fit:cover}.card h3{margin:14px}footer{padding:40px;text-align:center;background:#f1ebe2}.line{position:fixed;right:16px;bottom:16px;background:#06C755;color:white;padding:14px 18px;border-radius:999px;text-decoration:none}
+
+body{font-family:Arial;background:#F7F4ED;margin:0;color:#3A2A1F}
+.site-header{display:flex;justify-content:space-between;padding:16px;background:white;border-bottom:1px solid #eee}
+.hero{text-align:center;padding:120px 20px}
+.hero-logo{width:80px}
+.btn{display:inline-block;margin:10px;padding:12px 20px;background:#8B1E1E;color:white;text-decoration:none;border-radius:30px}
+.feature{padding:40px;display:grid;gap:20px}
+.card-large{display:block;background:white;padding:40px;border-radius:20px;border:1px solid #eee;text-decoration:none;color:#3A2A1F}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:40px}
+.card{background:white;padding:30px;border-radius:20px;border:1px solid #eee;text-decoration:none;color:#3A2A1F}
+.line{text-align:center;padding:60px}
+.mobile-menu{display:none}
