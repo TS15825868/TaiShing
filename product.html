@@ -1,120 +1,42 @@
-<!DOCTYPE html>
-<html lang="zh-Hant-TW">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>產品頁｜仙加味</title>
-<meta name="description" content="查看仙加味單一產品的規格、包裝、食用方式與料理搭配。">
-<link rel="canonical" href="https://ts15825868.github.io/TaiShing/product.html">
-<meta property="og:title" content="產品頁｜仙加味">
-<meta property="og:description" content="查看仙加味單一產品的規格、包裝、食用方式與料理搭配。">
-<meta property="og:image" content="https://ts15825868.github.io/TaiShing/images/guilu-gao-100g.jpg">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://ts15825868.github.io/TaiShing/product.html">
-<link rel="stylesheet" href="site.css">
 
-<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "name": "仙加味", "url": "https://ts15825868.github.io/TaiShing/", "logo": "https://ts15825868.github.io/TaiShing/images/logo-seal.png"}, {"@type": "LocalBusiness", "name": "仙加味", "url": "https://ts15825868.github.io/TaiShing/", "telephone": "+886-2-2381-2990", "address": {"@type": "PostalAddress", "addressCountry": "TW", "addressRegion": "台北市", "addressLocality": "萬華區", "streetAddress": "西昌街52號"}}]}</script>
-</head>
+<html><head><meta charset="utf-8"><title>產品詳情</title>
+<link rel="stylesheet" href="site.css"></head>
 <body>
 
-<header class="site-header">
-  <a class="brand" href="index.html" aria-label="仙加味 首頁">
-    <img src="images/logo-seal.png" alt="仙加味 LOGO">
-    <span>仙加味</span>
-  </a>
-  <div class="header-actions">
-    <a class="header-line" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
-    <button id="menuBtn" class="menu-btn" aria-label="開啟選單" aria-expanded="false">☰</button>
-  </div>
-</header>
-<div id="menuOverlay" class="menu-overlay"></div>
-<nav id="mobileMenu" class="mobile-menu" aria-label="主選單">
-  <a href="guilu-series.html">龜鹿系列</a>
+<header>
+<div><strong>仙加味</strong></div>
+<div>
+<a href="index.html">首頁</a>
+<a href="guilu-series.html">龜鹿系列</a>
 <a href="qixuan-tea.html">柒玄茶</a>
 <a href="how-to-eat.html">食用方式</a>
 <a href="recipes.html">料理搭配</a>
 <a href="brand.html">品牌故事</a>
-<a href="faq.html">常見問題</a>
-<a href="contact.html">聯絡我們</a>
-<a href="dm.html">產品總覽</a>
-</nav>
+<a href="faq.html">FAQ</a>
+</div>
+</header>
 
-<main>
+<div class="container">
+<h1>產品詳情</h1>
 
-<section class="section wrap product-hero" id="productPage">
-  <a class="back-link" href="guilu-series.html">← 返回龜鹿系列</a>
-  <div class="product-layout">
-    <div class="product-photo">
-      <img id="productImage" src="images/guilu-gao-100g.jpg" alt="仙加味 產品圖">
-    </div>
-    <div class="product-info">
-      <div class="info-card">
-        <p class="eyebrow">產品詳情</p>
-        <h1 id="productTitle">龜鹿膏</h1>
-        <p id="productSummary">龜板與鹿角為基礎的膏狀型態，適合直接食用或溫水沖泡。</p>
-        <div class="hero-buttons" style="justify-content:flex-start;margin-top:18px">
-          <a class="btn primary" id="lineProductBtn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問產品</a>
-        </div>
-      </div>
-      <div class="info-card">
-        <h3>規格容量</h3>
-        <p><strong>規格：</strong><span id="productSizes">100g</span></p>
-        <p><strong>包裝：</strong><span id="productPackage">玻璃罐</span></p>
-      </div>
-      <div class="info-card">
-        <h3>食用方式</h3>
-        <ul id="productUses"></ul>
-      </div>
-      <div class="info-card">
-        <h3>料理搭配</h3>
-        <ul id="productRecipes"></ul>
-      </div>
-    </div>
-  </div>
-</section>
+<h2>龜鹿膏</h2>
+<p>成分：龜板萃取物、鹿角萃取物、粉光蔘、枸杞、紅棗、黃耆</p>
 
-<section class="section wrap">
-  <div class="section-heading center">
-    <p class="eyebrow">其他產品</p>
-    <h2>繼續查看系列產品</h2>
-  </div>
-  <div id="otherProducts" class="hero-buttons"></div>
-</section>
+<h2>龜鹿飲</h2>
+<p>成分：水、龜板萃取物、鹿角萃取物、粉光蔘、枸杞、紅棗、黃耆</p>
 
-<section class="section wrap">
-  <div class="faq-panel">
-    <div class="section-heading">
-      <p class="eyebrow">常見問題</p>
-      <h2>快速了解產品</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item open"><div class="faq-question">龜鹿怎麼吃？</div><div class="faq-answer">可依產品型態選擇直接食用、沖泡、加入飲品或燉湯料理。</div></div>
-      <div class="faq-item"><div class="faq-question">不同型態有什麼差別？</div><div class="faq-answer">膏適合直接食用，飲適合方便飲用，湯塊適合料理，粉適合加入飲品。</div></div>
-      <div class="faq-item"><div class="faq-question">有問題怎麼詢問？</div><div class="faq-answer">可直接透過 LINE 詢問產品與搭配方式。</div></div>
-    </div>
-  </div>
-</section>
+<h2>龜鹿湯塊</h2>
+<p>成分：龜板萃取物、鹿角萃取物</p>
 
-</main>
+<h2>鹿茸粉</h2>
+<p>成分：鹿茸</p>
 
-<footer class="site-footer">
-  <div class="wrap footer-grid">
-    <div>
-      <h3>仙加味</h3>
-      <p>龜鹿日常</p>
-      <p>讓龜鹿回到日常飲食文化</p>
-    </div>
-    <div>
-      <h3>聯絡資訊</h3>
-      <p>地址：台北市萬華區西昌街52號</p>
-      <p>電話：(02)2381-2990</p>
-      <p>LINE：@762jybnm</p>
-    </div>
-  </div>
+</div>
+
+<footer>
+<p>仙加味</p>
+<p>LINE：@762jybnm</p>
 </footer>
-<a class="floating-line" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
+<a class="linebtn" href="https://lin.ee/sHZW7NkR">LINE詢問</a>
 
-<script src="site.js"></script>
-<script src="product.js"></script>
-</body>
-</html>
+</body></html>
