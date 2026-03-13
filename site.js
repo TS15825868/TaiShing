@@ -1,119 +1,102 @@
-const drawer = document.getElementById('drawer');
-const menuBtn = document.querySelector('.menu-btn');
-const modal = document.getElementById('productModal');
-const modalBody = document.getElementById('modalBody');
-
 function toggleMenu(){
-  if(!drawer) return;
-  const isOpen = drawer.classList.toggle('open');
-  document.body.classList.toggle('menu-open', isOpen);
-  if(menuBtn) menuBtn.setAttribute('aria-expanded', String(isOpen));
+  const drawer = document.getElementById('drawer');
+  const btn = document.querySelector('.menu-btn');
+  const open = drawer.classList.toggle('open');
+  if(btn){ btn.setAttribute('aria-expanded', open ? 'true' : 'false'); }
 }
 
 function closeMenu(){
-  if(!drawer) return;
+  const drawer = document.getElementById('drawer');
+  const btn = document.querySelector('.menu-btn');
   drawer.classList.remove('open');
-  document.body.classList.remove('menu-open');
-  if(menuBtn) menuBtn.setAttribute('aria-expanded', 'false');
+  if(btn){ btn.setAttribute('aria-expanded', 'false'); }
 }
 
-function openModal(product){
-  if(!modal || !modalBody || !product) return;
-  modalBody.innerHTML = `
-    <div class="modal-body">
-      <div class="modal-media">
-        <img src="${product.image}" alt="${product.name}">
-      </div>
-      <div class="modal-content">
-        <h3>${product.name}</h3>
-        <div class="modal-tags">${(product.tags || []).map(t=>`<span>${t}</span>`).join('')}</div>
-        <p>${product.detail || product.desc || ''}</p>
-        <p><strong>規格：</strong>${(product.sizes || []).join(' / ')}</p>
-        <a class="btn primary" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE 詢問</a>
-      </div>
-    </div>`;
-  modal.classList.add('open');
-  document.body.classList.add('modal-open');
-}
+window.addEventListener('click', (e)=>{
+  const drawer = document.getElementById('drawer');
+  if(!drawer) return;
+  const isMenuBtn = e.target.closest('.menu-btn');
+  const isInsideDrawer = e.target.closest('#drawer');
+  if(drawer.classList.contains('open') && !isMenuBtn && !isInsideDrawer){
+    closeMenu();
+  }
+});
 
-function closeModal(){
-  if(!modal) return;
-  modal.classList.remove('open');
-  document.body.classList.remove('modal-open');
-}
-
-async function renderProducts(){
+async function loadProducts(){
   const grid = document.getElementById('productGrid');
   if(!grid) return;
   try{
     const res = await fetch('products.json');
     const products = await res.json();
-    grid.innerHTML = '';
-    products.forEach(product => {
+    products.forEach(p=>{
       const card = document.createElement('article');
       card.className = 'product-card';
       card.innerHTML = `
-        <div class="product-img-wrap">
-          <img class="product-img" src="${product.image}" alt="${product.name}">
-        </div>
-        <div class="product-name">${product.name}</div>
-        <div class="product-desc">${product.desc}</div>
-        <div class="product-size">${(product.sizes || []).map(size => `<span class="size-chip">${size}</span>`).join('')}</div>
+        <img src="${p.image}" alt="${p.name}" class="product-img">
+        <div class="product-name">${p.name}</div>
+        <div class="product-desc">${p.desc}</div>
+        <div class="product-size">${p.sizes.join(' / ')}</div>
       `;
-      card.addEventListener('click', () => openModal(product));
+      card.addEventListener('click', ()=> openModal(p));
       grid.appendChild(card);
     });
-  }catch(error){
+  }catch(err){
     grid.innerHTML = '<p>產品資料載入中發生問題，請稍後再試。</p>';
-    console.error(error);
   }
 }
 
-function setupRecommend(){
-  const buttons = document.querySelectorAll('[data-recommend]');
+function openModal(product){
+  const modal = document.getElementById('productModal');
+  const body = document.getElementById('modalBody');
+  if(!modal || !body) return;
+  body.innerHTML = `
+    <img src="${product.image}" alt="${product.name}" class="modal-image">
+    <h3>${product.name}</h3>
+    <p>${product.desc}</p>
+    <p><strong>規格：</strong>${product.sizes.join(' / ')}</p>
+    <p><strong>建議搭配：</strong>${(product.usage || []).join('、')}</p>
+  `;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(){
+  const modal = document.getElementById('productModal');
+  if(!modal) return;
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+window.addEventListener('keydown', (e)=>{
+  if(e.key === 'Escape'){ closeModal(); closeMenu(); }
+});
+window.addEventListener('click', (e)=>{
+  const modal = document.getElementById('productModal');
+  if(e.target === modal){ closeModal(); }
+});
+
+function chooseMode(mode){
+  const buttons = document.querySelectorAll('.choice-btn');
+  buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.mode === mode));
   const result = document.getElementById('recommendResult');
-  if(!buttons.length || !result) return;
+  if(!result) return;
   const map = {
-    fast: {
-      title: '推薦：龜鹿飲',
-      body: '想要快速、方便、好攜帶的型態，龜鹿飲最適合。30cc 與 180cc 可依日常習慣與使用情境選擇。'
+    quick: {
+      title: '快速方便推薦：龜鹿飲',
+      body: '想要方便攜帶、直接飲用，優先看龜鹿飲。30cc 適合單次快速飲用，180cc 適合日常使用。'
     },
     daily: {
-      title: '推薦：龜鹿膏',
-      body: '想要固定日常搭配、偏好膏狀型態，建議選擇龜鹿膏。現在規格統一為 100g，結構更清楚。'
+      title: '日常補養推薦：龜鹿膏',
+      body: '想要固定融入日常節奏，可先從 100g 龜鹿膏開始，方便安排自己的日常使用方式。'
     },
     cooking: {
-      title: '推薦：龜鹿膠湯塊',
-      body: '若你偏好燉湯、雞湯、排骨湯等料理方式，龜鹿膠湯塊最自然。現有 75g、300g、600g 規格。'
+      title: '料理燉湯推薦：龜鹿膠湯塊',
+      body: '喜歡以雞湯、排骨湯或燉湯方式搭配，建議優先看龜鹿膠湯塊，依料理需求挑選 75g / 300g / 600g。'
     }
   };
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      const key = btn.dataset.recommend;
-      result.innerHTML = `<h3>${map[key].title}</h3><p>${map[key].body}</p>`;
-    });
-  });
+  result.innerHTML = `<h3 style="margin:0 0 8px">${map[mode].title}</h3><p style="margin:0">${map[mode].body}</p>`;
 }
 
-document.addEventListener('click', (event) => {
-  if(drawer && drawer.classList.contains('open')){
-    const clickedInsideDrawer = drawer.contains(event.target);
-    const clickedMenuBtn = menuBtn && menuBtn.contains(event.target);
-    if(!clickedInsideDrawer && !clickedMenuBtn) closeMenu();
-  }
-  if(event.target === modal) closeModal();
-});
-
-document.addEventListener('keydown', (event) => {
-  if(event.key === 'Escape'){
-    closeMenu();
-    closeModal();
-  }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-  renderProducts();
-  setupRecommend();
+document.addEventListener('DOMContentLoaded', ()=>{
+  loadProducts();
+  if(document.getElementById('recommendResult')) chooseMode('daily');
 });

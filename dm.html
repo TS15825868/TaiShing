@@ -2,63 +2,59 @@
 <html lang="zh-Hant-TW">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>產品總覽｜仙加味</title>
-  <meta name="description" content="用最精簡的方式整理產品圖、包裝形式與規格。">
+  <meta name="description" content="集中整理包裝形式與規格，方便快速看全系列。">
   <link rel="stylesheet" href="site.css">
   <script defer src="site.js"></script>
 </head>
 <body>
-  <header class="site-header">
-    <div class="header-inner">
-      <a href="index.html" class="brand-link">
-        <img src="images/logo-seal.png" alt="仙加味印章標誌">
-        <span>仙加味</span>
-      </a>
-      <nav class="header-nav" aria-label="主要導覽">
-        <a href="guilu-series.html">龜鹿系列</a>
-        <a href="qixuan-tea.html">柒玄茶</a>
-        <a href="compare.html">產品比較</a>
-        <a href="videos.html">影片中心</a>
-        <a href="contact.html">聯絡我們</a>
-      </nav>
-      <button class="menu-btn" onclick="toggleMenu()" aria-label="開啟選單" aria-controls="drawer" aria-expanded="false">☰</button>
+<header>
+  <div class="header-inner">
+    <a href="index.html" class="brand-link"><img src="images/logo-seal.png" alt="仙加味"><span>仙加味</span></a>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="開啟選單" aria-controls="drawer" aria-expanded="false">☰</button>
+  </div>
+</header>
+<nav id="drawer" class="drawer">
+  <a href="index.html">首頁</a>
+  <h4>產品</h4>
+  <a href="guilu-series.html">仙加味・龜鹿</a>
+  <a href="qixuan-tea.html">柒玄茶</a>
+  <a href="compare.html">產品比較</a>
+  <a href="dm.html">產品總覽</a>
+  <h4>使用指南</h4>
+  <a href="guide.html">食用指南</a>
+  <a href="ingredients.html">成分介紹</a>
+  <a href="recipes.html">料理搭配</a>
+  <h4>知識中心</h4>
+  <a href="knowledge.html">龜鹿知識</a>
+  <a href="videos.html">中醫觀點</a>
+  <a href="faq.html">常見問題</a>
+  <h4>品牌</h4>
+  <a href="brand.html">品牌介紹</a>
+  <a href="contact.html">聯絡我們</a>
+</nav>
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-card">
+      <h1>產品總覽</h1>
+      <p class="lead">集中整理包裝形式與規格，方便快速看全系列。</p>
     </div>
-  </header>
-  <nav id="drawer" class="drawer" aria-label="行動版選單">
-    <a href="index.html">首頁</a>
-    <a href="guilu-series.html">仙加味・龜鹿系列</a>
-    <a href="qixuan-tea.html">柒玄茶</a>
-    <a href="compare.html">產品比較</a>
-    <a href="dm.html">產品總覽</a>
-    <a href="guide.html">食用指南</a>
-    <a href="ingredients.html">成分介紹</a>
-    <a href="recipes.html">料理搭配</a>
-    <a href="knowledge.html">龜鹿知識</a>
-    <a href="videos.html">影片中心</a>
-    <a href="faq.html">常見問題</a>
-    <a href="brand.html">品牌介紹</a>
-    <a href="contact.html">聯絡我們</a>
-  </nav>
-  <main>
-    <section class="page-hero">
-      <div class="page-hero-card">
-        <h1>產品總覽</h1>
-        <p>用最精簡的方式整理產品圖、包裝形式與規格。</p>
-      </div>
-    </section>
-    <section class="simple-grid">
-      <article class="info-card">
-        <h3>整理重點</h3>
-        <p>目前實際規格為龜鹿膏 100g、龜鹿飲 30cc / 180cc、龜鹿膠湯塊 75g / 300g / 600g、鹿茸粉 75g。</p>
-      </article>
-      <article class="info-card">
-        <h3>頁面方向</h3>
-        <p>後續可再放兩組 QR、LINE 按鈕與 DM 用排版。</p>
-      </article>
-    </section>
-  </main>
-  <a class="line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE 詢問</a>
-  <footer class="footer">© 仙加味</footer>
-</body>
-</html>
+  </div>
+</section>
+<main class="container">
+  
+<section class="section">
+  <div class="grid two">
+    <div class="card"><img src="images/guilu-gao-100g.jpg" alt="" class="product-img"><h3>龜鹿膏</h3><p>膏狀｜100g</p></div>
+    <div class="card"><img src="images/guilu-drink-180cc.jpg" alt="" class="product-img"><h3>龜鹿飲</h3><p>即飲｜30cc / 180cc</p></div>
+    <div class="card"><img src="images/guilu-block-75g.jpg" alt="" class="product-img"><h3>龜鹿膠湯塊</h3><p>湯塊｜75g / 300g / 600g</p></div>
+    <div class="card"><img src="images/lurong-powder-75g.jpg" alt="" class="product-img"><h3>鹿茸粉</h3><p>粉末｜75g</p></div>
+  </div>
+</section>
+
+</main>
+<a class="line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
+<footer><div class="footer-inner">© 仙加味</div></footer>
+
+</body></html>
