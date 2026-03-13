@@ -1,63 +1,79 @@
 {
-  "guilu-gao": {
-    "name": "龜鹿膏",
-    "spec": "100 g",
-    "packaging": "玻璃罐",
-    "image": "images/guilu-gao-100g.jpg",
-    "summary": "濃縮膏狀型態，適合直接食用或加入溫水。",
-    "how": [
-      "直接食用",
-      "加入溫水",
-      "依個人習慣搭配熱飲"
-    ],
-    "recipes": [
-      "可作為日常飲食搭配參考"
-    ]
-  },
-  "guilu-drink": {
-    "name": "龜鹿飲",
-    "spec": "30 cc / 180 cc",
-    "packaging": "30 cc 玻璃瓶 / 180 cc 鋁袋",
-    "image": "images/guilu-drink-180cc.jpg",
-    "summary": "即飲型態，方便日常飲用。",
-    "how": [
-      "開封即飲",
-      "隔水加熱後飲用",
-      "可倒入杯中加熱後飲用"
-    ],
-    "recipes": [
-      "可作為日常飲食搭配參考"
-    ]
-  },
-  "guilu-cube": {
-    "name": "龜鹿湯塊",
-    "spec": "75 g / 300 g / 600 g",
-    "packaging": "盒裝",
-    "image": "images/guilu-block-75g.jpg",
-    "summary": "適合燉煮料理的湯塊型態。",
-    "how": [
-      "加入雞湯或排骨湯燉煮",
-      "依個人習慣調整濃淡"
-    ],
-    "recipes": [
-      "龜鹿雞湯",
-      "龜鹿排骨湯",
-      "龜鹿燉雞"
-    ]
-  },
-  "deer-antler": {
-    "name": "鹿茸粉",
-    "spec": "75 g",
-    "packaging": "白色塑膠罐",
-    "image": "images/lurong-powder-75g.jpg",
-    "summary": "粉末型態，可加入茶、咖啡或熱飲。",
-    "how": [
-      "加入茶",
-      "加入咖啡",
-      "加入熱飲"
-    ],
-    "recipes": [
-      "可作為飲品搭配參考"
-    ]
-  }
+  "products": [
+    {
+      "id": "guilu-gao",
+      "name": "龜鹿膏",
+      "sizes": [
+        "100g"
+      ],
+      "package": "玻璃罐",
+      "image": "images/guilu-gao-100g.jpg",
+      "summary": "龜板與鹿角為基礎的膏狀型態，適合直接食用或溫水沖泡。",
+      "uses": [
+        "直接食用",
+        "溫水沖泡"
+      ],
+      "recipes": [
+        "可作為日常飲食搭配參考"
+      ]
+    },
+    {
+      "id": "guilu-drink",
+      "name": "龜鹿飲",
+      "sizes": [
+        "30cc",
+        "180cc"
+      ],
+      "package": "30cc 玻璃瓶 / 180cc 鋁袋",
+      "image": "images/guilu-drink-180cc.jpg",
+      "summary": "方便飲用的液態型態，可依個人習慣選擇規格。",
+      "uses": [
+        "開瓶即飲",
+        "加熱飲用"
+      ],
+      "recipes": [
+        "可作為日常飲食搭配參考"
+      ]
+    },
+    {
+      "id": "guilu-block",
+      "name": "龜鹿湯塊",
+      "sizes": [
+        "75g",
+        "300g",
+        "600g"
+      ],
+      "package": "盒裝",
+      "image": "images/guilu-block-75g.jpg",
+      "summary": "適合燉湯料理的湯塊型態，方便搭配雞湯、排骨湯等日常料理。",
+      "uses": [
+        "燉雞湯",
+        "排骨湯",
+        "藥膳湯"
+      ],
+      "recipes": [
+        "龜鹿雞湯",
+        "龜鹿排骨湯",
+        "龜鹿燉雞"
+      ]
+    },
+    {
+      "id": "lurong",
+      "name": "鹿茸粉",
+      "sizes": [
+        "75g"
+      ],
+      "package": "白色塑膠罐",
+      "image": "images/lurong-powder-75g.jpg",
+      "summary": "粉末型態，適合加入茶、咖啡或熱飲。",
+      "uses": [
+        "加入茶",
+        "加入咖啡",
+        "加入熱飲"
+      ],
+      "recipes": [
+        "可作為飲品搭配參考"
+      ]
+    }
+  ]
 }
