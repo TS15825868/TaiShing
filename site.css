@@ -171,3 +171,21 @@ a{text-decoration:none;color:inherit}
   .page-hero-card h1,.detail-card h1,.article h1{font-size:32px}
   .hero-media{min-height:300px}
 }
+
+.content-stack{display:grid;gap:22px}
+.section-copy h2,.split-grid h2,.recipe-card h3{margin-top:0}
+.clean-list{margin:12px 0 0;padding-left:20px}
+.clean-list li{margin:6px 0}
+.clean-list.ordered{padding-left:22px}
+.split-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.recipe-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.category-nav{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.pill-btn{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-height:42px;padding:0 18px;border-radius:999px;
+  background:#fff;border:1px solid var(--line);box-shadow:var(--shadow);
+  font-weight:700
+}
+@media (max-width: 900px){
+  .split-grid,.recipe-grid{grid-template-columns:1fr}
+}
