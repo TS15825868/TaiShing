@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>食用指南｜仙加味</title>
-  <meta name="description" content="把不同型態的使用方式整理成較好理解的頁面。">
-  <link rel="stylesheet" href="site.css">
-  <script defer src="site.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>食用指南｜仙加味</title>
+<meta name="description" content="把不同型態的使用方式整理成較容易理解的頁面。">
+
+<link rel="stylesheet" href="site.css">
+<script defer src="site.js"></script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand-link">
+    <a href="index.html" class="brand-link" aria-label="回到仙加味首頁">
       <img src="images/logo-seal.png" alt="仙加味">
       <span>仙加味</span>
     </a>
-
     <div class="header-actions">
-      <a class="header-line-btn" href="https://lin.ee/sHZW7NkR" target="_blank">LINE詢問</a>
-      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <a class="header-line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
+      <button class="menu-btn" type="button" aria-label="開啟選單" aria-controls="siteDrawer" aria-expanded="false" onclick="toggleMenu()">☰</button>
     </div>
   </div>
 </header>
 
-<nav id="siteDrawer" class="drawer">
+<nav id="siteDrawer" class="drawer" aria-hidden="false">
   <a href="index.html">首頁</a>
 
   <h4>產品</h4>
@@ -47,30 +47,25 @@
   <h4>品牌</h4>
   <a href="brand.html">品牌介紹</a>
   <a href="contact.html">聯絡我們</a>
+
+  <h4>快速聯絡</h4>
+  <a class="drawer-line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
 </nav>
+<div id="drawerBackdrop" class="drawer-backdrop" onclick="closeMenu()"></div>
 
 
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="page-hero-card">
-      <h1>食用指南</h1>
-      <p class="lead">把不同型態的使用方式整理成較好理解的頁面。</p>
-    </div>
-  </div>
-</section>
-<main class="container">
-  
+<section class="page-hero"><div class="page-hero-card"><h1>食用指南</h1><p>把膏、飲、湯塊、粉末與調飲粉的使用方向整理成較清楚的內容。</p></div></section>
 <section class="section">
-  <div class="grid two">
-    <div class="card"><h3>龜鹿膏</h3><p>可直接食用，或加入溫水、熱飲中做日常搭配。</p></div>
-    <div class="card"><h3>龜鹿飲</h3><p>直接飲用即可，適合追求方便與節奏快速的使用情境。</p></div>
-    <div class="card"><h3>龜鹿膠湯塊</h3><p>可加入雞湯、排骨湯或燉湯料理中，依料理份量調整使用。</p></div>
-    <div class="card"><h3>鹿茸粉</h3><p>可加入溫水、茶飲或咖啡中，少量分次搭配較容易安排。</p></div>
+  <div class="info-grid">
+    <div class="card"><h3>龜鹿膏</h3><p>可直接食用，也可加入溫水或熱飲中使用。</p></div>
+    <div class="card"><h3>龜鹿飲</h3><p>直接飲用即可，適合講求方便與節奏快速的情境。</p></div>
+    <div class="card"><h3>龜鹿湯塊</h3><p>可加入雞湯、排骨湯或燉湯料理中，依料理需求調整份量。</p></div>
+    <div class="card"><h3>鹿茸粉</h3><p>可加入溫水、茶飲或咖啡中，少量分次較容易安排。</p></div>
+    <div class="card"><h3>龜鹿調飲粉</h3><p>可加入茶飲、咖啡或其他熱飲中調和使用。</p></div>
   </div>
 </section>
 
-</main>
 <a class="line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
 <footer><div class="footer-inner">© 仙加味</div></footer>
-
-</body></html>
+</body>
+</html>

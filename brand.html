@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>品牌介紹｜仙加味</title>
-  <meta name="description" content="以較清楚的品牌語言整理仙加味與台興山產的關係。">
-  <link rel="stylesheet" href="site.css">
-  <script defer src="site.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>品牌介紹｜仙加味</title>
+<meta name="description" content="用較清楚的品牌語言整理仙加味與系列定位。">
+
+<link rel="stylesheet" href="site.css">
+<script defer src="site.js"></script>
 </head>
 <body>
 
 <header class="site-header">
   <div class="header-inner">
-    <a href="index.html" class="brand-link">
+    <a href="index.html" class="brand-link" aria-label="回到仙加味首頁">
       <img src="images/logo-seal.png" alt="仙加味">
       <span>仙加味</span>
     </a>
-
     <div class="header-actions">
-      <a class="header-line-btn" href="https://lin.ee/sHZW7NkR" target="_blank">LINE詢問</a>
-      <button class="menu-btn" onclick="toggleMenu()">☰</button>
+      <a class="header-line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
+      <button class="menu-btn" type="button" aria-label="開啟選單" aria-controls="siteDrawer" aria-expanded="false" onclick="toggleMenu()">☰</button>
     </div>
   </div>
 </header>
 
-<nav id="siteDrawer" class="drawer">
+<nav id="siteDrawer" class="drawer" aria-hidden="false">
   <a href="index.html">首頁</a>
 
   <h4>產品</h4>
@@ -47,25 +47,23 @@
   <h4>品牌</h4>
   <a href="brand.html">品牌介紹</a>
   <a href="contact.html">聯絡我們</a>
+
+  <h4>快速聯絡</h4>
+  <a class="drawer-line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
 </nav>
+<div id="drawerBackdrop" class="drawer-backdrop" onclick="closeMenu()"></div>
 
 
-<section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="page-hero-card">
-      <h1>品牌介紹</h1>
-      <p class="lead">以較清楚的品牌語言整理仙加味與台興山產的關係。</p>
-    </div>
+<section class="page-hero"><div class="page-hero-card"><h1>品牌介紹</h1><p>以較清楚的網站結構整理主線產品與副品牌支線，讓資訊更容易閱讀。</p></div></section>
+<section class="section">
+  <div class="info-grid">
+    <div class="card"><h3>仙加味・龜鹿</h3><p>主線產品以龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉為核心，重視結構清楚與日常理解。</p></div>
+    <div class="card"><h3>柒玄茶</h3><p>作為調飲粉與養身茶品支線，讓茶飲與咖啡情境能自然接上品牌內容。</p></div>
+    <div class="card"><h3>網站方向</h3><p>首頁集中產品與導購，影片與知識集中到獨立頁面，讓整站更一致也更好維護。</p></div>
   </div>
 </section>
-<main class="container">
-  
-<section class="section">
-  <div class="card"><h3>品牌介紹</h3><p>仙加味作為台興山產延伸出的品牌整理方向，以較現代、清楚的方式呈現龜鹿系列產品，並保留傳統文化與家族傳承脈絡。</p></div>
-</section>
 
-</main>
 <a class="line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
 <footer><div class="footer-inner">© 仙加味</div></footer>
-
-</body></html>
+</body>
+</html>

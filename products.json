@@ -3,43 +3,117 @@
     "id": "guilu-gao",
     "name": "龜鹿膏",
     "series": "guilu",
+    "seriesName": "仙加味・龜鹿",
     "image": "images/guilu-gao-100g.jpg",
-    "desc": "濃縮膏狀型態，可直接食用或沖泡。",
+    "desc": "濃縮膏狀型態，可直接食用或加入溫水。",
     "sizes": [
       "100g"
-    ]
+    ],
+    "ingredients": [
+      "龜板萃取物",
+      "鹿角萃取物",
+      "粉光蔘",
+      "枸杞",
+      "紅棗",
+      "黃耆"
+    ],
+    "usage": [
+      "可直接食用",
+      "可加入溫水沖泡",
+      "可依日常習慣搭配熱飲"
+    ],
+    "category": "膏狀",
+    "summary": "適合希望以較固定節奏安排日常使用的人。"
   },
   {
     "id": "guilu-drink",
     "name": "龜鹿飲",
     "series": "guilu",
+    "seriesName": "仙加味・龜鹿",
     "image": "images/guilu-drink-180cc.jpg",
-    "desc": "即飲型態。",
+    "desc": "即飲型態，方便日常飲用。",
     "sizes": [
       "30cc",
       "180cc"
-    ]
+    ],
+    "ingredients": [
+      "龜板萃取物",
+      "鹿角萃取物"
+    ],
+    "usage": [
+      "可直接飲用",
+      "可依個人習慣冷藏後飲用",
+      "適合外出攜帶"
+    ],
+    "category": "飲品",
+    "summary": "適合想追求快速方便、直接飲用的人。"
   },
   {
     "id": "guilu-block",
-    "name": "龜鹿膠湯塊",
+    "name": "龜鹿湯塊",
     "series": "guilu",
+    "seriesName": "仙加味・龜鹿",
     "image": "images/guilu-block-75g.jpg",
-    "desc": "燉湯料理搭配。",
+    "desc": "可作為燉湯料理搭配使用。",
     "sizes": [
       "75g",
       "300g",
       "600g"
-    ]
+    ],
+    "ingredients": [
+      "龜板萃取物",
+      "鹿角萃取物"
+    ],
+    "usage": [
+      "可加入雞湯、排骨湯或燉湯料理",
+      "依料理需求調整份量",
+      "適合家中燉煮使用"
+    ],
+    "category": "湯塊",
+    "summary": "適合偏好料理燉湯、喜歡以食材搭配安排日常的人。"
   },
   {
     "id": "lurong",
     "name": "鹿茸粉",
     "series": "guilu",
+    "seriesName": "仙加味・龜鹿",
     "image": "images/lurong-powder-75g.jpg",
-    "desc": "粉末型態，可調飲。",
+    "desc": "粉末型態，可搭配熱飲或沖泡使用。",
     "sizes": [
       "75g"
-    ]
+    ],
+    "ingredients": [
+      "鹿茸粉"
+    ],
+    "usage": [
+      "可加入溫水",
+      "可搭配茶飲或咖啡",
+      "依日常習慣少量使用"
+    ],
+    "category": "粉末",
+    "summary": "適合想把產品融入茶飲、咖啡或其他熱飲的人。"
+  },
+  {
+    "id": "qixuan-mix",
+    "name": "柒玄茶・龜鹿調飲粉",
+    "series": "qixuan",
+    "seriesName": "柒玄茶",
+    "image": "images/qixuan-guilu-mix.jpg",
+    "desc": "作為較貼近日常茶飲、咖啡情境的調飲型態。",
+    "sizes": [
+      "2 g 小包",
+      "20 g / 包（10 小包）"
+    ],
+    "ingredients": [
+      "龜鹿粉",
+      "草本原料"
+    ],
+    "usage": [
+      "可加入茶飲",
+      "可加入咖啡",
+      "可搭配其他熱飲調和使用"
+    ],
+    "category": "調飲粉",
+    "summary": "定位為柒玄茶支線產品，適合喜歡以調飲方式安排的人。"
   }
 ]

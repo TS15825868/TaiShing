@@ -1,17 +1,74 @@
-
 <!DOCTYPE html>
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>鹿茸怎麼來｜仙加味</title>
-<link rel="stylesheet" href="../site.css">
+<meta name="description" content="整理鹿茸來源與一般人最常想了解的基本內容。">
+
+<link rel="stylesheet" href="site.css">
+<script defer src="site.js"></script>
 </head>
 <body>
-<div class="container">
-<h1>鹿茸怎麼來</h1>
-<p>鹿茸為鹿角生長初期的部分，在不同文化中有不同的飲食與使用方式。</p>
-<a href="../index.html">回首頁</a>
-</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="index.html" class="brand-link" aria-label="回到仙加味首頁">
+      <img src="images/logo-seal.png" alt="仙加味">
+      <span>仙加味</span>
+    </a>
+    <div class="header-actions">
+      <a class="header-line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
+      <button class="menu-btn" type="button" aria-label="開啟選單" aria-controls="siteDrawer" aria-expanded="false" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+</header>
+
+<nav id="siteDrawer" class="drawer" aria-hidden="false">
+  <a href="index.html">首頁</a>
+
+  <h4>產品</h4>
+  <a href="guilu-series.html">仙加味・龜鹿</a>
+  <a href="qixuan-tea.html">柒玄茶</a>
+  <a href="compare.html">產品比較</a>
+  <a href="dm.html">產品總覽</a>
+  <a href="choose.html">怎麼選龜鹿</a>
+
+  <h4>使用指南</h4>
+  <a href="guide.html">食用指南</a>
+  <a href="ingredients.html">成分介紹</a>
+  <a href="recipes.html">料理搭配</a>
+
+  <h4>知識中心</h4>
+  <a href="knowledge.html">龜鹿知識</a>
+  <a href="videos.html">中醫觀點</a>
+  <a href="faq.html">常見問題</a>
+
+  <h4>品牌</h4>
+  <a href="brand.html">品牌介紹</a>
+  <a href="contact.html">聯絡我們</a>
+
+  <h4>快速聯絡</h4>
+  <a class="drawer-line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
+</nav>
+<div id="drawerBackdrop" class="drawer-backdrop" onclick="closeMenu()"></div>
+
+
+<section class="section">
+  <article class="article">
+    <h1>鹿茸怎麼來</h1>
+    <p>鹿茸是鹿角生長初期的部分，在不同文化中有不同的飲食與使用方式。網站只整理較基礎、較容易理解的內容，避免不必要的複雜描述。</p>
+    <h2>怎麼看這類資訊</h2>
+    <ul>
+      <li>先了解它在文化與食材中的位置。</li>
+      <li>再依產品型態與你的使用情境做選擇。</li>
+      <li>如果要確認規格或搭配方式，直接回到產品頁或 LINE 詢問會更快。</li>
+    </ul>
+    <p><a class="btn secondary" href="knowledge.html">返回龜鹿知識</a></p>
+  </article>
+</section>
+
+<a class="line-btn" href="https://lin.ee/sHZW7NkR" target="_blank" rel="noopener">LINE詢問</a>
+<footer><div class="footer-inner">© 仙加味</div></footer>
 </body>
 </html>
