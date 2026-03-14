@@ -1,29 +1,20 @@
 
-function toggleMenu(){document.getElementById('drawer').classList.toggle('open')}
-function closeMenu(){document.getElementById('drawer').classList.remove('open')}
-function openModal(id){document.getElementById(id)?.classList.add('open')}
-function closeModal(id){document.getElementById(id)?.classList.remove('open')}
-document.addEventListener('click',function(e){
-  if(e.target.matches('#drawer a')) closeMenu();
-  if(!e.target.closest('#drawer') && !e.target.closest('.menu-btn')) closeMenu();
-  if(e.target.classList.contains('modal')) e.target.classList.remove('open');
-  if(e.target.classList.contains('acc-q')) e.target.parentElement.classList.toggle('open');
-});
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){
-    closeMenu();
-    document.querySelectorAll('.modal.open').forEach(m=>m.classList.remove('open'));
-  }
-});
-function filterRecipes(){
-  const q=(document.getElementById('recipeSearch')?.value||'').toLowerCase();
-  document.querySelectorAll('.recipe-card').forEach(card=>{
-    card.style.display = card.innerText.toLowerCase().includes(q) ? '' : 'none';
+const menuBtn = document.getElementById('menuBtn');
+const menuOverlay = document.getElementById('menuOverlay');
+if (menuBtn && menuOverlay) {
+  const closeMenu = () => menuOverlay.classList.remove('show');
+  menuBtn.addEventListener('click', (e) => { e.stopPropagation(); menuOverlay.classList.toggle('show'); });
+  menuOverlay.addEventListener('click', (e) => { if (e.target === menuOverlay) closeMenu(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+}
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    if (window.innerWidth < 960) return;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left; const y = e.clientY - rect.top;
+    const rotateY = (x - rect.width / 2) / 28; const rotateX = (rect.height / 2 - y) / 28;
+    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
   });
-}
-function switchCompare(id){
-  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelectorAll('.compare-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelector('[data-tab="'+id+'"]').classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
+  card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+});
