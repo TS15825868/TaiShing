@@ -2,87 +2,92 @@
    漢堡選單
 ========================= */
 
-function toggleMenu(){
-
-const menu = document.getElementById("menu")
-
-menu.classList.toggle("active")
-
+function toggleMenu() {
+  const menu = document.getElementById("menu");
+  if (!menu) return;
+  menu.classList.toggle("active");
 }
-
 
 /* 點擊背景關閉 */
 
-document.addEventListener("click",function(e){
+document.addEventListener("click", function (e) {
+  const menu = document.getElementById("menu");
+  if (!menu) return;
 
-const menu = document.getElementById("menu")
-
-if(e.target.classList.contains("menu-overlay")){
-menu.classList.remove("active")
-}
-
-})
-
+  if (e.target.classList.contains("menu-overlay")) {
+    menu.classList.remove("active");
+  }
+});
 
 /* 點選選單連結關閉 */
 
-document.querySelectorAll(".menu-overlay a").forEach(link=>{
+document.querySelectorAll(".menu-overlay a").forEach(link => {
+  link.addEventListener("click", function () {
+    const menu = document.getElementById("menu");
+    if (!menu) return;
+    menu.classList.remove("active");
+  });
+});
 
-link.addEventListener("click",function(){
+/* ESC 關閉選單 */
 
-document.getElementById("menu").classList.remove("active")
+document.addEventListener("keydown", function (e) {
+  const menu = document.getElementById("menu");
+  if (!menu) return;
 
-})
-
-})
-
+  if (e.key === "Escape") {
+    menu.classList.remove("active");
+  }
+});
 
 
 /* =========================
    Scroll Reveal
 ========================= */
 
-function revealElements(){
+function revealElements() {
+  const reveals = document.querySelectorAll(".reveal");
+  const windowHeight = window.innerHeight;
 
-const reveals=document.querySelectorAll(".reveal")
+  reveals.forEach(el => {
+    const elementTop = el.getBoundingClientRect().top;
 
-reveals.forEach(el=>{
-
-const windowHeight=window.innerHeight
-const elementTop=el.getBoundingClientRect().top
-
-if(elementTop < windowHeight - 80){
-
-el.classList.add("show")
-
+    if (elementTop < windowHeight - 80) {
+      el.classList.add("show");
+    }
+  });
 }
 
-})
-
-}
-
-window.addEventListener("scroll",revealElements)
-
-window.addEventListener("load",revealElements)
-
+window.addEventListener("scroll", revealElements);
+window.addEventListener("load", revealElements);
+window.addEventListener("resize", revealElements);
 
 
 /* =========================
    Header 滾動效果
 ========================= */
 
-const header=document.querySelector(".header")
+const header = document.querySelector(".header");
 
-window.addEventListener("scroll",()=>{
+window.addEventListener("scroll", () => {
+  if (!header) return;
 
-if(window.scrollY > 40){
+  if (window.scrollY > 40) {
+    header.style.background = "rgba(255,255,255,.9)";
+  } else {
+    header.style.background = "rgba(255,255,255,.75)";
+  }
+});
 
-header.style.background="rgba(255,255,255,.9)"
 
-}else{
+/* =========================
+   圖片 fallback
+========================= */
 
-header.style.background="rgba(255,255,255,.75)"
-
-}
-
-})
+document.querySelectorAll("img").forEach(img => {
+  img.onerror = function () {
+    this.onerror = null;
+    this.src = "images/logo-seal.png";
+    this.classList.add("img-placeholder");
+  };
+});
