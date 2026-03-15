@@ -15,7 +15,9 @@ menu.classList.toggle("active");
 }
 
 
-/* 點擊背景關閉 */
+/* =========================
+   點擊背景關閉選單
+========================= */
 
 document.addEventListener("click",function(e){
 
@@ -25,22 +27,22 @@ document.getElementById("menu");
 
 const menuBtn=document.querySelector(".menu-btn");
 
-if(!menu) return;
+if(!menu || !menuBtn) return;
 
 if(
 menu.classList.contains("active") &&
 !menu.contains(e.target) &&
 !menuBtn.contains(e.target)
 ){
-
 menu.classList.remove("active");
-
 }
 
 });
 
 
-/* 點選選單連結關閉 */
+/* =========================
+   點擊連結自動關閉
+========================= */
 
 document.querySelectorAll(".menu-overlay a").forEach(link=>{
 
@@ -59,7 +61,9 @@ menu.classList.remove("active");
 });
 
 
-/* ESC 關閉選單 */
+/* =========================
+   ESC 關閉選單
+========================= */
 
 document.addEventListener("keydown",function(e){
 
@@ -70,22 +74,19 @@ document.getElementById("menu");
 if(!menu) return;
 
 if(e.key==="Escape"){
-
 menu.classList.remove("active");
-
 }
 
 });
-
 
 
 /* =========================
    Scroll Reveal
 ========================= */
 
-function revealElements(){
-
 const reveals=document.querySelectorAll(".reveal");
+
+function revealElements(){
 
 if(!reveals.length) return;
 
@@ -95,24 +96,22 @@ reveals.forEach(el=>{
 
 const elementTop=el.getBoundingClientRect().top;
 
-if(elementTop<windowHeight-80){
-
+if(elementTop < windowHeight-80){
 el.classList.add("show");
-
 }
 
 });
 
 }
 
-window.addEventListener("scroll",revealElements);
+window.addEventListener("scroll",revealElements,{passive:true});
 window.addEventListener("load",revealElements);
 window.addEventListener("resize",revealElements);
 
 
 
 /* =========================
-   Header 滾動效果
+   Header Scroll Blur
 ========================= */
 
 const header=document.querySelector(".header");
@@ -123,13 +122,54 @@ window.addEventListener("scroll",()=>{
 
 if(window.scrollY>40){
 
-header.style.background="rgba(255,255,255,.9)";
+header.style.background="rgba(255,255,255,.92)";
+header.style.backdropFilter="blur(20px)";
 
 }else{
 
 header.style.background="rgba(255,255,255,.75)";
+header.style.backdropFilter="blur(18px)";
 
 }
+
+},{passive:true});
+
+}
+
+
+
+/* =========================
+   Lazy Load Images
+========================= */
+
+const lazyImages=document.querySelectorAll("img");
+
+if("IntersectionObserver" in window){
+
+const imgObserver=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+const img=entry.target;
+
+if(img.dataset.src){
+
+img.src=img.dataset.src;
+}
+
+imgObserver.unobserve(img);
+
+}
+
+});
+
+});
+
+lazyImages.forEach(img=>{
+
+imgObserver.observe(img);
 
 });
 
