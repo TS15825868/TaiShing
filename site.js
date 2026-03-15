@@ -1,17 +1,12 @@
 /* =========================
-   DOM Ready
-========================= */
-
-document.addEventListener("DOMContentLoaded", function(){
-
-
-/* =========================
    漢堡選單
 ========================= */
 
 function toggleMenu(){
 
-const menu=document.getElementById("menuOverlay");
+const menu =
+document.getElementById("menuOverlay") ||
+document.getElementById("menu");
 
 if(!menu) return;
 
@@ -19,14 +14,15 @@ menu.classList.toggle("active");
 
 }
 
-window.toggleMenu=toggleMenu;
-
 
 /* 點擊背景關閉 */
 
 document.addEventListener("click",function(e){
 
-const menu=document.getElementById("menuOverlay");
+const menu =
+document.getElementById("menuOverlay") ||
+document.getElementById("menu");
+
 const menuBtn=document.querySelector(".menu-btn");
 
 if(!menu) return;
@@ -34,10 +30,11 @@ if(!menu) return;
 if(
 menu.classList.contains("active") &&
 !menu.contains(e.target) &&
-menuBtn &&
 !menuBtn.contains(e.target)
 ){
+
 menu.classList.remove("active");
+
 }
 
 });
@@ -49,65 +46,73 @@ document.querySelectorAll(".menu-overlay a").forEach(link=>{
 
 link.addEventListener("click",function(){
 
-const menu=document.getElementById("menuOverlay");
+const menu =
+document.getElementById("menuOverlay") ||
+document.getElementById("menu");
 
-if(menu){
+if(!menu) return;
+
 menu.classList.remove("active");
-}
 
 });
 
 });
 
 
-/* ESC 關閉 */
+/* ESC 關閉選單 */
 
 document.addEventListener("keydown",function(e){
 
+const menu =
+document.getElementById("menuOverlay") ||
+document.getElementById("menu");
+
+if(!menu) return;
+
 if(e.key==="Escape"){
 
-const menu=document.getElementById("menuOverlay");
-
-if(menu){
 menu.classList.remove("active");
-}
 
 }
 
 });
+
 
 
 /* =========================
    Scroll Reveal
 ========================= */
 
+function revealElements(){
+
 const reveals=document.querySelectorAll(".reveal");
 
-if(reveals.length){
+if(!reveals.length) return;
 
-const observer=new IntersectionObserver(entries=>{
+const windowHeight=window.innerHeight;
 
-entries.forEach(entry=>{
+reveals.forEach(el=>{
 
-if(entry.isIntersecting){
+const elementTop=el.getBoundingClientRect().top;
 
-entry.target.classList.add("show");
+if(elementTop<windowHeight-80){
+
+el.classList.add("show");
 
 }
 
 });
 
-},{
-threshold:0.15
-});
-
-reveals.forEach(el=>observer.observe(el));
-
 }
+
+window.addEventListener("scroll",revealElements);
+window.addEventListener("load",revealElements);
+window.addEventListener("resize",revealElements);
+
 
 
 /* =========================
-   Header Scroll
+   Header 滾動效果
 ========================= */
 
 const header=document.querySelector(".header");
@@ -131,6 +136,7 @@ header.style.background="rgba(255,255,255,.75)";
 }
 
 
+
 /* =========================
    圖片 fallback
 ========================= */
@@ -143,23 +149,10 @@ if(this.dataset.fallbackApplied) return;
 
 this.dataset.fallbackApplied=true;
 
-/* 自動判斷路徑 */
-
-if(location.pathname.includes("/articles/")){
-
-this.src="../images/logo-seal.png";
-
-}else{
-
 this.src="images/logo-seal.png";
-
-}
 
 this.classList.add("img-placeholder");
 
 });
-
-});
-
 
 });
