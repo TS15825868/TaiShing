@@ -20,6 +20,7 @@ const productInfo = document.querySelector(".product-info");
 const fallbackBack="guilu-series.html";
 
 
+
 /* 返回按鈕 */
 
 if(backBtn){
@@ -45,7 +46,8 @@ location.href=fallbackBack;
 }
 
 
-/* 讀取產品資料 */
+
+/* 讀取產品 */
 
 fetch("products.json")
 
@@ -53,14 +55,18 @@ fetch("products.json")
 
 .then(data=>{
 
+if(!data || !Array.isArray(data.products)) return;
+
 const product=data.products.find(p=>p.id===id) || data.products[0];
 
 if(!product) return;
 
 
+
 /* 標題 */
 
 document.title=`${product.name}｜仙加味`;
+
 
 
 /* 圖片 */
@@ -69,14 +75,17 @@ if(productImage){
 
 productImage.src=product.image;
 productImage.alt=`仙加味 ${product.name}`;
+productImage.loading="lazy";
 
 }
+
 
 
 /* 基本資料 */
 
 if(productTitle) productTitle.textContent=product.name;
 if(productSummary) productSummary.textContent=product.desc || "";
+
 
 
 /* 容量 */
@@ -90,6 +99,7 @@ productSizes.textContent=product.sizes
 }
 
 
+
 /* 包裝 */
 
 if(productPackage){
@@ -97,6 +107,7 @@ if(productPackage){
 productPackage.textContent=product.package || "—";
 
 }
+
 
 
 /* 成份 */
@@ -111,6 +122,7 @@ productIngredients.innerHTML=
 items.map(i=>`<li>${i}</li>`).join("");
 
 }
+
 
 
 /* 食用方式 */
@@ -129,6 +141,29 @@ items.length
 }
 
 
+
+/* 取得文章標題 */
+
+function getArticleTitle(url){
+
+let slug=url.split("/").pop();
+
+if(typeof ARTICLES!=="undefined"){
+
+const match=ARTICLES.find(a=>a.url===slug);
+
+if(match) return match.title;
+
+}
+
+return slug
+.replace(".html","")
+.replaceAll("-"," ");
+
+}
+
+
+
 /* 相關文章 */
 
 if(product.articles && productInfo){
@@ -145,17 +180,7 @@ let html=`
 
 product.articles.forEach(url=>{
 
-let title=url.split("/").pop().replace(".html","");
-
-if(typeof ARTICLES!=="undefined"){
-
-const slug=url.split("/").pop();
-
-const match=ARTICLES.find(a=>a.url===slug);
-
-if(match) title=match.title;
-
-}
+const title=getArticleTitle(url);
 
 html+=`
 
@@ -183,6 +208,7 @@ productInfo.insertAdjacentHTML("beforeend",html);
 }
 
 
+
 /* 料理搭配 */
 
 if(product.recipes && productInfo){
@@ -199,17 +225,7 @@ let html=`
 
 product.recipes.forEach(url=>{
 
-let title=url.split("/").pop().replace(".html","");
-
-if(typeof ARTICLES!=="undefined"){
-
-const slug=url.split("/").pop();
-
-const match=ARTICLES.find(a=>a.url===slug);
-
-if(match) title=match.title;
-
-}
+const title=getArticleTitle(url);
 
 html+=`
 
@@ -237,28 +253,23 @@ productInfo.insertAdjacentHTML("beforeend",html);
 }
 
 
+
 /* SEO Product Schema */
 
 const schema={
 
 "@context":"https://schema.org",
-
 "@type":"Product",
 
 "name":product.name,
-
 "description":product.desc || "",
-
 "image":product.seoImage || product.image,
 
 "sku":product.id,
 
 "brand":{
-
 "@type":"Brand",
-
 "name":"仙加味"
-
 },
 
 "category":product.category,
@@ -266,13 +277,9 @@ const schema={
 "url":location.href,
 
 "offers":{
-
 "@type":"Offer",
-
 "availability":"https://schema.org/InStock",
-
 "priceCurrency":"TWD"
-
 }
 
 };
