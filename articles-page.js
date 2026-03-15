@@ -1,16 +1,18 @@
 (function(){
 
-const container=document.getElementById("article-grid");
+const culture=document.getElementById("culture-grid");
+const product=document.getElementById("product-grid");
+const recipe=document.getElementById("recipe-grid");
 
-if(!container || typeof ARTICLES==="undefined") return;
-
-let html="";
+if(typeof ARTICLES==="undefined") return;
 
 ARTICLES.forEach(a=>{
 
-html+=`
+const card=`
 
 <a href="articles/${a.url}" class="product-card">
+
+<img src="${a.image}" loading="lazy">
 
 <h3>${a.title}</h3>
 
@@ -20,8 +22,18 @@ html+=`
 
 `;
 
-});
+if(a.category==="culture" && culture){
+culture.insertAdjacentHTML("beforeend",card);
+}
 
-container.innerHTML=html;
+if(a.category==="product" && product){
+product.insertAdjacentHTML("beforeend",card);
+}
+
+if(a.category==="recipe" && recipe){
+recipe.insertAdjacentHTML("beforeend",card);
+}
+
+});
 
 })();
