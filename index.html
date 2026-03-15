@@ -21,8 +21,7 @@
 
 <link rel="stylesheet" href="site.css">
 
-
-<!-- Organization Schema -->
+<!-- Organization -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
@@ -33,7 +32,7 @@
 }
 </script>
 
-<!-- WebSite Schema -->
+<!-- Website -->
 <script type="application/ld+json">
 {
 "@context":"https://schema.org",
@@ -43,10 +42,40 @@
 }
 </script>
 
+<!-- Product List SEO -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"ItemList",
+"name":"仙加味產品",
+"itemListElement":[
+{
+"@type":"ListItem",
+"position":1,
+"name":"龜鹿膏"
+},
+{
+"@type":"ListItem",
+"position":2,
+"name":"龜鹿飲"
+},
+{
+"@type":"ListItem",
+"position":3,
+"name":"龜鹿湯塊"
+},
+{
+"@type":"ListItem",
+"position":4,
+"name":"鹿茸粉"
+}
+]
+}
+</script>
+
 </head>
 
 <body>
-
 
 <header class="header">
 
@@ -60,6 +89,8 @@
 </header>
 
 
+
+<!-- MENU -->
 
 <div id="menuOverlay" class="menu-overlay">
 
@@ -88,6 +119,8 @@ LINE詢問
 
 
 
+<!-- HERO -->
+
 <section class="hero">
 
 <div class="hero-content reveal">
@@ -111,9 +144,7 @@ LINE詢問
 class="btn btn-dark"
 target="_blank"
 rel="noopener">
-
 LINE詢問
-
 </a>
 
 </div>
@@ -123,6 +154,8 @@ LINE詢問
 </section>
 
 
+
+<!-- 龜鹿產品 -->
 
 <section class="section reveal">
 
@@ -130,48 +163,28 @@ LINE詢問
 
 <div class="product-slider">
 
-
 <a href="product.html?id=guilu-gao" class="product-card">
-
-<img src="images/guilu-gao-100g.jpg" alt="龜鹿膏">
-
+<img src="images/guilu-gao-100g.jpg" alt="仙加味 龜鹿膏">
 <h3>龜鹿膏</h3>
-
 <p>日常補養型態</p>
-
 </a>
-
 
 <a href="product.html?id=guilu-drink" class="product-card">
-
-<img src="images/guilu-drink-30cc.jpg" alt="龜鹿飲">
-
+<img src="images/guilu-drink-30cc.jpg" alt="仙加味 龜鹿飲">
 <h3>龜鹿飲</h3>
-
 <p>即飲型態</p>
-
 </a>
-
 
 <a href="product.html?id=guilu-block" class="product-card">
-
-<img src="images/guilu-block-300g.jpg" alt="龜鹿湯塊">
-
+<img src="images/guilu-block-300g.jpg" alt="仙加味 龜鹿湯塊">
 <h3>龜鹿湯塊</h3>
-
 <p>燉湯料理</p>
-
 </a>
 
-
 <a href="product.html?id=lurong-powder" class="product-card">
-
-<img src="images/lurong-powder-75g.jpg" alt="鹿茸粉">
-
+<img src="images/lurong-powder-75g.jpg" alt="仙加味 鹿茸粉">
 <h3>鹿茸粉</h3>
-
 <p>飲品搭配</p>
-
 </a>
 
 </div>
@@ -179,6 +192,8 @@ LINE詢問
 </section>
 
 
+
+<!-- 料理搭配 -->
 
 <section class="section reveal">
 
@@ -186,31 +201,19 @@ LINE詢問
 
 <div class="recipe-slider">
 
-
 <a href="articles/guilu-chicken-soup.html" class="recipe-card">
-
 <img src="images/logo-seal.png" class="img-placeholder" alt="龜鹿雞湯">
-
 <p>龜鹿雞湯</p>
-
 </a>
-
 
 <a href="articles/guilu-pork-ribs.html" class="recipe-card">
-
 <img src="images/logo-seal.png" class="img-placeholder" alt="龜鹿排骨湯">
-
 <p>龜鹿排骨湯</p>
-
 </a>
 
-
 <a href="articles/lurong-powder.html" class="recipe-card">
-
 <img src="images/logo-seal.png" class="img-placeholder" alt="鹿茸飲品">
-
 <p>鹿茸飲品</p>
-
 </a>
 
 </div>
@@ -218,6 +221,8 @@ LINE詢問
 </section>
 
 
+
+<!-- 怎麼選 -->
 
 <section class="section reveal">
 
@@ -225,26 +230,14 @@ LINE詢問
 
 <div class="product-grid">
 
-
 <a href="choose.html" class="product-card">
-
 <h3>產品比較</h3>
-
-<p>
-龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉差別。
-</p>
-
+<p>龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉差別。</p>
 </a>
 
-
 <a href="faq.html" class="product-card">
-
 <h3>常見問題</h3>
-
-<p>
-整理龜鹿產品基本問題。
-</p>
-
+<p>整理龜鹿產品基本問題。</p>
 </a>
 
 </div>
@@ -253,38 +246,15 @@ LINE詢問
 
 
 
+<!-- 龜鹿知識（自動） -->
+
 <section class="section reveal">
 
 <h2>龜鹿知識</h2>
 
-<div class="product-grid">
+<div class="product-grid" id="article-list">
 
-
-<a href="articles/what-is-guilu.html" class="product-card">
-
-<h3>什麼是龜鹿</h3>
-
-<p>龜板與鹿角的飲食文化</p>
-
-</a>
-
-
-<a href="articles/how-to-eat-guilu.html" class="product-card">
-
-<h3>龜鹿怎麼吃</h3>
-
-<p>日常食用方式整理</p>
-
-</a>
-
-
-<a href="articles/guilu-drink.html" class="product-card">
-
-<h3>龜鹿飲怎麼喝</h3>
-
-<p>即飲方式介紹</p>
-
-</a>
+<!-- JS 自動生成 -->
 
 </div>
 
@@ -318,50 +288,32 @@ LINE詢問
 
 <div class="footer-container">
 
-
 <div class="footer-brand">
-
 <img src="images/logo-seal.png" alt="仙加味">
-
 <h3>仙加味</h3>
-
 <p>讓龜鹿回到日常飲食文化</p>
-
 </div>
 
-
 <div class="footer-links">
-
 <h4>產品</h4>
-
 <a href="guilu-series.html">龜鹿系列</a>
 <a href="qixuan-tea.html">柒玄茶</a>
-
 </div>
 
-
 <div class="footer-links">
-
 <h4>內容</h4>
-
 <a href="recipes.html">料理搭配</a>
 <a href="articles.html">龜鹿知識</a>
 <a href="choose.html">怎麼選龜鹿</a>
-
 </div>
-
 
 <div class="footer-links">
-
 <h4>品牌</h4>
-
 <a href="brand.html">品牌故事</a>
 <a href="faq.html">FAQ</a>
-
 </div>
 
 </div>
-
 
 <div class="footer-bottom">
 © 仙加味 · 龜鹿日常
@@ -375,12 +327,13 @@ LINE詢問
 href="https://lin.ee/sHZW7NkR"
 target="_blank"
 rel="noopener">
-
 LINE詢問
-
 </a>
 
 
+
+<script src="articles.js"></script>
+<script src="home-articles.js"></script>
 <script src="site.js"></script>
 
 </body>
