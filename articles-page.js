@@ -14,7 +14,7 @@ html+=`
 
 <h3>${a.title}</h3>
 
-<p>${a.tags ? a.tags.join(" · ") : "龜鹿知識"}</p>
+<p>${a.summary || "龜鹿知識"}</p>
 
 </a>
 
