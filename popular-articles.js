@@ -11,14 +11,12 @@ if(!container) return;
 
 
 /* =========================
-熱門文章 slug
+取得熱門文章
 ========================= */
 
-const popular=[
-"guilu-gao.html",
-"guilu-chicken-soup.html",
-"guilu-drink.html"
-];
+const popular=ARTICLES
+.filter(a=>a.popular===true)
+.slice(0,3);
 
 
 /* =========================
@@ -27,11 +25,7 @@ const popular=[
 
 let html="";
 
-popular.forEach(slug=>{
-
-const article=ARTICLES.find(a=>a.url===slug);
-
-if(!article) return;
+popular.forEach(article=>{
 
 html+=`
 
