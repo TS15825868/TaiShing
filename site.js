@@ -1,138 +1,165 @@
 /* =========================
+   DOM Ready
+========================= */
+
+document.addEventListener("DOMContentLoaded", function(){
+
+
+/* =========================
    漢堡選單
 ========================= */
 
-function toggleMenu() {
-  const menu = document.getElementById("menu");
-  if (!menu) return;
+function toggleMenu(){
 
-  menu.classList.toggle("active");
+const menu=document.getElementById("menuOverlay");
+
+if(!menu) return;
+
+menu.classList.toggle("active");
+
 }
+
+window.toggleMenu=toggleMenu;
 
 
 /* 點擊背景關閉 */
 
-document.addEventListener("click", function (e) {
+document.addEventListener("click",function(e){
 
-  const menu = document.getElementById("menu");
-  const menuBtn = document.querySelector(".menu-btn");
+const menu=document.getElementById("menuOverlay");
+const menuBtn=document.querySelector(".menu-btn");
 
-  if (!menu) return;
+if(!menu) return;
 
-  if (
-    menu.classList.contains("active") &&
-    !menu.contains(e.target) &&
-    !menuBtn.contains(e.target)
-  ) {
-    menu.classList.remove("active");
-  }
+if(
+menu.classList.contains("active") &&
+!menu.contains(e.target) &&
+menuBtn &&
+!menuBtn.contains(e.target)
+){
+menu.classList.remove("active");
+}
 
 });
 
 
 /* 點選選單連結關閉 */
 
-document.querySelectorAll(".menu-overlay a").forEach(link => {
+document.querySelectorAll(".menu-overlay a").forEach(link=>{
 
-  link.addEventListener("click", function () {
+link.addEventListener("click",function(){
 
-    const menu = document.getElementById("menu");
-    if (!menu) return;
+const menu=document.getElementById("menuOverlay");
 
-    menu.classList.remove("active");
+if(menu){
+menu.classList.remove("active");
+}
 
-  });
+});
 
 });
 
 
-/* ESC 關閉選單 */
+/* ESC 關閉 */
 
-document.addEventListener("keydown", function (e) {
+document.addEventListener("keydown",function(e){
 
-  const menu = document.getElementById("menu");
-  if (!menu) return;
+if(e.key==="Escape"){
 
-  if (e.key === "Escape") {
-    menu.classList.remove("active");
-  }
+const menu=document.getElementById("menuOverlay");
+
+if(menu){
+menu.classList.remove("active");
+}
+
+}
 
 });
-
 
 
 /* =========================
    Scroll Reveal
 ========================= */
 
-function revealElements() {
+const reveals=document.querySelectorAll(".reveal");
 
-  const reveals = document.querySelectorAll(".reveal");
+if(reveals.length){
 
-  if (!reveals.length) return;
+const observer=new IntersectionObserver(entries=>{
 
-  const windowHeight = window.innerHeight;
+entries.forEach(entry=>{
 
-  reveals.forEach(el => {
+if(entry.isIntersecting){
 
-    const elementTop = el.getBoundingClientRect().top;
-
-    if (elementTop < windowHeight - 80) {
-      el.classList.add("show");
-    }
-
-  });
+entry.target.classList.add("show");
 
 }
 
-window.addEventListener("scroll", revealElements);
-window.addEventListener("load", revealElements);
-window.addEventListener("resize", revealElements);
+});
 
+},{
+threshold:0.15
+});
+
+reveals.forEach(el=>observer.observe(el));
+
+}
 
 
 /* =========================
-   Header 滾動效果
+   Header Scroll
 ========================= */
 
-const header = document.querySelector(".header");
+const header=document.querySelector(".header");
 
-if (header) {
+if(header){
 
-  window.addEventListener("scroll", () => {
+window.addEventListener("scroll",()=>{
 
-    if (window.scrollY > 40) {
+if(window.scrollY>40){
 
-      header.style.background = "rgba(255,255,255,.9)";
+header.style.background="rgba(255,255,255,.9)";
 
-    } else {
+}else{
 
-      header.style.background = "rgba(255,255,255,.75)";
-
-    }
-
-  });
+header.style.background="rgba(255,255,255,.75)";
 
 }
 
+});
+
+}
 
 
 /* =========================
    圖片 fallback
 ========================= */
 
-document.querySelectorAll("img").forEach(img => {
+document.querySelectorAll("img").forEach(img=>{
 
-  img.addEventListener("error", function () {
+img.addEventListener("error",function(){
 
-    if (this.dataset.fallbackApplied) return;
+if(this.dataset.fallbackApplied) return;
 
-    this.dataset.fallbackApplied = true;
+this.dataset.fallbackApplied=true;
 
-    this.src = "images/logo-seal.png";
+/* 自動判斷路徑 */
 
-    this.classList.add("img-placeholder");
+if(location.pathname.includes("/articles/")){
 
-  });
+this.src="../images/logo-seal.png";
+
+}else{
+
+this.src="images/logo-seal.png";
+
+}
+
+this.classList.add("img-placeholder");
+
+});
+
+});
+
 
 });
