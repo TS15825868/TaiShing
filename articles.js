@@ -4,6 +4,18 @@
 
 (function(){
 
+/* 只在 articles 頁面啟動 */
+
+if(!location.pathname.includes("/articles/")) return;
+
+
+/* 找到文章內容 */
+
+const main = document.querySelector("main") || document.body;
+
+
+/* 建立推薦區塊 */
+
 const container = document.createElement("section");
 
 container.className = "section reveal";
@@ -77,6 +89,19 @@ container.innerHTML = `
 
 `;
 
-document.body.appendChild(container);
+
+/* 插入文章底部 */
+
+main.appendChild(container);
+
+
+/* 觸發 reveal 動畫 */
+
+setTimeout(()=>{
+
+container.classList.add("show");
+
+},200);
+
 
 })();
