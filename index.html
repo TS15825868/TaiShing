@@ -35,7 +35,6 @@
 }
 </script>
 
-
 <!-- Website -->
 
 <script type="application/ld+json">
@@ -47,7 +46,6 @@
 }
 </script>
 
-
 <!-- WebPage -->
 
 <script type="application/ld+json">
@@ -57,43 +55,6 @@
 "name":"仙加味｜龜鹿日常",
 "url":"https://ts15825868.github.io/xianjiawei/",
 "description":"整理龜鹿膏、龜鹿飲、龜鹿湯塊與鹿茸粉，讓龜鹿回到日常飲食文化。"
-}
-</script>
-
-
-<!-- Product List -->
-
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"ItemList",
-"name":"仙加味產品",
-"itemListElement":[
-{
-"@type":"ListItem",
-"position":1,
-"name":"龜鹿膏",
-"url":"https://ts15825868.github.io/xianjiawei/product.html?id=guilu-gao"
-},
-{
-"@type":"ListItem",
-"position":2,
-"name":"龜鹿飲",
-"url":"https://ts15825868.github.io/xianjiawei/product.html?id=guilu-drink"
-},
-{
-"@type":"ListItem",
-"position":3,
-"name":"龜鹿湯塊",
-"url":"https://ts15825868.github.io/xianjiawei/product.html?id=guilu-block"
-},
-{
-"@type":"ListItem",
-"position":4,
-"name":"鹿茸粉",
-"url":"https://ts15825868.github.io/xianjiawei/product.html?id=lurong-powder"
-}
-]
 }
 </script>
 
@@ -172,25 +133,25 @@ LINE詢問
 <div class="product-slider">
 
 <a href="product.html?id=guilu-gao" class="product-card">
-<img loading="lazy" src="images/guilu-gao-100g.jpg" alt="仙加味 龜鹿膏">
+<img loading="lazy" src="images/guilu-gao-100g.jpg">
 <h3>龜鹿膏</h3>
 <p>日常補養型態</p>
 </a>
 
 <a href="product.html?id=guilu-drink" class="product-card">
-<img loading="lazy" src="images/guilu-drink-30cc.jpg" alt="仙加味 龜鹿飲">
+<img loading="lazy" src="images/guilu-drink-30cc.jpg">
 <h3>龜鹿飲</h3>
 <p>即飲型態</p>
 </a>
 
 <a href="product.html?id=guilu-block" class="product-card">
-<img loading="lazy" src="images/guilu-block-300g.jpg" alt="仙加味 龜鹿湯塊">
+<img loading="lazy" src="images/guilu-block-300g.jpg">
 <h3>龜鹿湯塊</h3>
 <p>燉湯料理</p>
 </a>
 
 <a href="product.html?id=lurong-powder" class="product-card">
-<img loading="lazy" src="images/lurong-powder-75g.jpg" alt="仙加味 鹿茸粉">
+<img loading="lazy" src="images/lurong-powder-75g.jpg">
 <h3>鹿茸粉</h3>
 <p>飲品搭配</p>
 </a>
@@ -210,18 +171,18 @@ LINE詢問
 <div class="recipe-slider">
 
 <a href="articles/guilu-chicken-soup.html" class="recipe-card">
-<img src="images/guilu-block-75g.jpg" alt="龜鹿雞湯">
+<img src="images/guilu-block-75g.jpg">
 <p>龜鹿雞湯</p>
 </a>
 
 <a href="articles/guilu-pork-ribs.html" class="recipe-card">
-<img src="images/guilu-block-75g.jpg" alt="龜鹿排骨湯">
+<img src="images/guilu-block-75g.jpg">
 <p>龜鹿排骨湯</p>
 </a>
 
-<a href="articles/lurong-powder.html" class="recipe-card">
-<img src="images/lurong-powder-75g.jpg" alt="鹿茸飲品">
-<p>鹿茸飲品</p>
+<a href="articles/deer-coffee.html" class="recipe-card">
+<img src="images/lurong-powder-75g.jpg">
+<p>鹿茸咖啡</p>
 </a>
 
 </div>
@@ -254,15 +215,52 @@ LINE詢問
 
 
 
-<!-- 龜鹿知識 -->
+<!-- 最新文章 -->
 
 <section class="section reveal">
 
-<h2>龜鹿知識</h2>
+<h2>最新龜鹿知識</h2>
 
-<div class="product-grid" id="article-list">
+<div class="product-grid" id="article-list"></div>
 
-<!-- JS 自動生成 -->
+</section>
+
+
+
+<!-- 熱門文章 -->
+
+<section class="section reveal">
+
+<h2>熱門文章</h2>
+
+<div class="product-grid" id="popular-articles"></div>
+
+</section>
+
+
+
+<!-- 文章分類 -->
+
+<section class="section reveal">
+
+<h2>龜鹿知識分類</h2>
+
+<div class="product-grid">
+
+<a href="articles.html#culture" class="product-card">
+<h3>龜鹿文化</h3>
+<p>了解龜鹿的歷史與文化</p>
+</a>
+
+<a href="articles.html#recipe" class="product-card">
+<h3>龜鹿料理</h3>
+<p>雞湯、排骨湯與燉湯料理</p>
+</a>
+
+<a href="articles.html#product" class="product-card">
+<h3>龜鹿產品</h3>
+<p>膏、飲、湯塊與粉末型態</p>
+</a>
 
 </div>
 
@@ -295,7 +293,7 @@ LINE詢問
 <div class="footer-container">
 
 <div class="footer-brand">
-<img src="images/logo-seal.png" alt="仙加味">
+<img src="images/logo-seal.png">
 <h3>仙加味</h3>
 <p>讓龜鹿回到日常飲食文化</p>
 </div>
@@ -331,8 +329,7 @@ LINE詢問
 
 <a class="floating-line"
 href="https://lin.ee/sHZW7NkR"
-target="_blank"
-rel="noopener">
+target="_blank">
 LINE詢問
 </a>
 
@@ -340,6 +337,7 @@ LINE詢問
 
 <script src="articles.js"></script>
 <script src="home-articles.js"></script>
+<script src="popular-articles.js"></script>
 <script src="site.js"></script>
 
 </body>
