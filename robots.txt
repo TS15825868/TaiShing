@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# sitemap
 Sitemap: https://ts15825868.github.io/xianjiawei/sitemap.xml
