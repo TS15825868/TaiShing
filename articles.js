@@ -4,12 +4,17 @@
 
 (function(){
 
-/* 只在 articles 頁面啟動 */
+/* 只在文章頁面啟動 */
 
-if(!location.pathname.includes("/articles/")) return;
+if(!location.pathname.includes("articles/")) return;
 
 
-/* 找到文章內容 */
+/* 避免重複插入 */
+
+if(document.querySelector(".related-articles")) return;
+
+
+/* 找到文章主內容 */
 
 const main = document.querySelector("main") || document.body;
 
@@ -18,7 +23,7 @@ const main = document.querySelector("main") || document.body;
 
 const container = document.createElement("section");
 
-container.className = "section reveal";
+container.className = "section reveal related-articles";
 
 container.innerHTML = `
 
@@ -102,6 +107,5 @@ setTimeout(()=>{
 container.classList.add("show");
 
 },200);
-
 
 })();
