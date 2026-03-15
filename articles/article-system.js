@@ -1,5 +1,7 @@
 (function(){
 
+/* 只在文章頁執行 */
+
 if(!location.pathname.includes("/articles/")) return;
 
 if(typeof ARTICLES==="undefined") return;
@@ -27,11 +29,11 @@ const breadcrumb=`
 
 <a href="../index.html">首頁</a>
 
-<span>/</span>
+<span>›</span>
 
 <a href="../articles.html">龜鹿知識</a>
 
-<span>/</span>
+<span>›</span>
 
 ${article.title}
 
@@ -64,7 +66,7 @@ container.insertAdjacentHTML("beforeend",tagHTML);
 
 
 /* =========================
-Prev / Next
+上一篇 / 下一篇
 ========================= */
 
 let navHTML="";
@@ -162,6 +164,51 @@ container.insertAdjacentHTML("beforeend",html);
 
 
 /* =========================
+推薦產品（新功能）
+========================= */
+
+if(article.product){
+
+const productMap={
+
+"guilu-gao":"龜鹿膏",
+"guilu-drink":"龜鹿飲",
+"guilu-block":"龜鹿湯塊",
+"lurong-powder":"鹿茸粉",
+"qixuan-guilu-mix":"龜鹿調飲粉"
+
+};
+
+const productName=productMap[article.product];
+
+if(productName){
+
+const productHTML=`
+
+<h2 style="margin-top:60px">相關產品</h2>
+
+<div class="product-grid">
+
+<a href="../product.html?id=${article.product}" class="product-card">
+
+<h3>${productName}</h3>
+
+<p>查看產品介紹</p>
+
+</a>
+
+</div>
+
+`;
+
+container.insertAdjacentHTML("beforeend",productHTML);
+
+}
+
+}
+
+
+/* =========================
 Breadcrumb Schema
 ========================= */
 
@@ -243,6 +290,8 @@ const articleSchema={
 
 };
 
+
+/* 插入 Schema */
 
 const script1=document.createElement("script");
 script1.type="application/ld+json";
