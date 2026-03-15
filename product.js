@@ -15,6 +15,8 @@ const productPackage = document.getElementById("product-package");
 const productIngredients = document.getElementById("product-ingredients");
 const productUses = document.getElementById("product-uses");
 
+const breadcrumb = document.getElementById("breadcrumb-product");
+
 const productInfo = document.querySelector(".product-info");
 
 const fallbackBack="guilu-series.html";
@@ -63,9 +65,43 @@ if(!product) return;
 
 
 
-/* 標題 */
+/* TITLE */
 
 document.title=`${product.name}｜仙加味`;
+
+
+
+/* meta description */
+
+const metaDesc=document.querySelector('meta[name="description"]');
+
+if(metaDesc && product.desc){
+
+metaDesc.setAttribute("content",product.desc);
+
+}
+
+
+
+/* OG image */
+
+const ogImage=document.querySelector('meta[property="og:image"]');
+
+if(ogImage){
+
+ogImage.setAttribute("content",product.seoImage || product.image);
+
+}
+
+
+
+/* Breadcrumb */
+
+if(breadcrumb){
+
+breadcrumb.textContent=product.name;
+
+}
 
 
 
@@ -84,6 +120,7 @@ productImage.loading="lazy";
 /* 基本資料 */
 
 if(productTitle) productTitle.textContent=product.name;
+
 if(productSummary) productSummary.textContent=product.desc || "";
 
 
@@ -254,7 +291,7 @@ productInfo.insertAdjacentHTML("beforeend",html);
 
 
 
-/* SEO Product Schema */
+/* Product Schema */
 
 const schema={
 
