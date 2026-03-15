@@ -29,7 +29,7 @@ category:"product",
 product:"guilu-drink",
 tags:["龜鹿飲","飲用方式"],
 summary:"龜鹿飲的飲用方式與日常搭配建議。",
-image:"images/guilu-drink.jpg",
+image:"images/guilu-drink-180cc.jpg",
 date:"2024-01-03"
 },
 
