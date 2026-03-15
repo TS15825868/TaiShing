@@ -1,6 +1,7 @@
-(function () {
+(function(){
 
 const params = new URLSearchParams(location.search);
+
 const id = params.get("id");
 const from = params.get("from");
 
@@ -16,13 +17,13 @@ const productUses = document.getElementById("product-uses");
 
 const productInfo = document.querySelector(".product-info");
 
-const fallbackBack = "guilu-series.html";
+const fallbackBack="guilu-series.html";
 
 
 
-/* =======================
+/* =========================
 返回按鈕
-======================= */
+========================= */
 
 if(backBtn){
 
@@ -30,7 +31,7 @@ backBtn.addEventListener("click",()=>{
 
 if(from){
 
-location.href = from;
+location.href=from;
 
 }else if(document.referrer && document.referrer.includes(location.host)){
 
@@ -38,7 +39,7 @@ history.back();
 
 }else{
 
-location.href = fallbackBack;
+location.href=fallbackBack;
 
 }
 
@@ -48,9 +49,9 @@ location.href = fallbackBack;
 
 
 
-/* =======================
+/* =========================
 讀取產品資料
-======================= */
+========================= */
 
 fetch("products.json")
 
@@ -58,49 +59,49 @@ fetch("products.json")
 
 .then(data=>{
 
-const product = data.products.find(p=>p.id===id) || data.products[0];
+const product=data.products.find(p=>p.id===id) || data.products[0];
 
 if(!product) return;
 
 
 
-/* =======================
+/* =========================
 標題
-======================= */
+========================= */
 
-document.title = `${product.name}｜仙加味`;
+document.title=`${product.name}｜仙加味`;
 
 
 
-/* =======================
+/* =========================
 圖片
-======================= */
+========================= */
 
 if(productImage){
 
-productImage.src = product.image;
-productImage.alt = `仙加味 ${product.name}`;
+productImage.src=product.image;
+productImage.alt=`仙加味 ${product.name}`;
 
 }
 
 
 
-/* =======================
+/* =========================
 基本資料
-======================= */
+========================= */
 
-if(productTitle) productTitle.textContent = product.name;
-if(productSummary) productSummary.textContent = product.desc || "";
+if(productTitle) productTitle.textContent=product.name;
+if(productSummary) productSummary.textContent=product.desc || "";
 
 
 
-/* =======================
+/* =========================
 容量
-======================= */
+========================= */
 
 if(productSizes){
 
-productSizes.textContent = product.sizes
+productSizes.textContent=product.sizes
 ? product.sizes.join(" / ")
 : "";
 
@@ -108,46 +109,46 @@ productSizes.textContent = product.sizes
 
 
 
-/* =======================
+/* =========================
 包裝
-======================= */
+========================= */
 
 if(productPackage){
 
-productPackage.textContent = product.package || "—";
+productPackage.textContent=product.package || "—";
 
 }
 
 
 
-/* =======================
+/* =========================
 成份
-======================= */
+========================= */
 
 if(productIngredients){
 
-const items = Array.isArray(product.ingredients)
+const items=Array.isArray(product.ingredients)
 ? product.ingredients
 : [];
 
-productIngredients.innerHTML =
+productIngredients.innerHTML=
 items.map(i=>`<li>${i}</li>`).join("");
 
 }
 
 
 
-/* =======================
+/* =========================
 食用方式
-======================= */
+========================= */
 
 if(productUses){
 
-const items = Array.isArray(product.uses)
+const items=Array.isArray(product.uses)
 ? product.uses
 : [];
 
-productUses.innerHTML =
+productUses.innerHTML=
 items.length
 ? items.map(i=>`<li>${i}</li>`).join("")
 : "<li>請透過 LINE 詢問食用方式</li>";
@@ -156,13 +157,13 @@ items.length
 
 
 
-/* =======================
+/* =========================
 相關文章
-======================= */
+========================= */
 
 if(product.articles && productInfo){
 
-let html = `
+let html=`
 
 <section class="info-card reveal">
 
@@ -174,15 +175,25 @@ let html = `
 
 product.articles.forEach(url=>{
 
-const title = url.split("/").pop().replace(".html","");
+let title=url.split("/").pop().replace(".html","");
 
-html += `
+/* 如果有 ARTICLES 系統就用正式標題 */
+
+if(typeof ARTICLES!=="undefined"){
+
+const match=ARTICLES.find(a=>url.includes(a.url));
+
+if(match) title=match.title;
+
+}
+
+html+=`
 
 <a href="${url}" class="product-card">
 
 <h3>${title}</h3>
 
-<p>相關內容</p>
+<p>查看內容</p>
 
 </a>
 
@@ -190,7 +201,7 @@ html += `
 
 });
 
-html += `
+html+=`
 
 </div>
 </section>
@@ -203,13 +214,13 @@ productInfo.insertAdjacentHTML("beforeend",html);
 
 
 
-/* =======================
+/* =========================
 料理搭配
-======================= */
+========================= */
 
 if(product.recipes && productInfo){
 
-let html = `
+let html=`
 
 <section class="info-card reveal">
 
@@ -221,9 +232,17 @@ let html = `
 
 product.recipes.forEach(url=>{
 
-const title = url.split("/").pop().replace(".html","");
+let title=url.split("/").pop().replace(".html","");
 
-html += `
+if(typeof ARTICLES!=="undefined"){
+
+const match=ARTICLES.find(a=>url.includes(a.url));
+
+if(match) title=match.title;
+
+}
+
+html+=`
 
 <a href="${url}" class="product-card">
 
@@ -237,7 +256,7 @@ html += `
 
 });
 
-html += `
+html+=`
 
 </div>
 </section>
@@ -250,11 +269,11 @@ productInfo.insertAdjacentHTML("beforeend",html);
 
 
 
-/* =======================
+/* =========================
 SEO Product Schema
-======================= */
+========================= */
 
-const schema = {
+const schema={
 
 "@context":"https://schema.org",
 
@@ -269,8 +288,11 @@ const schema = {
 "sku":product.id,
 
 "brand":{
+
 "@type":"Brand",
+
 "name":"仙加味"
+
 },
 
 "category":"龜鹿產品",
@@ -278,18 +300,22 @@ const schema = {
 "url":location.href,
 
 "offers":{
+
 "@type":"Offer",
+
 "availability":"https://schema.org/InStock",
+
 "priceCurrency":"TWD"
+
 }
 
 };
 
-const script = document.createElement("script");
+const script=document.createElement("script");
 
-script.type = "application/ld+json";
+script.type="application/ld+json";
 
-script.text = JSON.stringify(schema);
+script.text=JSON.stringify(schema);
 
 document.head.appendChild(script);
 
