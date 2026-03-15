@@ -4,6 +4,7 @@ font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Helvetica Neue",sans
 background:#F7F4ED;
 color:#2F2118;
 line-height:1.7;
+padding-top:72px;
 }
 
 *{
@@ -24,10 +25,11 @@ position:fixed;
 top:0;
 left:0;
 width:100%;
+height:72px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-padding:16px 20px;
+padding:0 20px;
 background:rgba(255,255,255,.75);
 backdrop-filter:blur(18px);
 -webkit-backdrop-filter:blur(18px);
@@ -131,7 +133,6 @@ overflow:hidden;
 
 .hero-content{
 max-width:640px;
-position:relative;
 z-index:2;
 }
 
@@ -195,10 +196,6 @@ max-width:1100px;
 margin:0 auto;
 }
 
-.section:first-of-type{
-margin-top:40px;
-}
-
 .section h1{
 text-align:center;
 font-size:40px;
@@ -212,7 +209,24 @@ font-size:30px;
 }
 
 /* =========================
-SLIDER (Apple style)
+PRODUCT HERO
+========================= */
+
+.product-hero{
+max-width:900px;
+margin:auto;
+text-align:center;
+}
+
+.product-hero img{
+max-width:420px;
+margin:auto;
+border-radius:18px;
+margin-bottom:20px;
+}
+
+/* =========================
+SLIDER
 ========================= */
 
 .product-slider,
@@ -232,8 +246,6 @@ scroll-behavior:smooth;
 
 }
 
-/* scrollbar 隱藏 */
-
 .product-slider::-webkit-scrollbar,
 .recipe-slider::-webkit-scrollbar{
 display:none;
@@ -249,26 +261,16 @@ scrollbar-width:none;
 scrollbar-width:none;
 }
 
-/* slider 卡片 */
-
 .product-slider a,
 .recipe-slider a{
-
 flex:0 0 260px;
-
 scroll-snap-align:start;
-
 transition:transform .25s ease;
-
 }
-
-/* hover */
 
 .product-slider a:hover,
 .recipe-slider a:hover{
-
 transform:scale(1.04);
-
 }
 
 /* =========================
@@ -306,28 +308,12 @@ object-fit:cover;
 }
 
 /* =========================
-RECIPE CARD
+ARTICLE HERO
 ========================= */
 
-.recipe-card{
-background:white;
-border-radius:24px;
-padding:20px;
-text-align:center;
-box-shadow:0 20px 50px rgba(0,0,0,.08);
-transition:.25s;
-text-decoration:none;
-color:#2F2118;
-}
-
-.recipe-card:hover{
-transform:translateY(-6px);
-box-shadow:0 25px 60px rgba(0,0,0,.15);
-}
-
-.recipe-card img{
-border-radius:14px;
-margin-bottom:10px;
+.recipe-hero img{
+border-radius:18px;
+margin-bottom:30px;
 }
 
 /* =========================
@@ -429,23 +415,14 @@ transform:translateY(0);
 MOBILE
 ========================= */
 
-@media(max-width:900px){
-
-.product-layout{
-grid-template-columns:1fr;
-gap:30px;
-}
-
-}
-
 @media(max-width:768px){
 
 .hero-title{
-font-size:42px;
+font-size:40px;
 }
 
 .hero-sub{
-font-size:24px;
+font-size:22px;
 }
 
 .section{
@@ -453,12 +430,11 @@ padding:70px 20px;
 }
 
 .section h1{
-font-size:32px;
+font-size:30px;
 }
 
 .section h2{
-font-size:26px;
-margin-bottom:28px;
+font-size:24px;
 }
 
 }
@@ -466,15 +442,11 @@ margin-bottom:28px;
 @media(max-width:480px){
 
 .hero-title{
-font-size:34px;
+font-size:32px;
 }
 
 .hero-sub{
 font-size:20px;
-}
-
-.product-grid{
-gap:18px;
 }
 
 .product-card{
