@@ -6,40 +6,92 @@ const main=document.querySelector("main");
 
 if(!main) return;
 
-const box=document.createElement("section");
+const articles=[
 
-box.className="section";
+{
+title:"什麼是龜鹿",
+url:"what-is-guilu.html",
+category:"knowledge"
+},
 
-box.innerHTML=`
+{
+title:"龜鹿怎麼吃",
+url:"how-to-eat-guilu.html",
+category:"eat"
+},
+
+{
+title:"鹿茸粉怎麼吃",
+url:"lurong-how.html",
+category:"eat"
+},
+
+{
+title:"鹿茸牛奶",
+url:"lurong-milk.html",
+category:"drink"
+},
+
+{
+title:"鹿茸咖啡",
+url:"lurong-coffee.html",
+category:"drink"
+},
+
+{
+title:"鹿茸茶",
+url:"lurong-tea.html",
+category:"drink"
+},
+
+{
+title:"龜鹿雞湯",
+url:"guilu-chicken-soup.html",
+category:"recipe"
+},
+
+{
+title:"龜鹿燉排骨",
+url:"guilu-pork-ribs.html",
+category:"recipe"
+},
+
+{
+title:"龜鹿藥膳湯",
+url:"guilu-herbal-soup.html",
+category:"recipe"
+}
+
+];
+
+const current=location.pathname.split("/").pop();
+
+let html=`<section class="section">
 
 <h2 class="center">相關閱讀</h2>
 
-<div class="product-grid">
+<div class="product-grid">`;
 
-<a href="what-is-guilu.html" class="product-card">
-<h3>什麼是龜鹿</h3>
-<p>龜板與鹿角的飲食文化</p>
+articles.forEach(a=>{
+
+if(a.url!==current){
+
+html+=`
+
+<a href="${a.url}" class="product-card">
+
+<h3>${a.title}</h3>
+
 </a>
-
-<a href="how-to-eat-guilu.html" class="product-card">
-<h3>龜鹿怎麼吃</h3>
-<p>日常食用方式整理</p>
-</a>
-
-<a href="lurong-how.html" class="product-card">
-<h3>鹿茸粉怎麼吃</h3>
-<p>飲品搭配方式</p>
-</a>
-
-<a href="guilu-chicken-soup.html" class="product-card">
-<h3>龜鹿雞湯</h3>
-<p>燉雞湯料理</p>
-</a>
-
-</div>
 
 `;
 
-main.appendChild(box);
+}
+
+});
+
+html+=`</div></section>`;
+
+main.insertAdjacentHTML("beforeend",html);
 
 })();
