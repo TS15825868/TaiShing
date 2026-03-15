@@ -16,38 +16,37 @@ const productUses = document.getElementById("product-uses");
 
 const fallbackBack = "guilu-series.html";
 
-/* 返回按鈕 */
+
+/* =========================
+返回按鈕
+========================= */
 
 if(backBtn){
 
+backBtn.addEventListener("click",()=>{
+
 if(from){
 
-backBtn.href = from;
+location.href = from;
 
 }else if(document.referrer && document.referrer.includes(location.host)){
 
-try{
-
-const refUrl = new URL(document.referrer);
-const refPath = refUrl.pathname.split("/").pop();
-
-backBtn.href = refPath || fallbackBack;
-
-}catch(e){
-
-backBtn.href = fallbackBack;
-
-}
+history.back();
 
 }else{
 
-backBtn.href = fallbackBack;
+location.href = fallbackBack;
 
 }
 
+});
+
 }
 
-/* 讀取產品資料 */
+
+/* =========================
+讀取產品資料
+========================= */
 
 fetch("products.json")
 
@@ -59,25 +58,37 @@ const product = data.products.find(p=>p.id===id) || data.products[0];
 
 if(!product) return;
 
-/* 標題 */
+
+/* =========================
+標題
+========================= */
 
 document.title = `${product.name}｜仙加味`;
 
-/* 圖片 */
+
+/* =========================
+圖片
+========================= */
 
 if(productImage){
 
 productImage.src = product.image;
-productImage.alt = product.name;
+productImage.alt = `仙加味 ${product.name}`;
 
 }
 
-/* 基本資料 */
+
+/* =========================
+基本資料
+========================= */
 
 if(productTitle) productTitle.textContent = product.name;
 if(productSummary) productSummary.textContent = product.desc || "";
 
-/* 容量 */
+
+/* =========================
+容量
+========================= */
 
 if(productSizes){
 
@@ -93,7 +104,10 @@ productSizes.textContent = product.size || "";
 
 }
 
-/* 包裝 */
+
+/* =========================
+包裝
+========================= */
 
 if(productPackage){
 
@@ -101,7 +115,10 @@ productPackage.textContent = product.package || "—";
 
 }
 
-/* 成份 */
+
+/* =========================
+成份
+========================= */
 
 if(productIngredients){
 
@@ -114,7 +131,10 @@ items.map(i=>`<li>${i}</li>`).join("");
 
 }
 
-/* 食用方式 */
+
+/* =========================
+食用方式
+========================= */
 
 if(productUses){
 
@@ -129,9 +149,10 @@ items.length
 
 }
 
-/* =====================
-   SEO Product Schema
-===================== */
+
+/* =========================
+SEO Product Schema
+========================= */
 
 const schema = {
 
@@ -145,6 +166,8 @@ const schema = {
 
 "image":product.image,
 
+"sku":product.id,
+
 "brand":{
 "@type":"Brand",
 "name":"仙加味"
@@ -152,7 +175,13 @@ const schema = {
 
 "category":"龜鹿產品",
 
-"url":location.href
+"url":location.href,
+
+"offers":{
+"@type":"Offer",
+"availability":"https://schema.org/InStock",
+"priceCurrency":"TWD"
+}
 
 };
 
@@ -164,6 +193,7 @@ script.text = JSON.stringify(schema);
 
 document.head.appendChild(script);
 
+
 })
 
 .catch(err=>{
@@ -171,5 +201,6 @@ document.head.appendChild(script);
 console.error("products.json 讀取失敗:",err);
 
 });
+
 
 })();
