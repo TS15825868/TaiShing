@@ -16,7 +16,7 @@ if(!container) return;
 
 
 /* =========================
-   Breadcrumb
+Breadcrumb
 ========================= */
 
 const breadcrumb=`
@@ -41,7 +41,7 @@ container.insertAdjacentHTML("afterbegin",breadcrumb);
 
 
 /* =========================
-   Tags
+Tags
 ========================= */
 
 if(article.tags && article.tags.length){
@@ -62,7 +62,7 @@ container.insertAdjacentHTML("beforeend",tagHTML);
 
 
 /* =========================
-   Prev Next
+Prev Next
 ========================= */
 
 let navHTML=``;
@@ -111,7 +111,56 @@ container.insertAdjacentHTML("beforeend",navHTML);
 
 
 /* =========================
-   Article Schema (SEO)
+相關文章推薦
+========================= */
+
+if(article.tags){
+
+let related=ARTICLES.filter(a=>{
+
+return a.url!==article.url &&
+a.tags &&
+a.tags.some(tag=>article.tags.includes(tag));
+
+}).slice(0,3);
+
+if(related.length){
+
+let html=`
+
+<h2 style="margin-top:60px">相關文章</h2>
+
+<div class="product-grid">
+
+`;
+
+related.forEach(a=>{
+
+html+=`
+
+<a href="${a.url}" class="product-card">
+
+<h3>${a.title}</h3>
+
+<p>${a.summary||""}</p>
+
+</a>
+
+`;
+
+});
+
+html+=`</div>`;
+
+container.insertAdjacentHTML("beforeend",html);
+
+}
+
+}
+
+
+/* =========================
+Article Schema
 ========================= */
 
 const schema={
@@ -121,6 +170,8 @@ const schema={
 "@type":"Article",
 
 "headline":article.title,
+
+"description":article.summary||"",
 
 "author":{
 
