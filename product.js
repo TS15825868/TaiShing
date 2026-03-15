@@ -20,9 +20,7 @@ const productInfo = document.querySelector(".product-info");
 const fallbackBack="guilu-series.html";
 
 
-/* =========================
-返回按鈕
-========================= */
+/* 返回按鈕 */
 
 if(backBtn){
 
@@ -47,9 +45,7 @@ location.href=fallbackBack;
 }
 
 
-/* =========================
-讀取產品資料
-========================= */
+/* 讀取產品資料 */
 
 fetch("products.json")
 
@@ -62,16 +58,12 @@ const product=data.products.find(p=>p.id===id) || data.products[0];
 if(!product) return;
 
 
-/* =========================
-標題
-========================= */
+/* 標題 */
 
 document.title=`${product.name}｜仙加味`;
 
 
-/* =========================
-圖片
-========================= */
+/* 圖片 */
 
 if(productImage){
 
@@ -81,17 +73,13 @@ productImage.alt=`仙加味 ${product.name}`;
 }
 
 
-/* =========================
-基本資料
-========================= */
+/* 基本資料 */
 
 if(productTitle) productTitle.textContent=product.name;
 if(productSummary) productSummary.textContent=product.desc || "";
 
 
-/* =========================
-容量
-========================= */
+/* 容量 */
 
 if(productSizes){
 
@@ -102,9 +90,7 @@ productSizes.textContent=product.sizes
 }
 
 
-/* =========================
-包裝
-========================= */
+/* 包裝 */
 
 if(productPackage){
 
@@ -113,9 +99,7 @@ productPackage.textContent=product.package || "—";
 }
 
 
-/* =========================
-成份
-========================= */
+/* 成份 */
 
 if(productIngredients){
 
@@ -129,9 +113,7 @@ items.map(i=>`<li>${i}</li>`).join("");
 }
 
 
-/* =========================
-食用方式
-========================= */
+/* 食用方式 */
 
 if(productUses){
 
@@ -147,9 +129,7 @@ items.length
 }
 
 
-/* =========================
-相關文章
-========================= */
+/* 相關文章 */
 
 if(product.articles && productInfo){
 
@@ -203,9 +183,7 @@ productInfo.insertAdjacentHTML("beforeend",html);
 }
 
 
-/* =========================
-料理搭配
-========================= */
+/* 料理搭配 */
 
 if(product.recipes && productInfo){
 
@@ -259,9 +237,7 @@ productInfo.insertAdjacentHTML("beforeend",html);
 }
 
 
-/* =========================
-SEO Product Schema
-========================= */
+/* SEO Product Schema */
 
 const schema={
 
@@ -273,7 +249,7 @@ const schema={
 
 "description":product.desc || "",
 
-"image":product.image,
+"image":product.seoImage || product.image,
 
 "sku":product.id,
 
@@ -285,7 +261,7 @@ const schema={
 
 },
 
-"category":"龜鹿產品",
+"category":product.category,
 
 "url":location.href,
 
