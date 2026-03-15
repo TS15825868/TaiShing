@@ -84,9 +84,9 @@ menu.classList.remove("active");
    Scroll Reveal
 ========================= */
 
-const reveals=document.querySelectorAll(".reveal");
-
 function revealElements(){
+
+const reveals=document.querySelectorAll(".reveal");
 
 if(!reveals.length) return;
 
@@ -142,7 +142,7 @@ header.style.backdropFilter="blur(18px)";
    Lazy Load Images
 ========================= */
 
-const lazyImages=document.querySelectorAll("img");
+const lazyImages=document.querySelectorAll("img[data-src]");
 
 if("IntersectionObserver" in window){
 
@@ -154,10 +154,7 @@ if(entry.isIntersecting){
 
 const img=entry.target;
 
-if(img.dataset.src){
-
 img.src=img.dataset.src;
-}
 
 imgObserver.unobserve(img);
 
@@ -170,6 +167,16 @@ imgObserver.unobserve(img);
 lazyImages.forEach(img=>{
 
 imgObserver.observe(img);
+
+});
+
+}else{
+
+/* fallback */
+
+lazyImages.forEach(img=>{
+
+img.src=img.dataset.src;
 
 });
 
