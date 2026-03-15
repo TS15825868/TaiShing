@@ -1,20 +1,18 @@
 document.addEventListener("DOMContentLoaded",()=>{
 
-const menu = document.getElementById("menuOverlay");
-const btn = document.querySelector(".menu-btn");
+/* =========================
+MENU
+========================= */
 
-if(!menu) return;
+const menu=document.getElementById("menuOverlay");
+const btn=document.querySelector(".menu-btn");
 
+if(menu){
 
-/* 判斷是否在 articles 目錄 */
+const isArticle=location.pathname.includes("/articles/");
+const base=isArticle?"../":"";
 
-const isArticle = location.pathname.includes("/articles/");
-const base = isArticle ? "../" : "";
-
-
-/* 建立選單 */
-
-menu.innerHTML = `
+menu.innerHTML=`
 
 <a href="${base}index.html">首頁</a>
 
@@ -43,34 +41,35 @@ LINE詢問
 
 `;
 
+}
 
-/* 漢堡開關 */
+/* MENU TOGGLE */
 
-if(btn){
+if(btn && menu){
 
 btn.addEventListener("click",()=>{
 menu.classList.toggle("active");
 });
 
-}
-
-
-/* 點連結自動關閉 */
-
 menu.querySelectorAll("a").forEach(link=>{
-
 link.addEventListener("click",()=>{
 menu.classList.remove("active");
 });
-
 });
 
+}
 
-/* Scroll Reveal */
 
-const revealEls = document.querySelectorAll(".reveal");
 
-const observer = new IntersectionObserver(entries=>{
+/* =========================
+SCROLL REVEAL
+========================= */
+
+const reveals=document.querySelectorAll(".reveal");
+
+if(reveals.length){
+
+const observer=new IntersectionObserver(entries=>{
 
 entries.forEach(entry=>{
 
@@ -82,9 +81,236 @@ entry.target.classList.add("show");
 
 });
 
-},{threshold:0.15});
+},{threshold:.15});
 
-revealEls.forEach(el=>observer.observe(el));
+reveals.forEach(el=>observer.observe(el));
 
+}
+
+
+
+/* =========================
+HOMEPAGE ARTICLES
+========================= */
+
+const homeArticles=document.getElementById("article-list");
+
+if(homeArticles && typeof ARTICLES!=="undefined"){
+
+let html="";
+
+ARTICLES.slice(0,3).forEach(a=>{
+
+html+=`
+
+<a href="articles/${a.url}" class="product-card">
+
+<h3>${a.title}</h3>
+
+<p>${a.tags ? a.tags.join(" · ") : "龜鹿知識"}</p>
+
+</a>
+
+`;
+
+});
+
+homeArticles.innerHTML=html;
+
+}
+
+
+
+/* =========================
+ARTICLES PAGE
+========================= */
+
+const cultureGrid=document.getElementById("culture-grid");
+const productGrid=document.getElementById("product-grid");
+const recipeGrid=document.getElementById("recipe-grid");
+
+if(typeof ARTICLES!=="undefined"){
+
+function render(grid,category){
+
+if(!grid) return;
+
+let html="";
+
+ARTICLES
+.filter(a=>a.category===category)
+.forEach(a=>{
+
+html+=`
+
+<a href="articles/${a.url}" class="product-card">
+
+<img src="${a.image}" alt="${a.title}" loading="lazy">
+
+<h3>${a.title}</h3>
+
+<p>${a.summary || "龜鹿知識"}</p>
+
+</a>
+
+`;
+
+});
+
+grid.innerHTML=html;
+
+}
+
+render(cultureGrid,"culture");
+render(productGrid,"product");
+render(recipeGrid,"recipe");
+
+}
+
+
+
+/* =========================
+RELATED ARTICLES
+========================= */
+
+const related=document.getElementById("related-articles");
+
+if(related && typeof ARTICLES!=="undefined"){
+
+const current=location.pathname.split("/").pop();
+
+const list=ARTICLES.filter(a=>a.url!==current).slice(0,3);
+
+let html="";
+
+list.forEach(a=>{
+
+html+=`
+
+<a href="../articles/${a.url}" class="product-card">
+
+<h3>${a.title}</h3>
+
+<p>${a.summary || "龜鹿知識"}</p>
+
+</a>
+
+`;
+
+});
+
+related.innerHTML=html;
+
+}
+
+
+
+/* =========================
+ARTICLE PAGE
+========================= */
+
+if(location.pathname.includes("/articles/") && typeof ARTICLES!=="undefined"){
+
+const current=location.pathname.split("/").pop();
+
+const index=ARTICLES.findIndex(a=>a.url===current);
+
+const article=ARTICLES[index];
+
+const container=document.querySelector("article");
+
+if(article && container){
+
+/* Breadcrumb */
+
+const breadcrumb=`
+
+<div class="breadcrumb">
+
+<a href="../index.html">首頁</a>
+
+<span>/</span>
+
+<a href="../articles.html">龜鹿知識</a>
+
+<span>/</span>
+
+${article.title}
+
+</div>
+
+`;
+
+container.insertAdjacentHTML("afterbegin",breadcrumb);
+
+
+/* Tags */
+
+if(article.tags){
+
+let tagHTML=`<div class="article-tags">`;
+
+article.tags.forEach(tag=>{
+
+tagHTML+=`<span>${tag}</span>`;
+
+});
+
+tagHTML+=`</div>`;
+
+container.insertAdjacentHTML("beforeend",tagHTML);
+
+}
+
+
+/* Prev Next */
+
+let navHTML="";
+
+if(index>0 || index<ARTICLES.length-1){
+
+navHTML=`<div class="article-nav">`;
+
+if(index>0){
+
+navHTML+=`
+
+<a href="${ARTICLES[index-1].url}">
+
+上一篇<br>
+
+<strong>${ARTICLES[index-1].title}</strong>
+
+</a>
+
+`;
+
+}
+
+if(index<ARTICLES.length-1){
+
+navHTML+=`
+
+<a href="${ARTICLES[index+1].url}">
+
+下一篇<br>
+
+<strong>${ARTICLES[index+1].title}</strong>
+
+</a>
+
+`;
+
+}
+
+navHTML+=`</div>`;
+
+container.insertAdjacentHTML("beforeend",navHTML);
+
+}
+
+}
+
+}
 
 });
