@@ -140,16 +140,19 @@ z-index:2;
 font-size:56px;
 margin:0 0 6px;
 letter-spacing:2px;
+text-shadow:0 2px 12px rgba(0,0,0,.4);
 }
 
 .hero-sub{
 font-size:30px;
 margin:0 0 12px;
+text-shadow:0 2px 12px rgba(0,0,0,.4);
 }
 
 .hero-text{
 opacity:.9;
 margin:0 0 20px;
+text-shadow:0 2px 12px rgba(0,0,0,.4);
 }
 
 .hero-buttons{
@@ -172,7 +175,7 @@ background:#8A1F1F;
 color:white;
 text-decoration:none;
 font-size:15px;
-transition:.25s;
+transition:.28s cubic-bezier(.4,.2,.2,1);
 border:none;
 cursor:pointer;
 }
@@ -238,6 +241,8 @@ align-items:start;
 
 .product-image img{
 width:100%;
+max-width:420px;
+margin:auto;
 border-radius:22px;
 box-shadow:0 20px 50px rgba(0,0,0,.12);
 }
@@ -258,9 +263,7 @@ display:flex;
 gap:20px;
 overflow-x:auto;
 scroll-snap-type:x mandatory;
-padding-bottom:10px;
-padding-left:20px;
-padding-right:20px;
+padding:10px 20px;
 scroll-behavior:smooth;
 -webkit-overflow-scrolling:touch;
 }
@@ -284,7 +287,7 @@ scrollbar-width:none;
 .recipe-slider a{
 flex:0 0 260px;
 scroll-snap-align:start;
-transition:transform .25s ease;
+transition:.28s cubic-bezier(.4,.2,.2,1);
 }
 
 .product-slider a:hover,
@@ -308,7 +311,7 @@ border-radius:26px;
 padding:24px;
 text-align:center;
 box-shadow:0 20px 50px rgba(0,0,0,.08);
-transition:transform .25s ease, box-shadow .25s ease;
+transition:.28s cubic-bezier(.4,.2,.2,1);
 text-decoration:none;
 color:#2F2118;
 }
@@ -322,6 +325,34 @@ box-shadow:0 30px 70px rgba(0,0,0,.15);
 width:100%;
 margin:0 auto 12px;
 border-radius:14px;
+aspect-ratio:1/1;
+object-fit:cover;
+}
+
+/* =========================
+RECIPE CARD
+========================= */
+
+.recipe-card{
+background:white;
+border-radius:22px;
+padding:18px;
+text-align:center;
+text-decoration:none;
+color:#2F2118;
+box-shadow:0 16px 40px rgba(0,0,0,.08);
+transition:.28s cubic-bezier(.4,.2,.2,1);
+}
+
+.recipe-card:hover{
+transform:translateY(-6px);
+box-shadow:0 30px 60px rgba(0,0,0,.15);
+}
+
+.recipe-card img{
+width:100%;
+border-radius:14px;
+margin-bottom:10px;
 aspect-ratio:1/1;
 object-fit:cover;
 }
@@ -422,7 +453,7 @@ CTA
 .cta{
 text-align:center;
 padding:100px 20px;
-background:#2F2118;
+background:linear-gradient(180deg,#2F2118,#1F1B17);
 color:white;
 margin-top:40px;
 }
