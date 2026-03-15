@@ -6,9 +6,19 @@ const container=document.getElementById("related-articles");
 
 if(!container) return;
 
-let html="";
+/* 取得目前文章 */
 
-const shuffled=[...ARTICLES].sort(()=>0.5-Math.random()).slice(0,3);
+const currentPage=location.pathname.split("/").pop();
+
+/* 排除目前文章 */
+
+const list=ARTICLES.filter(a=>a.url!==currentPage);
+
+/* 隨機排序 */
+
+const shuffled=[...list].sort(()=>0.5-Math.random()).slice(0,3);
+
+let html="";
 
 shuffled.forEach(a=>{
 
