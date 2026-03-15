@@ -64,3 +64,61 @@ tags:["龜鹿","藥膳"]
 }
 
 ];
+
+
+/* =========================
+文章工具
+========================= */
+
+/* 取得文章 */
+
+function getArticle(url){
+
+return ARTICLES.find(a=>a.url===url);
+
+}
+
+
+/* 上一篇 */
+
+function getPrevArticle(index){
+
+if(index>0) return ARTICLES[index-1];
+
+return null;
+
+}
+
+
+/* 下一篇 */
+
+function getNextArticle(index){
+
+if(index<ARTICLES.length-1) return ARTICLES[index+1];
+
+return null;
+
+}
+
+
+/* 同分類文章 */
+
+function getRelatedArticles(article){
+
+return ARTICLES.filter(a=>
+
+a.category===article.category &&
+a.url!==article.url
+
+).slice(0,3);
+
+}
+
+
+/* 分類文章 */
+
+function getCategoryArticles(category){
+
+return ARTICLES.filter(a=>a.category===category);
+
+}
