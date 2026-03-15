@@ -16,6 +16,8 @@
 <meta property="og:description" content="先看型態，再看生活情境，找到適合自己的龜鹿產品。">
 <meta property="og:image" content="images/hero-guilu-gao.jpg">
 
+<meta name="googlebot" content="max-image-preview:large">
+
 <link rel="stylesheet" href="site.css">
 
 </head>
@@ -34,7 +36,7 @@
 </header>
 
 
-<div id="menu" class="menu-overlay">
+<div id="menuOverlay" class="menu-overlay">
 
 <a href="index.html">首頁</a>
 <a href="brand.html">品牌</a>
@@ -53,18 +55,46 @@ LINE詢問
 </div>
 
 
-<section class="section">
 
-<h1 class="center">怎麼選龜鹿產品？</h1>
+<main>
 
-<p class="center">
-先看型態，再看生活情境。
+
+<!-- HERO -->
+
+<section class="hero" style="height:55vh">
+
+<div class="hero-content reveal">
+
+<h1 class="hero-title">怎麼選龜鹿</h1>
+
+<p class="hero-text">
+
+先看型態  
+再看生活情境
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- Breadcrumb -->
+
+<section class="section" style="padding-top:40px">
+
+<p class="center" style="opacity:.6;font-size:14px">
+
+<a href="index.html">首頁</a> / 怎麼選龜鹿
+
 </p>
 
 </section>
 
 
-<!-- ⭐互動選擇器 -->
+
+<!-- 互動選擇 -->
 
 <section class="section reveal">
 
@@ -73,23 +103,35 @@ LINE詢問
 <div class="product-grid">
 
 <button class="product-card choose-btn" data-product="guilu-gao">
+
 <h3>日常補養</h3>
+
 <p>建立固定食用節奏</p>
+
 </button>
 
 <button class="product-card choose-btn" data-product="guilu-drink">
+
 <h3>快速飲用</h3>
+
 <p>忙碌生活也能補養</p>
+
 </button>
 
 <button class="product-card choose-btn" data-product="guilu-block">
+
 <h3>燉湯料理</h3>
+
 <p>家庭料理燉雞湯</p>
+
 </button>
 
 <button class="product-card choose-btn" data-product="lurong-powder">
+
 <h3>飲品搭配</h3>
+
 <p>加入咖啡或牛奶</p>
+
 </button>
 
 </div>
@@ -97,7 +139,8 @@ LINE詢問
 </section>
 
 
-<!-- ⭐產品比較 -->
+
+<!-- 產品比較 -->
 
 <section class="section reveal">
 
@@ -115,36 +158,28 @@ LINE詢問
 </tr>
 
 <tr>
-<td>
-<a href="product.html?id=guilu-gao&from=choose.html">龜鹿膏</a>
-</td>
+<td><a href="product.html?id=guilu-gao">龜鹿膏</a></td>
 <td>膏狀</td>
 <td>直接食用 / 溫水沖泡</td>
 <td>日常補養</td>
 </tr>
 
 <tr>
-<td>
-<a href="product.html?id=guilu-drink&from=choose.html">龜鹿飲</a>
-</td>
+<td><a href="product.html?id=guilu-drink">龜鹿飲</a></td>
 <td>飲品</td>
 <td>開瓶即飲</td>
 <td>忙碌生活</td>
 </tr>
 
 <tr>
-<td>
-<a href="product.html?id=guilu-block&from=choose.html">龜鹿湯塊</a>
-</td>
+<td><a href="product.html?id=guilu-block">龜鹿湯塊</a></td>
 <td>湯塊</td>
 <td>燉湯料理</td>
 <td>家庭料理</td>
 </tr>
 
 <tr>
-<td>
-<a href="product.html?id=lurong-powder&from=choose.html">鹿茸粉</a>
-</td>
+<td><a href="product.html?id=lurong-powder">鹿茸粉</a></td>
 <td>粉末</td>
 <td>加入茶 / 咖啡 / 牛奶</td>
 <td>飲品搭配</td>
@@ -155,6 +190,11 @@ LINE詢問
 </div>
 
 </section>
+
+
+
+</main>
+
 
 
 <section class="cta">
@@ -168,6 +208,7 @@ LINE詢問
 </a>
 
 </section>
+
 
 
 <footer class="footer">
@@ -199,8 +240,8 @@ LINE詢問
 
 <h4>內容</h4>
 
+<a href="articles.html">龜鹿知識</a>
 <a href="recipes.html">料理搭配</a>
-<a href="how-to-eat.html">食用方式</a>
 
 </div>
 
@@ -221,6 +262,16 @@ LINE詢問
 </div>
 
 </footer>
+
+
+
+<a class="floating-line"
+href="https://lin.ee/sHZW7NkR"
+target="_blank">
+
+LINE詢問
+
+</a>
 
 
 <script src="site.js"></script>
@@ -244,6 +295,7 @@ location.href=data[this.dataset.product];
 });
 
 </script>
+
 
 
 <script type="application/ld+json">
