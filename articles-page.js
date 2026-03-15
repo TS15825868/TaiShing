@@ -25,7 +25,10 @@ const recipeGrid = document.getElementById("recipe-grid");
 
 const list = [...ARTICLES].sort((a,b)=>{
 
-return new Date(b.date) - new Date(a.date);
+const d1 = new Date(a.date || "2000-01-01");
+const d2 = new Date(b.date || "2000-01-01");
+
+return d2 - d1;
 
 });
 
@@ -40,7 +43,12 @@ return `
 
 <a href="articles/${a.url}" class="product-card reveal">
 
-<img src="${a.image}" alt="${a.title}" loading="lazy">
+<img 
+src="${a.image}" 
+alt="${a.title}" 
+loading="lazy"
+onerror="this.src='images/logo-seal.png';this.classList.add('img-placeholder');"
+>
 
 <h3>${a.title}</h3>
 
@@ -62,9 +70,7 @@ if(articleGrid){
 let html="";
 
 list.forEach(a=>{
-
 html+=createCard(a);
-
 });
 
 articleGrid.innerHTML=html;
