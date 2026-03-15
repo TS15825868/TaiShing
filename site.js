@@ -76,6 +76,7 @@ entries.forEach(entry=>{
 if(entry.isIntersecting){
 
 entry.target.classList.add("show");
+observer.unobserve(entry.target);
 
 }
 
@@ -104,6 +105,8 @@ ARTICLES.slice(0,3).forEach(a=>{
 html+=`
 
 <a href="articles/${a.url}" class="product-card">
+
+<img src="${a.image}" alt="${a.title}" loading="lazy">
 
 <h3>${a.title}</h3>
 
@@ -181,13 +184,16 @@ const current=location.pathname.split("/").pop();
 
 const list=ARTICLES.filter(a=>a.url!==current).slice(0,3);
 
+const isArticle=location.pathname.includes("/articles/");
+const base=isArticle?"":"articles/";
+
 let html="";
 
 list.forEach(a=>{
 
 html+=`
 
-<a href="../articles/${a.url}" class="product-card">
+<a href="${base}${a.url}" class="product-card">
 
 <h3>${a.title}</h3>
 
