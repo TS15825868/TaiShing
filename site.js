@@ -26,11 +26,12 @@ menu.innerHTML=`
 class="line-btn"
 target="_blank"
 rel="noopener">
+
 LINE詢問
+
 </a>
 
 `;
-
 }
 
 });
