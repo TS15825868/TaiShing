@@ -1,307 +1,38 @@
-(function(){
-
-/* 只在文章頁執行 */
-
-if(!location.pathname.includes("/articles/")) return;
+document.addEventListener("DOMContentLoaded",()=>{
 
 if(typeof ARTICLES==="undefined") return;
 
-const current=location.pathname.split("/").pop();
+const slug=location.pathname.split("/").pop();
 
-const index=ARTICLES.findIndex(a=>a.url===current);
+const article=ARTICLES.find(a=>a.url===slug);
 
-if(index===-1) return;
+if(!article) return;
 
-const article=ARTICLES[index];
+document.getElementById("title").textContent=article.title;
 
-const container=document.querySelector("article");
+document.getElementById("summary").textContent=article.summary;
 
-if(!container) return;
+document.getElementById("article-title").textContent=article.title+"｜仙加味";
 
+document.getElementById("article-desc").setAttribute(
+"content",
+article.summary
+);
 
-/* =========================
-Breadcrumb
-========================= */
+let html="";
 
-const breadcrumb=`
-
-<div class="breadcrumb">
-
-<a href="../index.html">首頁</a>
-
-<span>›</span>
-
-<a href="../articles.html">龜鹿知識</a>
-
-<span>›</span>
-
-${article.title}
-
-</div>
-
-`;
-
-container.insertAdjacentHTML("afterbegin",breadcrumb);
-
-
-/* =========================
-Tags
-========================= */
-
-if(article.tags && article.tags.length){
-
-let tagHTML=`<div class="article-tags">`;
-
-article.tags.forEach(tag=>{
-
-tagHTML+=`<span>${tag}</span>`;
-
-});
-
-tagHTML+=`</div>`;
-
-container.insertAdjacentHTML("beforeend",tagHTML);
-
-}
-
-
-/* =========================
-上一篇 / 下一篇
-========================= */
-
-let navHTML="";
-
-if(index>0 || index<ARTICLES.length-1){
-
-navHTML=`<div class="article-nav">`;
-
-if(index>0){
-
-navHTML+=`
-
-<a class="prev" href="${ARTICLES[index-1].url}">
-
-上一篇<br>
-
-<strong>${ARTICLES[index-1].title}</strong>
-
-</a>
-
-`;
-
-}
-
-if(index<ARTICLES.length-1){
-
-navHTML+=`
-
-<a class="next" href="${ARTICLES[index+1].url}">
-
-下一篇<br>
-
-<strong>${ARTICLES[index+1].title}</strong>
-
-</a>
-
-`;
-
-}
-
-navHTML+=`</div>`;
-
-container.insertAdjacentHTML("beforeend",navHTML);
-
-}
-
-
-/* =========================
-相關文章
-========================= */
-
-if(article.tags){
-
-let related=ARTICLES.filter(a=>{
-
-return a.url!==article.url &&
-a.tags &&
-a.tags.some(tag=>article.tags.includes(tag));
-
-}).slice(0,3);
-
-if(related.length){
-
-let html=`
-
-<h2 style="margin-top:60px">相關文章</h2>
-
-<div class="product-grid">
-
-`;
-
-related.forEach(a=>{
+article.sections.forEach(sec=>{
 
 html+=`
 
-<a href="${a.url}" class="product-card">
+<h2>${sec.title}</h2>
 
-<h3>${a.title}</h3>
-
-<p>${a.tags ? a.tags.join(" · ") : "龜鹿知識"}</p>
-
-</a>
+<p>${sec.text}</p>
 
 `;
 
 });
 
-html+=`</div>`;
+document.getElementById("content").innerHTML=html;
 
-container.insertAdjacentHTML("beforeend",html);
-
-}
-
-}
-
-
-/* =========================
-推薦產品（新功能）
-========================= */
-
-if(article.product){
-
-const productMap={
-
-"guilu-gao":"龜鹿膏",
-"guilu-drink":"龜鹿飲",
-"guilu-block":"龜鹿湯塊",
-"lurong-powder":"鹿茸粉",
-"qixuan-guilu-mix":"龜鹿調飲粉"
-
-};
-
-const productName=productMap[article.product];
-
-if(productName){
-
-const productHTML=`
-
-<h2 style="margin-top:60px">相關產品</h2>
-
-<div class="product-grid">
-
-<a href="../product.html?id=${article.product}" class="product-card">
-
-<h3>${productName}</h3>
-
-<p>查看產品介紹</p>
-
-</a>
-
-</div>
-
-`;
-
-container.insertAdjacentHTML("beforeend",productHTML);
-
-}
-
-}
-
-
-/* =========================
-Breadcrumb Schema
-========================= */
-
-const breadcrumbSchema={
-
-"@context":"https://schema.org",
-
-"@type":"BreadcrumbList",
-
-"itemListElement":[
-
-{
-"@type":"ListItem",
-"position":1,
-"name":"首頁",
-"item":"https://ts15825868.github.io/xianjiawei/"
-},
-
-{
-"@type":"ListItem",
-"position":2,
-"name":"龜鹿知識",
-"item":"https://ts15825868.github.io/xianjiawei/articles.html"
-},
-
-{
-"@type":"ListItem",
-"position":3,
-"name":article.title,
-"item":location.href
-}
-
-]
-
-};
-
-
-/* =========================
-Article Schema
-========================= */
-
-const articleSchema={
-
-"@context":"https://schema.org",
-
-"@type":"Article",
-
-"headline":article.title,
-
-"description":article.summary || "",
-
-"keywords":article.tags ? article.tags.join(",") : "",
-
-"author":{
-
-"@type":"Organization",
-
-"name":"仙加味"
-
-},
-
-"publisher":{
-
-"@type":"Organization",
-
-"name":"仙加味",
-
-"logo":{
-
-"@type":"ImageObject",
-
-"url":"https://ts15825868.github.io/xianjiawei/images/logo-seal.png"
-
-}
-
-},
-
-"mainEntityOfPage":location.href
-
-};
-
-
-/* 插入 Schema */
-
-const script1=document.createElement("script");
-script1.type="application/ld+json";
-script1.text=JSON.stringify(breadcrumbSchema);
-
-const script2=document.createElement("script");
-script2.type="application/ld+json";
-script2.text=JSON.stringify(articleSchema);
-
-document.head.appendChild(script1);
-document.head.appendChild(script2);
-
-})();
+});
