@@ -94,6 +94,9 @@ const recipeGrid = document.getElementById("recipe-grid");
 
 if (typeof ARTICLES !== "undefined") {
 
+const isArticle = location.pathname.includes("/articles/");
+const imgBase = isArticle ? "../" : "";
+
 function render(grid, category) {
 
 if (!grid) return;
@@ -108,13 +111,13 @@ const image = a.image || "images/logo-seal.png";
 
 html += `
 
-<a href="articles/${a.url}" class="product-card">
+<a href="${imgBase}articles/${a.url}" class="product-card">
 
 <img
-src="${image}"
+src="${imgBase}${image}"
 alt="${a.title}"
 loading="lazy"
-onerror="this.src='../images/logo-seal.png';this.classList.add('img-placeholder');"
+onerror="this.src='${imgBase}images/logo-seal.png';this.classList.add('img-placeholder');"
 >
 
 <h3>${a.title}</h3>
@@ -148,6 +151,9 @@ if (related && typeof ARTICLES !== "undefined") {
 
 const current = location.pathname.split("/").pop();
 
+const isArticle = location.pathname.includes("/articles/");
+const base = isArticle ? "" : "articles/";
+
 const list = ARTICLES
 .filter(a => a.url !== current)
 .slice(0, 3);
@@ -158,7 +164,7 @@ list.forEach(a => {
 
 html += `
 
-<a href="${a.url}" class="product-card">
+<a href="${base}${a.url}" class="product-card">
 
 <h3>${a.title}</h3>
 
@@ -182,11 +188,8 @@ ARTICLE PAGE
 if (location.pathname.includes("/articles/") && typeof ARTICLES !== "undefined") {
 
 const current = location.pathname.split("/").pop();
-
 const index = ARTICLES.findIndex(a => a.url === current);
-
 const article = ARTICLES[index];
-
 const container = document.querySelector("article");
 
 if (article && container) {
@@ -200,13 +203,9 @@ const breadcrumb = `
 <div class="breadcrumb">
 
 <a href="../index.html">首頁</a>
-
 <span>/</span>
-
 <a href="../articles.html">龜鹿知識</a>
-
 <span>/</span>
-
 ${article.title}
 
 </div>
@@ -256,7 +255,6 @@ navHTML += `
 <a href="${ARTICLES[index - 1].url}">
 
 上一篇<br>
-
 <strong>${ARTICLES[index - 1].title}</strong>
 
 </a>
@@ -272,7 +270,6 @@ navHTML += `
 <a href="${ARTICLES[index + 1].url}">
 
 下一篇<br>
-
 <strong>${ARTICLES[index + 1].title}</strong>
 
 </a>
