@@ -1,3 +1,7 @@
+html{
+scroll-behavior:smooth;
+}
+
 body{
 margin:0;
 font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Helvetica Neue",sans-serif;
@@ -116,7 +120,8 @@ HERO
 
 .hero{
 position:relative;
-height:92vh;
+min-height:88vh;
+height:auto;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -266,21 +271,12 @@ scroll-snap-type:x mandatory;
 padding:10px 20px;
 scroll-behavior:smooth;
 -webkit-overflow-scrolling:touch;
+scrollbar-width:none;
 }
 
 .product-slider::-webkit-scrollbar,
 .recipe-slider::-webkit-scrollbar{
 display:none;
-}
-
-.product-slider{
--ms-overflow-style:none;
-scrollbar-width:none;
-}
-
-.recipe-slider{
--ms-overflow-style:none;
-scrollbar-width:none;
 }
 
 .product-slider a,
@@ -314,6 +310,10 @@ box-shadow:0 20px 50px rgba(0,0,0,.08);
 transition:.28s cubic-bezier(.4,.2,.2,1);
 text-decoration:none;
 color:#2F2118;
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+min-height:240px;
 }
 
 .product-card:hover{
@@ -342,6 +342,10 @@ text-decoration:none;
 color:#2F2118;
 box-shadow:0 16px 40px rgba(0,0,0,.08);
 transition:.28s cubic-bezier(.4,.2,.2,1);
+display:flex;
+flex-direction:column;
+justify-content:flex-start;
+min-height:220px;
 }
 
 .recipe-card:hover{
@@ -452,7 +456,7 @@ CTA
 
 .cta{
 text-align:center;
-padding:100px 20px;
+padding:80px 20px;
 background:linear-gradient(180deg,#2F2118,#1F1B17);
 color:white;
 margin-top:40px;
@@ -491,7 +495,7 @@ FLOATING LINE
 .floating-line{
 position:fixed;
 right:18px;
-bottom:18px;
+bottom:24px;
 z-index:997;
 background:#06C755;
 color:white;
@@ -547,6 +551,10 @@ font-size:24px;
 .product-layout{
 grid-template-columns:1fr;
 gap:30px;
+}
+
+.article-nav{
+flex-direction:column;
 }
 
 }
