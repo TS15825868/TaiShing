@@ -4,43 +4,35 @@ document.addEventListener("DOMContentLoaded",()=>{
 MENU
 ========================= */
 
-const menu=document.getElementById("menuOverlay");
-const btn=document.querySelector(".menu-btn");
+const menu = document.getElementById("menuOverlay");
+const btn = document.querySelector(".menu-btn");
 
 if(menu){
 
-const isArticle=location.pathname.includes("/articles/");
-const base=isArticle?"../":"";
+const isArticle = location.pathname.includes("/articles/");
+const base = isArticle ? "../" : "";
 
-menu.innerHTML=`
+menu.innerHTML = `
 
 <a href="${base}index.html">首頁</a>
-
 <a href="${base}guilu-series.html">龜鹿系列</a>
-
 <a href="${base}qixuan-tea.html">柒玄茶</a>
-
 <a href="${base}recipes.html">料理搭配</a>
-
 <a href="${base}choose.html">怎麼選龜鹿</a>
-
 <a href="${base}articles.html">龜鹿知識</a>
-
 <a href="${base}brand.html">品牌故事</a>
-
 <a href="${base}faq.html">FAQ</a>
 
 <a href="https://lin.ee/sHZW7NkR"
 class="line-btn"
 target="_blank"
-rel="noopener">
+rel="noopener noreferrer">
 
 LINE詢問
 
 </a>
 
 `;
-
 }
 
 /* MENU TOGGLE */
@@ -60,16 +52,15 @@ menu.classList.remove("active");
 }
 
 
-
 /* =========================
 SCROLL REVEAL
 ========================= */
 
-const reveals=document.querySelectorAll(".reveal");
+const reveals = document.querySelectorAll(".reveal");
 
 if(reveals.length){
 
-const observer=new IntersectionObserver(entries=>{
+const observer = new IntersectionObserver(entries=>{
 
 entries.forEach(entry=>{
 
@@ -89,66 +80,33 @@ reveals.forEach(el=>observer.observe(el));
 }
 
 
-
 /* =========================
-HOMEPAGE ARTICLES
+ARTICLES PAGE GRID
 ========================= */
 
-const homeArticles=document.getElementById("article-list");
+const cultureGrid = document.getElementById("culture-grid");
+const productGrid = document.getElementById("product-grid");
+const recipeGrid = document.getElementById("recipe-grid");
 
-if(homeArticles && typeof ARTICLES!=="undefined"){
-
-let html="";
-
-ARTICLES.slice(0,3).forEach(a=>{
-
-html+=`
-
-<a href="articles/${a.url}" class="product-card">
-
-<img src="${a.image}" alt="${a.title}" loading="lazy">
-
-<h3>${a.title}</h3>
-
-<p>${a.tags ? a.tags.join(" · ") : "龜鹿知識"}</p>
-
-</a>
-
-`;
-
-});
-
-homeArticles.innerHTML=html;
-
-}
-
-
-
-/* =========================
-ARTICLES PAGE
-========================= */
-
-const cultureGrid=document.getElementById("culture-grid");
-const productGrid=document.getElementById("product-grid");
-const recipeGrid=document.getElementById("recipe-grid");
-
-if(typeof ARTICLES!=="undefined"){
+if(typeof ARTICLES !== "undefined"){
 
 function render(grid,category){
 
 if(!grid) return;
 
-let html="";
+let html = "";
 
 ARTICLES
-.filter(a=>a.category===category)
+.filter(a => a.category === category)
 .forEach(a=>{
 
-html+=`
+const image = a.image || "images/logo-seal.png";
+
+html += `
 
 <a href="articles/${a.url}" class="product-card">
 
-<img src="${a.image}" alt="${a.title}" loading="lazy">
+<img src="${image}" alt="${a.title}" loading="lazy">
 
 <h3>${a.title}</h3>
 
@@ -160,7 +118,7 @@ html+=`
 
 });
 
-grid.innerHTML=html;
+grid.innerHTML = html;
 
 }
 
@@ -171,27 +129,28 @@ render(recipeGrid,"recipe");
 }
 
 
-
 /* =========================
 RELATED ARTICLES
 ========================= */
 
-const related=document.getElementById("related-articles");
+const related = document.getElementById("related-articles");
 
-if(related && typeof ARTICLES!=="undefined"){
+if(related && typeof ARTICLES !== "undefined"){
 
-const current=location.pathname.split("/").pop();
+const current = location.pathname.split("/").pop();
 
-const list=ARTICLES.filter(a=>a.url!==current).slice(0,3);
+const list = ARTICLES
+.filter(a => a.url !== current)
+.slice(0,3);
 
-const isArticle=location.pathname.includes("/articles/");
-const base=isArticle?"":"articles/";
+const isArticle = location.pathname.includes("/articles/");
+const base = isArticle ? "" : "articles/";
 
-let html="";
+let html = "";
 
 list.forEach(a=>{
 
-html+=`
+html += `
 
 <a href="${base}${a.url}" class="product-card">
 
@@ -205,31 +164,30 @@ html+=`
 
 });
 
-related.innerHTML=html;
+related.innerHTML = html;
 
 }
-
 
 
 /* =========================
 ARTICLE PAGE
 ========================= */
 
-if(location.pathname.includes("/articles/") && typeof ARTICLES!=="undefined"){
+if(location.pathname.includes("/articles/") && typeof ARTICLES !== "undefined"){
 
-const current=location.pathname.split("/").pop();
+const current = location.pathname.split("/").pop();
 
-const index=ARTICLES.findIndex(a=>a.url===current);
+const index = ARTICLES.findIndex(a => a.url === current);
 
-const article=ARTICLES[index];
+const article = ARTICLES[index];
 
-const container=document.querySelector("article");
+const container = document.querySelector("article");
 
 if(article && container){
 
 /* Breadcrumb */
 
-const breadcrumb=`
+const breadcrumb = `
 
 <div class="breadcrumb">
 
@@ -250,41 +208,21 @@ ${article.title}
 container.insertAdjacentHTML("afterbegin",breadcrumb);
 
 
-/* Tags */
-
-if(article.tags){
-
-let tagHTML=`<div class="article-tags">`;
-
-article.tags.forEach(tag=>{
-
-tagHTML+=`<span>${tag}</span>`;
-
-});
-
-tagHTML+=`</div>`;
-
-container.insertAdjacentHTML("beforeend",tagHTML);
-
-}
-
-
 /* Prev Next */
 
-let navHTML="";
+let navHTML = "";
 
-if(index>0 || index<ARTICLES.length-1){
+if(index > 0 || index < ARTICLES.length - 1){
 
-navHTML=`<div class="article-nav">`;
+navHTML = `<div class="article-nav">`;
 
-if(index>0){
+if(index > 0){
 
-navHTML+=`
+navHTML += `
 
 <a href="${ARTICLES[index-1].url}">
 
 上一篇<br>
-
 <strong>${ARTICLES[index-1].title}</strong>
 
 </a>
@@ -293,14 +231,13 @@ navHTML+=`
 
 }
 
-if(index<ARTICLES.length-1){
+if(index < ARTICLES.length - 1){
 
-navHTML+=`
+navHTML += `
 
 <a href="${ARTICLES[index+1].url}">
 
 下一篇<br>
-
 <strong>${ARTICLES[index+1].title}</strong>
 
 </a>
@@ -309,7 +246,7 @@ navHTML+=`
 
 }
 
-navHTML+=`</div>`;
+navHTML += `</div>`;
 
 container.insertAdjacentHTML("beforeend",navHTML);
 
