@@ -11,6 +11,14 @@ return;
 
 
 /* =========================
+頁面路徑判斷
+========================= */
+
+const isArticle = location.pathname.includes("/articles/");
+const imgBase = isArticle ? "../" : "";
+
+
+/* =========================
 取得容器
 ========================= */
 
@@ -48,10 +56,10 @@ return `
 <a href="articles/${a.url}" class="product-card reveal">
 
 <img
-src="${img}"
+src="${imgBase}${img}"
 alt="${a.title}"
 loading="lazy"
-onerror="this.src='images/logo-seal.png';this.classList.add('img-placeholder');"
+onerror="this.src='${imgBase}images/logo-seal.png';this.classList.add('img-placeholder');"
 >
 
 <h3>${a.title}</h3>
@@ -73,25 +81,26 @@ function renderGrid(grid, items){
 
 if(!grid) return;
 
-const fragment = document.createDocumentFragment();
+if(!items || items.length === 0){
+
+grid.innerHTML = "<p style='opacity:.6'>目前沒有文章</p>";
+return;
+
+}
+
+let html = "";
 
 items.forEach(a=>{
-
-const temp = document.createElement("div");
-temp.innerHTML = createCard(a);
-
-fragment.appendChild(temp.firstElementChild);
-
+html += createCard(a);
 });
 
-grid.innerHTML = "";
-grid.appendChild(fragment);
+grid.innerHTML = html;
 
 }
 
 
 /* =========================
-模式 1：全部文章
+全部文章（文章頁）
 ========================= */
 
 if(articleGrid){
@@ -105,7 +114,7 @@ list.slice(0,12)
 
 
 /* =========================
-模式 2：分類文章
+分類文章
 ========================= */
 
 if(cultureGrid || productGrid || recipeGrid){
