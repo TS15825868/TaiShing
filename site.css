@@ -11,18 +11,19 @@ line-height:1.7;
 padding-top:72px;
 }
 
-*{
+{
 box-sizing:border-box;
 }
 
 img{
 max-width:100%;
+height:auto;
 display:block;
 }
 
-/* =========================
+/ =========================
 HEADER
-========================= */
+========================= /
 
 .header{
 position:fixed;
@@ -67,9 +68,9 @@ cursor:pointer;
 line-height:1;
 }
 
-/* =========================
+/ =========================
 MENU
-========================= */
+========================= /
 
 .menu-overlay{
 position:fixed;
@@ -89,6 +90,7 @@ transform:translateY(-100%);
 transition:.45s;
 z-index:1000;
 padding:24px;
+overflow:auto;
 }
 
 .menu-overlay.active{
@@ -114,14 +116,13 @@ padding:12px 24px;
 border-radius:40px;
 }
 
-/* =========================
+/ =========================
 HERO
-========================= */
+========================= /
 
 .hero{
 position:relative;
-min-height:88vh;
-height:auto;
+min-height:88svh;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -167,9 +168,9 @@ flex-wrap:wrap;
 gap:8px;
 }
 
-/* =========================
+/ =========================
 BUTTONS
-========================= */
+========================= /
 
 .btn{
 display:inline-block;
@@ -194,9 +195,9 @@ box-shadow:0 8px 20px rgba(0,0,0,.15);
 background:#111;
 }
 
-/* =========================
+/ =========================
 SECTION
-========================= */
+========================= /
 
 .section{
 padding:90px 20px;
@@ -216,9 +217,9 @@ margin:0 0 40px;
 font-size:30px;
 }
 
-/* =========================
+/ =========================
 PRODUCT HERO
-========================= */
+========================= /
 
 .product-hero{
 max-width:900px;
@@ -233,9 +234,9 @@ border-radius:18px;
 margin-bottom:20px;
 }
 
-/* =========================
+/ =========================
 PRODUCT LAYOUT
-========================= */
+========================= /
 
 .product-layout{
 display:grid;
@@ -258,9 +259,9 @@ flex-direction:column;
 gap:24px;
 }
 
-/* =========================
+/ =========================
 SLIDER
-========================= */
+========================= /
 
 .product-slider,
 .recipe-slider{
@@ -291,9 +292,9 @@ transition:.28s cubic-bezier(.4,.2,.2,1);
 transform:scale(1.04);
 }
 
-/* =========================
+/ =========================
 GRID / CARDS
-========================= */
+========================= /
 
 .product-grid{
 display:grid;
@@ -319,6 +320,7 @@ min-height:240px;
 .product-card:hover{
 transform:translateY(-8px) scale(1.02);
 box-shadow:0 30px 70px rgba(0,0,0,.15);
+will-change:transform;
 }
 
 .product-card img{
@@ -329,9 +331,9 @@ aspect-ratio:1/1;
 object-fit:cover;
 }
 
-/* =========================
+/ =========================
 RECIPE CARD
-========================= */
+========================= /
 
 .recipe-card{
 background:white;
@@ -361,9 +363,9 @@ aspect-ratio:1/1;
 object-fit:cover;
 }
 
-/* =========================
+/ =========================
 IMAGE PLACEHOLDER
-========================= */
+========================= /
 
 .img-placeholder{
 width:80px;
@@ -373,9 +375,9 @@ margin:auto;
 opacity:.4;
 }
 
-/* =========================
+/ =========================
 INFO CARD
-========================= */
+========================= /
 
 .info-card{
 background:white;
@@ -384,9 +386,9 @@ padding:24px;
 box-shadow:0 20px 50px rgba(0,0,0,.08);
 }
 
-/* =========================
+/ =========================
 BREADCRUMB
-========================= */
+========================= /
 
 .breadcrumb{
 display:flex;
@@ -406,9 +408,9 @@ color:#2F2118;
 opacity:.6;
 }
 
-/* =========================
+/ =========================
 ARTICLE TAGS
-========================= */
+========================= /
 
 .article-tags{
 display:flex;
@@ -424,9 +426,9 @@ border-radius:999px;
 font-size:13px;
 }
 
-/* =========================
+/ =========================
 ARTICLE NAV
-========================= */
+========================= /
 
 .article-nav{
 display:flex;
@@ -450,9 +452,9 @@ transition:.25s;
 transform:translateY(-4px);
 }
 
-/* =========================
+/ =========================
 CTA
-========================= */
+========================= /
 
 .cta{
 text-align:center;
@@ -462,9 +464,9 @@ color:white;
 margin-top:40px;
 }
 
-/* =========================
+/ =========================
 FOOTER
-========================= */
+========================= /
 
 .footer{
 background:#1F1B17;
@@ -488,9 +490,9 @@ font-size:14px;
 opacity:.6;
 }
 
-/* =========================
+/ =========================
 FLOATING LINE
-========================= */
+========================= /
 
 .floating-line{
 position:fixed;
@@ -507,9 +509,9 @@ font-size:14px;
 font-weight:600;
 }
 
-/* =========================
+/ =========================
 SCROLL REVEAL
-========================= */
+========================= /
 
 .reveal{
 opacity:0;
@@ -522,7 +524,7 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* =========================
+/ =========================
 MOBILE
 ========================= */
 
