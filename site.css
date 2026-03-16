@@ -7,9 +7,8 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Helvet
 .menu-overlay.active{transform:translateY(0)}
 .menu-overlay a{color:white;font-size:24px;text-decoration:none}
 .section{padding:90px 20px;max-width:1100px;margin:auto;text-align:center}
-.product-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
-.product-card{background:white;border-radius:22px;padding:24px;text-decoration:none;color:#2F2118;box-shadow:0 20px 50px rgba(0,0,0,.08)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:28px}
+.card{background:white;border-radius:22px;padding:24px;text-decoration:none;color:#2F2118;box-shadow:0 20px 50px rgba(0,0,0,.08)}
 .btn{display:inline-block;padding:12px 26px;border-radius:40px;background:#8A1F1F;color:white;text-decoration:none}
-.cta{text-align:center;padding:100px 20px;background:#2F2118;color:white}
 .footer{background:#1F1B17;color:#E8E3DC;padding:60px 20px;margin-top:60px;text-align:center}
 article{max-width:760px;margin:auto;text-align:left}
