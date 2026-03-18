@@ -1,10 +1,14 @@
-/* BASE */
 body{
 margin:0;
 font-family:-apple-system,"PingFang TC",sans-serif;
 background:#F7F4ED;
 color:#2F2118;
 padding-top:76px;
+}
+
+img{
+width:100%;
+height:auto;
 }
 
 /* HEADER */
@@ -17,7 +21,7 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:0 16px;
-background:rgba(255,255,255,.9);
+background:#fff;
 z-index:999;
 }
 
@@ -29,55 +33,93 @@ text-decoration:none;
 color:#2F2118;
 }
 
-.logo img{
-height:36px;
-}
+.logo img{height:34px;}
 
 /* HERO */
 .hero{
-height:60vh;
+position:relative;
+height:65vh;
 min-height:420px;
 display:flex;
 align-items:center;
 justify-content:center;
 text-align:center;
 color:white;
+overflow:hidden;
+}
 
-background:
-linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.65)),
-url("images/hero-guilu-gao.jpg");
+.hero-bg{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+}
 
-background-size:cover;
-background-position:center;
+.hero-overlay{
+position:absolute;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.5);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+}
+
+.hero-title{
+font-size:32px;
+margin-bottom:10px;
+}
+
+.hero-buttons{
+margin-top:20px;
 }
 
 /* BUTTON */
 .btn{
-padding:12px 24px;
-border:1px solid #2F2118;
+padding:12px 26px;
 border-radius:40px;
 text-decoration:none;
-color:#2F2118;
+margin:6px;
+display:inline-block;
+}
+
+.btn-outline{
+border:1.5px solid #fff;
+color:#fff;
 }
 
 .btn-line{
 background:#06C755;
 color:white;
-border:none;
 }
 
-/* CARD */
+/* GRID */
+.product-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:20px;
+}
+
 .product-card{
 background:white;
-padding:20px;
-border-radius:20px;
-border:1px solid rgba(0,0,0,.08);
+padding:16px;
+border-radius:18px;
 text-align:center;
 }
 
 .product-card img{
-height:180px;
-object-fit:contain;
+aspect-ratio:1/1;
+object-fit:cover;
+}
+
+/* CTA */
+.cta{
+text-align:center;
+padding:60px 20px;
+background:#2F2118;
+color:white;
 }
 
 /* MENU */
@@ -86,7 +128,7 @@ position:fixed;
 top:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.85);
+background:rgba(0,0,0,.9);
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -105,13 +147,13 @@ color:white;
 font-size:24px;
 }
 
-/* FLOATING */
+/* FLOAT */
 .floating-line{
 position:fixed;
-right:16px;
-bottom:20px;
+right:14px;
+bottom:18px;
 background:#06C755;
 color:white;
-padding:12px 18px;
+padding:10px 16px;
 border-radius:999px;
 }
