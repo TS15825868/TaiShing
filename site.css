@@ -23,7 +23,6 @@ img{
 max-width:100%;
 height:auto;
 display:block;
-object-fit:contain;
 }
 
 /* =========================
@@ -43,6 +42,7 @@ padding:0 16px;
 background:rgba(255,255,255,.9);
 backdrop-filter:blur(16px);
 z-index:999;
+border-bottom:1px solid rgba(0,0,0,.05);
 }
 
 .logo{
@@ -56,9 +56,10 @@ font-size:18px;
 }
 
 .logo img{
-height:36px;
+height:38px;
 }
 
+/* 漢堡 */
 .menu-btn{
 font-size:28px;
 cursor:pointer;
@@ -74,7 +75,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.7);
+background:rgba(0,0,0,.75);
 display:flex;
 flex-direction:column;
 justify-content:center;
@@ -83,7 +84,6 @@ gap:24px;
 transform:translateY(-100%);
 transition:.4s;
 z-index:1000;
-padding-bottom:80px;
 }
 
 .menu-overlay.active{
@@ -97,7 +97,7 @@ text-decoration:none;
 }
 
 /* =========================
-HERO
+HERO（最終修正）
 ========================= */
 
 .hero{
@@ -111,22 +111,13 @@ color:white;
 overflow:hidden;
 }
 
-.hero-bg{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-top:0;
-left:0;
-z-index:0;
-}
-
-.hero-overlay{
-position:absolute;
-width:100%;
-height:100%;
-background:linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.6));
-z-index:1;
+/* 🔥 直接用背景（最穩） */
+.hero{
+background:
+linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.6)),
+url("images/hero-guilu-gao.jpg");
+background-size:cover;
+background-position:center;
 }
 
 .hero-content{
@@ -146,15 +137,8 @@ opacity:.9;
 margin-bottom:20px;
 }
 
-.hero-buttons{
-display:flex;
-gap:10px;
-justify-content:center;
-flex-wrap:wrap;
-}
-
 /* =========================
-BUTTON（成交版）
+BUTTON（成交版升級）
 ========================= */
 
 .btn{
@@ -176,17 +160,21 @@ transition:.25s;
 .btn:hover{
 background:#2F2118;
 color:#fff;
+transform:translateY(-2px);
 }
 
+/* 🔥 LINE 主成交 */
 .btn-line{
 background:#06C755;
 color:#fff;
 border:1.5px solid #06C755;
 font-weight:600;
+box-shadow:0 6px 20px rgba(6,199,85,.25);
 }
 
 .btn-line:hover{
 background:#05b14b;
+transform:translateY(-2px);
 }
 
 /* =========================
@@ -205,7 +193,7 @@ margin-bottom:30px;
 }
 
 /* =========================
-CARD
+CARD（升級）
 ========================= */
 
 .product-card{
@@ -216,16 +204,20 @@ text-align:center;
 border:1px solid rgba(0,0,0,.08);
 text-decoration:none;
 color:#2F2118;
+transition:.25s;
 }
 
 .product-card:hover{
 border-color:#2F2118;
-transform:translateY(-4px);
+transform:translateY(-6px);
+box-shadow:0 20px 40px rgba(0,0,0,.08);
 }
 
+/* 🔥 圖片不裁切 */
 .product-card img{
 width:100%;
 height:auto;
+object-fit:contain;
 margin-bottom:10px;
 }
 
@@ -278,7 +270,7 @@ opacity:.6;
 }
 
 /* =========================
-FLOATING LINE
+FLOATING LINE（成交強化）
 ========================= */
 
 .floating-line{
@@ -287,9 +279,11 @@ right:18px;
 bottom:24px;
 background:#06C755;
 color:white;
-padding:12px 18px;
+padding:14px 20px;
 border-radius:999px;
 text-decoration:none;
+font-weight:600;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
 }
 
 /* =========================
@@ -308,6 +302,10 @@ padding:16px;
 
 .scroll-card{
 min-width:200px;
+}
+
+.logo img{
+height:34px;
 }
 
 }
