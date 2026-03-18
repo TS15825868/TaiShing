@@ -1,87 +1,22 @@
-/* =========================
-BASE
-========================= */
-
-html{
-scroll-behavior:smooth;
-}
-
-body{
-margin:0;
-font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Helvetica Neue",sans-serif;
-background:#F7F4ED;
-color:#2F2118;
-line-height:1.7;
-padding-top:76px;
-}
-
-*{
-box-sizing:border-box;
-}
-
-img{
-max-width:100%;
-height:auto;
-display:block;
-}
-
-/* =========================
-HEADER
-========================= */
-
-.header{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:76px;
-display:flex;
-align-items:center;
-justify-content:space-between;
-padding:0 16px;
-background:rgba(255,255,255,.92);
-backdrop-filter:blur(16px);
-z-index:999;
-border-bottom:1px solid rgba(0,0,0,.05);
-}
-
-.logo{
-display:flex;
-align-items:center;
-gap:8px;
-text-decoration:none;
-color:#2F2118;
-font-weight:600;
-font-size:18px;
-}
-
-.logo img{
-height:36px;
-}
-
-.menu-btn{
-font-size:28px;
-cursor:pointer;
-}
-
-/* =========================
-MENU
-========================= */
-
 .menu-overlay{
 position:fixed;
 top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,.75);
+
+background:rgba(0,0,0,.85);
+
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-gap:24px;
+
+gap:28px;
+
 transform:translateY(-100%);
-transition:.4s;
+transition:.35s ease;
+
 z-index:1000;
 }
 
@@ -89,255 +24,19 @@ z-index:1000;
 transform:translateY(0);
 }
 
+/* 🔥 每一個選單項目 */
 .menu-overlay a{
 color:white;
-font-size:22px;
-text-decoration:none;
-}
-
-/* =========================
-HERO（穩定比例）
-========================= */
-
-.hero{
-height:60vh;
-min-height:420px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-text-align:center;
-color:white;
-
-background:
-linear-gradient(rgba(0,0,0,.4),rgba(0,0,0,.6)),
-url("images/hero-guilu-gao.jpg");
-
-background-size:cover;
-background-position:center;
-}
-
-.hero-content{
-max-width:640px;
-padding:20px;
-}
-
-.hero-title{
-font-size:42px;
-margin-bottom:10px;
-}
-
-.hero-text{
-opacity:.9;
-margin-bottom:20px;
-}
-
-/* =========================
-BUTTON（成交版）
-========================= */
-
-.btn{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:12px 26px;
-margin:8px;
-border-radius:40px;
-font-size:15px;
+font-size:24px;
 font-weight:500;
 text-decoration:none;
-background:transparent;
-color:#2F2118;
-border:1.5px solid #2F2118;
-transition:.25s;
+letter-spacing:2px;
 }
 
-.btn:hover{
-background:#2F2118;
-color:#fff;
-transform:translateY(-2px);
-}
-
-/* 🔥 LINE成交 */
-.btn-line{
-background:#06C755;
-color:#fff;
-border:1.5px solid #06C755;
-font-weight:600;
-box-shadow:0 6px 20px rgba(6,199,85,.25);
-}
-
-.btn-line:hover{
-background:#05b14b;
-}
-
-/* =========================
-SECTION
-========================= */
-
-.section{
-padding:70px 20px;
-max-width:1100px;
-margin:auto;
-}
-
-.section h2{
-text-align:center;
-margin-bottom:30px;
-}
-
-/* =========================
-CARD（比例穩定）
-========================= */
-
-.product-card{
-background:white;
-border-radius:20px;
-padding:20px;
-text-align:center;
-
-min-height:220px;
-
-display:flex;
-flex-direction:column;
-
-border:1px solid rgba(0,0,0,.08);
-transition:.25s;
-text-decoration:none;
-color:#2F2118;
-}
-
-.product-card:hover{
-border-color:#2F2118;
-transform:translateY(-6px);
-box-shadow:0 20px 40px rgba(0,0,0,.08);
-}
-
-/* 🔥 關鍵：圖片不變形也不變長 */
-.product-card img{
-width:100%;
-height:180px;
-object-fit:contain;
-background:#fff;
-border-radius:14px;
-margin-bottom:12px;
-}
-
-/* =========================
-橫向滑動（高級感）
-========================= */
-
-.scroll-x{
-display:flex;
-overflow-x:auto;
-gap:16px;
-padding-bottom:10px;
-scroll-snap-type:x mandatory;
-}
-
-.scroll-x::-webkit-scrollbar{
-display:none;
-}
-
-.scroll-card{
-min-width:240px;
-flex:0 0 auto;
-scroll-snap-align:start;
-}
-
-/* =========================
-PRODUCT PAGE
-========================= */
-
-.product-layout{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:40px;
-}
-
-.product-image img{
-width:100%;
-height:320px;
-object-fit:contain;
-background:#fff;
-border-radius:20px;
-}
-
-/* =========================
-CTA
-========================= */
-
-.cta{
-text-align:center;
-padding:60px 20px;
-background:#2F2118;
-color:white;
-}
-
-/* =========================
-FOOTER
-========================= */
-
-.footer{
-background:#1F1B17;
-color:#E8E3DC;
-padding:40px 20px;
-}
-
-.footer-bottom{
-text-align:center;
-opacity:.6;
-}
-
-/* =========================
-FLOATING LINE
-========================= */
-
-.floating-line{
-position:fixed;
-right:16px;
-bottom:90px;
-background:#06C755;
-color:white;
-padding:14px 20px;
-border-radius:999px;
-text-decoration:none;
-font-weight:600;
-box-shadow:0 10px 25px rgba(0,0,0,.2);
-}
-
-/* =========================
-MOBILE
-========================= */
-
-@media(max-width:768px){
-
-.hero-title{
-font-size:30px;
-}
-
-.product-card{
-padding:16px;
-}
-
-.product-card img{
-height:140px;
-}
-
-.scroll-card{
-min-width:200px;
-}
-
-.product-layout{
-grid-template-columns:1fr;
-}
-
-.product-image img{
-height:260px;
-}
-
-.logo img{
-height:32px;
-}
-
+/* 🔥 LINE按鈕 */
+.menu-overlay .btn-line{
+margin-top:20px;
+padding:14px 30px;
+font-size:18px;
+border-radius:40px;
 }
