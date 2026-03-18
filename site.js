@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
 const menu = document.getElementById("menuOverlay");
 const btn = document.querySelector(".menu-btn");
 
+if(!menu || !btn) return;
+
 menu.innerHTML = `
 <a href="index.html">首頁</a>
 <a href="guilu-series.html">龜鹿系列</a>
@@ -17,6 +19,12 @@ LINE詢問
 
 btn.addEventListener("click", ()=>{
 menu.classList.toggle("active");
+});
+
+menu.addEventListener("click",(e)=>{
+if(e.target === menu){
+menu.classList.remove("active");
+}
 });
 
 menu.querySelectorAll("a").forEach(link=>{
