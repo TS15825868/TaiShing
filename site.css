@@ -1,122 +1,364 @@
-/* ===== Reset ===== */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+html{
+scroll-behavior:smooth;
 }
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "PingFang TC", sans-serif;
-  background: #f7f4ed;
-  color: #222;
-  text-align: center;
+body{
+margin:0;
+font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Helvetica Neue",sans-serif;
+background:#F7F4ED;
+color:#2F2118;
+line-height:1.7;
+padding-top:72px;
 }
 
-/* ===== Header ===== */
-.header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background: #fff;
-  border-bottom: 1px solid #ddd;
-  z-index: 1000;
-  padding: 10px;
+*{
+box-sizing:border-box;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  font-weight: bold;
+img{
+max-width:100%;
+height:auto;
+display:block;
 }
 
-.logo img {
-  width: 28px;
+/* =========================
+HEADER
+========================= */
+
+.header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:72px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:0 20px;
+background:rgba(255,255,255,.75);
+backdrop-filter:blur(18px);
+-webkit-backdrop-filter:blur(18px);
+z-index:999;
+border-bottom:1px solid rgba(0,0,0,.05);
 }
 
-/* ===== Main ===== */
-main {
-  padding-top: 80px;
+.logo{
+display:flex;
+align-items:center;
+text-decoration:none;
+color:#2F2118;
+font-weight:600;
+font-size:18px;
 }
 
-/* ===== Hero ===== */
-.hero {
-  padding: 60px 20px;
+.logo img{
+height:32px;
+margin-right:8px;
 }
 
-.hero-title {
-  font-size: 28px;
-  margin-bottom: 10px;
+.footer-brand img{
+height:32px;
+margin-bottom:10px;
+opacity:.9;
 }
 
-.hero-text {
-  font-size: 15px;
-  opacity: 0.7;
+.menu-btn{
+font-size:28px;
+cursor:pointer;
+line-height:1;
 }
 
-/* ===== Grid ===== */
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 14px;
-  padding: 20px;
+/* =========================
+MENU
+========================= */
+
+.menu-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(25,23,20,.6);
+backdrop-filter:blur(22px);
+-webkit-backdrop-filter:blur(22px);
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:24px;
+transform:translateY(-100%);
+transition:.45s;
+z-index:1000;
+padding:24px;
+overflow:auto;
 }
 
-.product-card {
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 12px;
-  text-decoration: none;
-  color: #000;
+.menu-overlay.active{
+transform:translateY(0);
 }
 
-.product-card img {
-  width: 100%;
-  border-radius: 8px;
+.menu-overlay a{
+color:white;
+font-size:24px;
+text-decoration:none;
+font-weight:500;
+transition:.25s;
+text-align:center;
 }
 
-.product-card h3 {
-  margin-top: 8px;
-  font-size: 16px;
+.menu-overlay a:hover{
+opacity:.75;
 }
 
-/* ===== Button ===== */
-.btn {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 10px 18px;
-  border: 1px solid #000;
-  text-decoration: none;
-  color: #000;
+.line-btn{
+background:#06C755;
+padding:12px 24px;
+border-radius:40px;
 }
 
-.btn-dark {
-  background: #000;
-  color: #fff;
+/* =========================
+HERO
+========================= */
+
+.hero{
+position:relative;
+min-height:88vh;
+min-height:88svh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+background:
+linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.55)),
+url("images/hero-guilu-gao.jpg");
+background-size:cover;
+background-position:center;
+padding:80px 20px 20px;
+overflow:hidden;
 }
 
-/* ===== CTA ===== */
-.cta {
-  padding: 40px 20px;
+.hero-content{
+max-width:640px;
+z-index:2;
 }
 
-/* ===== Footer ===== */
-.footer {
-  padding: 20px;
-  font-size: 12px;
-  opacity: 0.6;
+.hero-title{
+font-size:56px;
+margin:0 0 6px;
+letter-spacing:2px;
+text-shadow:0 2px 12px rgba(0,0,0,.4);
 }
 
-/* ===== Floating LINE ===== */
-.floating-line {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #06c755;
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 50px;
-  text-decoration: none;
+.hero-sub{
+font-size:30px;
+margin:0 0 12px;
+text-shadow:0 2px 12px rgba(0,0,0,.4);
+}
+
+.hero-text{
+opacity:.9;
+margin:0 0 20px;
+text-shadow:0 2px 12px rgba(0,0,0,.4);
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:8px;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.btn{
+display:inline-block;
+margin:10px;
+padding:12px 26px;
+border-radius:40px;
+background:#8A1F1F;
+color:white;
+text-decoration:none;
+font-size:15px;
+transition:.28s cubic-bezier(.4,.2,.2,1);
+border:none;
+cursor:pointer;
+}
+
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 8px 20px rgba(0,0,0,.15);
+}
+
+.btn-dark{
+background:#111;
+}
+
+/* =========================
+SECTION
+========================= */
+
+.section{
+padding:90px 20px;
+max-width:1100px;
+margin:0 auto;
+}
+
+.section h1{
+text-align:center;
+font-size:40px;
+margin:0 0 18px;
+}
+
+.section h2{
+text-align:center;
+margin:0 0 40px;
+font-size:30px;
+}
+
+/* =========================
+GRID / CARDS
+========================= */
+
+.product-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:28px;
+}
+
+.product-card{
+background:white;
+border-radius:26px;
+padding:24px;
+text-align:center;
+box-shadow:0 20px 50px rgba(0,0,0,.08);
+transition:.28s cubic-bezier(.4,.2,.2,1);
+text-decoration:none;
+color:#2F2118;
+display:flex;
+flex-direction:column;
+min-height:240px;
+}
+
+.product-card:hover{
+transform:translateY(-8px) scale(1.02);
+box-shadow:0 30px 70px rgba(0,0,0,.15);
+}
+
+.product-card img{
+width:100%;
+margin:0 auto 12px;
+border-radius:14px;
+aspect-ratio:1/1;
+object-fit:cover;
+}
+
+/* =========================
+CTA
+========================= */
+
+.cta{
+text-align:center;
+padding:80px 20px;
+background:linear-gradient(180deg,#2F2118,#1F1B17);
+color:white;
+margin-top:40px;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+background:#1F1B17;
+color:#E8E3DC;
+padding:70px 20px;
+margin-top:60px;
+}
+
+.footer-bottom{
+text-align:center;
+margin-top:40px;
+font-size:14px;
+opacity:.6;
+}
+
+/* =========================
+FLOATING LINE
+========================= */
+
+.floating-line{
+position:fixed;
+right:18px;
+bottom:24px;
+z-index:997;
+background:#06C755;
+color:white;
+text-decoration:none;
+padding:12px 18px;
+border-radius:999px;
+box-shadow:0 10px 24px rgba(0,0,0,.18);
+font-size:14px;
+font-weight:600;
+}
+
+/* =========================
+SCROLL REVEAL
+========================= */
+
+.reveal{
+opacity:0;
+transform:translateY(40px);
+transition:all .8s ease;
+}
+
+.reveal.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* =========================
+MOBILE
+========================= */
+
+@media(max-width:768px){
+
+.hero-title{
+font-size:40px;
+}
+
+.hero-sub{
+font-size:22px;
+}
+
+.section{
+padding:70px 20px;
+}
+
+.section h1{
+font-size:30px;
+}
+
+.section h2{
+font-size:24px;
+}
+
+}
+
+@media(max-width:480px){
+
+.hero-title{
+font-size:32px;
+}
+
+.hero-sub{
+font-size:20px;
+}
+
+.product-card{
+padding:20px;
+}
+
 }
