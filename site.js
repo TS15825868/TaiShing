@@ -1,79 +1,62 @@
 (function(){
 
+// ===== 路徑自動 =====
 function getBasePrefix(){
   return location.pathname.includes('/articles/') ? '../' : '';
 }
 
+// ===== 漢堡開關 =====
 function toggleMenu(force){
   const menu = document.getElementById('menuOverlay');
   if(!menu) return;
 
-  const shouldOpen = typeof force === 'boolean'
+  const open = typeof force === 'boolean'
     ? force
     : !menu.classList.contains('active');
 
-  menu.classList.toggle('active', shouldOpen);
-  document.body.style.overflow = shouldOpen ? 'hidden' : '';
+  menu.classList.toggle('active', open);
+  document.body.style.overflow = open ? 'hidden' : '';
 }
 
 window.toggleMenu = toggleMenu;
 
-// ===== 卡片元件 =====
-function menuCard(title, href, prefix){
-  return `
-    <a href="${prefix}${href}" class="menu-card">
-      <span>${title}</span>
-    </a>
-  `;
-}
-
-// ===== 主流程 =====
+// ===== DOM =====
 document.addEventListener('DOMContentLoaded', () => {
 
   const prefix = getBasePrefix();
   const menu = document.getElementById('menuOverlay');
   const btn = document.querySelector('.menu-btn');
 
-  // ===== 漢堡選單（封頂版）=====
+  // ===== 🔥 全螢幕漢堡（封頂）=====
   if(menu){
 
     menu.innerHTML = `
-      <div class="menu-container">
+      <div class="menu-full">
 
-        <!-- 品牌 -->
-        <div class="menu-section">
-          <div class="menu-title">品牌</div>
-          <div class="menu-grid">
-            ${menuCard('首頁','index.html',prefix)}
-            ${menuCard('品牌故事','brand.html',prefix)}
-          </div>
+        <div class="menu-close" id="menuClose">✕</div>
+
+        <div class="menu-block">
+          <a href="${prefix}index.html">首頁</a>
+          <a href="${prefix}brand.html">品牌故事</a>
         </div>
 
-        <!-- 商品 -->
-        <div class="menu-section">
-          <div class="menu-title">產品</div>
-          <div class="menu-grid">
-            ${menuCard('龜鹿系列','guilu-series.html',prefix)}
-            ${menuCard('怎麼選龜鹿','choose.html',prefix)}
-          </div>
+        <div class="menu-block">
+          <a href="${prefix}guilu-series.html">龜鹿系列</a>
+          <a href="${prefix}choose.html">怎麼選龜鹿</a>
         </div>
 
-        <!-- 內容 -->
-        <div class="menu-section">
-          <div class="menu-title">內容</div>
-          <div class="menu-grid">
-            ${menuCard('料理搭配','recipes.html',prefix)}
-            ${menuCard('龜鹿知識','articles.html',prefix)}
-            ${menuCard('FAQ','faq.html',prefix)}
-          </div>
+        <div class="menu-block">
+          <a href="${prefix}recipes.html">料理搭配</a>
+          <a href="${prefix}articles.html">龜鹿知識</a>
+          <a href="${prefix}faq.html">FAQ</a>
         </div>
 
-        <!-- 成交區 -->
-        <div class="menu-cta">
+        <div class="menu-bottom">
           <a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent('我想了解龜鹿怎麼選')}" class="btn btn-line">
             LINE詢問
           </a>
-          <a href="${prefix}order.html" class="btn btn-outline-dark">
+
+          <a href="${prefix}order.html" class="btn btn-dark">
             直接下單
           </a>
         </div>
@@ -81,19 +64,29 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
+    // 點背景關閉
     menu.addEventListener('click',(e)=>{
       if(e.target === menu) toggleMenu(false);
     });
 
+    // ✕ 關閉
+    const closeBtn = document.getElementById('menuClose');
+    if(closeBtn){
+      closeBtn.addEventListener('click', ()=>toggleMenu(false));
+    }
+
+    // 點連結關閉
     menu.querySelectorAll('a').forEach(link=>{
       link.addEventListener('click', ()=>toggleMenu(false));
     });
   }
 
+  // 漢堡按鈕
   if(btn){
     btn.addEventListener('click', ()=>toggleMenu());
   }
 
+  // ESC關閉
   document.addEventListener('keydown', (e)=>{
     if(e.key === 'Escape') toggleMenu(false);
   });
@@ -114,29 +107,6 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el=>el.classList.add('show'));
   }
 
-  // ===== 文章載入 =====
-  if(typeof ARTICLES !== 'undefined' && Array.isArray(ARTICLES)){
-    const articleGrid = document.getElementById('article-grid');
-    if(articleGrid){
-      articleGrid.innerHTML = ARTICLES.slice(0,12).map(a => articleCard(a,prefix)).join('');
-    }
-  }
-
 });
-
-// ===== 文章卡 =====
-function articleCard(article, prefix=''){
-  const href = `${prefix}articles/${article.url}`;
-  const image = article.image.startsWith('images/')
-    ? `${prefix}${article.image}`
-    : article.image;
-
-  return `
-    <a href="${href}" class="product-card scroll-card">
-      <img src="${image}" alt="${article.title}" loading="lazy">
-      <h3>${article.title}</h3>
-      <p>${article.summary || '查看內容'}</p>
-    </a>`;
-}
 
 })();
