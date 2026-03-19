@@ -17,22 +17,58 @@
 <div class="menu-btn">☰</div>
 </header>
 
+<!-- 🔥 必加 -->
+<div id="menuOverlay" class="menu-overlay"></div>
+
 <main>
 
 <section class="section">
+
+<div class="product-layout">
+
+<!-- 左：圖片 -->
+<div>
+<img id="product-image" src="images/logo-seal.png">
+</div>
+
+<!-- 右：內容 -->
+<div>
 
 <h1 id="product-title">產品介紹</h1>
 
 <p id="product-summary"></p>
 
+<!-- 🔥 規格 -->
+<div class="info-card">
+<h3>規格</h3>
+<p id="product-sizes">—</p>
+</div>
+
+<!-- 🔥 包裝 -->
+<div class="info-card">
+<h3>包裝</h3>
+<p id="product-package">—</p>
+</div>
+
+<!-- 🔥 成分 -->
+<div class="info-card">
+<h3>成分</h3>
+<ul id="product-ingredients"></ul>
+</div>
+
+<!-- 🔥 使用方式 -->
+<div class="info-card">
+<h3>使用方式</h3>
+<ul id="product-uses"></ul>
+</div>
+
+<!-- 🔥 CTA -->
 <div class="product-actions">
 
 <a id="product-line"
-href="https://lin.ee/sHZW7NkR?text=我想了解這個產品怎麼搭配"
+href="https://lin.ee/sHZW7NkR"
 class="btn btn-line">
-
-👉 免費幫你搭配
-
+👉 LINE詢問
 </a>
 
 <a href="order.html" class="btn btn-dark">
@@ -67,27 +103,31 @@ onclick="window.open('https://lin.ee/sHZW7NkR?text=我想用來煮湯怎麼選')
 
 </div>
 
+</div>
+
+</div>
+
 </section>
 
+<!-- 🔥 延伸內容 -->
+<section class="section" id="product-extra"></section>
+
 <section class="cta">
-
-<h2>不確定適不適合？</h2>
-
-<a href="https://lin.ee/sHZW7NkR?text=幫我搭配適合的產品"
-class="btn btn-line">
-
-👉 直接幫我推薦（最快）
-
+<h2>不確定怎麼選？</h2>
+<a href="https://lin.ee/sHZW7NkR" class="btn btn-line">
+👉 幫我推薦
 </a>
-
 </section>
 
 </main>
 
 <a class="floating-line"
-href="https://lin.ee/sHZW7NkR?text=我想詢問這個產品">
-LINE快速詢問
+href="https://lin.ee/sHZW7NkR">
+LINE詢問
 </a>
+
+<script src="product.js"></script>
+<script src="site.js"></script>
 
 </body>
 </html>
