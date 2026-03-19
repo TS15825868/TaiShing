@@ -24,7 +24,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu = document.getElementById('menuOverlay');
   const btn = document.querySelector('.menu-btn');
 
-  // ===== 漢堡 =====
   if(menu){
     menu.innerHTML = `
       <div class="menu-full">
@@ -45,6 +44,11 @@ document.addEventListener('DOMContentLoaded', () => {
           <a href="${prefix}recipes.html">料理搭配</a>
           <a href="${prefix}articles.html">龜鹿知識</a>
           <a href="${prefix}faq.html">FAQ</a>
+        </div>
+
+        <!-- 🔥 成交入口 -->
+        <div class="menu-block">
+          <a href="https://lin.ee/sHZW7NkR?text=幫我搭配龜鹿">快速搭配</a>
         </div>
 
         <div class="menu-bottom">
@@ -82,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if(e.key === 'Escape') toggleMenu(false);
   });
 
-  // ===== 動畫 =====
+  // 動畫
   const revealEls = document.querySelectorAll('.reveal');
   if('IntersectionObserver' in window){
     const obs = new IntersectionObserver((entries)=>{
@@ -98,7 +102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el=>el.classList.add('show'));
   }
 
-  // ===== 🔥 自動文章系統（最重要）=====
+  // 🔥 自動文章系統
   if(location.pathname.includes('/articles/')){
     const script = document.createElement('script');
     script.src = prefix + 'article.js';
