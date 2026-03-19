@@ -8,8 +8,13 @@
   --brand:#6f2a24;
   --brand-2:#8f6b45;
   --line-green:#06C755;
-  --shadow:0 18px 40px rgba(47,33,24,.08);
+
+  --shadow:0 20px 50px rgba(47,33,24,.08);
+  --shadow-hover:0 30px 70px rgba(47,33,24,.12);
+
   --radius:24px;
+  --radius-sm:16px;
+
   --max:1120px;
 }
 
@@ -39,7 +44,9 @@ img{
   justify-content:space-between;
   align-items:center;
   padding:0 20px;
-  background:#fff;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
   z-index:999;
 }
 
@@ -52,7 +59,71 @@ img{
 .logo img{
   height:42px;
   width:auto;
-  object-fit:contain;
+}
+
+/* ===== Menu（封頂）===== */
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(20,15,12,.92);
+  backdrop-filter:blur(12px);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  opacity:0;
+  visibility:hidden;
+  transition:.3s;
+  z-index:998;
+}
+
+.menu-overlay.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.menu-container{
+  width:100%;
+  max-width:420px;
+  padding:20px;
+}
+
+.menu-section{
+  margin-bottom:24px;
+}
+
+.menu-title{
+  color:#fff;
+  font-size:14px;
+  margin-bottom:10px;
+  opacity:.7;
+}
+
+.menu-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.menu-card{
+  display:block;
+  padding:14px;
+  background:rgba(255,255,255,.06);
+  border-radius:16px;
+  text-align:center;
+  color:#fff;
+  text-decoration:none;
+  transition:.2s;
+}
+
+.menu-card:hover{
+  background:rgba(255,255,255,.12);
+}
+
+.menu-cta{
+  margin-top:20px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }
 
 /* ===== Hero ===== */
@@ -78,8 +149,8 @@ img{
   width:100%;
   height:100%;
   background:linear-gradient(
-    rgba(0,0,0,.08),
-    rgba(0,0,0,.35)
+    rgba(0,0,0,.15),
+    rgba(0,0,0,.55)
   );
 }
 
@@ -90,20 +161,29 @@ img{
 }
 
 .hero-title{
-  font-size:40px;
-  margin-bottom:10px;
+  font-size:clamp(34px,6vw,56px);
+  margin-bottom:12px;
 }
 
 .hero-text{
-  margin-bottom:20px;
+  margin-bottom:24px;
+  opacity:.9;
 }
 
-/* ===== Buttons ===== */
+/* ===== Buttons（封頂）===== */
 .btn{
-  padding:12px 24px;
-  border-radius:40px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px 26px;
+  border-radius:999px;
   text-decoration:none;
   font-weight:600;
+  transition:.2s;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
 }
 
 .btn-outline{
@@ -120,13 +200,12 @@ img{
   background:#06C755;
   color:#fff;
   box-shadow:0 12px 28px rgba(6,199,85,.28);
-  font-size:16px;
 }
 
 /* ===== Sections ===== */
 .section{
-  padding:60px 20px;
-  max-width:1100px;
+  padding:70px 20px;
+  max-width:var(--max);
   margin:auto;
 }
 
@@ -139,27 +218,29 @@ img{
 .product-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:20px;
+  gap:22px;
 }
 
-/* ===== Card ===== */
+/* ===== Card（封頂）===== */
 .product-card{
   background:#fff;
   padding:18px;
   border-radius:24px;
   text-align:center;
-  box-shadow:0 18px 40px rgba(47,33,24,.08);
+  box-shadow:var(--shadow);
   transition:.25s;
+  text-decoration:none;
+  color:inherit;
 }
 
 .product-card:hover{
   transform:translateY(-6px);
-  box-shadow:0 28px 60px rgba(47,33,24,.12);
+  box-shadow:var(--shadow-hover);
 }
 
 .product-card img{
   border-radius:18px;
-  margin-bottom:10px;
+  margin-bottom:12px;
 }
 
 /* ===== Product Page ===== */
@@ -173,13 +254,9 @@ img{
 /* ===== CTA ===== */
 .cta{
   text-align:center;
-  padding:60px 20px;
-  background:#2f2118;
+  padding:70px 20px;
+  background:linear-gradient(135deg,#2f2118,#50392c);
   color:#fff;
-}
-
-.cta .btn{
-  margin-top:20px;
 }
 
 /* ===== Floating LINE ===== */
@@ -189,10 +266,11 @@ img{
   bottom:20px;
   background:#06C755;
   color:#fff;
-  padding:12px 16px;
+  padding:13px 18px;
   border-radius:999px;
   font-weight:600;
   text-decoration:none;
+  box-shadow:0 18px 30px rgba(6,199,85,.25);
 }
 
 /* ===== Footer ===== */
@@ -214,6 +292,10 @@ img{
 
 .product-actions{
   flex-direction:column;
+}
+
+.menu-grid{
+  grid-template-columns:1fr;
 }
 
 }
