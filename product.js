@@ -17,7 +17,7 @@ extra: document.getElementById('product-extra'),
 related: document.getElementById('related-products')
 };
 
-// ===== 🔥 中文文章標題（封頂版）=====
+// 🔥 中文標題
 function zhTitle(url){
 const map = {
 
@@ -33,8 +33,10 @@ const map = {
 "guilu-drink-for-who.html":"龜鹿飲適合誰",
 
 "guilu-block-how.html":"龜鹿湯塊怎麼煮",
-"guilu-block-time.html":"龜鹿湯塊怎麼吃",
 "guilu-block-storage.html":"龜鹿湯塊保存方式",
+"guilu-block-vs-gao.html":"湯塊跟膏差在哪",
+"guilu-block-ratio.html":"湯塊比例怎麼抓",
+"guilu-block-cooking.html":"湯塊料理方式",
 
 "lurong-how.html":"鹿茸粉怎麼吃",
 "lurong-time.html":"鹿茸粉什麼時候吃",
@@ -52,7 +54,7 @@ fetch('./products.json')
 const products = data.products || [];
 const product = products.find(p=>p.id===id) || products[0];
 
-// ===== tabs =====
+// tabs
 if(el.tabs){
 el.tabs.innerHTML = products.map(p=>`
 <a href="product.html?id=${p.id}" class="tab ${p.id===product.id?'active':''}">
@@ -61,29 +63,31 @@ ${p.name}
 `).join('');
 }
 
-// ===== 主資料 =====
-el.image.src = product.image;
-el.title.textContent = product.name;
+// 🔥 安全賦值
+if(el.image) el.image.src = product.image;
+if(el.title) el.title.textContent = product.name;
+if(el.summary) el.summary.textContent = product.desc + "，適合建立日常補養節奏。";
+if(el.sizes) el.sizes.textContent = product.sizes.join(' / ');
+if(el.pack) el.pack.textContent = product.package;
 
-// 🔥 成交導向文案（自動補強）
-el.summary.textContent = product.desc + "，適合建立日常補養節奏。";
-
-el.sizes.textContent = product.sizes.join(' / ');
-el.pack.textContent = product.package;
-
-// 🔥 LINE導購強化
+if(el.line){
 el.line.href =
 `https://lin.ee/sHZW7NkR?text=${encodeURIComponent(`我想了解 ${product.name} 怎麼搭配`)}`;
+}
 
 // 成分
+if(el.ingredients){
 el.ingredients.innerHTML =
 (product.ingredients||[]).map(i=>`<li>${i}</li>`).join('');
+}
 
 // 用法
+if(el.uses){
 el.uses.innerHTML =
 (product.uses||[]).map(i=>`<li>${i}</li>`).join('');
+}
 
-// ===== 🔥 文章（成交版）=====
+// 文章
 if(el.extra){
 el.extra.innerHTML = `
 <div class="info-card">
@@ -99,7 +103,7 @@ ${(product.articles||[]).map(a=>`
 </div>
 
 <div style="margin-top:20px;text-align:center;">
-<a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent(`我想了解 ${product.name} 怎麼搭`)}}"
+<a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent(`我想了解 ${product.name} 怎麼搭配`)}"
 class="btn btn-line">
 👉 免費幫我搭配
 </a>
@@ -109,7 +113,7 @@ class="btn btn-line">
 `;
 }
 
-// ===== 🔥 相關商品（成交版）=====
+// 相關商品
 if(el.related){
 el.related.innerHTML = `
 <div class="info-card">
