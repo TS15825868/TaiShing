@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>立即下單｜仙加味</title>
-<meta name="description" content="仙加味龜鹿產品下單頁">
+<meta name="description" content="仙加味龜鹿產品快速下單">
 <link rel="stylesheet" href="site.css">
 </head>
 
@@ -23,35 +23,44 @@
 
 <h1 style="text-align:center">立即下單</h1>
 
-<div class="info-card" style="max-width:500px;margin:auto">
+<div class="info-card" style="max-width:520px;margin:auto">
 
+<!-- 商品 -->
 <label>商品</label>
 <select id="product">
-<option>龜鹿膏</option>
-<option>龜鹿飲</option>
-<option>龜鹿湯塊</option>
-<option>鹿茸粉</option>
+<option value="龜鹿膏">龜鹿膏</option>
+<option value="龜鹿飲">龜鹿飲</option>
+<option value="龜鹿湯塊">龜鹿湯塊</option>
+<option value="鹿茸粉">鹿茸粉</option>
 </select>
 
+<!-- 數量 -->
 <label>數量</label>
-<input id="qty" type="number" value="1">
+<input id="qty" type="number" value="1" min="1">
 
+<!-- 姓名 -->
 <label>姓名</label>
-<input id="name">
+<input id="name" placeholder="請填寫收件人姓名">
 
+<!-- 電話 -->
 <label>電話</label>
-<input id="phone">
+<input id="phone" placeholder="請填寫聯絡電話">
 
+<!-- 配送 -->
 <label>配送方式</label>
 <select id="delivery">
-<option>7-11</option>
-<option>宅配</option>
-<option>面交</option>
+<option value="7-11">7-11</option>
+<option value="宅配">宅配</option>
+<option value="面交">面交</option>
 </select>
 
 <button class="btn btn-line" onclick="submitOrder()">
 送出訂單
 </button>
+
+<p style="font-size:12px;color:#888;margin-top:10px">
+送出後我們會盡快與你確認訂單
+</p>
 
 </div>
 
@@ -60,6 +69,15 @@
 </main>
 
 <script>
+
+// 👉 自動帶商品
+const params = new URLSearchParams(location.search);
+const p = params.get("product");
+if(p){
+document.getElementById("product").value = p;
+}
+
+// 👉 送出訂單
 function submitOrder(){
 
 const data = {
@@ -70,8 +88,14 @@ phone:document.getElementById('phone').value,
 delivery:document.getElementById('delivery').value
 };
 
-// 👉 傳到你的CRM
-fetch("https://你的GAS網址",{
+// 👉 基本驗證
+if(!data.name || !data.phone){
+alert("請填寫姓名與電話");
+return;
+}
+
+// 👉 傳送CRM
+fetch("https://script.google.com/macros/s/AKfycbwAFBxeROd2ZYGJ_h0O7_H2MMxptOMoj3EXIErZpbKuTYFOzOVwQkrk8X1MoxapkHVGSA/exec",{
 method:"POST",
 body:JSON.stringify({
 action:"order",
@@ -79,7 +103,15 @@ action:"order",
 })
 });
 
-alert("✅ 訂單已送出");
+// 👉 同時開LINE（成交補強）
+window.open(
+`https://lin.ee/sHZW7NkR?text=${encodeURIComponent(
+`我要下單\n商品：${data.product}\n數量：${data.qty}\n姓名：${data.name}\n電話：${data.phone}\n配送：${data.delivery}`
+)}`
+);
+
+// 👉 成功提示
+alert("✅ 訂單已送出，我們會盡快與你確認");
 
 }
 </script>
