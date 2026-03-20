@@ -1,165 +1,55 @@
-(function(){
+const data = {
+  "guilu-gao":{
+    name:"龜鹿膏",
+    image:"images/guilu-gao-100g.jpg",
+    desc:"適合日常補養，建立穩定節奏。",
+    spec:"100g / 罐｜$2000",
+    ingredients:["龜板萃取物","鹿角萃取物","粉光蔘","枸杞","紅棗","黃耆"]
+  },
 
-const params = new URLSearchParams(location.search);
-const id = params.get('id');
+  "guilu-drink":{
+    name:"龜鹿飲",
+    image:"images/guilu-drink.jpg",
+    desc:"方便快速補充。",
+    spec:"180cc / 包 $200｜30cc / 罐 $100",
+    ingredients:["水","龜板萃取物","鹿角萃取物"]
+  },
 
-// ===== DOM =====
-const el = {
-image: document.getElementById('product-image'),
-title: document.getElementById('product-title'),
-summary: document.getElementById('product-summary'),
-sizes: document.getElementById('product-sizes'),
-pack: document.getElementById('product-package'),
-ingredients: document.getElementById('product-ingredients'),
-uses: document.getElementById('product-uses'),
-line: document.getElementById('product-line'),
-tabs: document.getElementById('product-tabs'),
-extra: document.getElementById('product-extra'),
-related: document.getElementById('related-products')
+  "guilu-block":{
+    name:"龜鹿湯塊",
+    image:"images/guilu-block.jpg",
+    desc:"適合燉湯進補。",
+    spec:"600g $8000｜300g $4000｜75g $2000",
+    ingredients:["龜板萃取物","鹿角萃取物"]
+  },
+
+  "lurong-powder":{
+    name:"鹿茸粉",
+    image:"images/lurong.jpg",
+    desc:"可加入飲品使用。",
+    spec:"75g / 罐 $2000",
+    ingredients:["鹿茸"]
+  }
 };
 
-// ===== 安全防呆 =====
-function safe(val, fallback=""){
-return val || fallback;
-}
+const params = new URLSearchParams(location.search);
+const id = params.get("id") || "guilu-gao";
+const p = data[id];
 
-// ===== 載入資料 =====
-fetch('./products.json')
-.then(res=>res.json())
-.then(data=>{
+document.getElementById("product-image").src = p.image;
+document.getElementById("product-title").innerText = p.name;
+document.getElementById("product-desc").innerText = p.desc;
+document.getElementById("product-spec").innerText = p.spec;
 
-const products = data.products || [];
-
-// 找產品
-let product = products.find(p=>p.id===id);
-
-// fallback
-if(!product){
-product = products[0];
-}
-
-// ========================
-// 🔥 Tabs（商品切換）
-// ========================
-if(el.tabs){
-el.tabs.innerHTML = products.map(p=>`
-<a href="product.html?id=${p.id}" 
-class="tab ${p.id===product.id?'active':''}">
-${p.name}
-</a>
-`).join('');
-}
-
-// ========================
-// 🔥 主資料
-// ========================
-if(el.image) el.image.src = safe(product.image);
-if(el.title) el.title.textContent = safe(product.name);
-
-// 👉 成交導向文案（自動）
-if(el.summary){
-el.summary.textContent = 
-safe(product.desc) + "，適合建立日常補養節奏。";
-}
-
-// 規格
-if(el.sizes){
-el.sizes.textContent = (product.sizes || []).join(' / ');
-}
-
-// 包裝
-if(el.pack){
-el.pack.textContent = safe(product.package);
-}
-
-// 成分
-if(el.ingredients){
-el.ingredients.innerHTML =
-(product.ingredients || [])
-.map(i=>`<li>${i}</li>`)
-.join('');
-}
-
-// 使用方式
-if(el.uses){
-el.uses.innerHTML =
-(product.uses || [])
-.map(i=>`<li>${i}</li>`)
-.join('');
-}
-
-// ========================
-// 🔥 LINE成交導流
-// ========================
-if(el.line){
-el.line.href =
-`https://lin.ee/sHZW7NkR?text=${encodeURIComponent(`我想了解 ${product.name} 怎麼搭配`)}`;
-}
-
-// ========================
-// 🔥 補養知識（自動入口）
-// ========================
-if(el.extra){
-
-el.extra.innerHTML = `
-<div class="info-card">
-
-<h3>補養知識</h3>
-
-<p style="font-size:14px;color:#666;">
-不確定怎麼吃？怎麼搭配？這裡幫你整理好了
-</p>
-
-<div style="margin-top:10px">
-<a href="articles.html" class="btn btn-dark">
-查看完整說明
-</a>
-</div>
-
-</div>
-`;
-
-}
-
-// ========================
-// 🔥 相關商品（提高客單）
-// ========================
-if(el.related){
-
-const related = products.filter(p=>p.id !== product.id);
-
-el.related.innerHTML = `
-<div class="info-card">
-
-<h3>你也可以看看</h3>
-
-<div class="product-grid">
-
-${related.map(p=>`
-<a href="product.html?id=${p.id}" class="product-card">
-<img src="${p.image}">
-<h3>${p.name}</h3>
-<p style="font-size:13px;color:#666;">點我了解 →</p>
-</a>
-`).join('')}
-
-</div>
-
-<div style="margin-top:20px;text-align:center;">
-<a href="https://lin.ee/sHZW7NkR?text=幫我推薦適合的龜鹿搭配"
-class="btn btn-line">
-👉 幫我推薦
-</a>
-</div>
-
-</div>
-`;
-
-}
-
-})
-.catch(err=>{
-console.error("product.js error:", err);
+const ul = document.getElementById("product-ingredients");
+p.ingredients.forEach(i=>{
+  const li = document.createElement("li");
+  li.innerText = i;
+  ul.appendChild(li);
 });
 
-})();
+document.getElementById("btn-order").href =
+  `https://lin.ee/sHZW7NkR?text=我要購買${p.name}`;
+
+document.getElementById("btn-line").href =
+  `https://lin.ee/sHZW7NkR?text=幫我搭配${p.name}`;
