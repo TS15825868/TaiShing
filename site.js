@@ -1,96 +1,43 @@
 (function(){
 
-function getBasePrefix(){
-  if(location.pathname.includes('/articles/')) return '../';
-  if(location.pathname.includes('/seo/')) return '../';
-  return '';
+function toggleMenu(){
+const menu=document.getElementById('menuOverlay');
+menu.classList.toggle('active');
+document.body.style.overflow=menu.classList.contains('active')?'hidden':'';
 }
 
-function toggleMenu(force){
-  const menu = document.getElementById('menuOverlay');
-  if(!menu) return;
+window.toggleMenu=toggleMenu;
 
-  const open = typeof force === 'boolean'
-    ? force
-    : !menu.classList.contains('active');
+document.addEventListener('DOMContentLoaded',()=>{
 
-  menu.classList.toggle('active', open);
-  document.body.style.overflow = open ? 'hidden' : '';
+const menu=document.getElementById('menuOverlay');
+const btn=document.querySelector('.menu-btn');
+
+if(menu){
+menu.innerHTML=`
+<div class="menu-full">
+
+<div class="menu-close" onclick="toggleMenu()">✕</div>
+
+<div class="menu-block">
+<a href="index.html">首頁</a>
+<a href="brand.html">品牌故事</a>
+<a href="guilu-series.html">龜鹿系列</a>
+<a href="choose.html">怎麼選</a>
+<a href="recipes.html">料理</a>
+<a href="faq.html">FAQ</a>
+</div>
+
+<div>
+<a href="https://lin.ee/sHZW7NkR" class="btn btn-line">LINE詢問</a>
+</div>
+
+</div>`;
 }
 
-window.toggleMenu = toggleMenu;
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  const prefix = getBasePrefix();
-  const menu = document.getElementById('menuOverlay');
-  const btn = document.querySelector('.menu-btn');
-
-  if(menu){
-
-    menu.innerHTML = `
-      <div class="menu-full">
-
-        <div class="menu-close" id="menuClose">✕</div>
-
-        <div>
-          <div class="menu-block">
-            <a href="${prefix}index.html">首頁</a>
-            <a href="${prefix}brand.html">品牌故事</a>
-          </div>
-
-          <div class="menu-block">
-            <a href="${prefix}guilu-series.html">龜鹿系列</a>
-            <a href="${prefix}choose.html">怎麼選龜鹿</a>
-          </div>
-
-          <div class="menu-block">
-            <a href="${prefix}recipes.html">料理搭配</a>
-            <a href="${prefix}articles.html">龜鹿知識</a>
-            <a href="${prefix}faq.html">FAQ</a>
-          </div>
-
-          <div class="menu-block">
-            <a href="https://lin.ee/sHZW7NkR?text=幫我搭配龜鹿">
-              🔥 快速搭配
-            </a>
-          </div>
-        </div>
-
-        <div class="menu-bottom">
-          <a href="https://lin.ee/sHZW7NkR" class="btn btn-line">
-            LINE詢問
-          </a>
-
-          <a href="${prefix}order.html" class="btn btn-dark">
-            直接下單
-          </a>
-        </div>
-
-      </div>
-    `;
-
-    const closeBtn = menu.querySelector('#menuClose');
-    if(closeBtn){
-      closeBtn.addEventListener('click', ()=>toggleMenu(false));
-    }
-
-    menu.addEventListener('click',(e)=>{
-      if(e.target === menu) toggleMenu(false);
-    });
-
-    menu.querySelectorAll('a').forEach(link=>{
-      link.addEventListener('click', ()=>toggleMenu(false));
-    });
-  }
-
-  if(btn){
-    btn.addEventListener('click', ()=>toggleMenu());
-  }
-
-  document.addEventListener('keydown', (e)=>{
-    if(e.key === 'Escape') toggleMenu(false);
-  });
+if(btn){
+btn.addEventListener('click',toggleMenu);
+}
 
 });
 
