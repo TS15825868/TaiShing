@@ -4,10 +4,9 @@ body{
   background:#f7f4ed;
   color:#2f2118;
   padding-top:70px;
-  -webkit-font-smoothing:antialiased;
 }
 
-/* ===== header ===== */
+/* header */
 .header{
   position:fixed;
   top:0;
@@ -22,112 +21,36 @@ body{
   z-index:999;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  font-weight:600;
-}
+.logo img{height:38px;}
+.menu-btn{font-size:22px;cursor:pointer;}
 
-.logo img{
-  height:38px;
-}
+/* hero */
+.hero{position:relative;height:70vh;display:flex;align-items:center;justify-content:center;}
+.hero-bg{position:absolute;width:100%;height:100%;object-fit:cover;}
+.hero-overlay{position:absolute;width:100%;height:100%;background:rgba(0,0,0,.5);}
+.hero-content{position:relative;color:#fff;text-align:center;}
 
-.menu-btn{
-  font-size:22px;
-  cursor:pointer;
-  z-index:1001;
-}
+/* section */
+.section{padding:60px 16px;max-width:1100px;margin:auto;}
 
-/* ===== HERO ===== */
-.hero{
-  position:relative;
-  height:72vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  overflow:hidden;
-}
-
-.hero-bg{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.hero-overlay{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(
-    to bottom,
-    rgba(0,0,0,.4),
-    rgba(0,0,0,.6)
-  );
-}
-
-.hero-content{
-  position:relative;
-  color:#fff;
-  text-align:center;
-  max-width:320px;
-}
-
-.hero-title{
-  font-size:34px;
-  margin-bottom:12px;
-}
-
-.hero-text{
-  margin-bottom:20px;
-}
-
-/* ===== section ===== */
-.section{
-  padding:60px 16px;
-  max-width:1100px;
-  margin:auto;
-}
-
-/* ===== grid ===== */
+/* grid */
 .product-grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
   gap:16px;
 }
 
-/* ===== card ===== */
+/* card */
 .product-card{
   background:#fff;
-  padding:20px;
+  padding:18px;
   border-radius:16px;
-  box-shadow:0 8px 20px rgba(0,0,0,.05);
   text-align:center;
   text-decoration:none;
   color:inherit;
 }
 
-/* ===== btn ===== */
-.btn{
-  display:inline-block;
-  padding:12px 20px;
-  border-radius:999px;
-  text-decoration:none;
-  font-weight:600;
-}
-
-.btn-line{
-  background:#06C755;
-  color:#fff;
-}
-
-.btn-dark{
-  background:#2f2118;
-  color:#fff;
-}
-
-/* ===== product ===== */
+/* product */
 .product-layout{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -136,22 +59,50 @@ body{
 
 .product-layout img{
   width:100%;
-  max-width:420px;
+  max-width:380px;
   margin:auto;
   display:block;
 }
 
 @media(max-width:768px){
-  .product-layout{
-    grid-template-columns:1fr;
-  }
-
-  .product-layout img{
-    max-width:260px;
-  }
+  .product-layout{grid-template-columns:1fr;}
+  .product-layout img{max-width:260px;}
 }
 
-/* ===== CTA ===== */
+/* btn */
+.btn{
+  display:inline-block;
+  padding:12px 20px;
+  border-radius:999px;
+  text-decoration:none;
+  font-weight:600;
+}
+
+.btn-line{background:#06C755;color:#fff;}
+.btn-dark{background:#2f2118;color:#fff;}
+
+/* actions */
+.product-actions{
+  margin:20px 0;
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+.product-actions .btn{
+  flex:1;
+  text-align:center;
+}
+
+/* info */
+.info-card{
+  background:#fff;
+  padding:14px;
+  border-radius:12px;
+  margin-top:12px;
+}
+
+/* CTA */
 .cta{
   text-align:center;
   padding:60px 20px;
@@ -159,7 +110,7 @@ body{
   color:#fff;
 }
 
-/* ===== floating ===== */
+/* floating */
 .floating-line{
   position:fixed;
   right:16px;
@@ -170,17 +121,14 @@ body{
   border-radius:999px;
 }
 
-/* =========================================
-   🔥🔥🔥 重點：全畫面漢堡（封頂版）
-========================================= */
-
+/* ===== 全畫面漢堡 ===== */
 .menu-overlay{
   position:fixed;
   inset:0;
-  background:#fff; /* ❗不是半透明 */
+  background:#fff;
   opacity:0;
   pointer-events:none;
-  transition:.25s;
+  transition:.3s;
   z-index:1000;
 }
 
@@ -189,17 +137,15 @@ body{
   pointer-events:auto;
 }
 
-/* ❗沒有滑動了 */
 .menu-full{
   width:100%;
   height:100%;
-  padding:80px 24px 40px;
+  padding:80px 24px;
   display:flex;
   flex-direction:column;
   justify-content:space-between;
 }
 
-/* 關閉 */
 .menu-close{
   position:absolute;
   top:20px;
@@ -208,20 +154,14 @@ body{
   cursor:pointer;
 }
 
-/* 區塊 */
-.menu-block{
-  margin-bottom:30px;
-}
-
 .menu-block a{
   display:block;
   font-size:22px;
-  padding:14px 0;
+  padding:12px 0;
   text-decoration:none;
   color:#2f2118;
 }
 
-/* 底部 */
 .menu-bottom{
   display:flex;
   flex-direction:column;
