@@ -17,7 +17,7 @@ extra: document.getElementById('product-extra'),
 related: document.getElementById('related-products')
 };
 
-// 🔥 中文標題
+// 中文標題
 function zhTitle(url){
 const map = {
 
@@ -30,6 +30,7 @@ const map = {
 "guilu-drink-guide.html":"龜鹿飲怎麼喝",
 "guilu-drink-time.html":"龜鹿飲什麼時候喝",
 "guilu-drink-storage.html":"龜鹿飲保存方式",
+"guilu-drink-save.html":"龜鹿飲保存方式",
 "guilu-drink-for-who.html":"龜鹿飲適合誰",
 
 "guilu-block-how.html":"龜鹿湯塊怎麼煮",
@@ -63,7 +64,7 @@ ${p.name}
 `).join('');
 }
 
-// 🔥 安全賦值
+// 安全賦值
 if(el.image) el.image.src = product.image;
 if(el.title) el.title.textContent = product.name;
 if(el.summary) el.summary.textContent = product.desc + "，適合建立日常補養節奏。";
