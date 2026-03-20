@@ -1,63 +1,43 @@
-(function(){
+document.addEventListener('DOMContentLoaded',()=>{
 
-function getBasePrefix(){
-  if(location.pathname.includes('/articles/')) return '../';
-  return '';
-}
-
-function toggleMenu(force){
   const menu = document.getElementById('menuOverlay');
-  if(!menu) return;
-
-  const open = typeof force === 'boolean'
-    ? force
-    : !menu.classList.contains('active');
-
-  menu.classList.toggle('active', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-}
-
-window.toggleMenu = toggleMenu;
-
-document.addEventListener('DOMContentLoaded', () => {
-
-  const prefix = getBasePrefix();
-  const menu = document.getElementById('menuOverlay');
-  const btn = document.querySelector('.menu-btn');
 
   if(menu){
     menu.innerHTML = `
       <div class="menu-full">
 
-        <div class="menu-close" onclick="toggleMenu(false)">✕</div>
+        <div onclick="toggleMenu()" style="font-size:22px;cursor:pointer;">✕</div>
 
         <div class="menu-block">
-          <a href="${prefix}index.html">首頁</a>
-          <a href="${prefix}brand.html">品牌故事</a>
+          <a href="index.html">首頁</a>
+          <a href="brand.html">品牌</a>
         </div>
 
         <div class="menu-block">
-          <a href="${prefix}guilu-series.html">龜鹿系列</a>
-          <a href="${prefix}choose.html">怎麼選龜鹿</a>
+          <a href="guilu-series.html">龜鹿系列</a>
+          <a href="choose.html">怎麼選</a>
         </div>
 
         <div class="menu-block">
-          <a href="${prefix}recipes.html">料理搭配</a>
-          <a href="${prefix}faq.html">FAQ</a>
+          <a href="faq.html">FAQ</a>
         </div>
 
         <div class="menu-block">
-          <a href="https://lin.ee/sHZW7NkR">👉 快速搭配</a>
+          <a href="https://lin.ee/sHZW7NkR">LINE詢問</a>
         </div>
 
       </div>
     `;
   }
 
+  const btn = document.querySelector('.menu-btn');
+
   if(btn){
-    btn.addEventListener('click', ()=>toggleMenu());
+    btn.addEventListener('click',toggleMenu);
   }
 
 });
 
-})();
+function toggleMenu(){
+  document.getElementById('menuOverlay').classList.toggle('active');
+}
