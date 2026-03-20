@@ -1,9 +1,13 @@
 (function(){
 
+// ===== 路徑判斷（升級🔥）=====
 function getBasePrefix(){
-  return location.pathname.includes('/articles/') ? '../' : '';
+  if(location.pathname.includes('/articles/')) return '../';
+  if(location.pathname.includes('/seo/')) return '../';
+  return '';
 }
 
+// ===== 漢堡控制 =====
 function toggleMenu(force){
   const menu = document.getElementById('menuOverlay');
   if(!menu) return;
@@ -13,18 +17,26 @@ function toggleMenu(force){
     : !menu.classList.contains('active');
 
   menu.classList.toggle('active', open);
+
+  // 🔥 鎖滾動
   document.body.style.overflow = open ? 'hidden' : '';
+
+  // 🔥 加class（動畫用）
+  document.body.classList.toggle('menu-open', open);
 }
 
 window.toggleMenu = toggleMenu;
 
+// ===== DOM =====
 document.addEventListener('DOMContentLoaded', () => {
 
   const prefix = getBasePrefix();
   const menu = document.getElementById('menuOverlay');
   const btn = document.querySelector('.menu-btn');
 
+  // ===== 漢堡內容 =====
   if(menu){
+
     menu.innerHTML = `
       <div class="menu-full">
 
@@ -48,7 +60,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <!-- 🔥 成交入口 -->
         <div class="menu-block">
-          <a href="https://lin.ee/sHZW7NkR?text=幫我搭配龜鹿">快速搭配</a>
+          <a href="https://lin.ee/sHZW7NkR?text=幫我搭配龜鹿">
+            快速搭配
+          </a>
         </div>
 
         <div class="menu-bottom">
@@ -64,30 +78,38 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
+    // ===== 點背景關閉 =====
     menu.addEventListener('click',(e)=>{
       if(e.target === menu) toggleMenu(false);
     });
 
-    const closeBtn = document.getElementById('menuClose');
-    if(closeBtn){
-      closeBtn.addEventListener('click', ()=>toggleMenu(false));
-    }
+    // ===== ✕ 關閉（防呆🔥）=====
+    setTimeout(()=>{
+      const closeBtn = document.getElementById('menuClose');
+      if(closeBtn){
+        closeBtn.addEventListener('click', ()=>toggleMenu(false));
+      }
+    },50);
 
+    // ===== 點連結關閉 =====
     menu.querySelectorAll('a').forEach(link=>{
       link.addEventListener('click', ()=>toggleMenu(false));
     });
   }
 
+  // ===== 漢堡按鈕 =====
   if(btn){
     btn.addEventListener('click', ()=>toggleMenu());
   }
 
+  // ===== ESC關閉 =====
   document.addEventListener('keydown', (e)=>{
     if(e.key === 'Escape') toggleMenu(false);
   });
 
-  // 動畫
+  // ===== 滾動動畫 =====
   const revealEls = document.querySelectorAll('.reveal');
+
   if('IntersectionObserver' in window){
     const obs = new IntersectionObserver((entries)=>{
       entries.forEach(entry=>{
@@ -97,13 +119,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     },{threshold:.14});
+
     revealEls.forEach(el=>obs.observe(el));
   }else{
     revealEls.forEach(el=>el.classList.add('show'));
   }
 
-  // 🔥 自動文章系統
-  if(location.pathname.includes('/articles/')){
+  // ===== 🔥 自動文章系統（升級🔥）=====
+  if(
+    location.pathname.includes('/articles/') ||
+    location.pathname.includes('/seo/')
+  ){
     const script = document.createElement('script');
     script.src = prefix + 'article.js';
     script.defer = true;
