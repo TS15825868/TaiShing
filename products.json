@@ -7,9 +7,7 @@
       "image": "images/guilu-gao-100g.jpg",
       "seoImage": "images/guilu-gao-100g.jpg",
       "desc": "龜鹿膏為濃縮膏狀型態，可直接食用或加入溫水沖泡，適合作為日常飲食中的固定補養搭配。",
-      "sizes": [
-        "100 g"
-      ],
+      "sizes": ["100 g"],
       "package": "玻璃罐裝",
       "category": "product",
       "ingredients": [
@@ -37,6 +35,7 @@
         "guilu-daily-use.html"
       ]
     },
+
     {
       "id": "guilu-drink",
       "slug": "guilu-drink",
@@ -44,10 +43,7 @@
       "image": "images/guilu-drink-30cc.jpg",
       "seoImage": "images/guilu-drink-30cc.jpg",
       "desc": "龜鹿飲為即飲型產品，開瓶即可飲用，也可依個人習慣溫熱後再喝，適合外出攜帶或忙碌日常。",
-      "sizes": [
-        "30 cc",
-        "180 cc"
-      ],
+      "sizes": ["30 cc", "180 cc"],
       "package": "玻璃瓶／鋁袋",
       "category": "product",
       "ingredients": [
@@ -76,6 +72,7 @@
         "guilu-food-recommend.html"
       ]
     },
+
     {
       "id": "guilu-block",
       "slug": "guilu-block",
@@ -83,11 +80,7 @@
       "image": "images/guilu-block-300g.jpg",
       "seoImage": "images/guilu-block-300g.jpg",
       "desc": "龜鹿湯塊為濃縮湯塊型態，適合用於燉雞湯、排骨湯或家常藥膳湯品，讓日常料理更方便。",
-      "sizes": [
-        "75 g",
-        "300 g",
-        "600 g"
-      ],
+      "sizes": ["75 g", "300 g", "600 g"],
       "package": "盒裝",
       "category": "recipe",
       "ingredients": [
@@ -113,6 +106,7 @@
         "guilu-cooking-fast.html"
       ]
     },
+
     {
       "id": "lurong-powder",
       "slug": "lurong-powder",
@@ -120,9 +114,7 @@
       "image": "images/lurong-powder-75g.jpg",
       "seoImage": "images/lurong-powder-75g.jpg",
       "desc": "鹿茸粉為粉末型態，可加入咖啡、牛奶、茶飲或其他溫熱飲品中，適合做成日常飲品搭配。",
-      "sizes": [
-        "75 g"
-      ],
+      "sizes": ["75 g"],
       "package": "玻璃罐裝",
       "category": "recipe",
       "ingredients": [
@@ -134,10 +126,9 @@
         "可加入茶飲或溫熱飲品"
       ],
       "articles": [
-        "lurong-powder-how.html",
-        "lurong-storage.html",
-        "lurong-vs-guilu.html",
-        "lurong-combination.html"
+        "lurong-how.html",
+        "lurong-time.html",
+        "lurong-for-who.html"
       ],
       "recipes": [
         "lurong-coffee.html",
