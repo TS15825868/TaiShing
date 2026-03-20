@@ -7,19 +7,8 @@
       "desc": "濃縮膏狀，可直接食用或沖泡",
       "sizes": ["100 g"],
       "package": "玻璃罐裝",
-      "ingredients": [
-        "龜板萃取物",
-        "鹿角萃取物",
-        "粉光蔘",
-        "枸杞",
-        "紅棗",
-        "黃耆"
-      ],
-      "uses": [
-        "直接食用",
-        "加入溫水",
-        "每日固定使用"
-      ]
+      "ingredients": ["龜板萃取物","鹿角萃取物","粉光蔘","枸杞","紅棗","黃耆"],
+      "uses": ["直接食用","加入溫水","每日固定使用"]
     },
     {
       "id": "guilu-drink",
@@ -27,25 +16,25 @@
       "image": "images/guilu-drink-30cc.jpg",
       "desc": "即開即飲，方便攜帶",
       "sizes": ["30 cc","180 cc"],
-      "package": "瓶裝 / 鋁袋",
-      "ingredients": ["龜板","鹿角"],
-      "uses": ["直接飲用","溫熱飲用"]
+      "package": "瓶裝／鋁袋",
+      "ingredients": ["龜板萃取物","鹿角萃取物"],
+      "uses": ["直接飲用","可溫熱"]
     },
     {
       "id": "guilu-block",
       "name": "龜鹿湯塊",
       "image": "images/guilu-block-300g.jpg",
-      "desc": "適合燉雞湯、排骨",
+      "desc": "適合燉雞湯、排骨湯",
       "sizes": ["75 g","300 g","600 g"],
       "package": "盒裝",
-      "ingredients": ["龜板","鹿角"],
+      "ingredients": ["龜板萃取物","鹿角萃取物"],
       "uses": ["燉湯使用","家庭料理"]
     },
     {
-      "id": "lurong",
+      "id": "lurong-powder",
       "name": "鹿茸粉",
       "image": "images/lurong-powder.jpg",
-      "desc": "可加入咖啡、牛奶",
+      "desc": "可加入咖啡、牛奶、茶",
       "sizes": ["75 g"],
       "package": "罐裝",
       "ingredients": ["鹿茸"],
