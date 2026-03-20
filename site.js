@@ -3,6 +3,10 @@
 function toggleMenu(){
 const menu=document.getElementById("menuOverlay");
 menu.classList.toggle("active");
+
+// 🔥 鎖滾動
+document.body.style.overflow =
+menu.classList.contains("active") ? "hidden" : "";
 }
 
 window.toggleMenu=toggleMenu;
