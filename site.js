@@ -1,44 +1,116 @@
 (function(){
 
-function toggleMenu(){
-const menu=document.getElementById('menuOverlay');
-menu.classList.toggle('active');
-document.body.style.overflow=menu.classList.contains('active')?'hidden':'';
+// ===== 路徑判斷 =====
+function getBasePrefix(){
+  if(location.pathname.includes('/articles/')) return '../';
+  if(location.pathname.includes('/seo/')) return '../';
+  return '';
 }
 
-window.toggleMenu=toggleMenu;
+// ===== 漢堡開關 =====
+function toggleMenu(force){
+  const menu = document.getElementById('menuOverlay');
+  if(!menu) return;
 
-document.addEventListener('DOMContentLoaded',()=>{
+  const open = typeof force === 'boolean'
+    ? force
+    : !menu.classList.contains('active');
 
-const menu=document.getElementById('menuOverlay');
-const btn=document.querySelector('.menu-btn');
+  menu.classList.toggle('active', open);
 
-if(menu){
-menu.innerHTML=`
-<div class="menu-full">
+  // 🔥 鎖住滾動
+  document.body.style.overflow = open ? 'hidden' : '';
 
-<div class="menu-close" onclick="toggleMenu()">✕</div>
-
-<div class="menu-block">
-<a href="index.html">首頁</a>
-<a href="brand.html">品牌故事</a>
-<a href="guilu-series.html">龜鹿系列</a>
-<a href="choose.html">怎麼選</a>
-<a href="recipes.html">料理</a>
-<a href="faq.html">FAQ</a>
-</div>
-
-<div>
-<a href="https://lin.ee/sHZW7NkR" class="btn btn-line">LINE詢問</a>
-</div>
-
-</div>`;
+  // 🔥 class（做動畫或debug用）
+  document.body.classList.toggle('menu-open', open);
 }
 
-if(btn){
-btn.addEventListener('click',toggleMenu);
-}
+window.toggleMenu = toggleMenu;
+
+// ===== DOM =====
+document.addEventListener('DOMContentLoaded', () => {
+
+  const prefix = getBasePrefix();
+  const menu = document.getElementById('menuOverlay');
+  const btn = document.querySelector('.menu-btn');
+
+  // ===== 建立漢堡內容 =====
+  if(menu){
+
+    menu.innerHTML = `
+      <div class="menu-full">
+
+        <div class="menu-close" id="menuClose">✕</div>
+
+        <div class="menu-content">
+
+          <div class="menu-block">
+            <a href="${prefix}index.html">首頁</a>
+            <a href="${prefix}brand.html">品牌故事</a>
+          </div>
+
+          <div class="menu-block">
+            <a href="${prefix}guilu-series.html">龜鹿系列</a>
+            <a href="${prefix}choose.html">怎麼選龜鹿</a>
+          </div>
+
+          <div class="menu-block">
+            <a href="${prefix}recipes.html">料理搭配</a>
+            <a href="${prefix}articles.html">龜鹿知識</a>
+            <a href="${prefix}faq.html">FAQ</a>
+          </div>
+
+          <!-- 🔥 成交入口 -->
+          <div class="menu-block">
+            <a href="https://lin.ee/sHZW7NkR?text=幫我搭配龜鹿">
+              🔥 快速搭配
+            </a>
+          </div>
+
+        </div>
+
+        <div class="menu-bottom">
+          <a href="https://lin.ee/sHZW7NkR" class="btn btn-line">
+            LINE詢問
+          </a>
+
+          <a href="${prefix}order.html" class="btn btn-dark">
+            直接下單
+          </a>
+        </div>
+
+      </div>
+    `;
+
+    // ===== 點背景關閉 =====
+    menu.addEventListener('click',(e)=>{
+      if(e.target === menu) toggleMenu(false);
+    });
+
+    // ===== ✕關閉（防錯）=====
+    setTimeout(()=>{
+      const closeBtn = document.getElementById('menuClose');
+      if(closeBtn){
+        closeBtn.addEventListener('click', ()=>toggleMenu(false));
+      }
+    },50);
+
+    // ===== 點連結自動關閉 =====
+    menu.querySelectorAll('a').forEach(link=>{
+      link.addEventListener('click', ()=>toggleMenu(false));
+    });
+
+  }
+
+  // ===== 漢堡按鈕 =====
+  if(btn){
+    btn.addEventListener('click', ()=>toggleMenu());
+  }
+
+  // ===== ESC關閉 =====
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape') toggleMenu(false);
+  });
 
 });
-
 })();
