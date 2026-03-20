@@ -1,21 +1,19 @@
-/* ===== 基本設定 ===== */
 :root{
   --bg:#f7f4ed;
   --surface:#ffffff;
   --text:#2f2118;
   --muted:#6f6258;
   --line:#e8dfd2;
+
   --brand:#6f2a24;
   --line-green:#06C755;
 
-  --shadow:0 20px 50px rgba(47,33,24,.08);
-  --shadow-hover:0 30px 70px rgba(47,33,24,.12);
+  --shadow:0 10px 30px rgba(0,0,0,.06);
+  --shadow-hover:0 20px 60px rgba(0,0,0,.12);
 
-  --radius:24px;
-  --max:1120px;
+  --radius:22px;
+  --max:1100px;
 }
-
-*{box-sizing:border-box}
 
 body{
   margin:0;
@@ -23,11 +21,7 @@ body{
   background:var(--bg);
   color:var(--text);
   padding-top:76px;
-}
-
-img{
-  width:100%;
-  display:block;
+  letter-spacing:.3px;
 }
 
 /* ===== Header ===== */
@@ -39,141 +33,67 @@ img{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:0 20px;
-  background:rgba(255,255,255,.92);
-  backdrop-filter:blur(10px);
+  padding:0 22px;
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(12px);
   border-bottom:1px solid var(--line);
   z-index:999;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-
 .logo img{
-  height:42px;
-}
-
-/* ===== 🔥 全螢幕漢堡 ===== */
-.menu-overlay{
-  position:fixed;
-  inset:0;
-  background:#111;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  opacity:0;
-  visibility:hidden;
-  transition:.3s;
-  z-index:998;
-}
-
-.menu-overlay.active{
-  opacity:1;
-  visibility:visible;
-}
-
-.menu-full{
-  text-align:center;
-  color:#fff;
-}
-
-.menu-full a{
-  display:block;
-  font-size:22px;
-  margin:16px 0;
-  color:#fff;
-  text-decoration:none;
-}
-
-.menu-close{
-  position:absolute;
-  top:20px;
-  right:20px;
-  font-size:28px;
-  color:#fff;
+  height:44px;
 }
 
 /* ===== Hero ===== */
 .hero{
-  position:relative;
-  height:70vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#fff;
-}
-
-.hero-bg{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-
-.hero-overlay{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(
-    rgba(0,0,0,.2),
-    rgba(0,0,0,.6)
-  );
-}
-
-.hero-content{
-  position:relative;
-  z-index:2;
-  padding:20px;
+  height:72vh;
 }
 
 .hero-title{
-  font-size:clamp(34px,6vw,56px);
+  font-size:clamp(36px,6vw,58px);
+  font-weight:600;
+  letter-spacing:1px;
 }
 
 .hero-text{
-  margin:20px 0;
+  opacity:.85;
+  font-size:15px;
 }
 
-/* ===== Buttons ===== */
+/* ===== Button（🔥升級）===== */
 .btn{
-  display:inline-flex;
-  justify-content:center;
-  align-items:center;
-  padding:12px 24px;
+  padding:13px 28px;
   border-radius:999px;
-  text-decoration:none;
-  font-weight:600;
-}
-
-.btn-outline{
-  border:1.5px solid #fff;
-  color:#fff;
-}
-
-.btn-dark{
-  border:1.5px solid var(--text);
-  color:var(--text);
-}
-
-.btn-outline-dark{
-  border:1.5px solid var(--text);
-  color:var(--text);
-  background:#fff;
+  font-weight:500;
+  letter-spacing:.5px;
+  transition:.25s;
 }
 
 .btn-line{
   background:#06C755;
   color:#fff;
-  box-shadow:0 12px 28px rgba(6,199,85,.28);
+  box-shadow:0 10px 25px rgba(6,199,85,.25);
+}
+
+.btn-line:hover{
+  transform:translateY(-2px);
+  box-shadow:0 16px 35px rgba(6,199,85,.35);
+}
+
+.btn-outline{
+  border:1px solid #fff;
+  color:#fff;
+}
+
+.btn-dark{
+  border:1px solid var(--text);
+  color:var(--text);
+  background:#fff;
 }
 
 /* ===== Section ===== */
 .section{
-  padding:70px 20px;
+  padding:80px 20px;
   max-width:var(--max);
   margin:auto;
 }
@@ -181,18 +101,18 @@ img{
 /* ===== Grid ===== */
 .product-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:26px;
 }
 
-/* ===== Card ===== */
+/* ===== Card（🔥重點升級）===== */
 .product-card{
   background:#fff;
-  padding:20px;
-  border-radius:24px;
+  padding:22px;
+  border-radius:var(--radius);
   text-align:center;
   box-shadow:var(--shadow);
-  transition:.25s;
+  transition:.3s;
 }
 
 .product-card:hover{
@@ -200,73 +120,46 @@ img{
   box-shadow:var(--shadow-hover);
 }
 
-/* ===== 商品頁 ===== */
+.product-card img{
+  border-radius:16px;
+  margin-bottom:14px;
+}
+
+/* ===== Product Page ===== */
 .product-layout{
   display:grid;
   grid-template-columns:1fr 1fr;
-  gap:40px;
+  gap:50px;
 }
 
-.product-layout img{
-  border-radius:20px;
-}
-
+/* ===== Info Card ===== */
 .info-card{
   background:#fff;
-  padding:16px;
+  padding:18px;
   border-radius:16px;
-  margin-top:12px;
-  border:1px solid var(--line);
-}
-
-.product-actions{
-  margin-top:20px;
-  display:flex;
-  gap:10px;
-}
-
-/* ===== Tabs ===== */
-.scroll-x{
-  display:flex;
-  gap:10px;
-  overflow-x:auto;
-}
-
-.tab{
-  padding:8px 16px;
-  border:1px solid var(--line);
-  border-radius:999px;
-}
-
-.tab.active{
-  background:#000;
-  color:#fff;
+  margin-top:14px;
+  box-shadow:var(--shadow);
 }
 
 /* ===== CTA ===== */
 .cta{
   text-align:center;
-  padding:70px 20px;
-  background:#2f2118;
+  padding:80px 20px;
+  background:linear-gradient(135deg,#2f2118,#50392c);
   color:#fff;
-}
-
-/* ===== 🔥 文章 CTA ===== */
-.article-cta{
-  margin-top:60px;
-  text-align:center;
 }
 
 /* ===== Floating LINE ===== */
 .floating-line{
   position:fixed;
-  right:16px;
-  bottom:20px;
+  right:18px;
+  bottom:22px;
   background:#06C755;
   color:#fff;
-  padding:12px 16px;
+  padding:14px 20px;
   border-radius:999px;
-  text-decoration:none;
+  font-weight:600;
+  box-shadow:0 18px 40px rgba(6,199,85,.3);
 }
 
 /* ===== Mobile ===== */
