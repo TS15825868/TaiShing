@@ -1,6 +1,6 @@
 (function(){
 
-// ===== 路徑判斷（升級🔥）=====
+// ===== 路徑判斷 =====
 function getBasePrefix(){
   if(location.pathname.includes('/articles/')) return '../';
   if(location.pathname.includes('/seo/')) return '../';
@@ -21,20 +21,26 @@ function toggleMenu(force){
   // 🔥 鎖滾動
   document.body.style.overflow = open ? 'hidden' : '';
 
-  // 🔥 加class（動畫用）
+  // 🔥 狀態 class
   document.body.classList.toggle('menu-open', open);
 }
 
 window.toggleMenu = toggleMenu;
 
-// ===== DOM =====
+// ===== DOM Ready =====
 document.addEventListener('DOMContentLoaded', () => {
 
   const prefix = getBasePrefix();
   const menu = document.getElementById('menuOverlay');
   const btn = document.querySelector('.menu-btn');
 
-  // ===== 漢堡內容 =====
+  // ===== 初始化（避免殘留）=====
+  if(menu){
+    menu.classList.remove('active');
+  }
+  document.body.style.overflow = '';
+
+  // ===== 建立 menu =====
   if(menu){
 
     menu.innerHTML = `
@@ -42,27 +48,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <div class="menu-close" id="menuClose">✕</div>
 
-        <div class="menu-block">
-          <a href="${prefix}index.html">首頁</a>
-          <a href="${prefix}brand.html">品牌故事</a>
-        </div>
+        <div>
+          <div class="menu-block">
+            <a href="${prefix}index.html">首頁</a>
+            <a href="${prefix}brand.html">品牌故事</a>
+          </div>
 
-        <div class="menu-block">
-          <a href="${prefix}guilu-series.html">龜鹿系列</a>
-          <a href="${prefix}choose.html">怎麼選龜鹿</a>
-        </div>
+          <div class="menu-block">
+            <a href="${prefix}guilu-series.html">龜鹿系列</a>
+            <a href="${prefix}choose.html">怎麼選龜鹿</a>
+          </div>
 
-        <div class="menu-block">
-          <a href="${prefix}recipes.html">料理搭配</a>
-          <a href="${prefix}articles.html">龜鹿知識</a>
-          <a href="${prefix}faq.html">FAQ</a>
-        </div>
+          <div class="menu-block">
+            <a href="${prefix}recipes.html">料理搭配</a>
+            <a href="${prefix}articles.html">龜鹿知識</a>
+            <a href="${prefix}faq.html">FAQ</a>
+          </div>
 
-        <!-- 🔥 成交入口 -->
-        <div class="menu-block">
-          <a href="https://lin.ee/sHZW7NkR?text=幫我搭配龜鹿">
-            快速搭配
-          </a>
+          <div class="menu-block">
+            <a href="https://lin.ee/sHZW7NkR?text=幫我搭配龜鹿">
+              🔥 快速搭配
+            </a>
+          </div>
         </div>
 
         <div class="menu-bottom">
@@ -78,18 +85,16 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
+    // ===== ✕ 關閉（穩定版🔥）=====
+    const closeBtn = menu.querySelector('#menuClose');
+    if(closeBtn){
+      closeBtn.addEventListener('click', ()=>toggleMenu(false));
+    }
+
     // ===== 點背景關閉 =====
     menu.addEventListener('click',(e)=>{
       if(e.target === menu) toggleMenu(false);
     });
-
-    // ===== ✕ 關閉（防呆🔥）=====
-    setTimeout(()=>{
-      const closeBtn = document.getElementById('menuClose');
-      if(closeBtn){
-        closeBtn.addEventListener('click', ()=>toggleMenu(false));
-      }
-    },50);
 
     // ===== 點連結關閉 =====
     menu.querySelectorAll('a').forEach(link=>{
@@ -99,10 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ===== 漢堡按鈕 =====
   if(btn){
-    btn.addEventListener('click', ()=>toggleMenu());
+    btn.addEventListener('click', ()=>{
+      toggleMenu();
+    });
   }
 
-  // ===== ESC關閉 =====
+  // ===== ESC =====
   document.addEventListener('keydown', (e)=>{
     if(e.key === 'Escape') toggleMenu(false);
   });
@@ -125,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     revealEls.forEach(el=>el.classList.add('show'));
   }
 
-  // ===== 🔥 自動文章系統（升級🔥）=====
+  // ===== 自動文章 =====
   if(
     location.pathname.includes('/articles/') ||
     location.pathname.includes('/seo/')
