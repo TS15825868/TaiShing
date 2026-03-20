@@ -1,13 +1,11 @@
 (function(){
 
-// ===== 路徑判斷 =====
 function getBasePrefix(){
   if(location.pathname.includes('/articles/')) return '../';
   if(location.pathname.includes('/seo/')) return '../';
   return '';
 }
 
-// ===== 漢堡控制 =====
 function toggleMenu(force){
   const menu = document.getElementById('menuOverlay');
   if(!menu) return;
@@ -17,30 +15,17 @@ function toggleMenu(force){
     : !menu.classList.contains('active');
 
   menu.classList.toggle('active', open);
-
-  // 🔥 鎖滾動
   document.body.style.overflow = open ? 'hidden' : '';
-
-  // 🔥 狀態 class
-  document.body.classList.toggle('menu-open', open);
 }
 
 window.toggleMenu = toggleMenu;
 
-// ===== DOM Ready =====
 document.addEventListener('DOMContentLoaded', () => {
 
   const prefix = getBasePrefix();
   const menu = document.getElementById('menuOverlay');
   const btn = document.querySelector('.menu-btn');
 
-  // ===== 初始化（避免殘留）=====
-  if(menu){
-    menu.classList.remove('active');
-  }
-  document.body.style.overflow = '';
-
-  // ===== 建立 menu =====
   if(menu){
 
     menu.innerHTML = `
@@ -73,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
 
         <div class="menu-bottom">
-          <a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent('我想了解龜鹿怎麼選')}" class="btn btn-line">
+          <a href="https://lin.ee/sHZW7NkR" class="btn btn-line">
             LINE詢問
           </a>
 
@@ -85,63 +70,27 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
     `;
 
-    // ===== ✕ 關閉（穩定版🔥）=====
     const closeBtn = menu.querySelector('#menuClose');
     if(closeBtn){
       closeBtn.addEventListener('click', ()=>toggleMenu(false));
     }
 
-    // ===== 點背景關閉 =====
     menu.addEventListener('click',(e)=>{
       if(e.target === menu) toggleMenu(false);
     });
 
-    // ===== 點連結關閉 =====
     menu.querySelectorAll('a').forEach(link=>{
       link.addEventListener('click', ()=>toggleMenu(false));
     });
   }
 
-  // ===== 漢堡按鈕 =====
   if(btn){
-    btn.addEventListener('click', ()=>{
-      toggleMenu();
-    });
+    btn.addEventListener('click', ()=>toggleMenu());
   }
 
-  // ===== ESC =====
   document.addEventListener('keydown', (e)=>{
     if(e.key === 'Escape') toggleMenu(false);
   });
-
-  // ===== 滾動動畫 =====
-  const revealEls = document.querySelectorAll('.reveal');
-
-  if('IntersectionObserver' in window){
-    const obs = new IntersectionObserver((entries)=>{
-      entries.forEach(entry=>{
-        if(entry.isIntersecting){
-          entry.target.classList.add('show');
-          obs.unobserve(entry.target);
-        }
-      });
-    },{threshold:.14});
-
-    revealEls.forEach(el=>obs.observe(el));
-  }else{
-    revealEls.forEach(el=>el.classList.add('show'));
-  }
-
-  // ===== 自動文章 =====
-  if(
-    location.pathname.includes('/articles/') ||
-    location.pathname.includes('/seo/')
-  ){
-    const script = document.createElement('script');
-    script.src = prefix + 'article.js';
-    script.defer = true;
-    document.body.appendChild(script);
-  }
 
 });
 
