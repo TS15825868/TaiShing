@@ -1,44 +1,18 @@
-(function(){
-
-function toggleMenu(){
-const menu=document.getElementById("menuOverlay");
-menu.classList.toggle("active");
-
-// 🔥 鎖滾動
-document.body.style.overflow =
-menu.classList.contains("active") ? "hidden" : "";
-}
-
-window.toggleMenu=toggleMenu;
-
 document.addEventListener("DOMContentLoaded",()=>{
 
-const menu=document.getElementById("menuOverlay");
-const btn=document.querySelector(".menu-btn");
+  const menuBtn = document.querySelector(".menu-btn");
+  const menu = document.getElementById("menuOverlay");
 
-if(menu){
-menu.innerHTML=`
-<div class="menu-full">
+  if(menuBtn && menu){
+    menuBtn.addEventListener("click",()=>{
+      menu.classList.add("active");
+    });
+  }
 
-<div class="menu-close" onclick="toggleMenu()">✕</div>
-
-<a href="index.html">首頁</a>
-<a href="brand.html">品牌</a>
-<a href="guilu-series.html">龜鹿系列</a>
-<a href="choose.html">怎麼選</a>
-<a href="faq.html">FAQ</a>
-
-<a href="https://lin.ee/sHZW7NkR" class="btn btn-line">
-LINE詢問
-</a>
-
-</div>`;
-}
-
-if(btn){
-btn.addEventListener("click",toggleMenu);
-}
+  window.closeMenu = function(){
+    if(menu){
+      menu.classList.remove("active");
+    }
+  }
 
 });
-
-})();
