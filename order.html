@@ -2,117 +2,50 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>立即下單｜仙加味</title>
-<meta name="description" content="仙加味龜鹿產品快速下單">
-<link rel="stylesheet" href="site.css">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>訂單填寫｜仙加味</title>
+<style>
+body{font-family:sans-serif;background:#F7F4ED;padding:20px}
+.box{max-width:500px;margin:auto;background:#fff;padding:20px;border-radius:12px}
+input,select{width:100%;padding:10px;margin:10px 0}
+button{width:100%;padding:12px;background:#111;color:#fff;border:none;border-radius:999px}
+</style>
 </head>
-
 <body>
+<div class="box">
+<h2>訂單填寫</h2>
 
-<header class="header">
-<a href="index.html" class="logo">
-<img src="images/logo-seal.png">
-<span>仙加味</span>
-</a>
-</header>
-
-<main>
-
-<section class="section">
-
-<h1 style="text-align:center">立即下單</h1>
-
-<div class="info-card" style="max-width:520px;margin:auto">
-
-<!-- 商品 -->
-<label>商品</label>
-<select id="product">
-<option value="龜鹿膏">龜鹿膏</option>
-<option value="龜鹿飲">龜鹿飲</option>
-<option value="龜鹿湯塊">龜鹿湯塊</option>
-<option value="鹿茸粉">鹿茸粉</option>
-</select>
-
-<!-- 數量 -->
-<label>數量</label>
-<input id="qty" type="number" value="1" min="1">
-
-<!-- 姓名 -->
 <label>姓名</label>
-<input id="name" placeholder="請填寫收件人姓名">
+<input id="name">
 
-<!-- 電話 -->
 <label>電話</label>
-<input id="phone" placeholder="請填寫聯絡電話">
+<input id="phone">
 
-<!-- 配送 -->
-<label>配送方式</label>
-<select id="delivery">
-<option value="7-11">7-11</option>
-<option value="宅配">宅配</option>
-<option value="面交（限雙北）">面交（限雙北）</option>
+<label>產品</label>
+<select id="product">
+<option>龜鹿膏 100g</option>
+<option>龜鹿飲 180cc</option>
+<option>龜鹿湯塊</option>
+<option>鹿茸粉</option>
 </select>
 
-<button class="btn btn-line" onclick="submitOrder()">
-送出訂單
-</button>
+<label>數量</label>
+<input id="qty" type="number" value="1">
 
-<p style="font-size:12px;color:#888;margin-top:10px">
-送出後我們會盡快與你確認訂單
-</p>
+<button onclick="sendOrder()">送出訂單</button>
 
 </div>
 
-</section>
-
-</main>
-
 <script>
+function sendOrder(){
+const name=document.getElementById('name').value;
+const phone=document.getElementById('phone').value;
+const product=document.getElementById('product').value;
+const qty=document.getElementById('qty').value;
 
-// 👉 自動帶商品
-const params = new URLSearchParams(location.search);
-const p = params.get("product");
-if(p){
-document.getElementById("product").value = p;
-}
+const msg = `訂單\n姓名:${name}\n電話:${phone}\n商品:${product}\n數量:${qty}`;
 
-// 👉 送出訂單
-function submitOrder(){
-
-const data = {
-product:document.getElementById('product').value,
-qty:document.getElementById('qty').value,
-name:document.getElementById('name').value,
-phone:document.getElementById('phone').value,
-delivery:document.getElementById('delivery').value
-};
-
-// 👉 基本驗證
-if(!data.name || !data.phone){
-alert("請填寫姓名與電話");
-return;
-}
-
-// 👉 傳送CRM
-fetch("https://script.google.com/macros/s/AKfycbwAFBxeROd2ZYGJ_h0O7_H2MMxptOMoj3EXIErZpbKuTYFOzOVwQkrk8X1MoxapkHVGSA/exec",{
-method:"POST",
-body:JSON.stringify({
-action:"order",
-...data
-})
-});
-
-// 👉 同時開LINE（成交補強）
-window.open(
-`https://lin.ee/sHZW7NkR?text=${encodeURIComponent(
-`我要下單\n商品：${data.product}\n數量：${data.qty}\n姓名：${data.name}\n電話：${data.phone}\n配送：${data.delivery}`
-)}`
-);
-
-// 👉 成功提示
-alert("✅ 訂單已送出，我們會盡快與你確認");
-
+window.open("https://line.me/R/oaMessage/@762jybnnm/?"+encodeURIComponent(msg));
 }
 </script>
 
