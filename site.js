@@ -55,18 +55,18 @@
 
     /* ===== 選單（🔥成交版）===== */
     if(menu){
-      menu.innerHTML = `
-        <a href="${prefix}index.html">首頁</a>
-        <a href="${prefix}combo.html">套餐選擇🔥</a>
-        <a href="${prefix}guilu-series.html">龜鹿系列</a>
-        <a href="${prefix}recipes.html">料理搭配</a>
-        <a href="${prefix}articles.html">龜鹿知識</a>
-        <a href="${prefix}faq.html">FAQ</a>
+      
+menu.innerHTML = `
+<a href="${prefix}index.html">首頁</a>
+<a href="${prefix}combo.html">套餐選擇🔥</a>
+<a href="${prefix}guilu-series.html">龜鹿系列</a>
+<a href="${prefix}choose.html">怎麼選龜鹿</a>
+<a href="${prefix}recipes.html">料理搭配</a>
+<a href="${prefix}articles.html">龜鹿知識</a>
+<a href="${prefix}faq.html">FAQ</a>
+<a href="https://lin.ee/sHZW7NkR?text=我想開始補養，可以幫我配嗎？" class="btn btn-line">🔥直接幫我配</a>
+`;
 
-        <a href="javascript:void(0)" onclick="goLine('我想開始補養，可以幫我配一組嗎？')" class="btn btn-line">
-          🔥 直接幫我配
-        </a>
-      `;
 
       menu.addEventListener('click',(e)=>{
         if(e.target === menu) toggleMenu(false);

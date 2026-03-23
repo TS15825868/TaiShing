@@ -157,9 +157,11 @@ body{
 
 .product-card img{
   width:100%;
-  aspect-ratio:1/1;
-  object-fit:cover;
-  border-radius:16px;
+  height:160px;
+  object-fit:contain;
+  background:#fbf8f2;
+  padding:16px;
+  border-radius:18px;
 }
 
 /* cta */
@@ -179,4 +181,16 @@ body{
   color:#fff;
   padding:12px 16px;
   border-radius:999px;
+}
+
+.img-placeholder{
+  height:140px;
+  object-fit:contain;
+  padding:18px;
+  background:#fbf8f2;
+}
+
+@media (max-width:720px){
+.hero{min-height:60vh;}
+.hero-bg{object-fit:cover;}
 }
