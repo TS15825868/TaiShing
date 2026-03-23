@@ -5,7 +5,13 @@
     return location.pathname.includes('/articles/') ? '../' : '';
   }
 
-  /* ===== 選單控制（🔥已修正遮擋問題）===== */
+  /* ===== LINE快速導流（🔥新增）===== */
+  function goLine(text){
+    const url = `https://lin.ee/sHZW7NkR?text=${encodeURIComponent(text)}`;
+    window.location.href = url;
+  }
+
+  /* ===== 選單控制（已修正）===== */
   function toggleMenu(force){
     const menu = document.getElementById('menuOverlay');
     if(!menu) return;
@@ -16,10 +22,8 @@
 
     menu.classList.toggle('active', shouldOpen);
 
-    // 🔥 防止背景滾動
     document.body.style.overflow = shouldOpen ? 'hidden' : '';
 
-    // 🔥 保險：強制 scroll 到頂（解決 hero 蓋住問題）
     if(shouldOpen){
       window.scrollTo({ top: 0, behavior: 'instant' });
     }
@@ -49,41 +53,41 @@
     const menu = document.getElementById('menuOverlay');
     const btn = document.querySelector('.menu-btn');
 
-    /* ===== 建立選單 ===== */
+    /* ===== 選單（🔥成交版）===== */
     if(menu){
       menu.innerHTML = `
         <a href="${prefix}index.html">首頁</a>
-        <a href="${prefix}brand.html">品牌故事</a>
+        <a href="${prefix}combo.html">套餐選擇🔥</a>
         <a href="${prefix}guilu-series.html">龜鹿系列</a>
-        <a href="${prefix}choose.html">怎麼選龜鹿</a>
         <a href="${prefix}recipes.html">料理搭配</a>
         <a href="${prefix}articles.html">龜鹿知識</a>
         <a href="${prefix}faq.html">FAQ</a>
-        <a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent('我想詢問龜鹿產品')}" class="btn btn-line">LINE詢問</a>
+
+        <a href="javascript:void(0)" onclick="goLine('我想開始補養，可以幫我配一組嗎？')" class="btn btn-line">
+          🔥 直接幫我配
+        </a>
       `;
 
-      // 點背景關閉
       menu.addEventListener('click',(e)=>{
         if(e.target === menu) toggleMenu(false);
       });
 
-      // 點連結關閉
       menu.querySelectorAll('a').forEach(link=>{
         link.addEventListener('click', ()=>toggleMenu(false));
       });
     }
 
-    /* ===== 漢堡按鈕 ===== */
+    /* ===== 漢堡 ===== */
     if(btn){
       btn.addEventListener('click', ()=>toggleMenu());
     }
 
-    /* ===== ESC 關閉 ===== */
+    /* ===== ESC ===== */
     document.addEventListener('keydown', (e)=>{
       if(e.key === 'Escape') toggleMenu(false);
     });
 
-    /* ===== 動畫（安全版）===== */
+    /* ===== 動畫 ===== */
     const revealEls = document.querySelectorAll('.reveal');
 
     if('IntersectionObserver' in window && revealEls.length){
@@ -124,13 +128,21 @@
       });
     }
 
-    /* ===== 選擇導流 ===== */
+    /* ===== 商品選擇導流 ===== */
     document.querySelectorAll('.choose-btn[data-product]').forEach(btn=>{
       btn.addEventListener('click', ()=>{
         const id = btn.getAttribute('data-product');
         if(id){
           location.href = `${prefix}product.html?id=${encodeURIComponent(id)}`;
         }
+      });
+    });
+
+    /* ===== 🔥 CTA自動強化（新）===== */
+    document.querySelectorAll('[data-line]').forEach(el=>{
+      el.addEventListener('click', ()=>{
+        const text = el.getAttribute('data-line') || '我想了解龜鹿產品';
+        goLine(text);
       });
     });
 
