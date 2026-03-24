@@ -19,12 +19,9 @@ body{
   padding-top:76px;
 }
 
-img{
-  max-width:100%;
-  display:block;
-}
+img{max-width:100%;display:block}
 
-/* ===== Header ===== */
+/* Header */
 .header{
   position:fixed;
   top:0;
@@ -37,7 +34,6 @@ img{
   background:rgba(255,255,255,.95);
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--line);
-  z-index:999;
 }
 
 .logo{
@@ -48,24 +44,21 @@ img{
 
 .logo img{
   height:42px;
-  width:auto;
   object-fit:contain;
 }
 
-/* ===== 漢堡 ===== */
+/* 漢堡 */
 .menu-btn{
   width:42px;
   height:42px;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:999px;
   border:1px solid var(--line);
-  background:#fff;
-  font-size:20px;
+  border-radius:999px;
 }
 
-/* ===== Menu ===== */
+/* Menu */
 .menu-overlay{
   position:fixed;
   inset:0;
@@ -87,11 +80,11 @@ img{
 
 .menu-overlay a{
   color:#fff;
-  font-size:20px;
   text-decoration:none;
+  font-size:20px;
 }
 
-/* ===== HERO ===== */
+/* HERO */
 .hero{
   position:relative;
   height:70vh;
@@ -120,14 +113,13 @@ img{
 
 .hero-title{
   font-size:clamp(32px,6vw,56px);
-  font-weight:700;
 }
 
 .hero-text{
   margin:16px 0;
 }
 
-/* ===== 按鈕（統一🔥）===== */
+/* btn */
 .btn{
   display:inline-block;
   padding:12px 20px;
@@ -147,7 +139,7 @@ img{
   border:none;
 }
 
-/* ===== 卡片 ===== */
+/* 卡片 */
 .entry-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -160,11 +152,6 @@ img{
   padding:20px;
   text-align:center;
   border:1px solid var(--line);
-  transition:.25s;
-}
-
-.entry-card:hover{
-  transform:translateY(-5px);
 }
 
 .entry-card img{
@@ -176,20 +163,7 @@ img{
   border:2px solid var(--cta);
 }
 
-/* ===== combo ===== */
-.combo{
-  background:#fff;
-  padding:24px;
-  border-radius:24px;
-  margin-bottom:20px;
-  border:1px solid var(--line);
-}
-
-.combo.hot{
-  border:2px solid var(--cta);
-}
-
-/* ===== 浮動LINE ===== */
+/* 浮動LINE */
 .floating-line{
   position:fixed;
   right:16px;
@@ -200,7 +174,6 @@ img{
   border-radius:999px;
 }
 
-/* ===== mobile ===== */
 @media(max-width:768px){
   .entry-grid{
     grid-template-columns:1fr;
