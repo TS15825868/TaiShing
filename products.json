@@ -11,8 +11,7 @@
           "spec": "100 g / 罐",
           "image": "images/guilu-gao-100g.jpg",
           "aliases": ["龜鹿膏","膏"],
-          "lineText": "我想了解龜鹿膏",
-          "intro": "濃縮膏狀型態，可直接食用。",
+          "intro": "濃縮膏狀型態，可直接食用，也可加入溫熱開水。",
           "ingredients": [
             "龜板萃取物",
             "鹿角萃取物",
@@ -26,26 +25,28 @@
           "id": "guilu-drink",
           "name": "龜鹿飲",
           "fullName": "仙加味・龜鹿飲",
-          "spec": "30 cc / 180 cc",
+          "spec": "30 cc / 罐",
           "image": "images/guilu-drink-30cc.jpg",
           "aliases": ["龜鹿飲","飲"],
-          "lineText": "我想了解龜鹿飲",
-          "intro": "液態即飲型態。",
+          "intro": "液態即飲型態，方便日常飲用。",
           "ingredients": [
             "水",
             "龜板萃取物",
-            "鹿角萃取物"
+            "鹿角萃取物",
+            "粉光蔘",
+            "枸杞",
+            "紅棗",
+            "黃耆"
           ]
         },
         {
           "id": "guilu-block",
           "name": "龜鹿湯塊",
           "fullName": "仙加味・龜鹿湯塊",
-          "spec": "75 g / 300 g / 600 g",
+          "spec": "75 g / 盒",
           "image": "images/guilu-block-75g.jpg",
           "aliases": ["龜鹿湯塊","湯塊"],
-          "lineText": "我想了解龜鹿湯塊",
-          "intro": "燉湯直接使用。",
+          "intro": "濃縮湯塊型態，適合燉湯與日常料理。",
           "ingredients": [
             "龜板萃取物",
             "鹿角萃取物"
@@ -58,9 +59,10 @@
           "spec": "75 g / 罐",
           "image": "images/lurong-powder-75g.jpg",
           "aliases": ["鹿茸粉","鹿茸"],
-          "lineText": "我想了解鹿茸粉",
-          "intro": "粉末型態。",
-          "ingredients": ["鹿茸粉"]
+          "intro": "粉末型態，可加入熱飲或日常飲食。",
+          "ingredients": [
+            "鹿茸"
+          ]
         }
       ]
     }
