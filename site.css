@@ -1,27 +1,21 @@
 :root{
   --bg:#f7f4ed;
   --surface:#ffffff;
-  --surface-soft:#fcfaf6;
   --text:#2f2118;
   --muted:#6f6258;
   --line:#e8dfd2;
-  --brand:#6f2a24;
-  --brand-2:#8f6b45;
+  --brand:#0B1F3B;
+  --cta:#FF7A00;
   --line-green:#06C755;
-  --shadow:0 18px 40px rgba(47,33,24,.08);
-  --shadow-hover:0 24px 60px rgba(47,33,24,.12);
-  --radius:24px;
-  --max:1120px;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:-apple-system,"PingFang TC","Noto Sans TC",sans-serif;
+  font-family:-apple-system,"PingFang TC","Noto Sans TC";
   background:var(--bg);
   color:var(--text);
-  line-height:1.7;
   padding-top:76px;
 }
 
@@ -40,58 +34,34 @@ img{
   justify-content:space-between;
   align-items:center;
   padding:0 20px;
-  background:rgba(255,255,255,.95);
-  backdrop-filter:blur(14px);
+  background:#fff;
   border-bottom:1px solid var(--line);
   z-index:999;
 }
 
-.logo{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-  color:var(--text);
-}
-
 .logo img{
   height:42px;
-  width:auto;
-  object-fit:contain;
-}
-
-.logo span{
-  font-size:22px;
-  font-weight:700;
 }
 
 /* ===== 漢堡 ===== */
 .menu-btn{
-  width:44px;
-  height:44px;
-  display:grid;
-  place-items:center;
-  border-radius:999px;
-  background:var(--surface-soft);
-  border:1px solid var(--line);
   font-size:22px;
-  cursor:pointer;
 }
 
-/* ===== Menu（封頂🔥）===== */
+/* ===== Menu ===== */
 .menu-overlay{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.94);
+  background:#000;
+  color:#fff;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  gap:14px;
+  gap:20px;
   opacity:0;
   visibility:hidden;
   transition:.3s;
-  z-index:998;
 }
 
 .menu-overlay.active{
@@ -101,196 +71,90 @@ img{
 
 .menu-overlay a{
   color:#fff;
-  font-size:22px;
   text-decoration:none;
-}
-
-/* 🔥 分類樣式 */
-.menu-group{
-  margin-top:14px;
-  text-align:center;
-}
-
-.menu-title{
-  font-size:13px;
-  color:#aaa;
-  margin-bottom:4px;
-}
-
-/* ===== Section ===== */
-.section{
-  max-width:var(--max);
-  margin:auto;
-  padding:64px 20px;
 }
 
 /* ===== HERO ===== */
 .hero{
   position:relative;
-  min-height:70vh;
+  height:70vh;
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
   color:#fff;
-  overflow:hidden;
 }
 
 .hero-bg{
   position:absolute;
-  inset:0;
   width:100%;
   height:100%;
   object-fit:cover;
-  z-index:-2;
-}
-
-.hero::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.7));
   z-index:-1;
 }
 
-.hero-content{
-  max-width:700px;
-  padding:20px;
-}
-
 .hero-title{
-  font-size:clamp(36px,6vw,64px);
-  line-height:1.1;
-  margin-bottom:14px;
+  font-size:48px;
+  font-weight:700;
 }
 
 .hero-text{
-  font-size:18px;
+  margin:20px 0;
+}
+
+/* ===== 卡片 ===== */
+.entry-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.entry-card{
+  background:#fff;
+  border-radius:24px;
+  padding:20px;
+  text-align:center;
+}
+
+.entry-card.hot{
+  border:2px solid var(--cta);
+}
+
+/* ===== combo ===== */
+.combo{
+  background:#fff;
+  padding:20px;
+  border-radius:24px;
   margin-bottom:20px;
 }
 
-/* ===== 按鈕（升級🔥）===== */
+/* ===== btn ===== */
 .btn{
   display:inline-block;
-  padding:12px 22px;
+  padding:12px 20px;
   border-radius:999px;
   text-decoration:none;
-  font-weight:600;
-  margin:6px;
-  border:1px solid transparent;
-  transition:.25s;
-}
-
-.btn:hover{
-  transform:translateY(-2px);
-}
-
-.btn-outline{
-  border:1px solid #fff;
-  color:#fff;
-}
-
-.btn-outline:hover{
-  background:#fff;
-  color:#000;
 }
 
 .btn-line{
   background:var(--line-green);
   color:#fff;
-  box-shadow:0 10px 20px rgba(6,199,85,.25);
 }
 
-.btn-line:hover{
-  box-shadow:0 16px 32px rgba(6,199,85,.35);
-}
-
-/* ===== 插畫卡（升級🔥）===== */
-.entry-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
-  margin-top:28px;
-}
-
-.entry-card{
-  background:var(--surface-soft);
-  border:1px solid var(--line);
-  border-radius:28px;
-  padding:26px;
-  text-align:center;
-  text-decoration:none;
-  color:var(--text);
-  box-shadow:var(--shadow);
-  transition:.25s;
-}
-
-.entry-card:hover{
-  transform:translateY(-6px);
-  box-shadow:var(--shadow-hover);
-}
-
-.entry-card img{
-  width:110px;
-  margin:0 auto 12px;
-}
-
-.entry-card h3{
-  font-size:22px;
-}
-
-.entry-card p{
-  font-size:14px;
-  color:var(--muted);
-}
-
-.entry-card.hot{
-  border:2px solid #d6b98c;
-}
-
-/* ===== 套餐 ===== */
-.combo{
-  background:#fff;
-  border-radius:28px;
-  padding:24px;
-  border:1px solid var(--line);
-  margin-bottom:20px;
-  box-shadow:var(--shadow);
-  transition:.25s;
-}
-
-.combo:hover{
-  box-shadow:var(--shadow-hover);
-}
-
-.combo.hot{
-  border:2px solid #d6b98c;
-}
-
-/* ===== 浮動LINE ===== */
+/* ===== 浮動LINE🔥 ===== */
 .floating-line{
   position:fixed;
   right:16px;
   bottom:16px;
   background:var(--line-green);
   color:#fff;
-  padding:12px 16px;
+  padding:12px 18px;
   border-radius:999px;
-  font-weight:600;
-  box-shadow:0 18px 30px rgba(6,199,85,.25);
 }
 
-/* ===== 手機 ===== */
+/* ===== mobile ===== */
 @media(max-width:768px){
   .entry-grid{
     grid-template-columns:1fr;
-  }
-
-  .hero{
-    min-height:60vh;
-  }
-
-  .hero-title{
-    font-size:34px;
   }
 }
