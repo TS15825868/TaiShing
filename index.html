@@ -3,10 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>仙加味｜龜鹿日常補養</title>
-<meta name="description" content="龜鹿膏、龜鹿飲、龜鹿湯塊，建立你的日常補養節奏。">
-
 <link rel="stylesheet" href="site.css">
 </head>
 
@@ -14,76 +11,44 @@
 
 <header class="header">
   <a href="index.html" class="logo">
-    <img src="images/logo-seal.png" alt="仙加味">
+    <img src="images/logo-seal.png">
     <span>仙加味</span>
   </a>
-  <div class="menu-btn" onclick="toggleMenu()">☰</div>
+  <div class="menu-btn">☰</div>
 </header>
 
 <div id="menuOverlay" class="menu-overlay"></div>
 
 <main>
 
-<!-- HERO -->
 <section class="hero">
-  <img src="images/hero-guilu-gao.jpg" class="hero-bg" alt="龜鹿膏">
+  <img src="images/hero-guilu-gao.jpg" class="hero-bg">
   <div class="hero-content">
-    <h1 class="hero-title">把龜鹿，變成你的日常</h1>
-    <p class="hero-text">每天一點，慢慢補</p>
-
-    <div>
-      <a href="choose.html" class="btn btn-outline">怎麼選</a>
-      <a href="https://lin.ee/sHZW7NkR" class="btn btn-line">LINE詢問</a>
-    </div>
+    <h1>把龜鹿變成你的日常</h1>
+    <p>簡單開始就好，不用複雜</p>
+    <button onclick="openLine('我想了解怎麼選')" class="btn-line">
+      直接詢問
+    </button>
   </div>
 </section>
 
-<!-- 入口 -->
-<section class="section">
-
-<h2 style="text-align:center;">從這裡開始</h2>
+<section class="section center">
+<h2>從這裡開始</h2>
 
 <div class="entry-grid">
 
-<a href="choose.html" class="entry-card">
-<img src="images/entry/entry-choose.png" onerror="this.src='images/logo-seal.png'">
-<h3>開始搭配</h3>
-</a>
-
-<a href="combo.html" class="entry-card hot">
-<img src="images/entry/entry-combo.png" onerror="this.src='images/logo-seal.png'">
-<h3>套餐推薦</h3>
-</a>
-
-<a href="how-to-use.html" class="entry-card">
-<img src="images/entry/entry-recipes.png" onerror="this.src='images/logo-seal.png'">
-<h3>怎麼使用</h3>
-</a>
-
-<a href="articles.html" class="entry-card">
-<img src="images/entry/entry-knowledge.png" onerror="this.src='images/logo-seal.png'">
-<h3>龜鹿知識</h3>
-</a>
-
-<a href="faq.html" class="entry-card">
-<img src="images/entry/entry-faq.png" onerror="this.src='images/logo-seal.png'">
-<h3>FAQ</h3>
-</a>
-
-<a href="https://lin.ee/sHZW7NkR" class="entry-card">
-<img src="images/entry/entry-line.png" onerror="this.src='images/logo-seal.png'">
-<h3>LINE詢問</h3>
-</a>
+<a href="choose.html" class="entry-card">怎麼選</a>
+<a href="combo.html" class="entry-card hot">套餐推薦</a>
+<a href="how-to-use.html" class="entry-card">怎麼使用</a>
+<a href="articles.html" class="entry-card">龜鹿知識</a>
+<a href="faq.html" class="entry-card">FAQ</a>
+<a onclick="openLine('我想詢問')" class="entry-card">LINE詢問</a>
 
 </div>
-
 </section>
 
 </main>
 
-<a href="https://lin.ee/sHZW7NkR" class="floating-line">LINE</a>
-
 <script src="site.js"></script>
-
 </body>
 </html>
