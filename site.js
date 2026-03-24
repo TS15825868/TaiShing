@@ -1,6 +1,5 @@
 (function(){
 
-/* ===== LINE開啟 ===== */
 window.openLine = function(text){
   const url = "https://lin.ee/sHZW7NkR?text=" + encodeURIComponent(text);
   window.open(url,"_blank");
@@ -25,7 +24,6 @@ function toggleMenu(force){
   menu.classList.toggle('active', open);
   document.body.style.overflow = open ? 'hidden' : '';
 }
-
 window.toggleMenu = toggleMenu;
 
 document.addEventListener('DOMContentLoaded', ()=>{
@@ -34,7 +32,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
   if(menu){
     menu.innerHTML = `
-
     <a href="index.html">首頁</a>
 
     <div class="menu-group">
@@ -53,7 +50,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
     </div>
 
     <a href="https://lin.ee/sHZW7NkR" class="btn-line">LINE詢問</a>
-
     `;
 
     menu.addEventListener('click',(e)=>{
