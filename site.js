@@ -1,10 +1,15 @@
 (function(){
 
+/* ===== 路徑判斷（升級🔥）===== */
 function getBasePrefix(){
-  return location.pathname.includes('/articles/') ? '../' : '';
+  const path = location.pathname;
+  if(path.includes('/articles/') || path.includes('/pages/')){
+    return '../';
+  }
+  return '';
 }
 
-/* ===== 漢堡開關 ===== */
+/* ===== 漢堡選單 ===== */
 function toggleMenu(force){
   const menu = document.getElementById('menuOverlay');
   if(!menu) return;
@@ -14,6 +19,8 @@ function toggleMenu(force){
     : !menu.classList.contains('active');
 
   menu.classList.toggle('active', shouldOpen);
+
+  /* 🔥 防止背景滾動 */
   document.body.style.overflow = shouldOpen ? 'hidden' : '';
 }
 
@@ -40,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const menu = document.getElementById('menuOverlay');
   const btn = document.querySelector('.menu-btn');
 
-  /* ===== 漢堡選單（封頂完整版🔥）===== */
+  /* ===== 漢堡選單（最終版🔥）===== */
   if(menu){
     menu.innerHTML = `
 
@@ -74,7 +81,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="${prefix}product.html?id=antler-powder">鹿茸粉</a>
       </div>
 
-      <a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent('我想了解龜鹿怎麼選')}" class="btn btn-line">
+      <a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent('我想了解龜鹿怎麼選，幫我推薦')}" 
+         class="btn btn-line">
         LINE詢問 →
       </a>
     `;
@@ -84,16 +92,25 @@ document.addEventListener('DOMContentLoaded', () => {
       if(e.target === menu) toggleMenu(false);
     });
 
-    /* 點選連結關閉 */
+    /* 點連結關閉 */
     menu.querySelectorAll('a').forEach(link=>{
       link.addEventListener('click', ()=>toggleMenu(false));
     });
+
+    /* 🔥 滾動自動關閉 */
+    window.addEventListener('scroll', ()=>{
+      if(menu.classList.contains('active')){
+        toggleMenu(false);
+      }
+    });
   }
 
+  /* ===== 漢堡按鈕 ===== */
   if(btn){
     btn.addEventListener('click', ()=>toggleMenu());
   }
 
+  /* ESC關閉 */
   document.addEventListener('keydown', (e)=>{
     if(e.key === 'Escape') toggleMenu(false);
   });
@@ -140,7 +157,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* ===== 導流按鈕 ===== */
+  /* ===== 導流按鈕（產品跳轉）===== */
   document.querySelectorAll('.choose-btn[data-product]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       const id = btn.getAttribute('data-product');
@@ -150,5 +167,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-});
 })();
