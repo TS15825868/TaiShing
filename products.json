@@ -1,34 +1,8 @@
 {
-  "categories": [
-    {
-      "id": "guilu-series",
-      "name": "仙加味・龜鹿",
-      "items": [
-        {
-          "id": "guilu-gao",
-          "name": "龜鹿膏",
-          "spec": "100 g / 罐",
-          "image": "images/guilu-gao-100g.jpg"
-        },
-        {
-          "id": "guilu-drink",
-          "name": "龜鹿飲",
-          "spec": "30 cc / 罐",
-          "image": "images/guilu-drink-30cc.jpg"
-        },
-        {
-          "id": "guilu-block",
-          "name": "龜鹿湯塊",
-          "spec": "75 g / 盒",
-          "image": "images/guilu-block-75g.jpg"
-        },
-        {
-          "id": "lurong-powder",
-          "name": "鹿茸粉",
-          "spec": "75 g / 罐",
-          "image": "images/lurong-powder-75g.jpg"
-        }
-      ]
-    }
+  "products":[
+    {"name":"龜鹿膏","spec":"100 g / 罐"},
+    {"name":"龜鹿飲","spec":"30 cc / 罐"},
+    {"name":"龜鹿湯塊","spec":"75 g / 盒"},
+    {"name":"鹿茸粉","spec":"75 g / 罐"}
   ]
 }
