@@ -2,43 +2,31 @@
 <html lang="zh-Hant-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>影片專區</title>
+<title>影片｜仙加味</title>
 <link rel="stylesheet" href="site.css">
 </head>
 
 <body>
 
-<header class="header">
-<a href="index.html" class="logo">
-<img src="images/logo-seal.png">
-</a>
-<div class="menu-btn">☰</div>
-</header>
-
-<div id="menuOverlay" class="menu-overlay"></div>
-
 <section class="section">
 
-<h1>影片專區</h1>
+<h1>相關影片</h1>
 
-<div class="video-grid">
+<div class="grid">
 
-<div class="video-card" onclick="loadVideo(this,'7599984981527530772')">▶ 播放</div>
-<div class="video-card" onclick="loadVideo(this,'7599654150523079957')">▶ 播放</div>
+<div class="card" onclick="load(this,'7599984981527530772')">播放影片</div>
+<div class="card" onclick="load(this,'7599654150523079957')">播放影片</div>
 
 </div>
 
-<a class="btn btn-line" onclick="openLine('幫我搭配')">
-👉 看完幫我配
-</a>
+<button onclick="openLine('看完想了解')">
+👉 看完幫我搭配
+</button>
 
 </section>
 
-<script src="site.js"></script>
-
 <script>
-function loadVideo(el,id){
+function load(el,id){
   el.innerHTML=`<iframe src="https://www.tiktok.com/embed/${id}" width="100%" height="400"></iframe>`;
 }
 </script>
