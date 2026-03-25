@@ -1,123 +1,68 @@
-:root{
-  --bg:#f7f4ed;
-  --text:#2f2118;
-  --line:#e8dfd2;
-  --brand:#0B1F3B;
-  --cta:#FF7A00;
-  --line-green:#06C755;
-}
-
 body{
   margin:0;
   font-family:-apple-system,"PingFang TC","Noto Sans TC";
-  background:var(--bg);
-  padding-top:76px;
+  padding-top:70px;
 }
 
+/* header */
 .header{
   position:fixed;
   top:0;
   width:100%;
-  height:76px;
+  height:70px;
+  background:#fff;
   display:flex;
   justify-content:space-between;
   align-items:center;
   padding:0 20px;
-  background:#fff;
-  border-bottom:1px solid var(--line);
 }
 
-.logo img{
-  height:42px;
-}
-
+/* menu */
 .menu-overlay{
   position:fixed;
   inset:0;
   background:#000;
-  display:flex;
+  color:#fff;
+  display:none;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  gap:16px;
-  opacity:0;
-  visibility:hidden;
 }
 
 .menu-overlay.active{
-  opacity:1;
-  visibility:visible;
-}
-
-.menu-overlay a{
-  color:#fff;
-  font-size:20px;
-}
-
-.menu-group{
-  color:#888;
-  font-size:14px;
-  margin-top:20px;
-}
-
-.section{
-  max-width:1100px;
-  margin:auto;
-  padding:60px 20px;
-  text-align:center;
-}
-
-.hero{
-  height:70vh;
   display:flex;
-  align-items:center;
+}
+
+.group{
+  margin-top:20px;
+  color:#aaa;
+}
+
+/* modal */
+#modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  background:rgba(0,0,0,.7);
+}
+
+#modal.show{
+  display:flex;
   justify-content:center;
-  color:#fff;
-  position:relative;
+  align-items:center;
 }
 
-.hero-bg{
-  position:absolute;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-1;
-}
-
-.btn{
-  display:inline-block;
-  padding:12px 20px;
-  border-radius:999px;
-  margin-top:10px;
-}
-
-.btn-line{
-  background:var(--line-green);
-  color:#fff;
-}
-
-.entry-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:20px;
-}
-
-.entry-card{
+.modal-box{
   background:#fff;
   padding:20px;
   border-radius:20px;
-  cursor:pointer;
 }
 
-.video-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-  gap:20px;
-}
-
-.video-card{
-  background:#fff;
-  padding:16px;
-  border-radius:16px;
-  cursor:pointer;
+/* button */
+button{
+  padding:12px 20px;
+  border-radius:999px;
+  border:none;
+  background:#0B1F3B;
+  color:#fff;
 }
