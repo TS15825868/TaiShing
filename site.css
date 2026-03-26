@@ -1,9 +1,11 @@
+/* ===== base ===== */
 body{
 margin:0;
 font-family:-apple-system,"PingFang TC",sans-serif;
 background:#F7F4ED;
 color:#2F2118;
 padding-top:76px;
+-webkit-font-smoothing:antialiased;
 }
 
 /* ===== header ===== */
@@ -16,8 +18,10 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 padding:0 20px;
-background:#fff;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
 z-index:999;
+border-bottom:1px solid #eee;
 }
 
 .logo img{
@@ -32,7 +36,7 @@ width:100%;
 height:100%;
 background:#0B1F3B;
 transform:translateY(-100%);
-transition:.3s;
+transition:.4s;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -44,26 +48,34 @@ overflow:auto;
 transform:translateY(0);
 }
 
+.menu-close{
+color:white;
+font-size:28px;
+margin-bottom:10px;
+cursor:pointer;
+}
+
 .menu-group{
 color:#aaa;
-margin-top:15px;
+margin-top:20px;
+font-size:14px;
+letter-spacing:1px;
 }
 
 .menu-overlay a{
 display:block;
 width:260px;
-padding:12px;
+padding:14px;
 border:1px solid rgba(255,255,255,0.2);
-border-radius:10px;
+border-radius:12px;
 color:white;
 text-decoration:none;
-margin:5px 0;
+margin:6px 0;
+transition:.2s;
 }
 
-.menu-close{
-color:white;
-font-size:28px;
-margin-bottom:10px;
+.menu-overlay a:hover{
+background:rgba(255,255,255,0.08);
 }
 
 /* ===== hero ===== */
@@ -73,8 +85,8 @@ height:70vh;
 display:flex;
 align-items:center;
 justify-content:center;
-color:white;
 text-align:center;
+color:white;
 }
 
 .hero-bg{
@@ -88,23 +100,34 @@ object-fit:cover;
 position:absolute;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.5);
+background:rgba(0,0,0,0.45);
 }
 
 .hero-content{
 position:relative;
 z-index:2;
+max-width:600px;
+padding:0 20px;
 }
 
-.hero-buttons{
-margin-top:15px;
+.hero h1{
+font-size:28px;
+margin-bottom:10px;
+}
+
+.hero p{
+opacity:.85;
 }
 
 /* ===== section ===== */
 .section{
-padding:60px 20px;
+padding:70px 20px;
 max-width:1100px;
 margin:auto;
+}
+
+.section h2{
+margin-bottom:10px;
 }
 
 .grid{
@@ -113,41 +136,47 @@ grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
 gap:20px;
 }
 
+/* ===== card（升級） ===== */
 .card{
 background:white;
-padding:16px;
-border-radius:16px;
-transition:.2s;
+padding:18px;
+border-radius:18px;
+transition:.25s;
+border:1px solid #eee;
 }
 
 .card:hover{
-transform:translateY(-4px);
+transform:translateY(-6px);
+box-shadow:0 10px 25px rgba(0,0,0,0.08);
 }
 
 /* ===== Apple slider ===== */
 .apple-slider{
 overflow-x:auto;
 padding:20px;
+scroll-snap-type:x mandatory;
 }
 
 .slider{
 display:flex;
 gap:20px;
-padding-bottom:10px;
 }
 
 .product-card{
 min-width:260px;
 background:white;
-border-radius:20px;
+border-radius:22px;
 padding:16px;
 flex-shrink:0;
 transition:.3s;
 cursor:pointer;
+border:1px solid #eee;
+scroll-snap-align:start;
 }
 
 .product-card:hover{
-transform:translateY(-6px);
+transform:translateY(-8px);
+box-shadow:0 15px 30px rgba(0,0,0,0.1);
 }
 
 .product-card img{
@@ -158,7 +187,7 @@ border-radius:12px;
 margin-bottom:10px;
 }
 
-/* ===== modal ===== */
+/* ===== modal（升級像App） ===== */
 .modal{
 display:none;
 position:fixed;
@@ -168,6 +197,7 @@ height:100%;
 background:rgba(0,0,0,0.7);
 justify-content:center;
 align-items:center;
+z-index:1000;
 }
 
 .modal-content{
@@ -175,19 +205,31 @@ background:white;
 padding:20px;
 max-width:520px;
 width:90%;
-border-radius:16px;
+border-radius:20px;
 max-height:90%;
 overflow:auto;
+animation:fadeIn .2s ease;
 }
 
-/* ===== btn ===== */
+@keyframes fadeIn{
+from{transform:translateY(20px);opacity:0;}
+to{transform:translateY(0);opacity:1;}
+}
+
+/* ===== btn（統一系統🔥） ===== */
 .btn{
 display:inline-block;
-padding:10px 20px;
+padding:12px 22px;
 border-radius:30px;
+text-decoration:none;
 border:1px solid #0B1F3B;
 color:#0B1F3B;
-text-decoration:none;
+transition:.2s;
+}
+
+.btn:hover{
+background:#0B1F3B;
+color:white;
 }
 
 .btn-line{
@@ -196,14 +238,39 @@ color:white;
 border:none;
 }
 
-/* ===== floating ===== */
+.btn-line:hover{
+opacity:.9;
+}
+
+/* ===== CTA區 ===== */
+.cta{
+text-align:center;
+padding:80px 20px;
+background:#fff;
+}
+
+/* ===== floating LINE ===== */
 .floating-line{
 position:fixed;
 right:20px;
 bottom:20px;
 background:#06C755;
 color:white;
-padding:12px 16px;
+padding:14px 18px;
 border-radius:999px;
 z-index:999;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ===== mobile ===== */
+@media (max-width:768px){
+
+.hero{
+height:60vh;
+}
+
+.product-card{
+min-width:220px;
+}
+
 }
