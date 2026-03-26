@@ -19,37 +19,99 @@
 <section class="section">
 
 <h1>料理搭配</h1>
+<p>從日常吃法開始，找到適合你的方式</p>
 
-<input type="text" id="search" placeholder="搜尋料理..." style="width:100%;padding:10px">
+<input type="text" id="search" placeholder="搜尋料理..." style="width:100%;padding:10px;margin:20px 0;">
 
 <div id="recipe-list" class="grid"></div>
 
 </section>
 
+<!-- MODAL -->
+<div id="modal" class="modal">
+<div class="modal-content">
+<span onclick="closeModal()" class="close">×</span>
+<div id="modal-body"></div>
+</div>
+</div>
+
+<a href="https://lin.ee/sHZW7NkR" class="floating-line">LINE</a>
+
+<script src="site.js"></script>
+
 <script>
 let recipes=[];
+let products=[];
 
-fetch("recipes.json")
-.then(res=>res.json())
-.then(data=>{
-recipes=data;
-render(data);
+// 載入資料
+Promise.all([
+fetch("recipes.json").then(r=>r.json()),
+fetch("products.json").then(r=>r.json())
+]).then(([r,p])=>{
+recipes=r;
+products=p;
+render(r);
 });
 
+// 顯示卡片
 function render(data){
 document.getElementById("recipe-list").innerHTML=
-data.map(r=>`
-<div class="card">
+data.map((r,i)=>`
+<div class="card" onclick="openRecipe(${i})">
 <h3>${r.name}</h3>
 <p>${r.desc}</p>
 </div>
 `).join("");
 }
 
+// 搜尋
 document.getElementById("search").addEventListener("input",(e)=>{
 const val=e.target.value;
 render(recipes.filter(r=>r.name.includes(val)));
 });
+
+// 打開料理
+function openRecipe(i){
+const r = recipes[i];
+
+// 找對應產品
+const related = products.filter(p=>
+r.product.some(name=>p.name.includes(name))
+);
+
+document.getElementById("modal").style.display="flex";
+
+document.getElementById("modal-body").innerHTML = `
+<h2>${r.name}</h2>
+
+<p>${r.desc}</p>
+
+<h3>做法</h3>
+<ul>
+${r.steps.map(s=>`<li>${s}</li>`).join("")}
+</ul>
+
+<h3 style="margin-top:20px;">👉 建議搭配</h3>
+
+<div class="grid">
+${related.map(p=>`
+<div class="card">
+
+<img src="${p.image}" style="width:100%;border-radius:10px">
+
+<h4>${p.name}</h4>
+<p>${p.desc}</p>
+
+<a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent("我想用"+r.name+"搭配"+p.name)}"
+class="btn btn-line">
+詢問這個搭配
+</a>
+
+</div>
+`).join("")}
+</div>
+`;
+}
 </script>
 
 </body>
