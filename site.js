@@ -1,81 +1,98 @@
-let products=[];
-let currentIndex=0;
-let lastScroll=0;
+let products = [];
+let currentIndex = 0;
+let lastScroll = 0;
 
-fetch("data/products.json")
-.then(res=>res.json())
-.then(data=>{
-products=data;
-renderProducts();
+fetch("products.json")
+.then(res => res.json())
+.then(data => {
+  products = data;
+  renderProducts();
 });
 
 function renderProducts(){
-document.querySelectorAll("#product-list").forEach(c=>{
-if(!c)return;
-c.innerHTML="";
-products.forEach((p,i)=>{
-c.innerHTML+=`
-<div class="card" onclick="openProduct(${i})">
-<img src="${p.image}">
-<h3>${p.name}</h3>
-<p>${p.desc}</p>
-</div>`;
-});
-});
+  document.querySelectorAll("#product-list").forEach(container=>{
+    if(!container) return;
+
+    container.innerHTML = "";
+
+    products.forEach((p,i)=>{
+      container.innerHTML += `
+      <div class="card" onclick="openProduct(${i})">
+        <img src="${p.image}">
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+      </div>`;
+    });
+  });
 }
 
 function openProduct(i){
-lastScroll=window.scrollY;
-currentIndex=i;
-renderModal();
+  lastScroll = window.scrollY;
+  currentIndex = i;
+  renderModal();
 }
 
 function renderModal(){
-const p=products[currentIndex];
-const m=document.getElementById("modal");
+  const p = products[currentIndex];
+  const modal = document.getElementById("modal");
 
-m.innerHTML=`
-<div class="modal-box">
-<div class="modal-top">
-<span onclick="prevProduct()">←</span>
-<span onclick="closeModal()">關閉</span>
-<span onclick="nextProduct()">→</span>
-</div>
+  modal.innerHTML = `
+  <div class="modal-box">
 
-<h2>${p.name}</h2>
-${p.images.map(i=>`<img src="${i}">`).join("")}
-<p>${p.desc}</p>
+    <div class="modal-top">
+      <span onclick="prevProduct()">←</span>
+      <span onclick="closeModal()">關閉</span>
+      <span onclick="nextProduct()">→</span>
+    </div>
 
-<h4>成分</h4>
-<p>${p.ingredients.join("、")}</p>
+    <h2>${p.name}</h2>
 
-<h4>使用方式</h4>
-<p>${p.usage.join("<br>")}</p>
+    ${p.images.map(img=>`<img src="${img}">`).join("")}
 
-<a href="https://lin.ee/sHZW7NkR" class="btn">LINE詢問</a>
-</div>
-`;
+    <p>${p.desc}</p>
 
-m.classList.add("show");
-document.body.style.overflow="hidden";
+    <h4>成分</h4>
+    <p>${p.ingredients.join("、")}</p>
+
+    <h4>使用方式</h4>
+    <p>${p.usage.join("<br>")}</p>
+
+    <a href="https://lin.ee/sHZW7NkR" class="btn">LINE詢問</a>
+
+  </div>
+  `;
+
+  modal.classList.add("show");
+  document.body.style.overflow = "hidden";
 }
 
 function closeModal(){
-document.getElementById("modal").classList.remove("show");
-document.body.style.overflow="";
-window.scrollTo(0,lastScroll);
+  document.getElementById("modal").classList.remove("show");
+  document.body.style.overflow = "";
+  window.scrollTo(0, lastScroll);
 }
 
 function prevProduct(){
-currentIndex=(currentIndex-1+products.length)%products.length;
-renderModal();
+  currentIndex = (currentIndex - 1 + products.length) % products.length;
+  renderModal();
 }
 
 function nextProduct(){
-currentIndex=(currentIndex+1)%products.length;
-renderModal();
+  currentIndex = (currentIndex + 1) % products.length;
+  renderModal();
 }
 
 function toggleMenu(){
-document.getElementById("menu").classList.toggle("active");
+  document.getElementById("menu").classList.toggle("active");
 }
+
+document.addEventListener("click", function(e){
+  const menu = document.getElementById("menu");
+  const btn = document.querySelector(".menu-btn");
+
+  if(!menu || !btn) return;
+
+  if(!menu.contains(e.target) && !btn.contains(e.target)){
+    menu.classList.remove("active");
+  }
+});
