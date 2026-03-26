@@ -1,54 +1,81 @@
-let products = [];
+let products=[];
+let currentIndex=0;
+let lastScroll=0;
 
 fetch("data/products.json")
-.then(res => res.json())
-.then(data => {
-  products = data;
-  renderProducts();
+.then(res=>res.json())
+.then(data=>{
+products=data;
+renderProducts();
 });
 
 function renderProducts(){
-  const container = document.getElementById("product-list");
-
-  products.forEach(p => {
-    container.innerHTML += `
-    <div class="card" onclick="openProduct('${p.id}')">
-      <img src="${p.image}">
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-    </div>`;
-  });
+document.querySelectorAll("#product-list").forEach(c=>{
+if(!c)return;
+c.innerHTML="";
+products.forEach((p,i)=>{
+c.innerHTML+=`
+<div class="card" onclick="openProduct(${i})">
+<img src="${p.image}">
+<h3>${p.name}</h3>
+<p>${p.desc}</p>
+</div>`;
+});
+});
 }
 
-function openProduct(id){
-  const p = products.find(x => x.id === id);
-  const modal = document.getElementById("modal");
+function openProduct(i){
+lastScroll=window.scrollY;
+currentIndex=i;
+renderModal();
+}
 
-  modal.innerHTML = `
-  <div class="modal-box">
+function renderModal(){
+const p=products[currentIndex];
+const m=document.getElementById("modal");
 
-    <div onclick="closeModal()" style="cursor:pointer;margin-bottom:10px;">✕ 關閉</div>
+m.innerHTML=`
+<div class="modal-box">
+<div class="modal-top">
+<span onclick="prevProduct()">←</span>
+<span onclick="closeModal()">關閉</span>
+<span onclick="nextProduct()">→</span>
+</div>
 
-    <h2>${p.name}</h2>
+<h2>${p.name}</h2>
+${p.images.map(i=>`<img src="${i}">`).join("")}
+<p>${p.desc}</p>
 
-    ${p.images.map(img => `<img src="${img}">`).join("")}
+<h4>成分</h4>
+<p>${p.ingredients.join("、")}</p>
 
-    <p>${p.desc}</p>
+<h4>使用方式</h4>
+<p>${p.usage.join("<br>")}</p>
 
-    <h4>成分</h4>
-    <p>${p.ingredients.join("、")}</p>
+<a href="https://lin.ee/sHZW7NkR" class="btn">LINE詢問</a>
+</div>
+`;
 
-    <h4>使用方式</h4>
-    <p>${p.usage.join("<br>")}</p>
-
-    <a href="https://lin.ee/sHZW7NkR" class="btn">LINE詢問</a>
-
-  </div>
-  `;
-
-  modal.style.display = "flex";
+m.classList.add("show");
+document.body.style.overflow="hidden";
 }
 
 function closeModal(){
-  document.getElementById("modal").style.display = "none";
+document.getElementById("modal").classList.remove("show");
+document.body.style.overflow="";
+window.scrollTo(0,lastScroll);
+}
+
+function prevProduct(){
+currentIndex=(currentIndex-1+products.length)%products.length;
+renderModal();
+}
+
+function nextProduct(){
+currentIndex=(currentIndex+1)%products.length;
+renderModal();
+}
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
 }
