@@ -1,86 +1,95 @@
 // ===== menu =====
 function toggleMenu(){
-  document.getElementById("menu").classList.toggle("active");
+document.getElementById("menu").classList.toggle("active");
 }
 
 // 點外面關閉
 document.addEventListener("click", function(e){
-  const menu = document.getElementById("menu");
-  const btn = document.querySelector(".menu-btn");
+const menu = document.getElementById("menu");
+const btn = document.querySelector(".menu-btn");
 
-  if(!menu || !btn) return;
+if(!menu || !btn) return;
 
-  if(!menu.contains(e.target) && !btn.contains(e.target)){
-    menu.classList.remove("active");
-  }
+if(!menu.contains(e.target) && !btn.contains(e.target)){
+menu.classList.remove("active");
+}
 });
 
 // ===== products =====
 let productsData = [];
-let currentIndex = 0;
 
-fetch("data/products.json")
+fetch("products.json")
 .then(res=>res.json())
 .then(data=>{
-  productsData = data;
-  renderProducts(data);
+productsData = data;
+renderSlider(data);
+})
+.catch(err=>{
+console.log("載入失敗",err);
 });
 
-function renderProducts(data){
-  const el = document.getElementById("product-list");
-  if(!el) return;
+function renderSlider(data){
+const el = document.getElementById("product-slider");
+if(!el) return;
 
-  el.innerHTML = data.map((p,i)=>`
-    <div class="product-card" onclick="openModal(${i})">
-      <img src="${p.image}">
-      <h3>${p.name}</h3>
-      <p>${p.desc}</p>
-    </div>
-  `).join("");
+el.innerHTML = data.map((p,i)=>`
+<div class="product-card" onclick="openModal(${i})">
+
+<img src="${p.image}" loading="lazy">
+<h3>${p.name}</h3>
+<p>${p.desc}</p>
+
+</div>
+`).join("");
 }
 
 // ===== modal =====
-function openModal(index){
-  currentIndex = index;
-  const p = productsData[index];
+function openModal(i){
+const p = productsData[i];
 
-  document.getElementById("modal").style.display="flex";
+const modal = document.getElementById("modal");
+const body = document.getElementById("modal-body");
 
-  document.getElementById("modal-body").innerHTML = `
-    <h2>${p.name}</h2>
-    <img src="${p.image}">
-    <p>${p.desc}</p>
+if(!modal || !body) return;
 
-    <h3>適合這樣的你</h3>
-    <ul>${p.target.map(t=>`<li>${t}</li>`).join("")}</ul>
+modal.style.display="flex";
 
-    <h3>使用方式</h3>
-    <ul>${p.usage.map(u=>`<li>${u}</li>`).join("")}</ul>
+body.innerHTML = `
+<h2>${p.name}</h2>
 
-    <div style="margin-top:15px;text-align:center;">
-      <a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent(p.lineText)}"
-      class="btn btn-line">
-      LINE詢問
-      </a>
-    </div>
+<img src="${p.image}">
 
-    <div style="margin-top:10px;text-align:center;">
-      <button onclick="prevProduct()">← 上一個</button>
-      <button onclick="nextProduct()">下一個 →</button>
-    </div>
-  `;
+<p>${p.desc}</p>
+
+<h3>適合這樣的你</h3>
+<ul>${p.target ? p.target.map(t=>`<li>${t}</li>`).join("") : ""}</ul>
+
+<h3>使用方式</h3>
+<ul>${p.usage.map(u=>`<li>${u}</li>`).join("")}</ul>
+
+<div style="margin-top:20px;text-align:center;">
+<a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent(p.lineText || p.name)}"
+class="btn btn-line">
+LINE詢問
+</a>
+</div>
+`;
+
+document.body.style.overflow="hidden";
 }
 
+// 關閉
 function closeModal(){
-  document.getElementById("modal").style.display="none";
+const modal = document.getElementById("modal");
+if(!modal) return;
+
+modal.style.display="none";
+document.body.style.overflow="";
 }
 
-function prevProduct(){
-  currentIndex = (currentIndex - 1 + productsData.length) % productsData.length;
-  openModal(currentIndex);
+// ESC 關閉
+document.addEventListener("keydown", function(e){
+if(e.key==="Escape"){
+closeModal();
 }
-
-function nextProduct(){
-  currentIndex = (currentIndex + 1) % productsData.length;
-  openModal(currentIndex);
-}
+});
