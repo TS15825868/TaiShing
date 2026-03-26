@@ -1,73 +1,34 @@
 [
-  {
-    "id": "guilu-gao",
-    "name": "龜鹿膏",
-    "image": "images/guilu-gao-100g.jpg",
-    "desc": "膏狀型態，適合作為日常飲食搭配。",
-    "images":[
-      "images/guilu-gao-100g.jpg",
-      "images/hero-guilu-gao.jpg",
-      "images/guilu-gao-lifestyle.jpg"
-    ],
-    "ingredients":[
-      "龜板萃取物",
-      "鹿角萃取物",
-      "粉光蔘",
-      "枸杞",
-      "紅棗",
-      "黃耆"
-    ],
-    "usage":[
-      "早上與下午各一小匙",
-      "可直接食用",
-      "或加入溫熱水"
-    ]
-  },
-  {
-    "id": "guilu-drink",
-    "name": "龜鹿飲",
-    "image": "images/guilu-drink-30cc.jpg",
-    "desc": "液態型態，方便日常飲用。",
-    "images":[
-      "images/guilu-drink-30cc.jpg"
-    ],
-    "ingredients":[
-      "水","龜板萃取物","鹿角萃取物"
-    ],
-    "usage":[
-      "每日一包",
-      "建議溫熱飲用"
-    ]
-  },
-  {
-    "id": "guilu-block",
-    "name": "龜鹿湯塊",
-    "image": "images/guilu-block-75g.jpg",
-    "desc": "可燉煮料理使用。",
-    "images":[
-      "images/guilu-block-75g.jpg",
-      "images/guilu-block-cube.jpg"
-    ],
-    "ingredients":[
-      "龜板萃取物","鹿角萃取物"
-    ],
-    "usage":[
-      "加入湯品燉煮"
-    ]
-  },
-  {
-    "id": "lurong",
-    "name": "鹿茸粉",
-    "image": "images/lurong-powder-75g.jpg",
-    "desc": "粉末型態，可調飲使用。",
-    "images":[
-      "images/lurong-powder-75g.jpg"
-    ],
-    "ingredients":[
-      "鹿茸粉"
-    ],
-    "usage":[
-      "加入溫水或飲品"
-    ]
-  }
+{
+"name":"龜鹿膏",
+"image":"images/guilu-gao-100g.jpg",
+"images":["images/guilu-gao-100g.jpg"],
+"desc":"濃縮膏狀，適合日常補養",
+"ingredients":["龜板萃取物","鹿角萃取物","粉光蔘","枸杞","紅棗","黃耆"],
+"usage":["早晚使用","可溫水沖泡"]
+},
+{
+"name":"龜鹿飲",
+"image":"images/guilu-drink-30cc.jpg",
+"images":["images/guilu-drink-30cc.jpg"],
+"desc":"方便飲用型",
+"ingredients":["龜板萃取物","鹿角萃取物"],
+"usage":["每日1包"]
+},
+{
+"name":"龜鹿湯塊",
+"image":"images/guilu-block-75g.jpg",
+"images":["images/guilu-block-75g.jpg"],
+"desc":"料理使用",
+"ingredients":["龜板萃取物","鹿角萃取物"],
+"usage":["煮湯使用"]
+},
+{
+"name":"鹿茸粉",
+"image":"images/lurong-powder-75g.jpg",
+"images":["images/lurong-powder-75g.jpg"],
+"desc":"可搭配飲品",
+"ingredients":["鹿茸"],
+"usage":["可加入飲品"]
+}
 ]
