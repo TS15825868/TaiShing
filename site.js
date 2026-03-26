@@ -1,12 +1,8 @@
-"use strict";
-
-/* ===== 漢堡 ===== */
+// ===== menu =====
 function toggleMenu(){
-const menu = document.getElementById("menu");
-menu.classList.toggle("active");
+document.getElementById("menu").classList.toggle("active");
 }
 
-/* 點外面關閉 */
 document.addEventListener("click", function(e){
 const menu = document.getElementById("menu");
 const btn = document.querySelector(".menu-btn");
@@ -18,7 +14,7 @@ menu.classList.remove("active");
 }
 });
 
-/* ===== 產品 ===== */
+// ===== products =====
 let productsData = [];
 let lastScroll = 0;
 
@@ -27,87 +23,84 @@ fetch("products.json")
 .then(data=>{
 productsData = data;
 renderSlider(data);
-})
-.catch(err=>console.log(err));
+});
 
-/* ===== 渲染產品 ===== */
 function renderSlider(data){
 const el = document.getElementById("product-slider");
 if(!el) return;
 
 el.innerHTML = data.map((p,i)=>`
 <div class="product-card" onclick="openModal(${i})">
-
-<img src="${p.image}">
+<img src="${p.images[0]}">
 <h3>${p.name}</h3>
 <p>${p.desc}</p>
-
-<div style="margin-top:10px;">
-<span class="btn">查看介紹</span>
-</div>
-
 </div>
 `).join("");
 }
 
-/* ===== Modal ===== */
+// ===== modal =====
 function openModal(i){
-const p = productsData[i];
-
 lastScroll = window.scrollY;
 
+const p = productsData[i];
 const modal = document.getElementById("modal");
 const body = document.getElementById("modal-body");
 
 modal.style.display="flex";
 
 body.innerHTML = `
-<span class="back-btn" onclick="closeModal()">← 返回</span>
+
+<div class="modal-gallery">
+${p.images.map(img=>`<img src="${img}">`).join("")}
+</div>
 
 <h2>${p.name}</h2>
-
-<img src="${p.image}" class="modal-img">
-
 <p>${p.desc}</p>
 
+<div class="product-info">
+
+<div>
 <h3>規格</h3>
-<p>${p.size || "依產品標示"}</p>
+<p>${p.spec || ""}</p>
+</div>
 
+<div>
 <h3>成分</h3>
-<ul>
-${p.ingredients ? p.ingredients.map(i=>`<li>${i}</li>`).join("") : ""}
-</ul>
+<ul>${p.ingredients.map(i=>`<li>${i}</li>`).join("")}</ul>
+</div>
 
+<div>
 <h3>使用方式</h3>
-<ul>
-${p.usage ? p.usage.map(u=>`<li>${u}</li>`).join("") : ""}
-</ul>
+<ul>${p.usage.map(u=>`<li>${u}</li>`).join("")}</ul>
+</div>
 
-<div class="modal-cta">
+</div>
+
+<div class="modal-actions">
+
+<button class="btn" onclick="closeModal()">返回</button>
+
 <a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent(p.lineText || p.name)}"
-class="btn btn-line">LINE詢問</a>
+class="btn btn-line">
+LINE詢問
+</a>
+
 </div>
 `;
 
 document.body.style.overflow="hidden";
 }
 
-/* ===== 關閉 ===== */
+// 關閉 + 回到原位置
 function closeModal(){
 const modal = document.getElementById("modal");
-
 modal.style.display="none";
+
 document.body.style.overflow="";
-
-window.scrollTo({
-top:lastScroll,
-behavior:"instant"
-});
+window.scrollTo(0, lastScroll);
 }
 
-/* ESC 關閉 */
-document.addEventListener("keydown", function(e){
-if(e.key==="Escape"){
-closeModal();
-}
+// ESC
+document.addEventListener("keydown", e=>{
+if(e.key==="Escape") closeModal();
 });
