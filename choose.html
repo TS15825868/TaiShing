@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-Hant-TW">
+<html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,104 +9,47 @@
 
 <body>
 
-<header class="header">
-<a href="index.html" class="logo">
-<img src="images/logo.png">
-</a>
-<div class="menu-btn" onclick="toggleMenu()">☰</div>
-</header>
-
-<div id="menu" class="menu-overlay">
-<a href="index.html">首頁</a>
-<a href="products.html">產品</a>
-<a href="choose.html">怎麼選</a>
-<a href="combo.html">套餐</a>
-<a href="recipes.html">料理</a>
-<a href="knowledge.html">知識</a>
-<a href="brand.html">品牌</a>
-<a href="faq.html">FAQ</a>
-<a href="contact.html">聯絡</a>
-</div>
-
 <section class="section">
-
 <h1>怎麼選適合你的龜鹿</h1>
-<p>回答幾個問題，我幫你挑</p>
+<p>依你的使用習慣，找到適合型態</p>
 
-<!-- STEP 1 -->
+<div class="grid">
+
 <div class="card">
-<h3>你的使用習慣</h3>
+<h3>想方便</h3>
+<p>直接飲用、隨手使用</p>
+<a href="products.html" class="btn">👉 龜鹿飲</a>
+</div>
 
-<button class="btn" onclick="selectType('方便')">想方便</button>
-<button class="btn" onclick="selectType('料理')">想料理</button>
-<button class="btn" onclick="selectType('自由搭配')">想自己搭配</button>
-<button class="btn" onclick="selectType('固定食用')">固定習慣</button>
+<div class="card">
+<h3>想料理</h3>
+<p>融入日常飲食</p>
+<a href="products.html" class="btn">👉 湯塊</a>
+</div>
+
+<div class="card">
+<h3>想搭配</h3>
+<p>加入茶或咖啡</p>
+<a href="products.html" class="btn">👉 鹿茸粉</a>
+</div>
+
+<div class="card">
+<h3>固定習慣</h3>
+<p>穩定日常補養</p>
+<a href="products.html" class="btn">👉 龜鹿膏</a>
+</div>
 
 </div>
 
-<!-- 結果 -->
-<div id="result" style="margin-top:30px;"></div>
+<div class="card" style="margin-top:40px;text-align:center;">
+<p>不確定怎麼選？</p>
+<a href="https://lin.ee/sHZW7NkR" class="btn btn-line">LINE幫你配</a>
+</div>
 
 </section>
 
+<script src="layout.js"></script>
 <script src="site.js"></script>
-<script>
-
-// ===== 推薦邏輯 =====
-function selectType(type){
-
-let result = {};
-
-if(type==="方便"){
-result = {
-name:"龜鹿飲",
-text:"我想了解龜鹿飲"
-};
-}
-
-if(type==="料理"){
-result = {
-name:"龜鹿湯塊",
-text:"我想了解龜鹿湯塊"
-};
-}
-
-if(type==="自由搭配"){
-result = {
-name:"鹿茸粉",
-text:"我想了解鹿茸粉"
-};
-}
-
-if(type==="固定食用"){
-result = {
-name:"龜鹿膏",
-text:"我想了解龜鹿膏"
-};
-}
-
-document.getElementById("result").innerHTML = `
-<div class="card">
-
-<h2>推薦你：${result.name}</h2>
-
-<p>這個型態比較符合你的使用方式</p>
-
-<a href="products.html" class="btn">
-查看產品
-</a>
-
-<a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent(result.text)}"
-class="btn btn-line">
-LINE直接詢問
-</a>
-
-</div>
-`;
-
-}
-
-</script>
 
 </body>
 </html>
