@@ -2,6 +2,7 @@ function toggleMenu(){
 document.getElementById("menu").classList.toggle("active");
 }
 
+// 點外面關閉
 document.addEventListener("click", function(e){
 const menu = document.getElementById("menu");
 const btn = document.querySelector(".menu-btn");
@@ -58,12 +59,22 @@ ${p.images.map(img=>`<img src="${img}">`).join("")}
 <h3>使用方式</h3>
 <ul>${p.usage.map(u=>`<li>${u}</li>`).join("")}</ul>
 
-<a href="https://lin.ee/sHZW7NkR?text=${p.name}" class="btn btn-line">
-LINE詢問
-</a>
+<a href="https://lin.ee/sHZW7NkR?text=${encodeURIComponent(p.lineText)}"
+class="btn btn-line">LINE詢問</a>
 `;
 }
 
-function closeModal(){
+// 點外面關
+document.addEventListener("click",function(e){
+const modal=document.getElementById("modal");
+if(e.target===modal){
+modal.style.display="none";
+}
+});
+
+// ESC 關閉
+document.addEventListener("keydown",function(e){
+if(e.key==="Escape"){
 document.getElementById("modal").style.display="none";
 }
+});
