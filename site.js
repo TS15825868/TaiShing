@@ -1,63 +1,67 @@
-function header(){
-return `
-<header class="header">
-  <div class="logo" onclick="goHome()">
-    <img src="images/logo.png">
-  </div>
-  <div class="menu-btn" onclick="toggle()">☰</div>
+document.addEventListener("DOMContentLoaded",()=>{
+
+document.getElementById("header").innerHTML = `
+<header>
+<div class="logo" onclick="location.href='index.html'">
+<img src="images/logo.png">
+</div>
+
+<button class="menu-btn" onclick="toggleMenu()">☰</button>
 </header>
 
 <div id="menu" class="menu">
-  <a href="recommend.html">快速推薦</a>
-  <a href="products.html">產品介紹</a>
-  <a href="choose.html">怎麼選</a>
-  <a href="combo.html">搭配方案</a>
-  <a href="recipes.html">料理</a>
-  <a href="knowledge.html">觀點</a>
-  <a href="brand.html">品牌</a>
-  <a href="faq.html">FAQ</a>
-  <a href="contact.html">聯絡</a>
+<a href="index.html">首頁</a>
+<a href="products.html">產品</a>
+<a href="recommend.html">快速推薦</a>
+<a href="combo.html">搭配</a>
+<a href="recipes.html">料理</a>
+<a href="knowledge.html">飲食觀點</a>
+<a href="faq.html">FAQ</a>
+<a href="contact.html">聯絡</a>
 </div>
 `;
+
+});
+
+function toggleMenu(){
+document.getElementById("menu").classList.toggle("active");
 }
 
-function footer(){
-return `<div class="footer">© 仙加味</div>`;
+function buy(name){
+const text=`我要購買 ${name}`;
+window.open(`https://line.me/R/msg/text/?${encodeURIComponent(text)}`);
 }
 
-function goHome(){
-location.href="index.html";
-}
+function openModal(p){
+document.getElementById("modal").classList.add("active");
 
-function toggle(){
-document.getElementById("menu").classList.toggle("show");
-}
-
-/* LINE 成交 */
-function buy(name,spec){
-let txt=`我要購買\n${name}\n${spec}`;
-window.open(`https://line.me/R/msg/text/?${encodeURIComponent(txt)}`);
-}
-
-/* Modal */
-function openModal(name,img,desc){
 document.getElementById("modal").innerHTML=`
 <div class="modal-content">
-<img src="${img}" style="width:100%">
-<h2>${name}</h2>
-<p>${desc}</p>
-<button class="btn-primary" onclick="buy('${name}','')">立即購買</button>
-<button class="btn" onclick="closeModal()">關閉</button>
+
+<button onclick="closeModal()">✕</button>
+
+<div class="gallery">
+${p.images.map(i=>`<img src="${i}">`).join("")}
+</div>
+
+<h2>${p.name}</h2>
+<p>${p.desc}</p>
+
+<p><b>規格：</b>${p.spec}</p>
+<p><b>成分：</b>${p.ingredient}</p>
+
+<ul>
+${p.usage.map(u=>`<li>${u}</li>`).join("")}
+</ul>
+
+<button class="btn-primary" onclick="buy('${p.name}')">
+LINE詢問
+</button>
+
 </div>
 `;
-document.getElementById("modal").style.display="flex";
 }
 
 function closeModal(){
-document.getElementById("modal").style.display="none";
+document.getElementById("modal").classList.remove("active");
 }
-
-document.addEventListener("DOMContentLoaded",()=>{
-document.getElementById("app-header").innerHTML=header();
-document.getElementById("app-footer").innerHTML=footer();
-});
