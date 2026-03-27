@@ -14,7 +14,7 @@ menu.classList.remove("active");
 }
 });
 
-/* products */
+/* ===== products ===== */
 let productsData=[];
 
 fetch("products.json")
@@ -46,7 +46,7 @@ document.body.classList.add("modal-open");
 modal.style.display="flex";
 
 body.innerHTML=`
-<button onclick="closeModal()" style="float:right;">關閉</button>
+<button class="modal-close" onclick="closeModal()">✕</button>
 
 <h2>${p.name}</h2>
 
@@ -56,6 +56,9 @@ ${p.images.map(img=>`<img src="${img}">`).join("")}
 
 <h3>規格</h3>
 <p>${p.spec}</p>
+
+<h3>成分</h3>
+<ul>${p.ingredients.map(i=>`<li>${i}</li>`).join("")}</ul>
 
 <h3>使用方式</h3>
 <ul>${p.usage.map(u=>`<li>${u}</li>`).join("")}</ul>
