@@ -1,52 +1,17 @@
 [
-{
-"name":"龜鹿雞湯",
-"category":"湯品",
-"image":"images/recipe-chicken.jpg",
-"desc":"日常燉湯搭配",
-"ingredients":[
-"龜鹿湯塊 1塊",
-"雞腿",
-"薑片",
-"水"
-],
-"steps":[
-"將雞腿汆燙",
-"加入龜鹿湯塊與水",
-"小火燉煮40分鐘"
-],
-"tips":"可依個人口味調整"
-},
-
-{
-"name":"龜鹿熱飲",
-"category":"飲品",
-"image":"images/recipe-drink.jpg",
-"desc":"簡單日常飲用",
-"ingredients":[
-"龜鹿膏 1匙",
-"熱水"
-],
-"steps":[
-"加入熱水",
-"攪拌均勻即可"
-],
-"tips":"早上或下午飲用"
-},
-
-{
-"name":"鹿茸咖啡",
-"category":"飲品",
-"image":"images/recipe-coffee.jpg",
-"desc":"現代搭配方式",
-"ingredients":[
-"鹿茸粉 少量",
-"咖啡"
-],
-"steps":[
-"加入咖啡中",
-"攪拌均勻"
-],
-"tips":"少量即可"
-}
+  {
+    "title":"龜鹿湯塊燉雞",
+    "desc":"簡單燉煮即可，適合日常補養",
+    "step":"雞肉＋湯塊＋水，小火燉煮40分鐘"
+  },
+  {
+    "title":"鹿茸粉牛奶",
+    "desc":"快速補養方式",
+    "step":"加入溫牛奶攪拌飲用"
+  },
+  {
+    "title":"龜鹿膏溫熱吃法",
+    "desc":"吸收更佳",
+    "step":"隔水加熱後食用"
+  }
 ]
