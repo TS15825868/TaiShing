@@ -1,129 +1,145 @@
-/* ===== 基本 ===== */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont;
-  background: #F7F4ED;
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont;
+  background:#F7F4ED;
+  color:#111;
+  text-align:center;
 }
 
-/* ===== Header ===== */
-.header {
-  position: sticky;
-  top: 0;
-  background: #F7F4ED;
-  z-index: 1000;
-  padding: 12px 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* ===== 漢堡 ===== */
-.menu-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+/* HEADER */
+.header{
+  position:fixed;
+  top:0;
+  width:100%;
+  background:white;
   display:flex;
+  justify-content:space-between;
   align-items:center;
-  justify-content:center;
-}
-
-/* ===== Menu Panel ===== */
-.menu-panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 85%;
-  max-width: 320px;
-  height: 100dvh; /* 🔥 iPhone關鍵 */
-  background: white;
-  padding: 80px 24px 24px;
-  transform: translateX(100%);
-  transition: .3s;
-  overflow-y: auto;
-  z-index: 2000;
-}
-
-.menu-panel.active {
-  transform: translateX(0);
-}
-
-.menu-panel a {
-  display: block;
-  padding: 14px 0;
-  border-bottom: 1px solid #eee;
-  font-size: 16px;
-}
-
-/* ===== overlay ===== */
-.menu-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.3);
-  display: none;
-  z-index: 1500;
-}
-
-.menu-overlay.active {
-  display: block;
-}
-
-/* ===== 卡片 ===== */
-.card {
-  background: white;
-  border-radius: 16px;
-  padding: 20px;
-  margin: 16px;
-}
-
-/* ===== grid ===== */
-.grid {
-  display: grid;
-  gap: 16px;
-}
-
-@media(min-width:768px){
-  .grid {
-    grid-template-columns: repeat(2,1fr);
-  }
-}
-
-/* ===== 按鈕 ===== */
-.btn {
-  display:inline-block;
   padding:12px 16px;
-  border:1px solid #0B1F3B;
-  text-decoration:none;
-  margin-top:10px;
+  z-index:1000;
+  border-bottom:1px solid #eee;
 }
 
-.btn-primary {
+.logo{
+  font-weight:bold;
+}
+
+.menu-btn{
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* MENU */
+.menu{
+  position:fixed;
+  top:56px;
+  right:0;
+  width:80%;
+  max-width:320px;
+  background:white;
+  height:100vh;
+  transform:translateX(100%);
+  transition:.3s;
+  display:flex;
+  flex-direction:column;
+  padding:20px;
+  z-index:999;
+}
+
+.menu.show{
+  transform:translateX(0);
+}
+
+.menu a{
+  padding:14px 0;
+  text-decoration:none;
+  color:#111;
+  border-bottom:1px solid #eee;
+}
+
+/* MAIN */
+main{
+  padding-top:80px;
+}
+
+/* CARD */
+.card{
+  background:white;
+  margin:16px;
+  padding:20px;
+  border-radius:16px;
+}
+
+/* BUTTON */
+.btn{
+  display:inline-block;
+  padding:12px 20px;
+  border:1px solid #0B1F3B;
+  margin:6px;
+  border-radius:10px;
+  text-decoration:none;
+  color:#0B1F3B;
+}
+
+.btn-primary{
   background:#0B1F3B;
   color:white;
 }
 
-/* ===== LINE 浮動 ===== */
-.line-float {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  background: #06C755;
-  color: white;
-  padding: 14px 18px;
-  border-radius: 999px;
-  z-index: 3000;
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  padding:16px;
 }
 
-/* ===== Modal ===== */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: white;
-  display: none;
-  z-index: 4000;
-  overflow-y: auto;
+/* PRODUCT */
+.product{
+  background:white;
+  padding:12px;
+  border-radius:12px;
 }
 
-.modal.active {
-  display: block;
+/* MODAL */
+.modal{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:white;
+  display:none;
+  overflow:auto;
+  z-index:2000;
+}
+
+.modal.show{
+  display:block;
+}
+
+.modal-content{
+  padding:20px;
+}
+
+/* LINE */
+.line-btn{
+  position:fixed;
+  right:16px;
+  bottom:16px;
+  background:#06C755;
+  color:white;
+  padding:14px 16px;
+  border-radius:50px;
+  text-decoration:none;
+  z-index:999;
+}
+
+/* FOOTER */
+footer{
+  padding:30px 10px;
+  font-size:12px;
+  color:#777;
 }
