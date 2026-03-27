@@ -12,7 +12,11 @@ const header = `
 const menu = `
 <div id="menu" class="menu-overlay">
 
+<div class="menu-inner">
+
+<div class="menu-top">
 <div class="menu-close" onclick="toggleMenu()">✕</div>
+</div>
 
 <div class="menu-main">
 <a href="index.html">首頁</a>
@@ -23,11 +27,16 @@ const menu = `
 <a href="knowledge.html">使用指南</a>
 <a href="brand.html">品牌故事</a>
 <a href="faq.html">FAQ</a>
-<a href="contact.html">聯絡我們</a>
+<a href="contact.html">聯絡</a>
 </div>
 
 <div class="menu-bottom">
-<a href="https://lin.ee/sHZW7NkR" class="menu-line-btn">LINE諮詢</a>
+<p>需要幫你搭配？</p>
+<a href="https://lin.ee/sHZW7NkR" class="menu-line-btn">
+LINE直接詢問
+</a>
+</div>
+
 </div>
 
 </div>
@@ -36,7 +45,7 @@ const menu = `
 const footer = `
 <footer class="footer">
 <p>© 仙加味</p>
-<p style="color:#9CA3AF;">萬華起家・延續鹿角工序</p>
+<p class="footer-sub">萬華起家・延續鹿角工序</p>
 <a href="https://lin.ee/sHZW7NkR">LINE聯絡</a>
 </footer>
 `;
