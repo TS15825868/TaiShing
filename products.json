@@ -1,42 +1,82 @@
 [
-{
-"name":"龜鹿膏",
-"images":["images/guilu-gao-100g.jpg"],
-"desc":"每日固定補養",
-"spec":"100 g / 罐",
-"target":["固定作息","長期使用"],
-"usage":"每天1–2匙",
-"ingredients":["龜板萃取物","鹿角萃取物","粉光蔘","枸杞","紅棗","黃耆"],
-"lineText":"我要龜鹿膏"
-},
-{
-"name":"龜鹿飲",
-"images":["images/guilu-drink-30cc.jpg"],
-"desc":"隨開即飲",
-"spec":"30 cc / 罐",
-"target":["忙碌","外出"],
-"usage":"每天1–2罐",
-"ingredients":["水","龜板萃取物","鹿角萃取物","粉光蔘","枸杞","紅棗","黃耆"],
-"lineText":"我要龜鹿飲"
-},
-{
-"name":"龜鹿湯塊",
-"images":["images/guilu-block-box-75g.jpg"],
-"desc":"料理搭配",
-"spec":"75 g / 盒",
-"target":["料理","熱食"],
-"usage":"每天1–2塊",
-"ingredients":["龜板萃取物","鹿角萃取物"],
-"lineText":"我要龜鹿湯塊"
-},
-{
-"name":"鹿茸粉",
-"images":["images/lurong-powder-75g.jpg"],
-"desc":"自由搭配",
-"spec":"75 g / 罐",
-"target":["彈性","飲品"],
-"usage":"每天1–2匙",
-"ingredients":["鹿茸"],
-"lineText":"我要鹿茸粉"
-}
+  {
+    "id": "guilu-gao",
+    "name": "龜鹿膏",
+    "title": "穩定補養",
+    "desc": "建立每日節奏的核心補養方式，適合長期穩定使用",
+    "spec": "100g / 罐",
+    "img": "images/guilu-gao.jpg",
+    "ingredient": "龜板萃取物、鹿角萃取物、粉光蔘、枸杞、紅棗、黃耆",
+    "usage": [
+      "可直接食用",
+      "可加入溫水",
+      "建議早晚使用"
+    ],
+    "target": [
+      "想建立日常補養習慣",
+      "希望穩定調整體質",
+      "適合長期使用者"
+    ],
+    "lineText": "我要了解龜鹿膏"
+  },
+  {
+    "id": "guilu-drink",
+    "name": "龜鹿飲",
+    "title": "快速補充",
+    "desc": "隨身補充的補養方式，適合忙碌生活節奏",
+    "spec": "30cc / 瓶",
+    "img": "images/guilu-drink.jpg",
+    "ingredient": "水、龜板萃取物、鹿角萃取物、粉光蔘、枸杞、紅棗、黃耆",
+    "usage": [
+      "每日一瓶",
+      "可溫熱飲用",
+      "避免冰飲"
+    ],
+    "target": [
+      "生活忙碌族群",
+      "需要快速補充",
+      "不想準備料理"
+    ],
+    "lineText": "我要了解龜鹿飲"
+  },
+  {
+    "id": "guilu-block",
+    "name": "龜鹿湯塊",
+    "title": "日常調養",
+    "desc": "將補養融入料理，讓日常飲食自然補養",
+    "spec": "75g / 盒",
+    "img": "images/guilu-block.jpg",
+    "ingredient": "龜板萃取物、鹿角萃取物",
+    "usage": [
+      "可燉湯使用",
+      "可加入料理",
+      "日常食補"
+    ],
+    "target": [
+      "喜歡料理者",
+      "家庭使用",
+      "想自然補養"
+    ],
+    "lineText": "我要了解龜鹿湯塊"
+  },
+  {
+    "id": "lurong",
+    "name": "鹿茸粉",
+    "title": "自由搭配",
+    "desc": "進階補養選擇，可依需求自由搭配使用",
+    "spec": "75g / 罐",
+    "img": "images/lurong.jpg",
+    "ingredient": "鹿茸",
+    "usage": [
+      "可加入飲品",
+      "可搭配其他補養食品",
+      "依需求調整"
+    ],
+    "target": [
+      "已有補養習慣者",
+      "進階使用者",
+      "需要客製化搭配"
+    ],
+    "lineText": "我要了解鹿茸粉"
+  }
 ]
