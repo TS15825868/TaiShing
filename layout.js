@@ -12,7 +12,7 @@ const header = `
 const menu = `
 <div id="menu" class="menu-overlay">
 
-<div class="menu-inner">
+<div class="menu-panel">
 
 <div class="menu-top">
 <div class="menu-close" onclick="toggleMenu()">✕</div>
@@ -33,7 +33,7 @@ const menu = `
 <div class="menu-bottom">
 <p>需要幫你搭配？</p>
 <a href="https://lin.ee/sHZW7NkR" class="menu-line-btn">
-LINE直接詢問
+LINE幫我配
 </a>
 </div>
 
