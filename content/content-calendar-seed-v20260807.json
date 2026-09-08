@@ -1,5 +1,5 @@
 {
-  "version": "2026-08-08-v4-six-product-content-matrix",
+  "version": "2026-09-09-v5-facebook-instagram-threads-funnel",
   "timezone": "Asia/Taipei",
   "sourceLibrary": "content/public-post-library.json + publishing-center-data-v6.js",
   "visualSpec": "content/visual-production-spec-v20260807.json",
@@ -7,6 +7,11 @@
     {"weekday":"TU","time":"19:30","preferredPillars":["產品","品牌","FAQ","試喝活動","天氣關懷"]},
     {"weekday":"SA","time":"09:30","preferredPillars":["料理","日常節奏","四季","萬華在地","家庭場合"]}
   ],
+  "platformCadence": {
+    "Facebook": {"targetPerWeek":"2-3","role":"熟客維繫、完整資訊、品牌故事、活動與官網導流"},
+    "Instagram": {"targetPerWeek":"2-3","stories":"依素材與日常彈性增加","role":"視覺門面、產品與生活情境、品牌信任、官網導流"},
+    "Threads": {"targetPerWeek":"5-7","role":"陌生觸及、對話、觀點、店內日常、FAQ切角與品牌人格"}
+  },
   "rotationRules": {
     "sameProductConsecutive": false,
     "samePillarConsecutive": false,
@@ -21,7 +26,9 @@
     "specialHolidayMayReplaceUpcomingSlot": true,
     "allNewContentPendingReview": true,
     "productArtworkMustUseOriginalPhoto": true,
-    "ownerApprovalRequiredBeforeScheduleOrPublish": true
+    "ownerApprovalRequiredBeforeScheduleOrPublish": true,
+    "crossPlatformExactCopyForbidden": true,
+    "threadsOriginalConversationFirst": true
   },
   "reviewDimensions": ["品牌","產品","規格","價格／活動","季節","天氣","場合","地點","情境","環境","冷熱","表情","動作","小老闆與夥伴","比例尺寸","重複圖"],
   "topicMatrix": {
@@ -40,11 +47,31 @@
     "guiluGao": "100g六角玻璃罐約51×78mm；只用新版米白標籤",
     "guiluTangkuai": "75g深藍盒；8塊裝；只使用正式原圖；不得建立其他容量",
     "guiluJiao": "600g（1斤）淡紫盒依原圖等比例；不可橫向拉長；不得與龜鹿湯塊混用",
-    "mascot": "官網版Q版小老闆；米白中式上衣、深綠圍裙、紅色直式仙加味印章；小鹿＋小烏龜必須出現"
+    "mascot": "官網版Q版小老闆；米白中式上衣、深綠圍裙、紅色直式仙加味印章；小鹿與小烏龜依情境需要出現時必須分開"
+  },
+  "funnelRules": {
+    "primaryPath": "Facebook／Instagram／Threads → 仙加味官網 → 官方LINE問答與購買",
+    "socialProfilePrimaryLink": "https://ts15825868.github.io/xianjiawei/",
+    "lineId": "@762jybnm",
+    "softCtaExamples": ["官網有完整產品整理","想看差異可先到官網","需要協助挑選可從官網進官方LINE"],
+    "hardSellEveryPostForbidden": true,
+    "profileAndPostUtmRequiredWhenPractical": true
+  },
+  "engagementRules": {
+    "purpose": "以真實、有幫助、有上下文的互動增加陌生觸及與品牌認識",
+    "replyToOwnComments": true,
+    "joinRelevantPublicConversations": true,
+    "copyPasteSpamForbidden": true,
+    "unrelatedPromotionForbidden": true,
+    "competitorAttackForbidden": true,
+    "medicalClaimForbidden": true,
+    "defaultReplyStyle": "先回應對方內容，再補一個實用觀點；只有自然相關時才提仙加味或導向官網",
+    "softCtaFrequency": "約每5次對外互動最多1次自然導流，其餘以真實對話為主"
   },
   "platforms": {
-    "Facebook": {"enabled":true,"copyStyle":"完整敘述與互動提問"},
-    "Instagram": {"enabled":true,"copyStyle":"精簡段落與視覺優先"},
+    "Facebook": {"enabled":true,"copyStyle":"完整敘述、品牌故事、FAQ與互動提問；適度導向官網"},
+    "Instagram": {"enabled":true,"copyStyle":"視覺優先、精簡段落、生活情境與產品原圖；導向官網"},
+    "Threads": {"enabled":true,"handle":"xianjiawei.tw","copyStyle":"口語、短觀點、問題、幕後與FAQ；優先引發回覆，不照搬FB／IG文案"},
     "LINE VOOM": {"enabled":true,"copyStyle":"短文與明確行動","manualFallback":true},
     "Google 商家最新動態": {"enabled":true,"copyStyle":"在地、品牌與活動資訊","manualFallback":false}
   }
