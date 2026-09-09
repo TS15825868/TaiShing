@@ -1,8 +1,25 @@
 {
-  "version": "2026-09-09-v5-facebook-instagram-threads-funnel",
+  "version": "2026-09-09-v6-primary-guilu-gao-and-drinks",
   "timezone": "Asia/Taipei",
   "sourceLibrary": "content/public-post-library.json + publishing-center-data-v6.js",
   "visualSpec": "content/visual-production-spec-v20260807.json",
+  "campaignFocus": {
+    "authority": "user-confirmed-current",
+    "primaryProducts": [
+      "龜鹿膏100g／罐",
+      "龜鹿飲30cc玻璃罐30cc／罐（小玻璃罐）",
+      "龜鹿飲180cc鋁袋180cc／包（鋁袋）"
+    ],
+    "secondaryProducts": [
+      "龜鹿湯塊75g／盒｜8塊裝",
+      "龜鹿膠600g／盒｜32塊裝",
+      "鹿茸粉75g／罐"
+    ],
+    "productPostWeightRule": "產品型貼文每3篇至少2篇以龜鹿膏或龜鹿飲為主題；其他產品維持次要曝光，不刪除正常產品資料。",
+    "conversionPriority": ["龜鹿飲30cc試喝", "龜鹿飲30cc與180cc差異", "龜鹿膏日常使用情境", "龜鹿膏與龜鹿飲怎麼選"],
+    "ctaPriority": "優先導向官網龜鹿膏／龜鹿飲介紹、龜鹿飲試喝頁，再進官方LINE問答與購買。",
+    "noTherapeuticClaims": true
+  },
   "weeklySlots": [
     {"weekday":"TU","time":"19:30","preferredPillars":["產品","品牌","FAQ","試喝活動","天氣關懷"]},
     {"weekday":"SA","time":"09:30","preferredPillars":["料理","日常節奏","四季","萬華在地","家庭場合"]}
@@ -33,13 +50,15 @@
   "reviewDimensions": ["品牌","產品","規格","價格／活動","季節","天氣","場合","地點","情境","環境","冷熱","表情","動作","小老闆與夥伴","比例尺寸","重複圖"],
   "topicMatrix": {
     "產品": ["龜鹿膏100g","龜鹿飲30cc玻璃罐","龜鹿飲180cc鋁袋","龜鹿湯塊75g深藍盒","龜鹿膠600g淡紫盒","鹿茸粉75g"],
+    "主打產品": ["龜鹿膏100g","龜鹿飲30cc玻璃罐","龜鹿飲180cc鋁袋"],
+    "主打切角": ["龜鹿膏怎麼使用","龜鹿膏日常情境","龜鹿膏與龜鹿飲怎麼選","30cc與180cc怎麼選","30cc試喝流程","龜鹿飲接單後製作5～7個工作天","溫熱飲用","工作空檔與居家情境"],
     "品牌": ["萬華四代故事","補養是一種節奏","用料原則","品牌日常","小老闆與夥伴","產品資料清楚透明"],
     "四季": ["春季日常","夏季清爽","秋季規律","冬季溫熱"],
     "天氣關懷": ["晴天","悶熱","下雨","午後雷陣雨","早晚溫差","強風","寒冷","颱風","空氣品質"],
     "場合": ["早餐前後","上班前","工作空檔","午休","下午休息","下班後","家庭晚餐","週末採買","家庭聚餐","拜訪長輩","節慶送禮","雨天宅家","出差外勤","料理備餐","晚間放鬆"],
     "地點": ["居家客廳","居家廚房","餐桌","書房","辦公室","車上休息","公園","河濱","萬華街景","仙加味品牌展示空間","傳統市場","家庭餐廳"],
     "料理": ["山藥雞湯","香菇雞湯","紅棗枸杞雞湯","排骨湯","蘿蔔排骨湯","玉米排骨湯","電鍋燉湯","家庭火鍋","週末雞湯","家常蔬菜湯","紅棗雞湯","保溫壺熱飲"],
-    "FAQ": ["30cc與180cc怎麼選","30cc罐型","180cc鋁袋","龜鹿湯塊75g","龜鹿湯塊與龜鹿膠差異","隔水加熱","保存方式","試喝流程","製作時間","官方LINE"]
+    "FAQ": ["龜鹿膏怎麼使用","龜鹿膏與龜鹿飲怎麼選","30cc與180cc怎麼選","30cc罐型","180cc鋁袋","隔水加熱","保存方式","試喝流程","製作時間","官方LINE","龜鹿湯塊75g","龜鹿湯塊與龜鹿膠差異"]
   },
   "visualRules": {
     "30cc": "42mm直徑×51mm高同型小玻璃罐；裸罐無貼紙；不可拉高拉胖；正式名稱使用玻璃罐不得稱瓶",
@@ -53,7 +72,7 @@
     "primaryPath": "Facebook／Instagram／Threads → 仙加味官網 → 官方LINE問答與購買",
     "socialProfilePrimaryLink": "https://ts15825868.github.io/xianjiawei/",
     "lineId": "@762jybnm",
-    "softCtaExamples": ["官網有完整產品整理","想看差異可先到官網","需要協助挑選可從官網進官方LINE"],
+    "softCtaExamples": ["官網有完整產品整理","想看龜鹿膏與龜鹿飲差異可先到官網","想試喝龜鹿飲可先看試喝頁","需要協助挑選可從官網進官方LINE"],
     "hardSellEveryPostForbidden": true,
     "profileAndPostUtmRequiredWhenPractical": true
   },
@@ -69,9 +88,9 @@
     "softCtaFrequency": "約每5次對外互動最多1次自然導流，其餘以真實對話為主"
   },
   "platforms": {
-    "Facebook": {"enabled":true,"copyStyle":"完整敘述、品牌故事、FAQ與互動提問；適度導向官網"},
-    "Instagram": {"enabled":true,"copyStyle":"視覺優先、精簡段落、生活情境與產品原圖；導向官網"},
-    "Threads": {"enabled":true,"handle":"xianjiawei.tw","copyStyle":"口語、短觀點、問題、幕後與FAQ；優先引發回覆，不照搬FB／IG文案"},
+    "Facebook": {"enabled":true,"copyStyle":"完整敘述、品牌故事、FAQ與互動提問；主打龜鹿膏與龜鹿飲並適度導向官網"},
+    "Instagram": {"enabled":true,"copyStyle":"視覺優先、精簡段落、生活情境與產品原圖；主打龜鹿膏與龜鹿飲並導向官網"},
+    "Threads": {"enabled":true,"handle":"xianjiawei.tw","copyStyle":"口語、短觀點、問題、幕後與FAQ；主打龜鹿膏與龜鹿飲，優先引發回覆，不照搬FB／IG文案"},
     "LINE VOOM": {"enabled":true,"copyStyle":"短文與明確行動","manualFallback":true},
     "Google 商家最新動態": {"enabled":true,"copyStyle":"在地、品牌與活動資訊","manualFallback":false}
   }
