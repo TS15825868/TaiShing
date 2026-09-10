@@ -1,5 +1,5 @@
 {
-  "version": "2026-09-09-full-delegation-v1",
+  "version": "2026-09-10-full-delegation-v2-line-community",
   "authority": "user-confirmed-current",
   "brand": "仙加味",
   "timezone": "Asia/Taipei",
@@ -33,7 +33,8 @@
       "四季與經核實的天氣關懷",
       "小老闆情境圖",
       "正式產品原圖",
-      "合格短影片與Reels"
+      "合格短影片與Reels",
+      "LINE社群交流邀請"
     ],
     "hardRules": [
       "不得宣稱治療、改善疾病、預防疾病或其他醫療效能",
@@ -43,7 +44,9 @@
       "產品規格必須使用最新正式資料",
       "產品本體不得由AI重畫或改包裝、標籤、比例",
       "圖文必須一致",
-      "不得換句話重發已發布內容"
+      "不得換句話重發已發布內容",
+      "LINE社群只做交流與養熟，不在公開社群收集個資或完成交易",
+      "所有產品進一步詢問、試喝、價格、下單、配送、售後及其他大小事最後統一導LINE OA"
     ]
   },
   "primaryProducts": [
@@ -59,7 +62,8 @@
   "cadence": {
     "facebook": {"targetPerWeek": 2, "preferredWindow": "依Metricool實際受眾活躍資料，現階段優先10:00-12:00"},
     "instagram": {"targetPerWeek": 2, "testWindows": ["10:00-11:00", "19:30-20:30"]},
-    "threads": {"targetPerWeek": 4, "testWindows": ["12:00-13:00", "19:30-20:30"], "weekendMayUse": true}
+    "threads": {"targetPerWeek": 4, "testWindows": ["12:00-13:00", "19:30-20:30"], "weekendMayUse": true},
+    "lineCommunityPromotion": {"targetPerWeek": "約1次自然邀請", "rule": "優先放在生活、料理、品牌故事或聊天型內容；不每篇硬推、不取代LINE OA最終導流"}
   },
   "antiAnnoyance": {
     "sameCopyCrossPlatformForbidden": true,
@@ -68,11 +72,18 @@
     "hardSellEveryPostForbidden": true,
     "proactiveEngagementTargetsPerDay": "2-3",
     "sameExternalAccountCooldownDays": 7,
-    "outboundLinkFrequency": "約每5至6次對外互動最多1次自然導流，其餘以真實交流為主"
+    "outboundLinkFrequency": "約每5至6次對外互動最多1次自然導流，其餘以真實交流為主",
+    "lineCommunityInviteFrequency": "每週約1次或高度相關時自然帶入，避免每篇都放邀請連結"
   },
-  "funnel": "Facebook／Instagram／Threads → 官網 → LINE OA問答／試喝／購買",
+  "funnel": {
+    "awareness": "Facebook／Instagram／Threads／官網",
+    "community": "LINE社群『仙加味・龜鹿｜日常交流』負責生活、料理、品牌與一般交流",
+    "finalConversion": "LINE OA @762jybnm 負責產品問答、怎麼選、試喝、價格、下單、配送、售後與其他大小事",
+    "lineCommunityUrl": "https://line.me/ti/g2/xZwHrwnQH968Ck1KavysQK9JH7l6FxNNlRKw3g?utm_source=invitation&utm_medium=link_copy&utm_campaign=default",
+    "lineOaUrl": "https://lin.ee/sHZW7NkR"
+  },
   "visualPolicy": {
-    "mascot": "固定Q版小老闆：短黑髮、大眼睛、米白中式上衣、深橄欖綠圍裙、胸前紅色直式仙加味印章；小鹿與小烏龜分開",
+    "mascot": "固定Q版小老闆為使用者兒子所代表的品牌角色：短黑髮、大眼睛、米白中式上衣、深橄欖綠圍裙、胸前紅色直式仙加味印章；小鹿與小烏龜分開。使用者本人是品牌管理者，不等於小老闆角色。",
     "productOriginalRequired": true,
     "guiluDrink30": "小玻璃罐、裸罐、無貼紙，不得放大成一般飲料瓶",
     "guiluDrink180": "正式狹長鋁袋比例，不得巨大化"
@@ -91,6 +102,8 @@
     "comparePublishingTimes": true,
     "compareVideoVsStatic": true,
     "comparePrimaryProductAngles": true,
-    "adjustCadenceByActualPerformance": true
+    "adjustCadenceByActualPerformance": true,
+    "trackLineCommunityJoinInterest": true,
+    "keepLineOaAsFinalDestination": true
   }
 }
